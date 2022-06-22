@@ -211,7 +211,7 @@ function buildCalendarEditForm(table, index) {
         if (index === -1) { //adding new
             editForm += "<div><label for='" + headers[j] + "'>" + headers[j] + "</label><input type='" + inputTypes[headers[j]] + "' id='" + headers[j] + "' " + extraString + "></div>";
         } else { //editing existing
-            editForm += "<div><label for='" + headers[j] + "'>" + headers[j] + "</label><input type='" + inputTypes[headers[j]] + "' id='" + headers[j] + "' value='" + row[headers[j]] + "'" + extraString + "></div>";
+            editForm += "<div><label for='" + headers[j] + "'>" + headers[j] + "</label><input type='" + inputTypes[headers[j]] + "' id='" + headers[j] + "' value='" + row[headers[j]].replaceAll("\"", "&quot;").replaceAll("\'", "&apos;") + "'" + extraString + "></div>";
         }
     }
     editForm += "</form>";
