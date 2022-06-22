@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bitOffice</title>
+</head>
+
+<body>
+    <h1>bitOffice</h1>
+    <nav>
+        <button>notes</button>
+        <button>write</button>
+        <button>tables</button>
+        <button>contacts</button>
+        <button>calendar</button>
+        <button>calculator</button>
+    </nav>
+    <main id="main-notes">
+        <h2>Notes</h2>
+        <nav>
+            <button onclick="newEntry()">New</button>
+            <button onclick="load()">Load</button>
+            <button onclick="save()">Save</button>
+            <button id="copy" onclick="copyStringToClipboard(document.getElementById('note').value);">Copy</button>
+            <button onclick="printDiv('note');">&#128424;</button>
+            <button class="plus-minus" onclick="changeFontSize(this);">-</button>
+            <button class="plus-minus" onclick="changeFontSize(this);">+</button>
+            <button onclick="simulateUndo()">&#10226;</button>
+        </nav>
+        <textarea id="note" rows="10" placeholder="your notes here"></textarea>
+    </main>
+    <hr>
+    <main id="main-write">
+        <h2>Write</h2>
+        <nav id="file-bar">
+            <button onclick="newDocument();">New</button>
+            <button onclick="load();">Load</button>
+            <button onclick="dataToJSON();">Save</button>
+            <button onclick="exportToHTML()">Export</button>
+            <button onclick="printDiv('document-parent');//window.print()">&#128424;</button>
+        </nav>
+        <nav id="document-settings">
+            <button class="mono" onclick='processSelectedText(this);'>Mono</button>
+            <button class="serif" onclick='processSelectedText(this);'>Serif</button>
+            <button class="sans" onclick='processSelectedText(this);'>Sans</button>
+            <button onclick='processSelectedText(this);//decrease font'><sup>A</sup>A</button>
+            <button onclick='processSelectedText(this);//increase font;'><sub>A</sub>A</button>
+            <button onclick='processSelectedText(this);//inc margin;'>&rarrb;&larrb;</button>
+            <button onclick='processSelectedText(this);//dec margin;'>&larrb;&rarrb;</button>
+            <button onclick='processSelectedText(this);//align left;'>&#8666;</button>
+            <button onclick='processSelectedText(this);//align center;'>&#8667;&#8666;</button>
+            <button onclick='processSelectedText(this);//align right;'>&#8667;</button>
+            <button id="spell-check" onclick='processSelectedText(this);//spellcheck;'>&check;</button>
+        </nav>
+        <nav id="edit-bar">
+            <button onclick='processSelectedText(this);'><b>B</b></button>
+            <button onclick='processSelectedText(this);'><u>U</u></button>
+            <button onclick='processSelectedText(this);'><em>I</em></button> &nbsp;
+            <button onclick='processSelectedText(this);//paragraph;'>&para;</button>
+            <button onclick='processSelectedText(this);'>H1</button>
+            <button onclick='processSelectedText(this);'>H2</button>
+            <button onclick='processSelectedText(this);'>H3</button> &nbsp;
+            <button onclick='processSelectedText(this);//horizontal rule'>&#8213;</button>
+            <button onclick='processSelectedText(this);//bullet;'>&bullet;</button> &nbsp;
+            <button onclick='processSelectedText(this);//undo;'>&#10226;</button>
+        </nav>
+        <textarea id="text-editor" spellcheck="false" oninput="updateResult();"></textarea>
+        <div id="document-parent">
+            <div id="document-result"></div>
+        </div>
+    </main>
+    <hr>
+    <main id="main-tables-table">
+        <h2>Tables</h2>
+        <nav>
+            <button onclick="tablesNewTable();">New</button>
+            <button onclick="tablesLoad();">Load</button>
+            <button onclick="tablesSave();">Save</button>
+            <button onclick="tablesCopyCSVToClipboard()">Copy</button>
+            <button onclick="tablesShowRules();">?</button>
+        </nav>
+        <div>
+            <table id="tables-table">
+            </table>
+        </div>
+    </main>
+    <main id="main-tables-header-form">
+        <h2>Tables
+            <h2>
+                <h3>Column: <span id="tables-current-header">header name here</span></h3>
+                <span><button onclick="updateHeaderName(table);">Change name to:</button><input id="tables-new-header-name" type="text" placeholder="name"></span>
+                <button onclick="deleteColumn(table);">Delete Column</button>
+                <button onclick="copyColumn(table)">Copy Column</button>
+                <span><button onclick="moveColumn(table)">Move To Column</button><select id="move-column"></select></span>
+                <button onclick="calculateTotal(table)">Add Total</button>
+                <button onclick="calculateAverage(table)">Compute Average</button>
+                <button onclick="tablesCancel(table)">Cancel</button>
+    </main>
+    <main id="main-tables-row-form">
+        <h2>Tables
+            <h2>
+                <h3>Row: <span id="tables-current-row">row number here</span></h3>
+                <button onclick="deleteRow()">Delete Row</button>
+                <button onclick="copyRow()">Copy Row</button>
+                <span><button onclick="moveRow()">Move To Row</button><select id="move-row"></select></span>
+                <button onclick="tablesCancel(table)">Cancel</button>
+    </main>
+    <hr>
+    <main id="main-contacts-table">
+        <h2 id="contacts-table-name">Contacts</h2>
+        <nav>
+            <button onclick="loadContactsTable();">Load</button>
+            <button onclick="saveContactsTable(table);">Save</button>
+            <button onclick="processCSVClick(table);">CSV</button>
+        </nav>
+        <button onclick='newContactsEntry(table);'>+ New Contact</button>
+        <div id="contacts-table"></div>
+    </main>
+    <main id="main-contacts-form">
+        <h2>Contacts</h2>
+        <div id="contacts-edit-form-message"></div>
+        <div id="contacts-edit-form"></div>
+        <button onclick='saveContactsEntry(table);'>Save</button>
+        <button onclick='deleteContactsEntry(table);'>Delete</button>
+        <button onclick='cancelContactsEntry(table);'>Cancel</button>
+    </main>
+    <hr>
+    <main id="main-calendar-start">
+        <h2>Calendar</h2>
+        <nav>
+            <button onclick="loadCalendarDatabase();">Load</button>
+            <button onclick="saveCalendarDatabase(calendarDatabase);">Save</button>
+        </nav>
+        <div>
+            <input type='date' id="calendar-date">
+        </div>
+        <button onclick="processOpenCalendar();">Open</button>
+    </main>
+    <main id="main-calendar-table">
+        <h2>Calendar</h2>
+        <h3 id="calendar-table-name"></h3>
+        <nav>
+            <button onclick='newCalendarEntry(table);'>+ New Entry</button>
+            <button onclick="processCalendarHome(table);">Home</button>
+            <button onclick="processCSVClick(table);">CSV</button>
+        </nav>
+        <div id="calendar-table"></div>
+    </main>
+    <main id="main-calendar-form">
+        <h2>Calendar</h2>
+        <h3 id="calendar-edit-form-message"></h3>
+        <div id="calendar-edit-form"></div>
+        <button onclick='saveCalendarEntry(table);'>Save</button>
+        <button onclick='deleteCalendarEntry(table);'>Delete</button>
+        <button onclick='cancelCalendarEntry(table);'>Cancel</button>
+    </main>
+    <hr>
+    <main id="main-calculator">
+        <h2>Calculator</h2>
+        <div id="calculator-result-row"><input type=text id='calculator-input'>
+            <button onclick=buildCalcString(this)>&larr;</button>
+            <button onclick=buildCalcString(this)>CLR</button>
+        </div>
+        <span id="expression-span"></span>
+        <table id="calculator-table">
+            <tr>
+                <td><button onclick=buildCalcString(this)>7</button></td>
+                <td><button onclick=buildCalcString(this)>8</button></td>
+                <td><button onclick=buildCalcString(this)>9</button></td>
+                <td><button onclick=buildCalcString(this)>/</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=buildCalcString(this)>4</button></td>
+                <td><button onclick=buildCalcString(this)>5</button></td>
+                <td><button onclick=buildCalcString(this)>6</button></td>
+                <td><button onclick=buildCalcString(this)>x</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=buildCalcString(this)>1</button></td>
+                <td><button onclick=buildCalcString(this)>2</button></td>
+                <td><button onclick=buildCalcString(this)>3</button></td>
+                <td><button onclick=buildCalcString(this)>-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=buildCalcString(this)>0</button></td>
+                <td><button onclick=buildCalcString(this)>.</button></td>
+                <td><button id="equals-button" class="special-calculator-button" onclick=buildCalcString(this)>=</button></td>
+                <td><button onclick=buildCalcString(this)>+</button></td>
+            </tr>
+        </table>
+    </main>
+
+    <script src="/notes/notes_javascript.js"></script>
+    <script src="/write/write_javascript.js"></script>
+    <script src="/tables/tables_javascript.js"></script>
+    <script src="/contacts/contacts_javascript.js"></script>
+    <script src="/calendar/calendar_javascript.js"></script>
+    <script src="/calculator/calculator_javascript.js"></script>
+</body>
+
+</html>

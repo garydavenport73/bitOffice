@@ -1,48 +1,57 @@
-        let initialTable = {
+        let tablesInitialTable = {
             headers: ["Column 1", "Column 2", "Column 3"],
             data: [
-                {"Column 1":"hi", "Column 2":"","Column 3":""},
-                {"Column 1":"there", "Column 2":"","Column 3":""},
-                {"Column 1":"everybody", "Column 2":"","Column 3":""}
+                { "Column 1": "hi", "Column 2": "", "Column 3": "" },
+                { "Column 1": "there", "Column 2": "", "Column 3": "" },
+                { "Column 1": "everybody", "Column 2": "", "Column 3": "" }
             ]
         }
 
-        let table = JSON.parse(JSON.stringify(initialTable));
-        
-		function fillInEmptyPropertyValues(table){
-			let data=table["data"];
-			let headers=table["headers"];
-			for (let i=0; i<data.length; i++){ //fill in empty property values;
-				for (let j=0;j<headers.length;j++){
-					if (data[i][headers[j]]===undefined){
-						data[i][headers[j]]="";
-						}
-					}
-				}
-			}
+
+        let table = {}
+
+        function initializeTablesApp() {
+            table = JSON.parse(JSON.stringify(tablesInitialTable));
+        }
+
+        initializeTablesApp();
+
+        console.log(table["headers"]);
+
+        function fillInEmptyPropertyValues(table) {
+            let data = table["data"];
+            let headers = table["headers"];
+            for (let i = 0; i < data.length; i++) { //fill in empty property values;
+                for (let j = 0; j < headers.length; j++) {
+                    if (data[i][headers[j]] === undefined) {
+                        data[i][headers[j]] = "";
+                    }
+                }
+            }
+        }
 
 
 
-		function processColumnClick(header){
-			//update the database	
-			updateDataFromCurrentInputs();
-			populateMoveColumnSelect(table);
-			//fill out the form on the columns page
-			document.getElementById("current-header").innerHTML=header;
-			}
-			
+        function processColumnClick(header) {
+            //update the database	
+            updateDataFromCurrentInputs();
+            populateMoveColumnSelect(table);
+            //fill out the form on the columns page
+            document.getElementById("tables-current-header").innerHTML = header;
+        }
 
-		function processRowClick(row){
-			//alert("need to process row "+row.toString());
-			//update the database	
-			updateDataFromCurrentInputs();
-			populateMoveRowSelect(table);
-			
-			document.getElementById("current-row").innerHTML=row.toString();
-			}
+
+        function processRowClick(row) {
+            //alert("need to process row "+row.toString());
+            //update the database	
+            updateDataFromCurrentInputs();
+            populateMoveRowSelect(table);
+
+            document.getElementById("tables-current-row").innerHTML = row.toString();
+        }
 
         function makeTable(table) {
-			let tableElement= document.getElementById('tables-table');
+            let tableElement = document.getElementById('tables-table');
             let str = "";
 
             //fill in header from object
@@ -62,17 +71,17 @@
             console.log(bodyData);
             let rowCount = bodyData.length;
             for (let i = 0; i < rowCount; i++) {
-                str += "<tr><td id='row-" + i.toString() + "' onclick='processRowClick("+i.toString()+")'>" + i.toString() + "</td>";
+                str += "<tr><td id='row-" + i.toString() + "' onclick='processRowClick(" + i.toString() + ")'>" + i.toString() + "</td>";
                 let columnCount = headers.length;
                 console.log(columnCount);
                 for (let j = 0; j < columnCount; j++) {
-					//console.log(headers[j]);
+                    //console.log(headers[j]);
                     str += "<td><input type='text' id='cell-" + i.toString() + "-" + j.toString() + "' value='" + bodyData[i][headers[j]].toString() + "'></td>";
                     //str += "<td><input type='text' id='cell-" + (i + 1).toString() + "-" + (j + 1).toString() + "' value='" + i.toString()+j.toString() + "'></td>";
                 }
                 str += "</tr>";
             }
-            str+="</tbody>"
+            str += "</tbody>"
             let tableBody = str;
 
             //make footer for additional controls
@@ -87,9 +96,9 @@
             //addListenersToTable();
             populateMoveColumnSelect(table);
             populateMoveRowSelect(table);
-            
-            tableElement.innerHTML=strTable;
-            
+
+            tableElement.innerHTML = strTable;
+
             return strTable;
         }
 
@@ -121,7 +130,7 @@
         }
 
         function updateDataFromCurrentInputs() {
-			let headers=table["headers"];
+            let headers = table["headers"];
             //need to look and see what is currently in the table visibly
             //and rewrite the data to the data table
             for (let i = 0; i < table.data.length; i++) {
@@ -137,90 +146,90 @@
         function updateHeaderName(table) {
             //updateDataFromCurrentInputs();
             //get old name
-            let fieldName = document.getElementById("current-header").innerHTML;
+            let fieldName = document.getElementById("tables-current-header").innerHTML;
             //get new name
-            let newName = document.getElementById('new-header-name').value;	
-            
+            let newName = document.getElementById('tables-new-header-name').value;
+
             //do nothing if they are the same
-            if (fieldName===newName){
-				makeTable(table);
-				return;
-				}
-            
+            if (fieldName === newName) {
+                makeTable(table);
+                return;
+            }
+
             let headers = table["headers"];
             let data = table["data"];
-            
-            if (newName ===""){ //if blank make name new
-				newName = prompt("There is no name listed, please enter the new name");
-				if (newName === null) {
-					return;
-				}
-			}
 
-			table = _changeHeaderAndDataPropertyName(table, newName, fieldName);
-                        
+            if (newName === "") { //if blank make name new
+                newName = prompt("There is no name listed, please enter the new name");
+                if (newName === null) {
+                    return;
+                }
+            }
+
+            table = _changeHeaderAndDataPropertyName(table, newName, fieldName);
+
             makeTable(table);
-            showMain('main-table');
+            showMain('main-tables-table');
         }
-        
-        function _changeHeaderAndDataPropertyName(table, newName, oldName){
-			let nameCount=0;
-			let data = table["data"];
-			
-			newName=getBestName(table, newName);
-						
-			let index = table["headers"].indexOf(oldName);//get index of field 
 
-            table["headers"][index]=newName;			//change header name
+        function _changeHeaderAndDataPropertyName(table, newName, oldName) {
+            let nameCount = 0;
+            let data = table["data"];
+
+            newName = getBestName(table, newName);
+
+            let index = table["headers"].indexOf(oldName); //get index of field 
+
+            table["headers"][index] = newName; //change header name
             //update rows
-            for (let i = 0; i < data.length; i++){ 
-				data[i][newName]=data[i][oldName];//set new property to old
-				delete data[i][oldName]; //delete old
-			}		
-			return table;
-		}
+            for (let i = 0; i < data.length; i++) {
+                data[i][newName] = data[i][oldName]; //set new property to old
+                delete data[i][oldName]; //delete old
+            }
+            return table;
+        }
 
 
         function deleteColumn(table) {
-			//alert("delete column called");
-			console.log("delete column called");
-			let columnName = document.getElementById("current-header").innerHTML;
-			let index = table["headers"].indexOf(columnName);
-			
-			table["headers"].splice(index,1); 			//delete from header array
-			
-			//loop through rows
-			
-			for (let i = 0; i < table["data"].length; i++){
-				
-				delete table["data"][i][columnName];
-				
-				}
-			
-			makeTable(table);
-			showMain('main-table');
-			
+            //alert("delete column called");
+            console.log("delete column called");
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+            let index = table["headers"].indexOf(columnName);
+
+            table["headers"].splice(index, 1); //delete from header array
+
+            //loop through rows
+
+            for (let i = 0; i < table["data"].length; i++) {
+
+                delete table["data"][i][columnName];
+
+            }
+
+            makeTable(table);
+            showMain('main-tables-table');
+
         }
 
         function addColumn(table) {
-			//alert("need to process add column");
+            //alert("need to process add column");
             updateDataFromCurrentInputs();
-            let newIndex=1;
-            let newColumnName="new"+newIndex.toString(); //make a new name
-            
+            let newIndex = 1;
+            let newColumnName = "new" + newIndex.toString(); //make a new name
+
             //if name already in use, make a new name
-			while (table["headers"].includes(newColumnName)){
-				console.log("column name already in use");
-				newIndex+=1;
-				newColumnName="new"+newIndex.toString();
-				}
-			//alert("new column name "+newColumnName);
-			
-			table.headers.push(newColumnName);
-			
-			
-			fillInEmptyPropertyValues(table);
-			makeTable(table);
+            while (table["headers"].includes(newColumnName)) {
+                console.log("column name already in use");
+                newIndex += 1;
+                newColumnName = "new" + newIndex.toString();
+            }
+            //alert("new column name "+newColumnName);
+
+            table.headers.push(newColumnName);
+
+
+            fillInEmptyPropertyValues(table);
+            makeTable(table);
             //table.headerNames.push("new");
             //for (let row of table.data) {
             //    row.push("");
@@ -229,65 +238,65 @@
         }
 
         function moveColumn(table) {
-			let columnName = document.getElementById("current-header").innerHTML;
-			let destinationColumnName=document.getElementById("move-column").value;
-			if (columnName===destinationColumnName){
-				console.log("destination is same as source");
-				return;
-				}
-			let index = table["headers"].indexOf(columnName);
-			
-			
-			let destinationIndex=table["headers"].indexOf(destinationColumnName);
-			
-			let headerToMove = table["headers"].splice(index, 1)[0]; //splice returns an array length 1
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+            let destinationColumnName = document.getElementById("move-column").value;
+            if (columnName === destinationColumnName) {
+                console.log("destination is same as source");
+                return;
+            }
+            let index = table["headers"].indexOf(columnName);
+
+
+            let destinationIndex = table["headers"].indexOf(destinationColumnName);
+
+            let headerToMove = table["headers"].splice(index, 1)[0]; //splice returns an array length 1
 
             table["headers"].splice(destinationIndex, 0, headerToMove);
             makeTable(table);
-            showMain('main-table');
+            showMain('main-tables-table');
         }
 
-		function getBestName(table, name){
-			
-			let headers = table["headers"];
-			let nameCount = 0;
-			let bestName =  name;
-			
-			while (headers.includes(bestName)){
-				console.log("column name already in use");
-				nameCount+=1;
-				bestName = name +"-"+ nameCount.toString();
-				}
-			
-			return bestName;
-			}
+        function getBestName(table, name) {
+
+            let headers = table["headers"];
+            let nameCount = 0;
+            let bestName = name;
+
+            while (headers.includes(bestName)) {
+                console.log("column name already in use");
+                nameCount += 1;
+                bestName = name + "-" + nameCount.toString();
+            }
+
+            return bestName;
+        }
 
         function copyColumn(table) {
-			//get column 
-			let columnName = document.getElementById("current-header").innerHTML;
+            //get column 
+            let columnName = document.getElementById("tables-current-header").innerHTML;
 
-			//make name for new column
-			let newName=getBestName(table,columnName);
-			//add to headers			
-			table["headers"].push(newName);
+            //make name for new column
+            let newName = getBestName(table, columnName);
+            //add to headers			
+            table["headers"].push(newName);
 
-			//go through rows of data
-			for (let i=0;i<table["data"].length;i++){
-				table["data"][i][newName]=table["data"][i][columnName];
-				}
-			
-			makeTable(table);
-			showMain('main-table');
-			
+            //go through rows of data
+            for (let i = 0; i < table["data"].length; i++) {
+                table["data"][i][newName] = table["data"][i][columnName];
+            }
+
+            makeTable(table);
+            showMain('main-tables-table');
+
         }
 
 
 
         function calculateTotal(table) {
             //get column 
-			let columnName = document.getElementById("current-header").innerHTML;
-            
-            
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+
+
             let total = 0;
             for (let row of table.data) {
                 total = total + Number(row[columnName]);
@@ -295,60 +304,60 @@
             if (confirm("The total is: " + total.toString() + "\nCopy to clipboard?")) {
                 copyToClipBoard(total.toString());
             };
-            showMain('main-table');
+            showMain('main-tables-table');
         }
-        
-        function cancel(table){
-			console.log("cancel called");
-			makeTable(table);//probably not needed
-			showMain('main-table');
-				
-			}
+
+        function tablesCancel(table) {
+            console.log("tablesCancel called");
+            makeTable(table); //probably not needed
+            showMain('main-tables-table');
+
+        }
 
         function calculateAverage() {
-			alert("calculate average called");
-			console.log("calcualtoe average called");
-			
-			let columnName = document.getElementById("current-header").innerHTML;
-            
-            
+            alert("calculate average called");
+            console.log("calcualtoe average called");
+
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+
+
             let total = 0;
-            
+
             for (let row of table.data) {
                 total = total + Number(row[columnName]);
             }
-            
+
             let average = total / table.data.length;
 
             if (confirm("The average is: " + average.toString() + "\nCopy to clipboard?")) {
                 copyToClipBoard(average.toString());
             }
-            showMain('main-table');
-            
-			
+            showMain('main-tables-table');
+
+
             //updateDataFromCurrentInputs();
             //let columnNumber = usefulInteger - 1;
             //usefulInteger = -1;
             //let total = 0;
             //for (let row of table.data) {
-                //total = total + Number(row[columnNumber]);
+            //total = total + Number(row[columnNumber]);
             //}
             //let average = total / table.data.length;
 
             //if (confirm("The average is: " + average.toString() + "\nCopy to clipboard?")) {
-                //copyToClipBoard(average.toString());
+            //copyToClipBoard(average.toString());
             //}
-            //showMain('main-table');
+            //showMain('main-tables-table');
         }
-		
+
         //row functions
         function addRow(table) {
-			let headers = table["headers"];
+            let headers = table["headers"];
             updateDataFromCurrentInputs();
             let numberOfColumns = table.headers.length;
             let tempRow = {};
             for (let i = 0; i < numberOfColumns; i++) {
-                tempRow[headers[i]]="";
+                tempRow[headers[i]] = "";
             }
             table["data"].push(tempRow);
             makeTable(table);
@@ -356,73 +365,73 @@
 
         function deleteRow() {
             //updateDataFromCurrentInputs();
-            let index=parseInt(document.getElementById("current-row").innerHTML);
+            let index = parseInt(document.getElementById("tables-current-row").innerHTML);
             //let rowIndex = usefulInteger - 1;
             let data = table["data"];
             data.splice(index, 1);
             //usefulInteger = -1;
             makeTable(table);
-            //showMain('main-table');
+            //showMain('main-tables-table');
         }
 
         function copyRow() {
-			//alert("copy row called");
-			console.log("copy row called");
+            //alert("copy row called");
+            console.log("copy row called");
             //updateDataFromCurrentInputs();
-            let index=parseInt(document.getElementById("current-row").innerHTML);
+            let index = parseInt(document.getElementById("tables-current-row").innerHTML);
             let data = table["data"];
             console.log(data);
 
             let rowToCopy = JSON.parse(JSON.stringify(table.data[index]));
-            
+
             data.push(rowToCopy);
             makeTable(table);
-            //showMain('main-table');
+            //showMain('main-tables-table');
         }
 
         function moveRow() {
-			//alert("move row called");
-			console.log("move row called");
-            
-            
-            
-            let index=parseInt(document.getElementById("current-row").innerHTML);
-            
-            
+            //alert("move row called");
+            console.log("move row called");
+
+
+
+            let index = parseInt(document.getElementById("tables-current-row").innerHTML);
+
+
             let data = table["data"];
-            
-            
-            
-            
+
+
+
+
             let destinationIndex = parseInt(document.getElementById("move-row").value);
-            
-            
-            
+
+
+
             let rowToMove = data.splice(index, 1)[0];
-            
-            
+
+
             data.splice(destinationIndex, 0, rowToMove);
             //console.log(table.data);
             makeTable(table);
-            //showMain('main-table');
+            //showMain('main-tables-table');
         }
 
 
 
 
-        function newTable() {
-			//alert("need to process new");
-            //console.log("newTable() called");
+        function tablesNewTable() {
+            //alert("need to process new");
+            //console.log("tablesNewTable() called");
             if (confirm("Are you sure?  This will erase all current data.")) {
                 table = JSON.parse(JSON.stringify(initialTable));
                 makeTable(table);
-				showMain('main-table');
+                showMain('main-tables-table');
                 return table;
             }
         }
 
-        function load() {
-            console.log("load() called");
+        function tablesLoad() {
+            console.log("tablesLoad() called");
             let fileContents = "";
             let inputTypeIsFile = document.createElement('input');
             inputTypeIsFile.type = "file";
@@ -433,11 +442,11 @@
                 fileReader.onload = function(fileLoadedEvent) {
                     fileContents = fileLoadedEvent.target.result;
                     if (confirm("Use the first line as the header row?")) {
-						//need to process
-						//alert("need to get csv data and make headers and data");
+                        //need to process
+                        //alert("need to get csv data and make headers and data");
                         table = readCSV(fileContents, true);
                     } else {
-						//alert("need to get csv data and write own headers col1,col2, etc");
+                        //alert("need to get csv data and write own headers col1,col2, etc");
                         table = readCSV(fileContents, false);
                     }
                     makeTable(table);
@@ -447,8 +456,8 @@
             inputTypeIsFile.click();
         }
 
-        function save() {
-            console.log("save() called");
+        function tablesSave() {
+            console.log("tablesSave() called");
             updateDataFromCurrentInputs();
             if (confirm("Include header as first line in csv file?")) {
                 saveStringToTextFile(makeCSV(table, true), "csvTable" + getTodaysDate(), ".csv");
@@ -549,7 +558,7 @@
         }
 
         function makeCSV(thisTable, saveWithHeader = true) {
-			let headers=thisTable["headers"];
+            let headers = thisTable["headers"];
             let csvString = "";
             let tempString = "";
             if (saveWithHeader === true) {
@@ -577,7 +586,7 @@
         }
 
 
-		//needs rewritten to match above format
+        //needs rewritten to match above format
         function readCSV(csvString, loadWithHeader = true) {
             //trim string
             csvString = csvString.trim();
@@ -619,51 +628,51 @@
                 // console.log(tempRowArray);
                 newCSVArrayOfArrays.push(tempRowArray); //add each row to the new array
             }
-            
+
             console.log(newCSVArrayOfArrays); //now we have a straight array of arrays of strings in a csv style grid
-            
+
             //convert to headers and data.
-            
-            
-            
-			let headers=[];
-            let data=[];
-            
+
+
+
+            let headers = [];
+            let data = [];
+
             if (newCSVArrayOfArrays.length > 0) {
                 if (loadWithHeader === true) {
                     //finalTable["headerNames"] = JSON.parse(JSON.stringify(newCSVArrayOfArrays[0]));
                     headers = newCSVArrayOfArrays[0];
                     if (newCSVArrayOfArrays.length > 1) {
                         for (let i = 1; i < newCSVArrayOfArrays.length; i++) { //loop through rows
-							let tempRow = {};
-							for (let j=0; j< newCSVArrayOfArrays[i].length; j++){ //loop through cells in rows
-								tempRow[headers[j]]=newCSVArrayOfArrays[i][j];
-								}
-								data.push(tempRow);
-							}
-						}
+                            let tempRow = {};
+                            for (let j = 0; j < newCSVArrayOfArrays[i].length; j++) { //loop through cells in rows
+                                tempRow[headers[j]] = newCSVArrayOfArrays[i][j];
+                            }
+                            data.push(tempRow);
+                        }
+                    }
                 } else {
                     if (newCSVArrayOfArrays.length > 0) {
-						for (let j=0;j<newCSVArrayOfArrays[0].length;j++){
-							headers.push("Column "+(j+1).toString());
-							}
+                        for (let j = 0; j < newCSVArrayOfArrays[0].length; j++) {
+                            headers.push("Column " + (j + 1).toString());
+                        }
                         for (let i = 0; i < newCSVArrayOfArrays.length; i++) { //loop through rows
-							let tempRow = {};
-							for (let j=0; j< newCSVArrayOfArrays[i].length; j++){ //loop through cells in rows
-								tempRow[headers[j]]=newCSVArrayOfArrays[i][j];
-								}
-								data.push(tempRow);
-							}
-						}
-					}
-				}
+                            let tempRow = {};
+                            for (let j = 0; j < newCSVArrayOfArrays[i].length; j++) { //loop through cells in rows
+                                tempRow[headers[j]] = newCSVArrayOfArrays[i][j];
+                            }
+                            data.push(tempRow);
+                        }
+                    }
+                }
+            }
 
-			console.log(headers);
-			console.log(data);
-			
-			let finalTable={};
-			finalTable["headers"]=headers;
-			finalTable["data"]=data;
+            console.log(headers);
+            console.log(data);
+
+            let finalTable = {};
+            finalTable["headers"] = headers;
+            finalTable["data"] = data;
 
             return JSON.parse(JSON.stringify(finalTable));
         }
@@ -680,11 +689,11 @@
             return token;
         }
 
-        function showRules() {
+        function tablesShowRules() {
             alert('FORMATTING RULES:\n\nWhen Saving:\n1) All cells are quoted text.\n2) Interior double quotes in cells are converted like this: "->""\n\nIf loading CSV from other apps:\n1) Cells should all be text type.\n2) Quote all text strings when saving.')
         }
 
-        function copyCSVToClipboard() {
+        function tablesCopyCSVToClipboard() {
             updateDataFromCurrentInputs();
             let thisResult = "";
             if (confirm("Include header as first line?")) {
@@ -696,7 +705,7 @@
         }
 
         makeTable(table);
-        //showMain('main-table');
+        //showMain('main-tables-table');
 
 
 

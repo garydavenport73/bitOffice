@@ -8,16 +8,16 @@
         let undos = [];
         console.log("undos length", undos.length);
         undos.push(textarea.value);
-        
 
-        function exportToHTML(){
-			let contents = serializeElementToPage("document-parent","html,#document-result,#document-parent{background-color:white;}");
-			copyToClipBoard(contents);
-			if (confirm("HTML document exported to clipboard.\n\nWould you like to export to HTML file?")){
-				saveStringToTextFile(contents,'write'+getTodaysDate(),'.html');
-				}
-			}
-			
+
+        function exportToHTML() {
+            let contents = serializeElementToPage("document-parent", "html,#document-result,#document-parent{background-color:white;}");
+            copyToClipBoard(contents);
+            if (confirm("HTML document exported to clipboard.\n\nWould you like to export to HTML file?")) {
+                saveStringToTextFile(contents, 'write' + getTodaysDate(), '.html');
+            }
+        }
+
         function copyToClipBoard(str) {
             //https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
             let el = document.createElement('textarea');
@@ -34,41 +34,41 @@
             //alert('Copied to Clipboard.');
             return (str);
         }
-        
-        function newDocument(){
-			if (confirm("This will overwrite current document.")){
-				resetAll();
-				}
-			}
-        
-        function resetAll(){
-			//reset global variables;
-			baseFilename = "";
-			remSize=1;
-			marginSize=2;
-			
-			//reset text area value
-			textarea.value = "";
-			
-			//reapply base styles to the div
-			documentDiv.style.textAlign = "left";
-			documentDiv.style.fontFamily = "Georgia, 'Times New Roman', Garamond, Times, serif";
-			documentDiv.style.fontSize = "1rem";
-			documentDiv.style.marginLeft = "2rem";
-			textarea.spellcheck = false;
-			
-			//reset undo array
-			undos=[];
-			undos.push(textarea.value);
-			
-			//redisplay new result
-			updateResult();
-			
-			//set focus to textarea
-			textarea.focus(); //ensures spell check is refreshed
-			
-		}
-        
+
+        function newDocument() {
+            if (confirm("This will overwrite current document.")) {
+                resetAll();
+            }
+        }
+
+        function resetAll() {
+            //reset global variables;
+            baseFilename = "";
+            remSize = 1;
+            marginSize = 2;
+
+            //reset text area value
+            textarea.value = "";
+
+            //reapply base styles to the div
+            documentDiv.style.textAlign = "left";
+            documentDiv.style.fontFamily = "Georgia, 'Times New Roman', Garamond, Times, serif";
+            documentDiv.style.fontSize = "1rem";
+            documentDiv.style.marginLeft = "2rem";
+            textarea.spellcheck = false;
+
+            //reset undo array
+            undos = [];
+            undos.push(textarea.value);
+
+            //redisplay new result
+            updateResult();
+
+            //set focus to textarea
+            textarea.focus(); //ensures spell check is refreshed
+
+        }
+
         function dataToJSON() {
             updateResult();
             data = {}
@@ -280,20 +280,20 @@
 
         function printDiv(id) {
             let a = window.open();
-            a.document.write(serializeElementToPage(id,"html,#document-result,#document-parent{background-color:white;}"));
+            a.document.write(serializeElementToPage(id, "html,#document-result,#document-parent{background-color:white;}"));
             a.document.close();
             a.print();
         }
 
         function serializeElementToPage(id, extraStyle = "") {
             let boilerPlate1 = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";
-            
+
             let allStyleTags = document.getElementsByTagName('style');
-            
-            let styleElementContent="";
-            for (let i = 0; i < allStyleTags.length; i++){
-				styleElementContent = allStyleTags[i].innerHTML;
-				}
+
+            let styleElementContent = "";
+            for (let i = 0; i < allStyleTags.length; i++) {
+                styleElementContent = allStyleTags[i].innerHTML;
+            }
             //let styleElementContent = document.getElementsByTagName('style')[0].innerHTML;
             //let extraStyle = "html,#document-result,#document-parent{background-color:white;}";
             let boilerPlate2 = "</style></head><body>"

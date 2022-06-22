@@ -6,42 +6,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tables</title>
-    <link rel="stylesheet" href="../style.css">
+    <!-- <link rel="stylesheet" href="../style.css"> -->
 </head>
 
 <body>
-    <main id="main-table">
-        <h1>Tables</h1>
+    <main id="main-tables-table">
+        <h2>Tables</h2>
         <nav>
-            <button onclick="newTable();">New</button>
-            <button onclick="load();">Load</button>
-            <button onclick="save();">Save</button>
-            <button onclick="copyCSVToClipboard()">Copy</button>
-            <button onclick="showRules();">?</button>
+            <button onclick="tablesNewTable();">New</button>
+            <button onclick="tablesLoad();">Load</button>
+            <button onclick="tablesSave();">Save</button>
+            <button onclick="tablesCopyCSVToClipboard()">Copy</button>
+            <button onclick="tablesShowRules();">?</button>
         </nav>
         <div>
-        <table id="tables-table">
-        </table>
+            <table id="tables-table">
+            </table>
         </div>
     </main>
-    <hr>
-    <main id="main-header-form">
-        <h3>Column: <span id="current-header">header name here</span></h3>
-        <span><button onclick="updateHeaderName(table);">Change name to:</button><input id="new-header-name" type="text" placeholder="name"></span>
-        <button onclick="deleteColumn(table);">Delete Column</button>
-        <button onclick="copyColumn(table)">Copy Column</button>
-        <span><button onclick="moveColumn(table)">Move To Column</button><select id="move-column"></select></span>
-        <button onclick="calculateTotal(table)">Add Total</button>
-        <button onclick="calculateAverage(table)">Compute Average</button>
-        <button onclick="cancel(table)">Cancel</button>
+
+    <main id="main-tables-header-form">
+        <h2>Tables
+            <h2>
+                <h3>Column: <span id="tables-current-header">header name here</span></h3>
+                <span><button onclick="updateHeaderName(table);">Change name to:</button><input id="tables-new-header-name" type="text" placeholder="name"></span>
+                <button onclick="deleteColumn(table);">Delete Column</button>
+                <button onclick="copyColumn(table)">Copy Column</button>
+                <span><button onclick="moveColumn(table)">Move To Column</button><select id="move-column"></select></span>
+                <button onclick="calculateTotal(table)">Add Total</button>
+                <button onclick="calculateAverage(table)">Compute Average</button>
+                <button onclick="tablesCancel(table)">Cancel</button>
     </main>
-    <hr>
-    <main id="main-row-form">
-        <h3>Row: <span id="current-row">row number here</span></h3>
-        <button onclick="deleteRow()">Delete Row</button>
-        <button onclick="copyRow()">Copy Row</button>
-        <span><button onclick="moveRow()">Move To Row</button><select id="move-row"></select></span>
-        <button onclick="cancel(table)">Cancel</button>
+
+    <main id="main-tables-row-form">
+        <h2>Tables
+            <h2>
+                <h3>Row: <span id="tables-current-row">row number here</span></h3>
+                <button onclick="deleteRow()">Delete Row</button>
+                <button onclick="copyRow()">Copy Row</button>
+                <span><button onclick="moveRow()">Move To Row</button><select id="move-row"></select></span>
+                <button onclick="tablesCancel(table)">Cancel</button>
     </main>
     <script src="tables_javascript.js"></script>
 </body>
