@@ -15,10 +15,10 @@
         <h2>Write</h2>
         <nav id="file-bar">
             <button onclick="newDocument();">New</button>
-            <button onclick="load();">Load</button>
-            <button onclick="dataToJSON();">Save</button>
+            <button onclick="writeLoad();">Load</button>
+            <button onclick="writeDataToJSON();">Save</button>
             <button onclick="exportToHTML()">Export</button>
-            <button onclick="printDiv('document-parent');//window.print()">&#128424;</button>
+            <button onclick="printWriteDiv('document-parent');//window.print()">&#128424;</button>
         </nav>
         <nav id="document-settings">
             <button class="mono" onclick='processSelectedText(this);'>Mono</button>
@@ -45,7 +45,7 @@
             <button onclick='processSelectedText(this);//bullet;'>&bullet;</button> &nbsp;
             <button onclick='processSelectedText(this);//undo;'>&#10226;</button>
         </nav>
-        <textarea id="text-editor" spellcheck="false" oninput="updateResult();"></textarea>
+        <textarea id="text-editor" spellcheck="false" oninput="writeUpdateResult();"></textarea>
         <div id="document-parent">
             <div id="document-result"></div>
         </div>
