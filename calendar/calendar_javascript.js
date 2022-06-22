@@ -1,5 +1,5 @@
 ////////////////////GLOBALS/////////////////////////
-
+//----------------calendar-------------------------
 let calendarDatabase = {
     "name": "Calendar",
     "headers": ["start", "end", "name", "notes"],
@@ -58,11 +58,6 @@ let calendarTable = document.getElementById("calendar-table");
 let calendarEditForm = document.getElementById("calendar-edit-form");
 let calendarEditFormMessage = document.getElementById("calendar-edit-form-message");
 let sortAscending = 1; //direction -1 is descending, otherwise ascending
-//let baseFilename="";
-
-//function initializeCalendarApp() {
-//let headers = [];
-//let inputTypes = {};
 let table = {}
 
 ////////////////////GLOBALS/////////////////////////

@@ -1,4 +1,4 @@
-        let baseFilename = "";
+        let writeBaseFilename = "";
         let textarea = document.getElementById("text-editor");
         let documentDiv = document.getElementById('document-result');
         let remSize = 1;
@@ -43,7 +43,7 @@
 
         function resetAll() {
             //reset global variables;
-            baseFilename = "";
+            writeBaseFilename = "";
             remSize = 1;
             marginSize = 2;
 
@@ -78,11 +78,11 @@
             data["fontSize"] = documentDiv.style.fontSize;
             data["marginSize"] = documentDiv.style.marginLeft;
             data["spellCheck"] = textarea.spellcheck;
-            if (baseFilename === "") {
-                baseFilename = "write" + getTodaysDate();
+            if (writeBaseFilename === "") {
+                writeBaseFilename = "write" + getTodaysDate();
             };
             let saveContents = JSON.stringify(data);
-            saveStringToTextFile(saveContents, baseFilename, ".json");
+            saveStringToTextFile(saveContents, writeBaseFilename, ".json");
         }
 
         function load() {
@@ -101,8 +101,8 @@
                             console.log(inputFile);
                             if (inputFile["name"].slice(-5) === ".json") {
                                 //alert("it's json!");
-                                baseFilename = inputFile["name"].slice(0, -5);
-                                //alert("basefilename: " + baseFilename);
+                                writeBaseFilename = inputFile["name"].slice(0, -5);
+                                //alert("writeBaseFilename: " + writeBaseFilename);
                             }
 
                             let loadedData = JSON.parse(fileContents);

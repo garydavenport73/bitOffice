@@ -1,10 +1,14 @@
 ///////////////////////////GLOBALS/////////////////////////////
+//------------------contacts ----------------------
 let table = {};
 let contactsTable = document.getElementById("contacts-table");
 let contactsEditForm = document.getElementById("contacts-edit-form");
 let contactsEditFormMessage = document.getElementById("contacts-edit-form-message");
 let sortAscending = 1; //direction -1 is descending, otherwise ascending
 //let baseFilename = "";
+/////////////////////////////////////////////////////
+
+initializeContactsApp();
 
 function initializeContactsApp() {
     let headers = [];
@@ -47,12 +51,6 @@ function initializeContactsApp() {
     contactsEditForm.innerHTML = buildContactsEditForm(table, -1);
     showMain("main-contacts-table");
 }
-
-initializeContactsApp();
-
-
-
-////////////////////////////////////////////////////////////////////
 
 function buildContactsTableElement(table) {
     let tableElement = "";
