@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,41 +8,43 @@
     <title>Calendar</title>
     <link rel='stylesheet' href='../style.css'>
 </head>
+
 <body>
 
-	<main id="main-calendar-start">
-		<h2>Calendar</h2>
-		<nav>
-			<button onclick="loadTable();">Load</button>
-			<button onclick="saveDatabase(calendarDatabase);">Save</button>
-		</nav>
-		<div>
-			<input type='date' id="calendar-date">
-		</div>
+    <main id="main-calendar-start">
+        <h2>Calendar</h2>
+        <nav>
+            <button onclick="loadCalendarDatabase();">Load</button>
+            <button onclick="saveCalendarDatabase(calendarDatabase);">Save</button>
+        </nav>
+        <div>
+            <input type='date' id="calendar-date">
+        </div>
 
-		<button onclick="processOpen();">Open</button>
-	<hr>
-	</main>
+        <button onclick="processOpenCalendar();">Open</button>
+        <hr>
+    </main>
     <main id="main-calendar-table">
-		<h2>Calendar</h2>
-		<h3 id="calendar-table-name"></h3>
-		<nav>
-			<button onclick='newCrudEntry(table);'>+ New Entry</button>
-			<button onclick="processHome(table);">Home</button>
-			<button onclick="processCSVClick(table);">CSV</button>
-		</nav>
+        <h2>Calendar</h2>
+        <h3 id="calendar-table-name"></h3>
+        <nav>
+            <button onclick='newCalendarEntry(table);'>+ New Entry</button>
+            <button onclick="processCalendarHome(table);">Home</button>
+            <button onclick="processCSVClick(table);">CSV</button>
+        </nav>
 
-		<div id="calendar-table"></div>
-	</main>
-	<hr>
-	<main id="main-calendar-form">
-		<h2>Calendar</h2>
-		<h3 id="calendar-edit-form-message"></h3>
-		<div id="calendar-edit-form"></div>
-		<button onclick='saveCrudEntry(table);'>Save</button>
-		<button onclick='deleteCrudEntry(table);'>Delete</button>
-		<button onclick='cancelCrudEntry(table);'>Cancel</button>
+        <div id="calendar-table"></div>
+    </main>
+    <hr>
+    <main id="main-calendar-form">
+        <h2>Calendar</h2>
+        <h3 id="calendar-edit-form-message"></h3>
+        <div id="calendar-edit-form"></div>
+        <button onclick='saveCalendarEntry(table);'>Save</button>
+        <button onclick='deleteCalendarEntry(table);'>Delete</button>
+        <button onclick='cancelCalendarEntry(table);'>Cancel</button>
     </main>
     <script src='calendar_javascript.js'></script>
 </body>
+
 </html>
