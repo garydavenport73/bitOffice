@@ -102,9 +102,9 @@ function fillInEmptyPropertyValues(table){
 
 console.log(table);
 
-let crudTable=document.getElementById("crud-table");
-let crudEditForm=document.getElementById("crud-edit-form");
-let crudEditFormMessage=document.getElementById("crud-edit-form-message");
+let calendarTable=document.getElementById("calendar-table");
+let calendarEditForm=document.getElementById("calendar-edit-form");
+let calendarEditFormMessage=document.getElementById("calendar-edit-form-message");
 let sortAscending=1; //direction -1 is descending, otherwise ascending
 let baseFilename="";
 
@@ -130,9 +130,9 @@ function processOpen(){
 		}
 	table["data"]=calendarDatabase[year][month][date]["data"];
 	table["name"]=year+"-"+month+"-"+date;
-	document.getElementById("crud-table-name").innerHTML=table["name"];
-	crudTable.innerHTML=buildTableElement(table);
-	showMain("main-crud-table");
+	document.getElementById("calendar-table-name").innerHTML=table["name"];
+	calendarTable.innerHTML=buildTableElement(table);
+	showMain("main-calendar-table");
 	console.log(calendarDatabase);
 	}
 	
@@ -166,7 +166,7 @@ function buildTableElement(table){ //needs headers data
 	tableElement+="<tbody>";
 	
 	for (let i=0; i<numberOfRows; i++){
-		tableElement+="<tr class='crud-table-row' id='crud-table-row-"+i.toString()+"' onclick='selectEditForm(this)'>";
+		tableElement+="<tr id='calendar-table-row-"+i.toString()+"' onclick='selectEditForm(this)'>";
 		for (let j=0; j<numberOfColumns; j++){
 			let fieldName=table["headers"][j];
 			//console.log(table["data"][i][fieldName]);
@@ -181,17 +181,17 @@ function buildTableElement(table){ //needs headers data
 	
 	function newCrudEntry(table){
 		//show what's being edited
-		crudEditFormMessage.innerHTML=table["name"]+": New Entry";
-		crudEditForm.innerHTML = buildEditForm(table,-1);
-		showMain("main-crud-form")
+		calendarEditFormMessage.innerHTML=table["name"]+": New Entry";
+		calendarEditForm.innerHTML = buildEditForm(table,-1);
+		showMain("main-calendar-form")
 		}
 	
 	function selectEditForm(clickedRow){
 		//show what's being edited
 		let index=parseInt(clickedRow.id.split("-")[3]);
-		crudEditFormMessage.innerHTML=table["name"]+": Entry " + index.toString();
-		crudEditForm.innerHTML = buildEditForm(table,index);
-		showMain("main-crud-form");
+		calendarEditFormMessage.innerHTML=table["name"]+": Entry " + index.toString();
+		calendarEditForm.innerHTML = buildEditForm(table,index);
+		showMain("main-calendar-form");
 		}
 		
 	function buildEditForm(table,index){
@@ -203,7 +203,7 @@ function buildTableElement(table){ //needs headers data
 		//  the type of input is determined by inputType
 		let editForm="";
 		editForm+="<form>";
-		editForm="<input type='hidden' id='crud-row-index' value='"+index.toString()+"'>";
+		editForm="<input type='hidden' id='calendar-row-index' value='"+index.toString()+"'>";
 		let numberOfColumns=table["headers"].length;
 		let headers=table["headers"];
 		let row=table["data"][index];
@@ -231,7 +231,7 @@ function buildTableElement(table){ //needs headers data
 		}
 		
 		function saveCrudEntry(table){
-			let index = parseInt(document.getElementById("crud-row-index").value);
+			let index = parseInt(document.getElementById("calendar-row-index").value);
 			//console.log(index);
 			let headers = table["headers"];
 			let row={};
@@ -244,26 +244,26 @@ function buildTableElement(table){ //needs headers data
 				table["data"].push(row);
 				}
 			clearFormEntries(table);
-			crudTable.innerHTML=buildTableElement(table);
-			showMain("main-crud-table");
+			calendarTable.innerHTML=buildTableElement(table);
+			showMain("main-calendar-table");
 		}
 		
 		function deleteCrudEntry(table){
-			let index = parseInt(document.getElementById("crud-row-index").value);
+			let index = parseInt(document.getElementById("calendar-row-index").value);
 			if (index>=0){//editing an entry
 				if (confirm("Delete this entry?")){
 					table["data"].splice(index,1);//an object
 					}
 				}
 			clearFormEntries(table);
-			crudTable.innerHTML=buildTableElement(table);
-			showMain("main-crud-table");
+			calendarTable.innerHTML=buildTableElement(table);
+			showMain("main-calendar-table");
 			}
 		
 		function cancelCrudEntry(table){
 			clearFormEntries(table);
-			crudTable.innerHTML=buildTableElement(table);	
-			showMain("main-crud-table");
+			calendarTable.innerHTML=buildTableElement(table);	
+			showMain("main-calendar-table");
 		}
 		
 
@@ -272,8 +272,8 @@ function buildTableElement(table){ //needs headers data
 				for (let j = 0;j < headers.length; j++){
 					document.getElementById(headers[j]).value="";
 					}
-				document.getElementById("crud-row-index").value=-1;
-				crudEditFormMessage.innerHTML="";
+				document.getElementById("calendar-row-index").value=-1;
+				calendarEditFormMessage.innerHTML="";
 			}
 			
 		function sortByField(clickedHeaderElement){
@@ -281,7 +281,7 @@ function buildTableElement(table){ //needs headers data
 			
 			if (confirm("Sort by "+clickedHeaderElement.innerHTML+"?")){
 				destructiveSort(table["data"],field,sortAscending);
-				crudTable.innerHTML=buildTableElement(table);
+				calendarTable.innerHTML=buildTableElement(table);
 				sortAscending=-1*sortAscending;			
 				};
 			}
@@ -374,7 +374,7 @@ function loadTable(){
 					}
 					calendarDatabase = JSON.parse(fileContents);
 					//clearFormEntries(table);
-					//crudTable.innerHTML=buildTableElement(table);
+					//calendarTable.innerHTML=buildTableElement(table);
 				};
 
 				fileReader.readAsText(inputFile, "UTF-8");
@@ -464,9 +464,6 @@ function loadTable(){
         
         //////////////
         
-        
-        
-        
         function copyToClipBoard(str) {
             //https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
             let el = document.createElement('textarea');
@@ -484,10 +481,10 @@ function loadTable(){
             return (str);
         }
 
-		document.getElementById("crud-table-name").innerHTML=table["name"];
-		crudTable.innerHTML = buildTableElement(table);
-		crudEditForm.innerHTML = buildEditForm(table,-1);
-		showMain("main-crud-table");
+		document.getElementById("calendar-table-name").innerHTML=table["name"];
+		calendarTable.innerHTML = buildTableElement(table);
+		calendarEditForm.innerHTML = buildEditForm(table,-1);
+		showMain("main-calendar-table");
 
 /*		
 Your Input Field:	Input Filter Type	Compares as
