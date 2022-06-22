@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <main id="main-notes">
+        <h1>Notes</h1>
+        <nav>
+            <button onclick="newEntry()">New</button>
+            <button onclick="load()">Load</button>
+            <button onclick="save()">Save</button>
+            <button id="copy" onclick="copyStringToClipboard(document.getElementById('note').value);">Copy</button>
+            <button onclick="printDiv('note');">&#128424;</button>
+            <button class="plus-minus" onclick="changeFontSize(this);">-</button>
+            <button class="plus-minus" onclick="changeFontSize(this);">+</button>
+            <button onclick="simulateUndo()">&#10226;</button>
+        </nav>
+        <textarea id="note" rows="10" placeholder="your notes here"></textarea>
+    </main>
+    <script src="notes_javascript.js"></script>
+</body>
+
+</html>

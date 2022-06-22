@@ -1,0 +1,8 @@
+bit office 64k
+                            non-styled          combined database
+notes   a text editor       done            
+write   a word processor    done
+tables  a csv spreadsheet   done
+contact a contacts app      done                probably
+planner a calendar app      done                probably
+calc    a calculator app    done

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel='stylesheet' href='../style.css'>
+</head>
+<body>
+    <main id="main-crud-table">
+		<h1 id="crud-table-name"></h1>
+		<nav>
+			<button onclick="loadTable();">Load</button>
+			<button onclick="saveTable(table);">Save</button>
+			<button onclick="processCSVClick(table);">CSV</button>
+		</nav>
+		<button onclick='newCrudEntry(table);'>+ New Contact</button>
+		<div id="crud-table"></div>
+	</main>
+	<hr>
+	<main id="main-crud-form">
+		<div id="crud-edit-form-message"></div>
+		<div id="crud-edit-form"></div>
+		<button onclick='saveCrudEntry(table);'>Save</button>
+		<button onclick='deleteCrudEntry(table);'>Delete</button>
+		<button onclick='cancelCrudEntry(table);'>Cancel</button>
+    </main>
+    <script src='crud_javascript.js'></script>
+</body>
+</html>

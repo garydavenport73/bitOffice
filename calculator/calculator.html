@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+    <main id="main-calculator">
+        <h1>Calculator</h1>
+        <div id="calculator-result-row"><input type=text id='calculator-input'>
+        <button onclick=buildCalcString(this)>&larr;</button>
+        <button onclick=buildCalcString(this)>CLR</button>
+        </div>
+        <span id="expression-span"></span>
+        <table id="calculator-table">
+		<tr>
+			<td><button onclick=buildCalcString(this)>7</button></td>
+			<td><button onclick=buildCalcString(this)>8</button></td>
+			<td><button onclick=buildCalcString(this)>9</button></td>
+			<td><button onclick=buildCalcString(this)>/</button></td>
+		</tr>
+		<tr>
+			<td><button onclick=buildCalcString(this)>4</button></td>
+			<td><button onclick=buildCalcString(this)>5</button></td>
+			<td><button onclick=buildCalcString(this)>6</button></td>
+			<td><button onclick=buildCalcString(this)>x</button></td>
+		</tr>
+		<tr>
+			<td><button onclick=buildCalcString(this)>1</button></td>
+			<td><button onclick=buildCalcString(this)>2</button></td>
+			<td><button onclick=buildCalcString(this)>3</button></td>
+			<td><button onclick=buildCalcString(this)>-</button></td>
+		</tr>
+		<tr>
+			<td><button onclick=buildCalcString(this)>0</button></td>
+			<td><button onclick=buildCalcString(this)>.</button></td>
+			<td><button id="equals-button" class="special-calculator-button" onclick=buildCalcString(this)>=</button></td>
+			<td><button onclick=buildCalcString(this)>+</button></td>
+		</tr>
+        </table>
+    </main>
+
+<script src="calculator_javascript.js"></script>
+
+</body>
+
+</html>

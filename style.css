@@ -1,0 +1,15 @@
+html {
+	background-color: lightblue;
+	}
+input:invalid{
+	background-color: orange;
+}
+tr:hover{
+	background-color: white;
+}
+
+th:hover{
+	background-color: lightgrey;
+}
+
+
