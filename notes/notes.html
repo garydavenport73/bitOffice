@@ -14,10 +14,10 @@
         <h2>Notes</h2>
         <nav>
             <button onclick="newEntry()">New</button>
-            <button onclick="load()">Load</button>
-            <button onclick="save()">Save</button>
+            <button onclick="notesLoad()">Load</button>
+            <button onclick="notesSave()">Save</button>
             <button id="copy" onclick="copyStringToClipboard(document.getElementById('note').value);">Copy</button>
-            <button onclick="printDiv('note');">&#128424;</button>
+            <button onclick="printNotesDiv('note');">&#128424;</button>
             <button class="plus-minus" onclick="changeFontSize(this);">-</button>
             <button class="plus-minus" onclick="changeFontSize(this);">+</button>
             <button onclick="simulateUndo()">&#10226;</button>

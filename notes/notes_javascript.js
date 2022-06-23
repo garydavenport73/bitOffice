@@ -38,7 +38,7 @@ function newEntry() {
     }
 }
 
-function load() {
+function notesLoad() {
     let fileContents = "";
     let inputTypeIsFile = document.createElement('input');
     inputTypeIsFile.type = "file";
@@ -73,7 +73,7 @@ function copyStringToClipboard(str) {
 
 ////////////////////////////////////////////
 //Save related functions, often used with date functions below
-function save() {
+function notesSave() {
     basename = "notes" + getTodaysDate();
     saveStringToTextFile(note.value, basename, ".txt");
 }
@@ -131,7 +131,7 @@ function daysInThisMonth() {
 
 
 //Trying print functions
-function printDiv(id) {
+function printNotesDiv(id) {
     let a = window.open();
     a.document.write(serializeElementToPage(id, "html{background-color:white;}#note{font-size:" + noteFontSize + "rem}"));
     a.document.close();
