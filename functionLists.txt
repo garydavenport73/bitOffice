@@ -1,81 +1,58 @@
-O --Get list of common functions names
-function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt")
-function getTodaysDate()
-function getFirstDayOfThisMonthDate()
-function getLastDayOfThisMonthDate()
-function daysInSomeMonth(someMonth, someYear) //use jan month is 0
-function daysInThisMonth()
-function serializeElementToPage(id, extraStyle = "")
-function simulateUndo()
-function askConfirm
---check to make sure they are the same everywhere
---delete duplicates
---place them in one section in the main javascript file
---remove them from the 6 files app
---make its own common functions source file
+X Done --Get list of common functions names                                           Checks out ok
+//function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt")         yes
+//function getTodaysDate()                                                            yes
+//function getFirstDayOfThisMonthDate()                                               yes
+//function getLastDayOfThisMonthDate()                                                yes
+//function daysInSomeMonth(someMonth, someYear) //use jan month is 0                  yes
+//function daysInThisMonth()                                                          yes
+//function serializeElementToPage(id, extraStyle = "")                                no renamed for notes, which is different
+//function simulateUndo()                                                             only found once, but nonspecifice
+//function askConfirm()                                                               yes
+//function showMain(id)                                                               yes
+//function copyToClipBoard(str)                                                       yes
+//function fillInEmptyPropertyValues(table)                                           yes
+//function makeCSV(thisTable, saveWithHeader = true) ////This one fixed contacts      yes, fixed in 3
+// note function readCSV and tokenMaker also included
+// function processCSVClick(table)                                                     yes
+// function destructiveSort(arrayOfObjects, field, direction = 1)                      yes
+X Check to make sure they are the same everywhere                                   Done and fixed some
 
+//place in a common functions file and remove from all other files
 
+//make its own common functions source file
+
+----------note---------------------
 function initializeNotesApp()
 function changeFontSize(fontButton)
 function newEntry()
 function load()													->notesLoad()
     inputTypeIsFile.addEventListener("change", function()
         fileReader.onload = function(fileLoadedEvent)
-function copyStringToClipboard(str)
+function copyStringToClipboard(str)                             ->changed to copyToClipBoard in notes_javascript.js bitoffice.html and notes.html
 //Save related functions, often used with date functions below
 function save()													-<notesSave()
-function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt")  			6 present, check them
 //Date related functions for convience, uses same format as input type="date"
-function getTodaysDate()
-function getFirstDayOfThisMonthDate()
-function getLastDayOfThisMonthDate()
-function daysInSomeMonth(someMonth, someYear) //use jan month is 0
-function daysInThisMonth()
-//Trying print functions
 function printDiv(id)											->printNotesDiv(id)
-function serializeElementToPage(id, extraStyle = "")
-function askConfirm()	
-function simulateUndo()
 
-got through here
-
-
+----------write--------------------
 function initializizeWriteApp()
-    document.getElementById('text-editor').addEventListener('keydown', function(e)
 function exportToHTML()
-function copyToClipBoard(str)
 function newDocument()
 function writeResetAll()
 function writeDataToJSON()
 function writeLoad()
-        inputTypeIsFile.addEventListener("change", function()
-            fileReader.onload = function(fileLoadedEvent)
 function processSelectedText(clickedElement)
 function writeUpdateResult()
-function printWriteDiv(id)
-function serializeElementToPage(id, extraStyle = "")
-//Save related functions, often used with date functions below
-// function writeSave()
-function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt")
-//Date related functions for convience, uses same format as input type="date"
-function getTodaysDate()
-function getFirstDayOfThisMonthDate()
-function getLastDayOfThisMonthDate()
-function daysInSomeMonth(someMonth, someYear) //use jan month is 0
-function daysInThisMonth()
-function askConfirm()
+function printWriteDiv(id)w
 
-
-
+------------tables------------------
 function initializeTablesApp()
-function fillInEmptyPropertyValues(table)
 function processColumnClick(header)
 function processRowClick(row)
 function makeTable(table)
 function populateMoveColumnSelect(table)
 function populateMoveRowSelect(table)
 function updateDataFromCurrentInputs()
-//Column functions
 function updateHeaderName(table)
 function _changeHeaderAndDataPropertyName(table, newName, oldName)
 function deleteColumn(table)
@@ -86,35 +63,19 @@ function copyColumn(table)
 function calculateTotal(table)
 function tablesCancel(table)
 function calculateAverage()
-//row functions
 function addRow(table)
 function deleteRow()
 function copyRow()
 function moveRow()
 function tablesNewTable()
 function tablesLoad()
-    inputTypeIsFile.addEventListener("change", function()
-        fileReader.onload = function(fileLoadedEvent)
 function tablesSave()
-function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt")
-function copyToClipBoard(str)
-//Date related functions for convience, uses same format as input type="date"
-function getTodaysDate()
-function getFirstDayOfThisMonthDate()
-function getLastDayOfThisMonthDate()
-function daysInSomeMonth(someMonth, someYear) //use jan month is 0
-function daysInThisMonth()
-function askConfirm()
-function showMain(id)
-function makeCSV(thisTable, saveWithHeader = true)
 function readCSV(csvString, loadWithHeader = true)
 function tokenMaker(intSize)
 function tablesShowRules()
 function tablesCopyCSVToClipboard()
 
-
-
-
+----------contacts---------------------
 function initializeContactsApp()
 function buildContactsTableElement(table)
 function newContactsEntry(table)
@@ -126,26 +87,9 @@ function cancelContactsEntry(table)
 function clearContactFormEntries(table)
 function sortContactsByField(clickedHeaderElement)
 function loadContactsTable()
-        inputTypeIsFile.addEventListener("change", function()
-            fileReader.onload = function(fileLoadedEvent)
 function saveContactsTable(table)
-function destructiveSort(arrayOfObjects, field, direction = 1)
-function showMain(id)
-function makeCSV(thisTable, saveWithHeader = true) ////This one fixed
-function processCSVClick(table)
-function fillInEmptyPropertyValues(table)
-function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt")
-//Save related functions, often used with date functions below
-//Date related functions for convience, uses same format as input type="date"
-function getTodaysDate()
-function getFirstDayOfThisMonthDate()
-function getLastDayOfThisMonthDate()
-function daysInSomeMonth(someMonth, someYear) //use jan month is 0
-function daysInThisMonth()
-function copyToClipBoard(str)
 
-
-
+-------------calendar---------------
 function initializeCalendarApp()
 function processOpenCalendar()
 function processCalendarHome(table)
@@ -162,24 +106,9 @@ function loadCalendarDatabase()
         inputTypeIsFile.addEventListener("change", function()
             fileReader.onload = function(fileLoadedEvent)
 function saveCalendarDatabase(calendarDatabase)
-function destructiveSort(arrayOfObjects, field, direction = 1)
-function showMain(id)
-function makeCSV(thisTable, saveWithHeader = true)
-function processCSVClick(table)
-function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt")
-//Save related functions, often used with date functions below
-//Date related functions for convience, uses same format as input type="date"
-function getTodaysDate()
-function getFirstDayOfThisMonthDate()
-function getLastDayOfThisMonthDate()
-function daysInSomeMonth(someMonth, someYear) //use jan month is 0
-function daysInThisMonth()
-function copyToClipBoard(str)
 
-
-
+------------calculator-------------
 function initializeCalculatorApp()
-    calculatorInput.addEventListener("keypress", function(event)
 function buildCalcString(clickedElement)
 function getAnOperator(str)
 function justOneOperator(str)
