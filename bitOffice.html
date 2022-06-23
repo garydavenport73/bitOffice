@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>bitOffice</title>
 </head>
 
@@ -134,9 +135,9 @@
             <button onclick="loadCalendarDatabase();">Load</button>
             <button onclick="saveCalendarDatabase(calendarDatabase);">Save</button>
         </nav>
-        <div>
+        <span>
             <input type='date' id="calendar-date">
-        </div>
+        </span>
         <button onclick="processOpenCalendar();">Open</button>
     </main>
     <main id="main-calendar-table">
@@ -160,9 +161,11 @@
     <hr>
     <main id="main-calculator">
         <h2>Calculator</h2>
-        <div id="calculator-result-row"><input type=text id='calculator-input'>
+        <div id="calculator-result-row">
+			<input type=text id='calculator-input'>
             <button onclick=buildCalcString(this)>&larr;</button>
-            <button onclick=buildCalcString(this)>CLR</button>
+            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <button onclick=buildCalcString(this) class="special-calculator-button">CLR</button>
         </div>
         <span id="expression-span"></span>
         <table id="calculator-table">
@@ -193,12 +196,12 @@
         </table>
     </main>
 
-    <script src="/notes/notes_javascript.js"></script>
+    <!--<script src="/notes/notes_javascript.js"></script>
     <script src="/write/write_javascript.js"></script>
     <script src="/tables/tables_javascript.js"></script>
     <script src="/contacts/contacts_javascript.js"></script>
     <script src="/calendar/calendar_javascript.js"></script>
-    <script src="/calculator/calculator_javascript.js"></script>
+    <script src="/calculator/calculator_javascript.js"></script>-->
 </body>
 
 </html>

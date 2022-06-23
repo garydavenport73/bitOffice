@@ -1,4 +1,10 @@
+* {
+
+   box-sizing: border-box;
+        }
+
 html {
+   /*this is the light color*/
 	background-color: lightblue;
 	}
 input:invalid{
@@ -11,5 +17,144 @@ tr:hover{
 th:hover{
 	background-color: lightgrey;
 }
+        
+main {
+	width: 320px;
+	margin: auto;
+	/*this is the dark color */
+	background-color: yellow;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	padding-bottom:20px;
+}
+
+main>*{
+width: 90%;
+}
+
+main>nav{
+display:flex;
+flex-direction:row;
+flex-wrap:wrap;
+}
 
 
+main>button, main>span, main>span>*{
+width:200px;
+}
+
+
+h1,h2,h3,h4,h5,h6, nav{
+background-color:lightblue;
+text-align:center;
+}
+
+#note{
+height: 320px;
+}
+
+#text-editor{
+height:100px;;
+}
+
+
+/*fine tuning
+button{
+	min-height:30px;
+}
+ */
+
+
+pre {
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+/*  CALCULATOR STUFF*/
+		/*
+        .special-calculator-button{
+			background-color: #ffcc33;
+			border: 1px solid grey;
+        }
+        
+        #calculator-input{
+			text-align: right;
+			height: 40px;
+			font-size: 1.4em;
+        }
+        
+        #calculator-table button{
+			width: 100%;
+			height: 70px;
+			font-size: 2em;
+			border: 1px solid grey;
+        }
+        
+        #calculator-table{
+			width: 280px; 
+			margin-bottom: 20px;
+        }		
+        #calculator-result-row{
+			width: 280px;
+		}
+		#expression-span{
+			max-width: 280px;
+			overflow-wrap: anywhere;	
+			min-height: 18px;
+			color: grey;
+		}
+        * */
+        .special-calculator-button{
+			background-color: #ffcc33;
+			border: 1px solid grey;
+        }
+        
+        #calculator-input{
+			text-align: right;
+			height: 40px;
+			font-size: 1.4em;
+			width:70%;
+        }
+        
+        #calculator-table button{
+			width: 100%;
+			height: 70px;
+			font-size: 2em;
+			border: 1px solid grey;
+        }
+        
+        #calculator-table{
+			width: 280px; 
+        }		
+        #calculator-result-row{
+			display:flex;
+			flex-direction:row;
+			width:280px;
+			justify-content:center;
+		}
+		#expression-span{
+			max-width: 280px;
+			overflow-wrap: anywhere;	
+			min-height: 18px;
+			color: grey;
+		}
+
+/*  CALCULATTOR STUFF ENDS*/
+
+
+
+/* ALREADY SET FOR PHONE*/
+/* TABLET*/
+
+@media only screen and (min-width: 600px) {
+	main {
+		width: 600px;
+	}
+}
+/*DESKTOP*/
+
+@media only screen and (min-width: 900px) {
+	main {
+		width: 900px;
+	}
+}
