@@ -16,13 +16,13 @@ input:invalid {
     background-color: orange;
 }
 
-tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #calculator-table tr) {
+tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot>tr, #calculator-table tr) {
     background-color: white;
 }
 
 #tables-table th:hover:not(:first-of-type),
 #tables-table td:first-of-type:hover {
-    background-color: purple;
+    background-color: pink;
 }
 
 th:hover {
@@ -67,9 +67,12 @@ body>nav {
 }
 
 main input,
-main>button,
 main>select {
-    width: 200px;
+    width: 240px;
+}
+
+main>button {
+    width: 120px;
 }
 
 .table-container {
@@ -82,26 +85,129 @@ main>select {
 }
 
 table {
-    background-color: orange;
+    background-color: lightblue;
 }
 
 table {
     min-width: 100%;
 }
 
+tr {
+    text-align: left;
+    /* prevents collaps of row, acts like min-height in other elements */
+    height: 1rem;
+}
+
+td {
+    background-color: yellow;
+}
+
+
+/* calendar styleing */
+
+#main-calendar-start>button {
+    width: 240px;
+}
+
+#calendar-date {
+    height: 3rem;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+
+/* calender stryling */
+
+
+/* td:first-of-type {
+    text-align: center;
+} */
+
 #tables-table {
-    background-color: green;
+    display: block;
+    margin: auto;
+    background-color: lightblue;
     min-width: 100%;
 }
 
-#tables-table th {
-    background-color: pink;
+
+/* these 2 used together to apply min width to anything
+in between first and last table header */
+
+#tables-table th:not(:last-of-type) {
+    /* background-color: red; */
+    min-width: 5rem;
 }
 
+#tables-table th:first-of-type {
+    min-width: 0;
+}
+
+
+/* these 2 used together to apply min width to anything
+in between first and last table header */
+
 #tables-table td {
-    max-width: 50px;
+    /* max-width: 50px; */
     width: auto;
 }
+
+
+/* #main-tables-header-form input,
+#main-tables-header-form>select {
+    width: 240px;
+} */
+
+#main-tables-header-form input,
+#main-tables-header-form select,
+#main-tables-header-form button,
+#main-tables-row-form select,
+#main-tables-row-form button {
+    width: 200px;
+}
+
+
+/*       contacts table*/
+
+
+/* makes scroll right start at left */
+
+#contacts-table>table {
+    margin: auto;
+    display: block;
+}
+
+
+/* keeps cell phone column from collapsing */
+
+#contacts-table>table>thead>tr>th:nth-of-type(2) {
+    min-width: 7rem;
+}
+
+
+/* hides everything, then shows next 2 columns, the first widest */
+
+#contacts-table th,
+#contacts-table td {
+    display: none;
+}
+
+#contacts-table th:nth-of-type(1),
+#contacts-table td:nth-of-type(1) {
+    display: table-cell;
+    width: 100%;
+}
+
+#contacts-table th:nth-of-type(2),
+#contacts-table td:nth-of-type(2) {
+    display: table-cell;
+}
+
+
+/* hides everything, then shows next 2 columns, the first widest */
+
+
+/*       contacts table*/
 
 #add-column,
 #add-row,
@@ -110,7 +216,7 @@ table {
 }
 
 #tables-table input {
-    background-color: aqua;
+    /* background-color: aqua; */
     width: 100%;
 }
 
@@ -245,7 +351,7 @@ pre {
 }
 
 #calculator-table {
-    background-color: green;
+    background-color: lightblue;
     width: 90%;
     min-width: 0%;
 }
@@ -253,6 +359,7 @@ pre {
 #calculator-table td button {
     font-size: 2rem;
     width: 100%;
+    height: 4rem;
 }
 
 .special-calculator-button {
@@ -289,9 +396,18 @@ pre {
 /* TABLET*/
 
 @media only screen and (min-width: 600px) {
-    main,
-    body>nav {
+    /* body>nav, */
+    #main-notes,
+    #main-write,
+    #main-contacts-table,
+    #main-calendar-table,
+    #main-tables-table {
         width: 600px;
+    }
+    /* undoes the hiding of everything but first 2 cells */
+    #contacts-table th,
+    #contacts-table td {
+        display: table-cell;
     }
 }
 
@@ -299,8 +415,12 @@ pre {
 /*DESKTOP*/
 
 @media only screen and (min-width: 900px) {
-    main,
-    body>nav {
+    /* body>nav, */
+    #main-notes,
+    #main-write,
+    #main-contacts-table,
+    #main-calendar-table,
+    #main-tables-table {
         width: 900px;
     }
 }

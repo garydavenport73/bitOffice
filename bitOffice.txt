@@ -16,9 +16,9 @@ and adjust css
     O copy over functions to commonFunctions if needed
         x notes
         x write
-        O contacts
-        O calendar
-        O tables
+        x contacts
+        x calendar
+        x tables
         x calculator
 
 O comment out global declarations and initializations calls

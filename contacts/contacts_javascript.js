@@ -57,7 +57,7 @@ function initializeContactsApp() {
 function buildContactsTableElement(table) {
     let tableElement = "";
     let numberOfColumns = table["headers"].length;
-    numberOfColumns = 3; //only showing first 3
+    //numberOfColumns = 2; //only showing first 3
     let numberOfRows = table["data"].length;
 
     //start table

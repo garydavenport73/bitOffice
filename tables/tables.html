@@ -26,27 +26,30 @@
     </main>
 
     <main id="main-tables-header-form">
-        <h2>Tables
-            <h2>
-                <h3>Column: <span id="tables-current-header">header name here</span></h3>
-                <button onclick="updateHeaderName(table);">Change name to:</button><input id="tables-new-header-name" type="text" placeholder="name">
-                <button onclick="deleteColumn(table);">Delete Column</button>
-                <button onclick="copyColumn(table)">Copy Column</button>
-                <button onclick="moveColumn(table)">Move To Column</button><select id="move-column"></select>
-                <button onclick="calculateTotal(table)">Add Total</button>
-                <button onclick="calculateAverage(table)">Compute Average</button>
-                <button onclick="tablesCancel(table)">Cancel</button>
+        <h2>Tables</h2>
+        <h3>Column: <span id="tables-current-header">header name here</span></h3>
+        <button onclick="updateHeaderName(table);">Change name to:</button>
+        <input id="tables-new-header-name" type="text" placeholder="name">
+        <br>
+        <button onclick="deleteColumn(table);">Delete Column</button>
+        <button onclick="copyColumn(table)">Copy Column</button>
+        <br>
+        <button onclick="moveColumn(table)">Move To Column</button>
+        <select id="move-column"></select>
+        <br>
+        <button onclick="calculateTotal(table)">Add Total</button>
+        <button onclick="calculateAverage(table)">Compute Average</button>
+        <button onclick="tablesCancel(table)">Cancel</button>
     </main>
 
     <main id="main-tables-row-form">
-        <h2>Tables
-            <h2>
-                <h3>Row: <span id="tables-current-row">row number here</span></h3>
-                <button onclick="deleteRow()">Delete Row</button>
-                <button onclick="copyRow()">Copy Row</button>
-                <button onclick="moveRow()">Move To Row</button>
-                <select id="move-row"></select>
-                <button onclick="tablesCancel(table)">Cancel</button>
+        <h2>Tables</h2>
+        <h3>Row: <span id="tables-current-row">row number here</span></h3>
+        <button onclick="deleteRow()">Delete Row</button>
+        <button onclick="copyRow()">Copy Row</button>
+        <button onclick="moveRow()">Move To Row</button>
+        <select id="move-row"></select>
+        <button onclick="tablesCancel(table)">Cancel</button>
     </main>
     <script src="../commonFunctions.js"></script>
     <script src="tables_javascript.js"></script>
