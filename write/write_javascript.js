@@ -9,9 +9,9 @@ let marginSize = 2;
 let writeUndos = [];
 //let needsSave = true;
 
-initializizeWriteApp();
+initializeWriteApp();
 
-function initializizeWriteApp() {
+function initializeWriteApp() {
     documentDiv.style.fontSize = remSize + "rem";
     documentDiv.style.marginLeft = marginSize + "rem";
     documentDiv.style.marginRight = marginSize + "rem";

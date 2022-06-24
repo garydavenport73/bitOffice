@@ -14,13 +14,15 @@ function initializeContactsApp() {
     let headers = [];
     let inputTypes = {};
     let data = [];
-    headers = ["name", "cell phone", "email", "address", "age"];
+    headers = ["name", "cell", "email", "address", "home", "work", "website"];
     inputTypes = {
         "name": "text",
-        "cell phone": "tel",
+        "cell": "tel",
         "email": "email",
         "address": "text",
-        "age": "number"
+        "home": "tel",
+        "work": "tel",
+        "website": "text"
     }
 
     for (let j = 0; j < headers.length; j++) { //fill in empty input types
@@ -31,9 +33,9 @@ function initializeContactsApp() {
 
     data = [];
 
-    data[0] = { "name": 'Amelia', "cell phone": '304-210-8924', "email": '', "address": '' };
-    data[1] = { "name": 'Gary', "cell phone": '304-494-6682', "email": '', "address": '' };
-    data[2] = { "name": 'Phoebe', "cell phone": '304-834-2240', "email": '', "address": '' };
+    data[0] = { "name": 'Amelia', "cell": '304-210-8924', "email": 'ameliamcpeak@gmail.com', "address": '2511 Vaughan Ave, Parkersburg, WV  26101' };
+    data[1] = { "name": 'Gary', "cell": '304-494-6682', "email": '', "address": '' };
+    data[2] = { "name": 'Phoebe', "cell": '304-834-2240', "email": '', "address": '' };
 
     table = {
         "name": "Contacts",
@@ -55,6 +57,7 @@ function initializeContactsApp() {
 function buildContactsTableElement(table) {
     let tableElement = "";
     let numberOfColumns = table["headers"].length;
+    numberOfColumns = 3; //only showing first 3
     let numberOfRows = table["data"].length;
 
     //start table

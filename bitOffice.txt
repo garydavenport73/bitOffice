@@ -6,3 +6,26 @@ tables  a csv spreadsheet   done
 contact a contacts app      done                probably
 planner a calendar app      done                probably
 calc    a calculator app    done
+
+
+for each app
+    O to do, check layouts in dynamic loaded content apps
+and adjust css
+    O adust content on each app for mobile/tablet/desktop
+    O make globals javascript if needed
+    O copy over functions to commonFunctions if needed
+        x notes
+        x write
+        O contacts
+        O calendar
+        O tables
+        x calculator
+
+O comment out global declarations and initializations calls
+
+
+
+
+
+
+
