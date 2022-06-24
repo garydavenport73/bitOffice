@@ -14,7 +14,8 @@
         <h2>Calculator</h2>
         <div id="calculator-result-row"><input type=text id='calculator-input'>
             <button onclick=buildCalcString(this)>&larr;</button>
-            <button onclick=buildCalcString(this)>CLR</button>
+            <span class="filler"></span>
+            <button onclick=buildCalcString(this) class="special-calculator-button">CLR</button>
         </div>
         <span id="expression-span"></span>
         <table id="calculator-table">
@@ -48,4 +49,5 @@
     <script src="calculator_javascript.js"></script>
 
 </body>
+
 </html>

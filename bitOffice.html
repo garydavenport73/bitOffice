@@ -38,10 +38,10 @@
         <h2>Write</h2>
         <nav id="file-bar">
             <button onclick="newDocument();">New</button>
-            <button onclick="load();">Load</button>
-            <button onclick="dataToJSON();">Save</button>
+            <button onclick="writeLoad();">Load</button>
+            <button onclick="writeDataToJSON();">Save</button>
             <button onclick="exportToHTML()">Export</button>
-            <button onclick="printDiv('document-parent');//window.print()">&#128424;</button>
+            <button onclick="printWriteDiv('document-parent');//window.print()">&#128424;</button>
         </nav>
         <nav id="document-settings">
             <button class="mono" onclick='processSelectedText(this);'>Mono</button>
@@ -68,7 +68,7 @@
             <button onclick='processSelectedText(this);//bullet;'>&bullet;</button> &nbsp;
             <button onclick='processSelectedText(this);//undo;'>&#10226;</button>
         </nav>
-        <textarea id="text-editor" spellcheck="false" oninput="updateResult();"></textarea>
+        <textarea id="text-editor" spellcheck="false" oninput="writeUpdateResult();"></textarea>
         <div id="document-parent">
             <div id="document-result"></div>
         </div>
@@ -83,7 +83,7 @@
             <button onclick="tablesCopyCSVToClipboard()">Copy</button>
             <button onclick="tablesShowRules();">?</button>
         </nav>
-        <div>
+        <div class="table-container">
             <table id="tables-table">
             </table>
         </div>
@@ -92,10 +92,10 @@
         <h2>Tables
             <h2>
                 <h3>Column: <span id="tables-current-header">header name here</span></h3>
-                <span><button onclick="updateHeaderName(table);">Change name to:</button><input id="tables-new-header-name" type="text" placeholder="name"></span>
+                <button onclick="updateHeaderName(table);">Change name to:</button><input id="tables-new-header-name" type="text" placeholder="name">
                 <button onclick="deleteColumn(table);">Delete Column</button>
                 <button onclick="copyColumn(table)">Copy Column</button>
-                <span><button onclick="moveColumn(table)">Move To Column</button><select id="move-column"></select></span>
+                <button onclick="moveColumn(table)">Move To Column</button><select id="move-column"></select>
                 <button onclick="calculateTotal(table)">Add Total</button>
                 <button onclick="calculateAverage(table)">Compute Average</button>
                 <button onclick="tablesCancel(table)">Cancel</button>
@@ -106,7 +106,8 @@
                 <h3>Row: <span id="tables-current-row">row number here</span></h3>
                 <button onclick="deleteRow()">Delete Row</button>
                 <button onclick="copyRow()">Copy Row</button>
-                <span><button onclick="moveRow()">Move To Row</button><select id="move-row"></select></span>
+                <button onclick="moveRow()">Move To Row</button>
+                <select id="move-row"></select>
                 <button onclick="tablesCancel(table)">Cancel</button>
     </main>
     <hr>
@@ -118,7 +119,7 @@
             <button onclick="processCSVClick(table);">CSV</button>
         </nav>
         <button onclick='newContactsEntry(table);'>+ New Contact</button>
-        <div id="contacts-table"></div>
+        <div id="contacts-table" class="table-container"></div>
     </main>
     <main id="main-contacts-form">
         <h2>Contacts</h2>
@@ -135,9 +136,9 @@
             <button onclick="loadCalendarDatabase();">Load</button>
             <button onclick="saveCalendarDatabase(calendarDatabase);">Save</button>
         </nav>
-        <span>
+        <div>
             <input type='date' id="calendar-date">
-        </span>
+        </div>
         <button onclick="processOpenCalendar();">Open</button>
     </main>
     <main id="main-calendar-table">
@@ -148,7 +149,7 @@
             <button onclick="processCalendarHome(table);">Home</button>
             <button onclick="processCSVClick(table);">CSV</button>
         </nav>
-        <div id="calendar-table"></div>
+        <div id="calendar-table" class="table-container"></div>
     </main>
     <main id="main-calendar-form">
         <h2>Calendar</h2>
@@ -161,10 +162,9 @@
     <hr>
     <main id="main-calculator">
         <h2>Calculator</h2>
-        <div id="calculator-result-row">
-			<input type=text id='calculator-input'>
+        <div id="calculator-result-row"><input type=text id='calculator-input'>
             <button onclick=buildCalcString(this)>&larr;</button>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <span class="filler"></span>
             <button onclick=buildCalcString(this) class="special-calculator-button">CLR</button>
         </div>
         <span id="expression-span"></span>

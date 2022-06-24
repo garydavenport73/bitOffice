@@ -1,3 +1,8 @@
+/* -------------Layout------------- */
+
+
+/************** Styles ***************/
+
 * {
     box-sizing: border-box;
 }
@@ -11,7 +16,7 @@ input:invalid {
     background-color: orange;
 }
 
-tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr) {
+tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #calculator-table tr) {
     background-color: white;
 }
 
@@ -25,6 +30,8 @@ th:hover {
 }
 
 main {
+    width: 320px;
+    margin: auto;
     /* width: 320px;
     margin: auto; */
     /*this is the dark color */
@@ -39,7 +46,7 @@ main>* {
     width: 90%;
 }
 
-main>div,
+main>div:not(#document-parent, #calculator-result-row),
 #calendar-edit-form {
     display: flex;
     flex-direction: column;
@@ -50,6 +57,13 @@ main>nav {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+
+body>nav {
+    text-align: center;
+    width: 320px;
+    margin: auto;
+    background-color: blueviolet;
 }
 
 main input,
@@ -66,15 +80,6 @@ main>select {
     width: 90%;
     text-align: center;
 }
-
-
-/* .table-container {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    overflow-x: auto;
-    width: 90%;
-} */
 
 table {
     background-color: orange;
@@ -109,32 +114,6 @@ table {
     width: 100%;
 }
 
-
-/* #tables-table th:not(#add-column, #add-row, #blank-th) {
-    min-width: 40px;
-} */
-
-
-/* th,
-th input {
-    background-color: lightskyblue;
-    font-weight: bold;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 16px;
-}
-
-th:not(#add-column, #add-row, #blank-th) {
-    min-width: 40px;
-}
-
-td {
-    max-width: 50px;
-    margin: 0;
-    padding: 0;
-    overflow-wrap: break-word;
-    text-align: center;
-} */
-
 select,
 main>input {
     text-align: center;
@@ -155,49 +134,100 @@ nav {
 }
 
 #note {
-    height: 320px;
+    height: 400px;
+    max-width: 90%;
+}
+
+#text-editor {
+    height: 200px;
     max-width: 90%;
 }
 
 
-/* #contacts-table {
-    background-color: lightblue;
-    overflow-x: auto;
+/***********write css*****************/
+
+.mono {
+    font-family: 'Courier New', Courier, monospace;
 }
 
-#contacts-edit-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: lightcoral;
+.serif {
+    font-family: Georgia, 'Times New Roman', Garamond, Times, serif;
 }
 
-#contacts-edit-form>div {
+.sans {
+    font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
+}
+
+#document-settings,
+#edit-bar {
+    width: 90%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    background-color: yellowgreen;
-}
-
-#contacts-edit-form>div>label {
-    background-color: orange;
-}
-
-#note {
-    height: 320px;
+    flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
+    background-color: cadetblue;
+    border: 1px solid black;
+    /* min-height: 30px; */
 }
 
 #text-editor {
-    height: 100px;
-    ;
-} */
-
-
-/*fine tuning
-button{
-	min-height:30px;
+    width: 90%;
+    max-width: 90%;
+    overflow-wrap: break-word;
+    min-height: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
 }
- */
+
+#document-parent {
+    margin: 0;
+    padding: 0;
+    width: 90%;
+    background-color: lightgoldenrodyellow;
+}
+
+
+/*///////////////////////////////////////*/
+
+
+/*Keep in correct order should set to initial settings*/
+
+
+/*any property of an ancestor previously set is unset	*/
+
+
+/*for anything inside the result document 				*/
+
+#document-result * {
+    background-color: unset;
+    width: unset;
+    text-align: unset;
+    border-radius: unset;
+    margin-left: unset;
+    margin-right: unset;
+    width: unset;
+    padding-bottom: unset;
+    align-items: unset;
+    border-radius: unset;
+    margin: unset;
+    padding: unset;
+}
+
+#document-result {
+    overflow-wrap: break-word;
+    min-height: 100px;
+    /* padding-top: 1rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 1rem; */
+    width: auto;
+    background-color: lightgoldenrodyellow;
+    white-space: pre-wrap;
+}
+
+
+/**********************************/
 
 
 /*  Needed for printiing in notes, may refactor to function*/
@@ -208,48 +238,49 @@ pre {
 }
 
 
-/*  CALCULATOR STUFF*/
+/*  CALCULATOR STUFF */
 
-
-/* .special-calculator-button {
-    background-color: #ffcc33;
-    border: 1px solid grey;
-}
-
-#calculator-input {
-    text-align: right;
-    height: 40px;
-    font-size: 1.4em;
-    width: 70%;
-}
-
-#calculator-table button {
-    width: 100%;
-    height: 70px;
-    font-size: 2em;
-    border: 1px solid grey;
+.filler {
+    flex-grow: 1;
 }
 
 #calculator-table {
-    width: 280px;
+    background-color: green;
+    width: 90%;
+    min-width: 0%;
+}
+
+#calculator-table td button {
+    font-size: 2rem;
+    width: 100%;
+}
+
+.special-calculator-button {
+    background-color: #ffcc33;
+    border: 1px solid grey;
 }
 
 #calculator-result-row {
     display: flex;
     flex-direction: row;
-    width: 280px;
-    justify-content: center;
+}
+
+#calculator-result-row * {
+    font-size: 1.4rem;
+}
+
+#calculator-result-row input {
+    width: 60%;
 }
 
 #expression-span {
-    max-width: 280px;
     overflow-wrap: anywhere;
     min-height: 18px;
     color: grey;
-} */
+}
 
 
-/*  CALCULATTOR STUFF ENDS*/
+/*  CALCULATOR STUFF ENDS*/
 
 
 /* ALREADY SET FOR PHONE*/
@@ -258,7 +289,8 @@ pre {
 /* TABLET*/
 
 @media only screen and (min-width: 600px) {
-    main {
+    main,
+    body>nav {
         width: 600px;
     }
 }
@@ -267,7 +299,8 @@ pre {
 /*DESKTOP*/
 
 @media only screen and (min-width: 900px) {
-    main {
+    main,
+    body>nav {
         width: 900px;
     }
 }
