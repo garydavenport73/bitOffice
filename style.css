@@ -241,12 +241,12 @@ main>input {
     text-align: center;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1:not(#document-result h1),
+h2:not(#document-result h2),
+h3:not(#document-result h3),
+h4:not(#document-result h4),
+h5:not(#document-result h5),
+h6:not(#document-result h6) {
     background-color: lightblue;
     text-align: center;
 }
@@ -415,12 +415,12 @@ nav:not(#document-settings, #edit-bar) button {
     min-height: 25px;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1:not(#document-result h1),
+h2:not(#document-result h2),
+h3:not(#document-result h3),
+h4:not(#document-result h4),
+h5:not(#document-result h5),
+h6:not(#document-result h6) {
     background-color: mediumblue;
     text-align: center;
     padding: 2px;
@@ -428,7 +428,7 @@ h6 {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-h1 {
+h1:not(#document-result h1) {
     color: lavender;
     font-family: Arial, Helvetica, sans-serif;
     width: 320px;
@@ -484,7 +484,7 @@ table {
     border: 1px solid grey;
 }
 
-#main-write h2 {
+#main-write h2:not(#document-result h2) {
     background-color: cadetblue;
 }
 
@@ -589,7 +589,7 @@ for anything inside the result document 				*/
     #main-calendar-table,
     #main-tables-table,
     #top-nav,
-    h1 {
+    h1:not(#document-result h1) {
         width: 600px;
     }
     /* undoes the hiding of everything but first 2 cells */
@@ -610,7 +610,7 @@ for anything inside the result document 				*/
     #main-calendar-table,
     #main-tables-table,
     #top-nav,
-    h1 {
+    h1:not(#document-result h1) {
         width: 900px;
     }
 }
