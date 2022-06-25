@@ -12,13 +12,21 @@
 <body>
     <h1>bitOffice</h1>
     <nav id="top-nav">
-        <button onclick="initializeNotesApp()">&#128221;</button>
-        <button onclick="initializeWriteApp()">&#128196;</button>
-        <button onclick="initializeTablesApp()">&#9638;</button>
-        <button onclick="initializeContactsApp()">&#9742;</button>
-        <button onclick="initializeCalendarApp()">&#128197;</button>
-        <button onclick="initializeCalculatorApp()">&#128290;</button>
+        <button onclick="initializeNotesApp();">&#128221;</button>
+        <button onclick="initializeWriteApp();">&#128196;</button>
+        <button onclick="initializeTablesApp();">&#9638;</button>
+        <button onclick="initializeContactsApp();">&#9742;</button>
+        <button onclick="initializeCalendarApp();">&#128197;</button>
+        <button onclick="initializeCalculatorApp();">&#128290;</button>
+        <button onclick="showMain('main-startup');">?</button>
     </nav>
+    <main id="main-startup">
+        <div>Here is where the initial message is</div>
+        <button onclick="alert('placed code to load calendar and contacts database');">
+            Load Start Mechanism
+        </button>
+
+    </main>
     <main id="main-notes">
         <h2>Notes</h2>
         <nav>
@@ -33,7 +41,7 @@
         </nav>
         <textarea id="note" rows="10" placeholder="your notes here"></textarea>
     </main>
-    <hr>
+    <!---<hr>--->
     <main id="main-write">
         <h2>Write</h2>
         <nav id="file-bar">
@@ -73,7 +81,7 @@
             <div id="document-result"></div>
         </div>
     </main>
-    <hr>
+    <!---<hr>--->
     <main id="main-tables-table">
         <h2>Tables</h2>
         <nav>
@@ -109,7 +117,7 @@
         <select id="move-row"></select>
         <button onclick="tablesCancel(table)">Cancel</button>
     </main>
-    <hr>
+    <!---<hr>--->
     <main id="main-contacts-table">
         <h2 id="contacts-table-name">Contacts</h2>
         <nav>
@@ -128,7 +136,7 @@
         <button onclick='deleteContactsEntry(table);'>Delete</button>
         <button onclick='cancelContactsEntry(table);'>Cancel</button>
     </main>
-    <hr>
+    <!---<hr>--->
     <main id="main-calendar-start">
         <h2>Calendar</h2>
         <nav>
@@ -158,7 +166,7 @@
         <button onclick='deleteCalendarEntry(table);'>Delete</button>
         <button onclick='cancelCalendarEntry(table);'>Cancel</button>
     </main>
-    <hr>
+    <!---<hr>--->
     <main id="main-calculator">
         <h2>Calculator</h2>
         <div id="calculator-result-row"><input type=text id='calculator-input'>
@@ -195,13 +203,15 @@
             </tr>
         </table>
     </main>
-    <!-- <script src="commonFunctions.js"></script>
-    <script src="/notes/notes_javascript.js"></script>
-    <script src="/write/write_javascript.js"></script>
-    <script src="/tables/tables_javascript.js"></script>
-    <script src="/contacts/contacts_javascript.js"></script>
-    <script src="/calendar/calendar_javascript.js"></script>
-    <script src="/calculator/calculator_javascript.js"></script> -->
+    <script src="./globalVariables.js"></script>
+    <script src="./commonFunctions.js"></script>
+    <script src="./notes/notes_javascript.js"></script>
+    <script src="./write/write_javascript.js"></script>
+    <script src="./tables/tables_javascript.js"></script>
+    <script src="./contacts/contacts_javascript.js"></script>
+    <script src="./calendar/calendar_javascript.js"></script>
+    <script src="./calculator/calculator_javascript.js"></script>
+    <script>showMain('main-startup');</script>
 </body>
 
 </html>

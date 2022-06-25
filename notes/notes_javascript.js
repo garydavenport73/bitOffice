@@ -1,10 +1,10 @@
 //////////////GLOBALS/////////////////////////
 //  ------------notes --------------------
-let noteFontSize = 2.5 / 3.0;
-let note = document.getElementById('note');
+// let noteFontSize = 2.5 / 3.0;
+// let note = document.getElementById('note');
+//////////////GLOBALS/////////////////////////
 
-
-initializeNotesApp();
+// initializeNotesApp();
 
 function initializeNotesApp() {
     note.style.fontSize = noteFontSize.toString() + "rem";
@@ -14,6 +14,7 @@ function initializeNotesApp() {
     ////Asks if you really want to close browser
 
     window.onbeforeunload = askConfirm;
+    showMain('main-notes');
     //let needsSave = true;
 }
 

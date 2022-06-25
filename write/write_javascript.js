@@ -1,15 +1,15 @@
 ////////////////////GLOBALS/////////////////////////
 //-----------------write---------------------
 
-let writeBaseFilename = "";
-let textarea = document.getElementById("text-editor");
-let documentDiv = document.getElementById('document-result');
-let remSize = 1;
-let marginSize = 2;
-let writeUndos = [];
-//let needsSave = true;
-
-initializeWriteApp();
+// let writeBaseFilename = "";
+// let textarea = document.getElementById("text-editor");
+// let documentDiv = document.getElementById('document-result');
+// let remSize = 1;
+// let marginSize = 2;
+// let writeUndos = [];
+///////////////////////////////////////////////////////////////
+// initializeWriteApp();
+/////////////////////////////////////////////////////////
 
 function initializeWriteApp() {
     documentDiv.style.fontSize = remSize + "rem";
@@ -43,6 +43,7 @@ function initializeWriteApp() {
             writeUpdateResult();
         }
     });
+    showMain('main-write');
 }
 
 //Script to print the content of a div

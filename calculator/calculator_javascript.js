@@ -1,12 +1,12 @@
 /////////////////GLOBALS///////////////////
 //         calculator        //
-let calcString = "";
-let calculatorInput = document.getElementById('calculator-input');
-let charToAdd = "";
-let expressionSpan = document.getElementById('expression-span');
+// let calcString = "";
+// let calculatorInput = document.getElementById('calculator-input');
+// let charToAdd = "";
+// let expressionSpan = document.getElementById('expression-span');
 //////////////////////////////////////////
 
-initializeCalculatorApp();
+//initializeCalculatorApp();
 
 function initializeCalculatorApp() {
     // Get the input field
@@ -17,6 +17,7 @@ function initializeCalculatorApp() {
             document.getElementById("equals-button").click();
         }
     });
+    showMain('main-calculator');
 }
 
 function buildCalcString(clickedElement) {

@@ -1,19 +1,18 @@
 ///////////////GLOBALS///////////////////////
 //-------------tables-----------------------
-let tablesInitialTable = {
-    headers: ["Column 1", "Column 2", "Column 3"],
-    data: [
-        { "Column 1": "hi", "Column 2": "", "Column 3": "" },
-        { "Column 1": "there", "Column 2": "", "Column 3": "" },
-        { "Column 1": "everybody", "Column 2": "", "Column 3": "" }
-    ]
-}
+// let tablesInitialTable = {
+//     headers: ["Column 1", "Column 2", "Column 3"],
+//     data: [
+//         { "Column 1": "hi", "Column 2": "", "Column 3": "" },
+//         { "Column 1": "there", "Column 2": "", "Column 3": "" },
+//         { "Column 1": "everybody", "Column 2": "", "Column 3": "" }
+//     ]
+// }
 
-let table = {}
-
+// let table = {}
 /////////////////////////////////////
 
-initializeTablesApp();
+// initializeTablesApp();
 
 function initializeTablesApp() {
     table = JSON.parse(JSON.stringify(tablesInitialTable));
