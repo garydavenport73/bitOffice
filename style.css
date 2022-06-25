@@ -1,7 +1,4 @@
-/* -------------Layout------------- */
-
-
-/************** Styles ***************/
+/* --------------Layout------------------- */
 
 * {
     box-sizing: border-box;
@@ -16,6 +13,9 @@ input:invalid {
     background-color: orange;
 }
 
+
+/* -------------------general tables----------------------- */
+
 tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot>tr, #calculator-table tr) {
     background-color: white;
 }
@@ -28,6 +28,36 @@ tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot
 th:hover {
     background-color: lightgrey;
 }
+
+.table-container {
+    display: block;
+    overflow-x: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    text-align: center;
+}
+
+table {
+    background-color: lightblue;
+}
+
+table {
+    min-width: 100%;
+}
+
+tr {
+    text-align: left;
+    /* prevents collaps of row, acts like min-height in other elements */
+    height: 1rem;
+}
+
+td {
+    background-color: yellow;
+}
+
+
+/* ---------------------general mains--------------------- */
 
 main {
     width: 320px;
@@ -59,11 +89,16 @@ main>nav {
     flex-wrap: wrap;
 }
 
-body>nav {
+
+/* body>nav {
     text-align: center;
     width: 320px;
     margin: auto;
     background-color: blueviolet;
+} */
+
+#top-nav {
+    background-color: yellow;
 }
 
 main input,
@@ -75,35 +110,16 @@ main>button {
     width: 120px;
 }
 
-.table-container {
-    display: block;
-    overflow-x: auto;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
+
+/* --------------general styling -------------------- */
+
+select,
+main>input {
     text-align: center;
 }
 
-table {
-    background-color: lightblue;
-}
 
-table {
-    min-width: 100%;
-}
-
-tr {
-    text-align: left;
-    /* prevents collaps of row, acts like min-height in other elements */
-    height: 1rem;
-}
-
-td {
-    background-color: yellow;
-}
-
-
-/* calendar styleing */
+/* ---------calendar app layout --------------- */
 
 #main-calendar-start>button {
     width: 240px;
@@ -116,17 +132,12 @@ td {
 }
 
 
-/* calender stryling */
-
-
-/* td:first-of-type {
-    text-align: center;
-} */
+/* --------------tables app layout -------------------- */
 
 #tables-table {
     display: block;
     margin: auto;
-    background-color: lightblue;
+    /* background-color: lightblue; */
     min-width: 100%;
 }
 
@@ -152,12 +163,6 @@ in between first and last table header */
     width: auto;
 }
 
-
-/* #main-tables-header-form input,
-#main-tables-header-form>select {
-    width: 240px;
-} */
-
 #main-tables-header-form input,
 #main-tables-header-form select,
 #main-tables-header-form button,
@@ -166,8 +171,19 @@ in between first and last table header */
     width: 200px;
 }
 
+#add-column,
+#add-row,
+#blank-th {
+    width: auto;
+}
 
-/*       contacts table*/
+#tables-table input {
+    /* background-color: aqua; */
+    width: 100%;
+}
+
+
+/* -------------contacts app layout----------------- */
 
 
 /* makes scroll right start at left */
@@ -239,6 +255,9 @@ nav {
     background-color: lightblue;
 }
 
+
+/* -----------notes app layout----------------- */
+
 #note {
     height: 400px;
     max-width: 90%;
@@ -250,7 +269,7 @@ nav {
 }
 
 
-/***********write css*****************/
+/***********write layout and css****************/
 
 .mono {
     font-family: 'Courier New', Courier, monospace;
@@ -297,42 +316,6 @@ nav {
 /*///////////////////////////////////////*/
 
 
-/*Keep in correct order should set to initial settings*/
-
-
-/*any property of an ancestor previously set is unset	*/
-
-
-/*for anything inside the result document 				*/
-
-#document-result * {
-    background-color: unset;
-    width: unset;
-    text-align: unset;
-    border-radius: unset;
-    margin-left: unset;
-    margin-right: unset;
-    width: unset;
-    padding-bottom: unset;
-    align-items: unset;
-    border-radius: unset;
-    margin: unset;
-    padding: unset;
-}
-
-#document-result {
-    overflow-wrap: break-word;
-    min-height: 100px;
-    /* padding-top: 1rem;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-bottom: 1rem; */
-    width: auto;
-    background-color: lightgoldenrodyellow;
-    white-space: pre-wrap;
-}
-
-
 /**********************************/
 
 
@@ -351,7 +334,7 @@ pre {
 }
 
 #calculator-table {
-    background-color: lightblue;
+    /* background-color: lightblue; */
     width: 90%;
     min-width: 0%;
 }
@@ -390,6 +373,209 @@ pre {
 /*  CALCULATOR STUFF ENDS*/
 
 
+/***************add on styles can be switched out****************************/
+
+html {
+    /*this is the light color*/
+    /* background-color: lightblue; */
+    background-color: #BDBDBD;
+}
+
+main,
+td,
+nav>button {
+    /*this is the background to main color */
+    /* background-color: yellow; */
+    background-color: #E0E0E0;
+    border-radius: 5px;
+}
+
+main>button {
+    /* background-color: red; */
+    background-color: #BDBDBD;
+    min-height: 30px;
+    border-radius: 5px;
+    padding: 3px;
+    margin: 2px;
+}
+
+main>button:hover {
+    background-color: #E0E0E0;
+}
+
+nav>button:hover {
+    background-color: #BDBDBD;
+}
+
+nav:not(#document-settings, #edit-bar) button {
+    /* background-color: green; */
+    border-radius: 5px;
+    padding: 5px;
+    margin: 2px;
+    min-height: 25px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    background-color: mediumblue;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    color: lavender;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 320px;
+    margin: auto;
+    border-radius: 0;
+}
+
+nav:not(#document-settings, #edit-bar, #top-nav) {
+    border-radius: 5px;
+    margin: 5px;
+    /* background-color: lightblue; */
+    background-color: #BDBDBD;
+}
+
+#top-nav {
+    background-color: mediumblue;
+    width: 320px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+#top-nav button {
+    font-size: 1.4rem;
+}
+
+table {
+    border-radius: 5px;
+    /* background-color: lightblue; */
+    background-color: #BDBDBD;
+}
+
+input:not(#tables-table input, #calendar-date, #calculator-input),
+select {
+    /* background-color: coral; */
+    background-color: #F5F5F5;
+    min-height: 30px;
+    border-radius: 5px;
+}
+
+button,
+table {
+    border: 1px solid grey;
+}
+
+
+/* MAIN COLORS FOR THE APPS */
+
+#main-notes h2 {
+    background-color: khaki;
+    border: 1px solid grey;
+}
+
+#main-write h2 {
+    background-color: cadetblue;
+}
+
+#main-contacts-table h2,
+#main-contacts-form h2 {
+    background-color: indigo;
+    color: antiquewhite;
+}
+
+#main-calendar-start h2,
+#main-calendar-table h2,
+#main-calendar-form h2,
+#main-calendar-start h3,
+#main-calendar-table h3,
+#main-calendar-form h3 {
+    background-color: darkorange;
+}
+
+#main-tables-table h2,
+#main-tables-header-form h2,
+#main-tables-row-form h2,
+#main-tables-table h3,
+#main-tables-header-form h3,
+#main-tables-row-form h3 {
+    background-color: forestgreen;
+    /* color: ghostwhite; */
+}
+
+#main-calculator h2 {
+    background-color: dimgrey;
+    color: ghostwhite;
+}
+
+
+/*
+colors overall blue:
+O notes         yellow
+O write         darker blue
+O contacts      purple
+O calendar      orange
+O tables        green
+O calculator    dark
+*/
+
+
+/*
+red         --->vermilion: rgb(224, 53, 36);
+orange      --->princeton-orange: rgb(240, 124, 18);
+yellow      --->mikado-yellow: rgb(255, 194, 0);
+lightgreen  --->apple-green: rgb(144, 188, 26);
+green       --->yellow-green-color-wheel: rgb(33, 181, 52);
+light blue  --->blue-munsell: rgb(0, 149, 172);
+blue        --->green-blue: rgb(31, 100, 173);
+dark blue   --->blue-pigment: rgb(64, 64, 160);
+purple      --->dark-magenta: rgb(144, 52, 152);
+*/
+
+
+/*Has to come at end so that 
+the document is displayed correctly 
+in the write app */
+
+
+/*Keep in correct order should set to initial settings
+any property of an ancestor previously set is unset
+for anything inside the result document 				*/
+
+#document-result * {
+    background-color: unset;
+    width: unset;
+    text-align: unset;
+    border-radius: unset;
+    margin-left: unset;
+    margin-right: unset;
+    width: unset;
+    padding-bottom: unset;
+    align-items: unset;
+    border-radius: unset;
+    margin: unset;
+    padding: unset;
+}
+
+#document-result {
+    overflow-wrap: break-word;
+    min-height: 100px;
+    width: auto;
+    background-color: lightgoldenrodyellow;
+    white-space: pre-wrap;
+}
+
+
 /* ALREADY SET FOR PHONE*/
 
 
@@ -401,7 +587,9 @@ pre {
     #main-write,
     #main-contacts-table,
     #main-calendar-table,
-    #main-tables-table {
+    #main-tables-table,
+    #top-nav,
+    h1 {
         width: 600px;
     }
     /* undoes the hiding of everything but first 2 cells */
@@ -420,7 +608,9 @@ pre {
     #main-write,
     #main-contacts-table,
     #main-calendar-table,
-    #main-tables-table {
+    #main-tables-table,
+    #top-nav,
+    h1 {
         width: 900px;
     }
 }

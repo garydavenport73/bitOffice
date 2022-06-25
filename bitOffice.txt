@@ -9,11 +9,11 @@ calc    a calculator app    done
 
 
 for each app
-    O to do, check layouts in dynamic loaded content apps
+    x to do, check layouts in dynamic loaded content apps
 and adjust css
-    O adust content on each app for mobile/tablet/desktop
-    O make globals javascript if needed
-    O copy over functions to commonFunctions if needed
+    x adust content on each app for mobile/tablet/desktop
+    x make globals javascript if needed
+    x copy over functions to commonFunctions if needed
         x notes
         x write
         x contacts
@@ -22,6 +22,29 @@ and adjust css
         x calculator
 
 O comment out global declarations and initializations calls
+
+colors overall blue:
+O notes         light yellow
+O write         darker blue
+O contacts      purple
+O calendar      orange
+O tables        green
+O calculator    dark
+
+
+
+main background colors light blue
+
+red         --->vermilion: rgb(224, 53, 36);
+orange      --->princeton-orange: rgb(240, 124, 18);
+yellow      --->mikado-yellow: rgb(255, 194, 0);
+lightgreen  --->apple-green: rgb(144, 188, 26);
+green       --->yellow-green-color-wheel: rgb(33, 181, 52);
+light blue  --->blue-munsell: rgb(0, 149, 172);
+blue        --->green-blue: rgb(31, 100, 173);
+dark blue   --->blue-pigment: rgb(64, 64, 160);
+purple      --->dark-magenta: rgb(144, 52, 152);
+
 
 
 
