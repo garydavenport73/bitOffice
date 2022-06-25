@@ -19,6 +19,7 @@ function initializeTablesApp() {
     table = JSON.parse(JSON.stringify(tablesInitialTable));
     makeTable(table);
     window.onbeforeunload = askConfirm;
+    showMain("main-tables-table");
     //let needsSave = true;
 }
 
@@ -32,6 +33,7 @@ function processColumnClick(header) {
     populateMoveColumnSelect(table);
     //fill out the form on the columns page
     document.getElementById("tables-current-header").innerHTML = header;
+    showMain("main-tables-header-form");
 }
 
 
@@ -42,6 +44,7 @@ function processRowClick(row) {
     populateMoveRowSelect(table);
 
     document.getElementById("tables-current-row").innerHTML = row.toString();
+    showMain("main-tables-row-form");
 }
 
 function makeTable(table) {
@@ -365,7 +368,7 @@ function deleteRow() {
     data.splice(index, 1);
     //usefulInteger = -1;
     makeTable(table);
-    //showMain('main-tables-table');
+    showMain('main-tables-table');
 }
 
 function copyRow() {
@@ -380,7 +383,7 @@ function copyRow() {
 
     data.push(rowToCopy);
     makeTable(table);
-    //showMain('main-tables-table');
+    showMain('main-tables-table');
 }
 
 function moveRow() {
@@ -407,7 +410,7 @@ function moveRow() {
     data.splice(destinationIndex, 0, rowToMove);
     //console.log(table.data);
     makeTable(table);
-    //showMain('main-tables-table');
+    showMain('main-tables-table');
 }
 
 

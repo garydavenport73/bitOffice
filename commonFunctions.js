@@ -96,9 +96,9 @@ function showMain(id) {
     let mains = document.getElementsByTagName('main');
     for (let main of mains) {
         console.log(main.id);
-        //main.style.display = "none";
+        main.style.display = "none"; //comment out
     }
-    //document.getElementById(id).style.display = "inherit";
+    document.getElementById(id).style.display = "flex"; //comment out
 }
 
 /////////////////clipboard function//////////////////

@@ -21,6 +21,8 @@ and adjust css
         x tables
         x calculator
 
+O page navigation, then comment out changemains and test
+
 O comment out global declarations and initializations calls
 
 colors overall blue:

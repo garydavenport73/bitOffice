@@ -91,7 +91,7 @@ function initializeCalendarApp() {
     document.getElementById("calendar-table-name").innerHTML = table["name"];
     calendarTable.innerHTML = buildCalendarTableElement(table);
     calendarEditForm.innerHTML = buildCalendarEditForm(table, -1);
-    showMain("main-calendar-table");
+    showMain("main-calendar-start");
 }
 
 function processOpenCalendar() {
@@ -99,6 +99,10 @@ function processOpenCalendar() {
     let year = yearMonthDate[0];
     let month = yearMonthDate[1];
     let date = yearMonthDate[2];
+    
+    if ((year===undefined)||(month===undefined)||(date===undefined)){
+        return;
+    }
 
     //check to see if year entry is in datbase
     if (calendarDatabase[year] === undefined) {
@@ -117,6 +121,7 @@ function processOpenCalendar() {
     table["name"] = year + "-" + month + "-" + date;
     document.getElementById("calendar-table-name").innerHTML = table["name"];
     calendarTable.innerHTML = buildCalendarTableElement(table);
+
     showMain("main-calendar-table");
     console.log(calendarDatabase);
 }
@@ -129,6 +134,7 @@ function processCalendarHome(table) {
 
     calendarDatabase[year][month][date]["data"] = JSON.parse(JSON.stringify(table["data"]));
     console.log(calendarDatabase);
+    showMain("main-calendar-start");
 
 }
 

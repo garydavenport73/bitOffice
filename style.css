@@ -22,7 +22,7 @@ tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot
 
 #tables-table th:hover:not(:first-of-type),
 #tables-table td:first-of-type:hover {
-    background-color: pink;
+    background-color: white;
 }
 
 th:hover {
