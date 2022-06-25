@@ -1,4 +1,3 @@
-
 function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt") {
     let filename = basename + fileType;
     let blobVersionOfText = new Blob([str1], {
@@ -92,13 +91,37 @@ function askConfirm() {
 ////////////page navigation ///////////////////
 
 function showMain(id) {
+    let currentMainId = getCurrentDisplayedMain();
+    let currentApp = currentMainId.split("-")[1];
+    let destinationApp = id.split("-")[1];
+
+    console.log("current app is " + currentApp);
+
+    if (currentApp === destinationApp) {
+        //do nothing
+    } else {
+        if ((currentApp === "tables") || (currentApp === "contacts") || (currentApp === "calendar")) {
+            alert(currentApp + " is being left, so " + currentApp + "'s data needs stored.");
+        }
+    }
+
     console.log("show mains called with " + id);
     let mains = document.getElementsByTagName('main');
     for (let main of mains) {
-        console.log(main.id);
+        //console.log(main.id);
         main.style.display = "none"; //comment out
     }
     document.getElementById(id).style.display = "flex"; //comment out
+}
+
+function getCurrentDisplayedMain() {
+    let mains = document.getElementsByTagName('main');
+    for (let main of mains) {
+        console.log(main.id);
+        if (main.style.display != "none") {
+            return main.id;
+        }; //comment out
+    }
 }
 
 /////////////////clipboard function//////////////////
