@@ -241,12 +241,15 @@ main>input {
     text-align: center;
 }
 
-h1:not(#document-result h1),
+h1:not(#document-result h1)
+/* ,
 h2:not(#document-result h2),
 h3:not(#document-result h3),
 h4:not(#document-result h4),
 h5:not(#document-result h5),
-h6:not(#document-result h6) {
+h6:not(#document-result h6)  */
+
+{
     background-color: lightblue;
     text-align: center;
 }
@@ -415,12 +418,15 @@ nav:not(#document-settings, #edit-bar) button {
     min-height: 25px;
 }
 
-h1:not(#document-result h1),
+h1:not(#document-result h1)
+/* ,
 h2:not(#document-result h2),
 h3:not(#document-result h3),
 h4:not(#document-result h4),
 h5:not(#document-result h5),
-h6:not(#document-result h6) {
+h6:not(#document-result h6)  */
+
+{
     background-color: mediumblue;
     text-align: center;
     padding: 2px;
@@ -482,16 +488,28 @@ table {
 #main-notes h2 {
     background-color: khaki;
     border: 1px solid grey;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #main-write h2:not(#document-result h2) {
     background-color: cadetblue;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #main-contacts-table h2,
 #main-contacts-form h2 {
     background-color: indigo;
     color: antiquewhite;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #main-calendar-start h2,
@@ -501,6 +519,10 @@ table {
 #main-calendar-table h3,
 #main-calendar-form h3 {
     background-color: darkorange;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #main-tables-table h2,
@@ -510,12 +532,20 @@ table {
 #main-tables-header-form h3,
 #main-tables-row-form h3 {
     background-color: forestgreen;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
     /* color: ghostwhite; */
 }
 
 #main-calculator h2 {
     background-color: dimgrey;
     color: ghostwhite;
+    text-align: center;
+    padding: 2px;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 
