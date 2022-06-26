@@ -12,6 +12,7 @@
 /////////////////////////////////////////////////////////
 
 function initializeWriteApp() {
+    showMain('main-write');
     documentDiv.style.fontSize = remSize + "rem";
     documentDiv.style.marginLeft = marginSize + "rem";
     documentDiv.style.marginRight = marginSize + "rem";
@@ -43,7 +44,7 @@ function initializeWriteApp() {
             writeUpdateResult();
         }
     });
-    showMain('main-write');
+    //showMain('main-write');
 }
 
 //Script to print the content of a div

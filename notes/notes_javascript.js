@@ -7,6 +7,7 @@
 // initializeNotesApp();
 
 function initializeNotesApp() {
+    showMain('main-notes');
     note.style.fontSize = noteFontSize.toString() + "rem";
     note.spellcheck = false;
     note.focus();
@@ -14,7 +15,7 @@ function initializeNotesApp() {
     ////Asks if you really want to close browser
 
     window.onbeforeunload = askConfirm;
-    showMain('main-notes');
+    //showMain('main-notes');
     //let needsSave = true;
 }
 

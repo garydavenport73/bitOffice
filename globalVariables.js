@@ -27,8 +27,9 @@ let note = document.getElementById('note');
 ///////////////GLOBALS///////////////////////
 //-------------tables-----------------------
 let tablesInitialTable = {
-    headers: ["Column 1", "Column 2", "Column 3"],
-    data: [
+    "name": "Table",
+    "headers": ["Column 1", "Column 2", "Column 3"],
+    "data": [
         { "Column 1": "hi", "Column 2": "", "Column 3": "" },
         { "Column 1": "there", "Column 2": "", "Column 3": "" },
         { "Column 1": "everybody", "Column 2": "", "Column 3": "" }

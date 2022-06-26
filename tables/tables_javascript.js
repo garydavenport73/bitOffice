@@ -15,15 +15,27 @@
 // initializeTablesApp();
 
 function initializeTablesApp() {
-    table = JSON.parse(JSON.stringify(tablesInitialTable));
+    showMain("main-tables-table");
+    if (currentTablesTable["name"] === undefined) { //not yet initialized
+        table = tablesInitialTable;
+        currentTablesTable = table;
+    } else {
+        table = currentTablesTable;
+    }
+
+    //table = currentTablesTable;
     makeTable(table);
     window.onbeforeunload = askConfirm;
-    showMain("main-tables-table");
+    //showMain("main-tables-table");
     //let needsSave = true;
 }
 
 
-
+function backupTablesTable() {
+    alert("called baclupTablesTable");
+    updateDataFromCurrentInputs();
+    return JSON.parse(JSON.stringify(currentTablesTable));
+}
 
 
 function processColumnClick(header) {
@@ -64,6 +76,7 @@ function makeTable(table) {
     //fill in body data from object
     str = "<tbody>";
     let bodyData = table.data; //an array of objects;
+    console.log("bodyData");
     console.log(bodyData);
     let rowCount = bodyData.length;
     for (let i = 0; i < rowCount; i++) {
@@ -127,13 +140,23 @@ function populateMoveRowSelect(table) {
 
 function updateDataFromCurrentInputs() {
     let headers = table["headers"];
+    console.log("headers");
+    console.log(headers);
     //need to look and see what is currently in the table visibly
     //and rewrite the data to the data table
     for (let i = 0; i < table.data.length; i++) {
         for (let j = 0; j < table.headers.length; j++) {
             let id = "cell-" + i.toString() + "-" + j.toString();
             let thisCell = document.getElementById(id);
+            //check here to handle an empty value
+            //console.log(thisCell.value);
+            console.log(id);
+            console.log(thisCell); //yields null
+            // if (thisCell === null) {
+            //     table.data[i][headers[j]] = "";
+            // } else {
             table.data[i][headers[j]] = thisCell.value;
+            // }
         }
     }
     //makeTable();
@@ -419,7 +442,7 @@ function tablesNewTable() {
     //alert("need to process new");
     //console.log("tablesNewTable() called");
     if (confirm("Are you sure?  This will erase all current data.")) {
-        table = JSON.parse(JSON.stringify(initialTable));
+        table = JSON.parse(JSON.stringify(tablesInitialTable));
         makeTable(table);
         showMain('main-tables-table');
         return table;

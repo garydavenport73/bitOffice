@@ -69,6 +69,7 @@
 ///////////////////FUNCTIONS////////////////
 
 function initializeCalendarApp() {
+    showMain("main-calendar-start");
 
     if (calendarDatabase["name"] === undefined) { //a marker for calendarDatabase not being loaded so define
         calendarDatabase = {
@@ -152,7 +153,7 @@ function initializeCalendarApp() {
         calendarTable.innerHTML = buildCalendarTableElement(table);
         calendarEditForm.innerHTML = buildCalendarEditForm(table, -1);
     }
-    showMain("main-calendar-start");
+    //showMain("main-calendar-start");
 }
 
 function backupCalendarDatabase() {

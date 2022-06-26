@@ -10,6 +10,7 @@
 // initializeContactsApp();
 
 function initializeContactsApp() {
+    showMain("main-contacts-table");
     if (contactsTableObject["name"] === undefined) { //never initialized, first run
         let headers = [];
         let inputTypes = {};
@@ -93,7 +94,7 @@ function initializeContactsApp() {
     document.getElementById("contacts-table-name").innerHTML = table["name"];
     contactsTable.innerHTML = buildContactsTableElement(table);
     contactsEditForm.innerHTML = buildContactsEditForm(table, -1);
-    showMain("main-contacts-table");
+    //showMain("main-contacts-table");
 }
 
 function backupContactsDatabase() {
