@@ -32,7 +32,7 @@ function initializeTablesApp() {
 
 
 function backupTablesTable() {
-    alert("called baclupTablesTable");
+    //alert("called baclupTablesTable");
     updateDataFromCurrentInputs();
     return JSON.parse(JSON.stringify(currentTablesTable));
 }

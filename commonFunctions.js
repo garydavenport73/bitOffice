@@ -101,7 +101,7 @@ function showMain(id) {
         //do nothing
     } else {
         if ((currentApp === "tables") || (currentApp === "contacts") || (currentApp === "calendar")) {
-            alert(currentApp + " is being left, so " + currentApp + "'s data needs stored.");
+            //alert(currentApp + " is being left, so " + currentApp + "'s data needs stored.");
         }
         if (currentApp === "calendar") {
             calendarDatabase = backupCalendarDatabase();
