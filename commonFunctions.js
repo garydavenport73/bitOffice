@@ -103,6 +103,9 @@ function showMain(id) {
         if ((currentApp === "tables") || (currentApp === "contacts") || (currentApp === "calendar")) {
             alert(currentApp + " is being left, so " + currentApp + "'s data needs stored.");
         }
+        if (currentApp === "calendar") {
+            calendarDatabase = backupCalendarDatabase();
+        }
     }
 
     console.log("show mains called with " + id);
@@ -113,6 +116,8 @@ function showMain(id) {
     }
     document.getElementById(id).style.display = "flex"; //comment out
 }
+
+
 
 function getCurrentDisplayedMain() {
     let mains = document.getElementsByTagName('main');

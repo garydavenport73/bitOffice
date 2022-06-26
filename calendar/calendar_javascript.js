@@ -69,29 +69,94 @@
 ///////////////////FUNCTIONS////////////////
 
 function initializeCalendarApp() {
-    headers = calendarDatabase["headers"];
-    table["headers"] = calendarDatabase["headers"];
-    inputTypes = calendarDatabase["inputTypes"];
-    table["inputTypes"] = calendarDatabase["inputTypes"];
 
-    for (let j = 0; j < headers.length; j++) { //fill in empty input types
-        if (inputTypes[headers[j]] === undefined) {
-            inputTypes[headers[j]] = "text";
+    if (calendarDatabase["name"] === undefined) { //a marker for calendarDatabase not being loaded so define
+        calendarDatabase = {
+            "name": "Calendar",
+            "headers": ["start", "end", "name", "notes"],
+            "inputTypes": {
+                "start": "time",
+                "end": "time",
+                "name": "text",
+                "notes": "text"
+            },
+            "2022": {
+                "07": {
+                    "09": {
+                        "data": [{
+                            "start": "09:00",
+                            "end": "10:00",
+                            "name": "Eat Breakfast",
+                            "notes": "Don't overeat"
+                        }, {
+                            "start": "21:01",
+                            "end": "",
+                            "name": "yo",
+                            "notes": "yoyo"
+                        }, {
+                            "start": "22:00",
+                            "end": "23:00",
+                            "name": "watch tv",
+                            "notes": "don't fall alseep"
+                        }]
+                    },
+                    "06": {
+                        "data": [{
+                            "start": "sometime",
+                            "end": "sometime",
+                            "name": "somename",
+                            "notes": "somenotes"
+                        }, {
+                            "start": "sometime",
+                            "end": "sometime",
+                            "name": "somename",
+                            "notes": "somenotes"
+                        }]
+                    },
+                    "08": {
+                        "data": [] //an example of something needing purged
+                    }
+                },
+                "06": {
+                    "09": {
+                        "data": [] //needs purged
+                    }
+                }
+            }
         }
+        headers = calendarDatabase["headers"];
+        table["headers"] = calendarDatabase["headers"];
+        inputTypes = calendarDatabase["inputTypes"];
+        table["inputTypes"] = calendarDatabase["inputTypes"];
+
+        for (let j = 0; j < headers.length; j++) { //fill in empty input types
+            if (inputTypes[headers[j]] === undefined) {
+                inputTypes[headers[j]] = "text";
+            }
+        }
+
+        table["data"] = [];
+        table["name"] = "not named yet";
+        document.getElementById("calendar-table-name").innerHTML = table["name"];
+        calendarTable.innerHTML = buildCalendarTableElement(table);
+        calendarEditForm.innerHTML = buildCalendarEditForm(table, -1);
+    } else { //calendarDatabase name is defined a marker for previous initialization
+        headers = calendarDatabase["headers"];
+        table["headers"] = calendarDatabase["headers"];
+        inputTypes = calendarDatabase["inputTypes"];
+        table["inputTypes"] = calendarDatabase["inputTypes"];
+
+        table["data"] = [];
+        table["name"] = "not named yet";
+        document.getElementById("calendar-table-name").innerHTML = table["name"];
+        calendarTable.innerHTML = buildCalendarTableElement(table);
+        calendarEditForm.innerHTML = buildCalendarEditForm(table, -1);
     }
-
-    // for (let j = 0; j < table["headers"].length; j++) { //fill in empty input types
-    //     if (table["inputTypes"][table["headers"][j]] === undefined) {
-    //         table["inputTypes"][table["headers"][j]] = "text";
-    //     }
-    // }
-
-    table["data"] = [];
-    table["name"] = "not named yet";
-    document.getElementById("calendar-table-name").innerHTML = table["name"];
-    calendarTable.innerHTML = buildCalendarTableElement(table);
-    calendarEditForm.innerHTML = buildCalendarEditForm(table, -1);
     showMain("main-calendar-start");
+}
+
+function backupCalendarDatabase() {
+    return JSON.parse(JSON.stringify(calendarDatabase));
 }
 
 function processOpenCalendar() {
@@ -99,8 +164,8 @@ function processOpenCalendar() {
     let year = yearMonthDate[0];
     let month = yearMonthDate[1];
     let date = yearMonthDate[2];
-    
-    if ((year===undefined)||(month===undefined)||(date===undefined)){
+
+    if ((year === undefined) || (month === undefined) || (date === undefined)) {
         return;
     }
 
