@@ -6,14 +6,14 @@ let charToAdd = "";
 let expressionSpan = document.getElementById('expression-span');
 //////////////////////////////////////////
 
-
-
 ///////////////////////////GLOBALS/////////////////////////////
 //------------------contacts ----------------------
 //let table = {};
 let contactsTable = document.getElementById("contacts-table");
 let contactsEditForm = document.getElementById("contacts-edit-form");
 let contactsEditFormMessage = document.getElementById("contacts-edit-form-message");
+
+let contactsTableObject = {};
 //let sortAscending = 1; //direction -1 is descending, otherwise ascending
 //let baseFilename = "";
 /////////////////////////////////////////////////////
@@ -34,6 +34,8 @@ let tablesInitialTable = {
         { "Column 1": "everybody", "Column 2": "", "Column 3": "" }
     ]
 }
+
+let currentTablesTable = {};
 
 //let table = {}
 

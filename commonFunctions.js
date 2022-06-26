@@ -105,6 +105,10 @@ function showMain(id) {
         }
         if (currentApp === "calendar") {
             calendarDatabase = backupCalendarDatabase();
+        } else if (currentApp === "contacts") {
+            contactsTableObject = backupContactsDatabase();
+        } else if (currentApp === "tables") {
+            currentTablesTable = backupTablesTable();
         }
     }
 

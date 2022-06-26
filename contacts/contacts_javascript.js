@@ -10,47 +10,94 @@
 // initializeContactsApp();
 
 function initializeContactsApp() {
-    let headers = [];
-    let inputTypes = {};
-    let data = [];
-    headers = ["name", "cell", "email", "address", "home", "work", "website"];
-    inputTypes = {
-        "name": "text",
-        "cell": "tel",
-        "email": "email",
-        "address": "text",
-        "home": "tel",
-        "work": "tel",
-        "website": "text"
-    }
-
-    for (let j = 0; j < headers.length; j++) { //fill in empty input types
-        if (inputTypes[headers[j]] === undefined) {
-            inputTypes[headers[j]] = "text";
+    if (contactsTableObject["name"] === undefined) { //never initialized, first run
+        let headers = [];
+        let inputTypes = {};
+        let data = [];
+        headers = ["name", "cell", "email", "address", "home", "work", "website"];
+        inputTypes = {
+            "name": "text",
+            "cell": "tel",
+            "email": "email",
+            "address": "text",
+            "home": "tel",
+            "work": "tel",
+            "website": "text"
         }
+        for (let j = 0; j < headers.length; j++) { //fill in empty input types
+            if (inputTypes[headers[j]] === undefined) {
+                inputTypes[headers[j]] = "text";
+            }
+        }
+        data[0] = { "name": 'Amelia', "cell": '304-210-8924', "email": 'ameliamcpeak@gmail.com', "address": '2511 Vaughan Ave, Parkersburg, WV  26101' };
+        data[1] = { "name": 'Gary', "cell": '304-494-6682', "email": '', "address": '' };
+        data[2] = { "name": 'Phoebe', "cell": '304-834-2240', "email": '', "address": '' };
+
+        contactsTableObject = {
+            "name": "Contacts",
+            "headers": headers,
+            "inputTypes": inputTypes,
+            "data": data
+        }
+
+        table = contactsTableObject;
+        fillInEmptyPropertyValues(table);
+
+
+    } else { //exists update when open
+        table = contactsTableObject;
+        fillInEmptyPropertyValues(table);
     }
 
-    data = [];
+    // let headers = [];
+    // let inputTypes = {};
+    // let data = [];
+    // headers = ["name", "cell", "email", "address", "home", "work", "website"];
+    // inputTypes = {
+    //     "name": "text",
+    //     "cell": "tel",
+    //     "email": "email",
+    //     "address": "text",
+    //     "home": "tel",
+    //     "work": "tel",
+    //     "website": "text"
+    // }
 
-    data[0] = { "name": 'Amelia', "cell": '304-210-8924', "email": 'ameliamcpeak@gmail.com', "address": '2511 Vaughan Ave, Parkersburg, WV  26101' };
-    data[1] = { "name": 'Gary', "cell": '304-494-6682', "email": '', "address": '' };
-    data[2] = { "name": 'Phoebe', "cell": '304-834-2240', "email": '', "address": '' };
+    // for (let j = 0; j < headers.length; j++) { //fill in empty input types
+    //     if (inputTypes[headers[j]] === undefined) {
+    //         inputTypes[headers[j]] = "text";
+    //     }
+    // }
 
-    table = {
-        "name": "Contacts",
-        "headers": headers,
-        "inputTypes": inputTypes,
-        "data": data
-    }
-    fillInEmptyPropertyValues(table);
+    // data = [];
 
-    if (table["name"] === undefined) { //fill in empty table name
-        table["name"] = "Table";
-    }
+    // data[0] = { "name": 'Amelia', "cell": '304-210-8924', "email": 'ameliamcpeak@gmail.com', "address": '2511 Vaughan Ave, Parkersburg, WV  26101' };
+    // data[1] = { "name": 'Gary', "cell": '304-494-6682', "email": '', "address": '' };
+    // data[2] = { "name": 'Phoebe', "cell": '304-834-2240', "email": '', "address": '' };
+
+    // table = {
+    //     "name": "Contacts",
+    //     "headers": headers,
+    //     "inputTypes": inputTypes,
+    //     "data": data
+    // }
+    // fillInEmptyPropertyValues(table);
+
+    // if (table["name"] === undefined) { //fill in empty table name
+    //     table["name"] = "Table";
+    // }
+
+
+
+
     document.getElementById("contacts-table-name").innerHTML = table["name"];
     contactsTable.innerHTML = buildContactsTableElement(table);
     contactsEditForm.innerHTML = buildContactsEditForm(table, -1);
     showMain("main-contacts-table");
+}
+
+function backupContactsDatabase() {
+    return JSON.parse(JSON.stringify(contactsTableObject));
 }
 
 function buildContactsTableElement(table) {
