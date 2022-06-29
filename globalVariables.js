@@ -14,9 +14,9 @@ let tablesTable = {
     "name": "Table",
     "headers": ["Column 1", "Column 2", "Column 3"],
     "data": [
-        { "Column 1": "hi", "Column 2": "", "Column 3": "" },
-        { "Column 1": "there", "Column 2": "", "Column 3": "" },
-        { "Column 1": "everybody", "Column 2": "", "Column 3": "" }
+        { "Column 1": "", "Column 2": "", "Column 3": "" },
+        { "Column 1": "", "Column 2": "", "Column 3": "" },
+        { "Column 1": "", "Column 2": "", "Column 3": "" }
     ]
 }
 
@@ -46,7 +46,7 @@ let contactsTable = {
         "work": "tel",
         "website": "text"
     },
-    "data": [{ "name": 'Amelia', "cell": '304-210-8924', "email": 'ameliamcpeak@gmail.com', "address": '2511 Vaughan Ave, Parkersburg, WV  26101' }]
+    "data": [{ "name": 'John', "cell": '316-123-1234', "email": 'john@junkmail.com', "address": '3160 Patmos Dr., Eden, WV  12345' }]
 }
 
 
@@ -102,24 +102,7 @@ let calendarDatabase = {
         "notes": "text"
     },
     "dates": {
-        "2022-07-09": {
-            "data": [{
-                "start": "09:00",
-                "end": "10:00",
-                "name": "Eat Breakfast",
-                "notes": "Don't overeat"
-            }, {
-                "start": "21:01",
-                "end": "",
-                "name": "yo",
-                "notes": "yoyo"
-            }, {
-                "start": "22:00",
-                "end": "23:00",
-                "name": "watch tv",
-                "notes": "don't fall alseep"
-            }]
-        }
+
     }
 
 }
