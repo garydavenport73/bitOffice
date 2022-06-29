@@ -1,3 +1,38 @@
+To do next on program
+
+    O combine calendar and contacts into one database
+    O combine save for both
+
+        
+
+    Ask to save contacts calendar at close
+    Warn to save documents at close.
+    Write help page
+    Make load contacts calendar button work
+
+    Notes
+    Undo Redo
+
+    Write
+    Tab button
+    Undo redo
+    Make textarea smaller
+
+    Tables
+    Make row buttons bigger
+
+    Calc
+    Make result row bigger
+    Move back clear buttons
+
+    Calendar
+    Make always sort by start date
+
+    Check height of all entry forms
+
+
+
+
 bit office 64k
                             non-styled          combined database
 notes   a text editor       done            
