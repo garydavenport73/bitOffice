@@ -12,7 +12,7 @@
 <body>
     <h1>bitOffice</h1>
     <nav id="top-nav">
-        <button onclick="showMain('main-startup');//setColorOfBackupSaveButton();">&#128194;</button>
+        <button onclick="showMain('main-startup');">&#128194;</button>
         <button onclick="showMain('main-contacts-table'); processGoToApp('contacts');">&#9742;</button>
         <button onclick="showMain('main-calendar-start'); processGoToApp('calendar');">&#128197;</button>
         <button onclick="showMain('main-notes'); processGoToApp('notes');">&#128221;</button>
@@ -31,7 +31,6 @@
         <h2>Personal Database</h2>
         <button onclick="loadCombinedDatabase()">&#128194; Load</button>
         <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save</button>
-        <!-- <button onclick="purgeCalendar();">purge calenddar</button> -->
     </main>
     <main id="main-help">
         <h2>Help</h2>
@@ -58,7 +57,6 @@
         </nav>
         <textarea id="note" rows="10" placeholder="your notes here"></textarea>
     </main>
-    <!---<hr>--->
     <main id="main-write">
         <h2>Write</h2>
         <nav id="file-bar">
@@ -98,7 +96,6 @@
             <div id="document-result"></div>
         </div>
     </main>
-    <!---<hr>--->
     <main id="main-tables-table">
         <h2>Tables</h2>
         <nav>
@@ -134,14 +131,8 @@
         <select id="move-row"></select>
         <button onclick="tablesCancel(tablesTable)">Cancel</button>
     </main>
-    <!---<hr>--->
     <main id="main-contacts-table">
         <h2 id="contacts-table-name">Contacts</h2>
-        <nav>
-            <!-- <button onclick="loadCombinedDatabase();">Load</button>
-            <button onclick="saveCombinedDatabase();">Save</button> -->
-            <!-- <button onclick="processCSVClick(contactsTable);">CSV</button> -->
-        </nav>
         <nav>
             <button onclick='newContactsEntry(contactsTable);'>+ New Contact</button>
             <button onclick="processCSVClick(contactsTable);">CSV</button>
@@ -157,13 +148,9 @@
         <button onclick='deleteContactsEntry(contactsTable);'>Delete</button>
         <button onclick='cancelContactsEntry(contactsTable);'>Cancel</button>
     </main>
-    <!---<hr>--->
     <main id="main-calendar-start">
         <h2>Calendar</h2>
-        <!-- <nav>
-            <button onclick="loadCalendarDatabase();">Load</button>
-            <button onclick="saveCalendarDatabase(calendarDatabase);">Save</button>
-        </nav> -->
+
         <div>
             <input type='date' id="calendar-date">
         </div>
@@ -174,7 +161,6 @@
         <h3 id="calendar-table-name"></h3>
         <nav>
             <button onclick='newCalendarEntry();'>+ New Entry</button>
-            <!-- <button onclick="processCalendarHome();">change day &#128197;</button> -->
             <button onclick="processCalendarCSVClick();">CSV</button>
         </nav>
         <div id="calendar-table" class="table-container"></div>
@@ -187,7 +173,6 @@
         <button onclick='deleteCalendarEntry();'>Delete</button>
         <button onclick='cancelCalendarEntry();'>Cancel</button>
     </main>
-    <!---<hr>--->
     <main id="main-calculator">
         <h2>Calculator</h2>
         <div id="calculator-result-row"><input type=text id='calculator-input'>

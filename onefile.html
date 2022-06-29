@@ -1,0 +1,2692 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>bitOffice</title>
+    <style>
+        /* --------------Layout------------------- */
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        html {
+            /*this is the light color*/
+            background-color: lightblue;
+        }
+        
+        input:invalid {
+            background-color: orange;
+        }
+        /* -------------------general tables----------------------- */
+        
+        tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot>tr, #calculator-table tr) {
+            background-color: white;
+        }
+        
+        #tables-table th:hover:not(:first-of-type),
+        #tables-table td:first-of-type:hover {
+            background-color: white;
+        }
+        
+        th:hover {
+            background-color: lightgrey;
+        }
+        
+        .table-container {
+            display: block;
+            overflow-x: auto;
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+            text-align: center;
+        }
+        
+        table {
+            background-color: lightblue;
+        }
+        
+        table {
+            min-width: 100%;
+        }
+        
+        tr {
+            text-align: left;
+            /* prevents collaps of row, acts like min-height in other elements */
+            height: 1rem;
+        }
+        
+        td {
+            background-color: yellow;
+        }
+        /* ---------------------general mains--------------------- */
+        
+        main {
+            width: 320px;
+            margin: auto;
+            /* width: 320px;
+    margin: auto; */
+            /*this is the dark color */
+            background-color: yellow;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+        
+        main>* {
+            width: 90%;
+        }
+        
+        main>div:not(#document-parent, #calculator-result-row),
+        #calendar-edit-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        main>nav {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        /* body>nav {
+    text-align: center;
+    width: 320px;
+    margin: auto;
+    background-color: blueviolet;
+} */
+        
+        #top-nav,
+        #back-nav {
+            background-color: yellow;
+        }
+        
+        main input,
+        main>select {
+            width: 240px;
+        }
+        
+        main>button {
+            width: 120px;
+        }
+        /* --------------general styling -------------------- */
+        
+        select,
+        main>input {
+            text-align: center;
+        }
+        /* ---------calendar app layout --------------- */
+        
+        #main-calendar-start>button {
+            width: 240px;
+        }
+        
+        #calendar-date {
+            height: 3rem;
+            text-align: center;
+            font-size: 1.4em;
+        }
+        /* --------------tables app layout -------------------- */
+        
+        #tables-table {
+            display: block;
+            margin: auto;
+            /* background-color: lightblue; */
+            min-width: 100%;
+        }
+        /* these 2 used together to apply min width to anything
+in between first and last table header */
+        
+        #tables-table th:not(:last-of-type) {
+            /* background-color: red; */
+            min-width: 5rem;
+        }
+        
+        #tables-table th:first-of-type {
+            min-width: 0;
+        }
+        /* these 2 used together to apply min width to anything
+in between first and last table header */
+        
+        #tables-table td {
+            /* max-width: 50px; */
+            width: auto;
+        }
+        
+        #main-tables-header-form input,
+        #main-tables-header-form select,
+        #main-tables-header-form button,
+        #main-tables-row-form select,
+        #main-tables-row-form button {
+            width: 200px;
+        }
+        
+        #add-column,
+        #add-row,
+        #blank-th {
+            width: auto;
+        }
+        
+        #tables-table input {
+            /* background-color: aqua; */
+            width: 100%;
+        }
+        /* -------------contacts app layout----------------- */
+        /* makes scroll right start at left */
+        
+        #contacts-table>table {
+            margin: auto;
+            display: block;
+        }
+        /* keeps cell phone column from collapsing */
+        
+        #contacts-table>table>thead>tr>th:nth-of-type(2) {
+            min-width: 7rem;
+        }
+        /* hides everything, then shows next 2 columns, the first widest */
+        
+        #contacts-table th,
+        #contacts-table td {
+            display: none;
+        }
+        
+        #contacts-table th:nth-of-type(1),
+        #contacts-table td:nth-of-type(1) {
+            display: table-cell;
+            width: 100%;
+        }
+        
+        #contacts-table th:nth-of-type(2),
+        #contacts-table td:nth-of-type(2) {
+            display: table-cell;
+        }
+        /* hides everything, then shows next 2 columns, the first widest */
+        /*       contacts table*/
+        
+        #add-column,
+        #add-row,
+        #blank-th {
+            width: auto;
+        }
+        
+        #tables-table input {
+            /* background-color: aqua; */
+            width: 100%;
+        }
+        
+        select,
+        main>input {
+            text-align: center;
+        }
+        
+        h1:not(#document-result h1)
+        /* ,
+h2:not(#document-result h2),
+h3:not(#document-result h3),
+h4:not(#document-result h4),
+h5:not(#document-result h5),
+h6:not(#document-result h6)  */
+        
+        {
+            background-color: lightblue;
+            text-align: center;
+        }
+        
+        nav {
+            background-color: lightblue;
+        }
+        /* -----------notes app layout----------------- */
+        
+        #note {
+            height: 400px;
+            max-width: 90%;
+        }
+        
+        #text-editor {
+            height: 200px;
+            max-width: 90%;
+        }
+        /***********write layout and css****************/
+        
+        .mono {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        
+        .serif {
+            font-family: Georgia, 'Times New Roman', Garamond, Times, serif;
+        }
+        
+        .sans {
+            font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
+        }
+        
+        #document-settings,
+        #edit-bar {
+            width: 90%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            background-color: cadetblue;
+            border: 1px solid black;
+            /* min-height: 30px; */
+        }
+        
+        #text-editor {
+            width: 90%;
+            max-width: 90%;
+            overflow-wrap: break-word;
+            min-height: 100px;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        
+        #document-parent {
+            margin: 0;
+            padding: 0;
+            width: 90%;
+            background-color: lightgoldenrodyellow;
+        }
+        /*  Needed for printiing in notes, may refactor to function*/
+        
+        pre {
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+        }
+        /*  CALCULATOR STUFF */
+        
+        .filler {
+            flex-grow: 1;
+        }
+        
+        #calculator-table {
+            /* background-color: lightblue; */
+            width: 90%;
+            min-width: 0%;
+        }
+        
+        #calculator-table td button {
+            font-size: 2rem;
+            width: 100%;
+            height: 4rem;
+        }
+        
+        .special-calculator-button {
+            background-color: #ffcc33;
+            border: 1px solid grey;
+        }
+        
+        #calculator-result-row {
+            display: flex;
+            flex-direction: row;
+        }
+        
+        #calculator-result-row * {
+            font-size: 1.4rem;
+        }
+        
+        #calculator-result-row input {
+            width: 60%;
+        }
+        
+        #expression-span {
+            overflow-wrap: anywhere;
+            min-height: 18px;
+            color: grey;
+        }
+        /*  CALCULATOR STUFF ENDS*/
+        /***************add on styles can be switched out****************************/
+        
+        html {
+            /*this is the light color*/
+            /* background-color: lightblue; */
+            background-color: #BDBDBD;
+        }
+        
+        body {
+            background-color: #E0E0E0;
+            width: 320px;
+            margin: auto;
+        }
+        
+        main,
+        td,
+        nav>button {
+            /*this is the background to main color */
+            /* background-color: yellow; */
+            background-color: #E0E0E0;
+            border-radius: 5px;
+        }
+        
+        main>button {
+            /* background-color: red; */
+            background-color: #BDBDBD;
+            min-height: 30px;
+            border-radius: 5px;
+            padding: 3px;
+            margin: 2px;
+        }
+        
+        main>button:hover {
+            background-color: #E0E0E0;
+        }
+        
+        nav>button:hover {
+            background-color: #BDBDBD;
+        }
+        
+        #top-nav button {
+            padding: 5px;
+            margin: 1px;
+            min-height: 25px;
+        }
+        
+        #main-notes button,
+        #file-bar button,
+        #main-tables-table button,
+        #main-contacts-table button,
+        #main-calendar-table button {
+            padding: 5px;
+            margin: 1px;
+            min-height: 25px;
+        }
+        
+        h1:not(#document-result h1) {
+            background-color: mediumblue;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        h1:not(#document-result h1) {
+            color: lavender;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 320px;
+            margin: auto;
+            border-radius: 0;
+        }
+        
+        nav:not(#document-settings, #edit-bar, #top-nav, #back-nav) {
+            border-radius: 5px;
+            margin: 5px;
+            /* background-color: lightblue; */
+            background-color: #BDBDBD;
+        }
+        
+        #top-nav,
+        #back-nav {
+            background-color: mediumblue;
+            width: 320px;
+            margin: auto;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        #top-nav button,
+        #back-nav button {
+            font-size: 1.4rem;
+        }
+        
+        table {
+            border-radius: 5px;
+            /* background-color: lightblue; */
+            background-color: #BDBDBD;
+        }
+        
+        input:not(#tables-table input, #calendar-date, #calculator-input),
+        select {
+            /* background-color: coral; */
+            background-color: #F5F5F5;
+            min-height: 30px;
+            border-radius: 5px;
+        }
+        
+        button,
+        table {
+            border: 1px solid grey;
+        }
+        /* MAIN COLORS FOR THE APPS */
+        
+        #main-notes h2 {
+            background-color: khaki;
+            border: 1px solid grey;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        #main-startup h2,
+        #main-help h2 {
+            background-color: mediumblue;
+            color: lavender;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        #main-write h2:not(#document-result h2) {
+            background-color: cadetblue;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: antiquewhite;
+            border: 1px solid grey;
+        }
+        
+        #main-contacts-table h2,
+        #main-contacts-form h2 {
+            background-color: indigo;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: antiquewhite;
+            border: 1px solid grey;
+        }
+        
+        #main-calendar-start h2,
+        #main-calendar-table h2,
+        #main-calendar-form h2,
+        #main-calendar-start h3,
+        #main-calendar-table h3,
+        #main-calendar-form h3 {
+            background-color: darkorange;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            border: 1px solid grey;
+        }
+        
+        #main-tables-table h2,
+        #main-tables-header-form h2,
+        #main-tables-row-form h2,
+        #main-tables-table h3,
+        #main-tables-header-form h3,
+        #main-tables-row-form h3 {
+            background-color: forestgreen;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: antiquewhite;
+            border: 1px solid grey;
+            /* color: ghostwhite; */
+        }
+        
+        #main-calculator h2 {
+            background-color: dimgrey;
+            text-align: center;
+            padding: 2px;
+            border-radius: 5px;
+            font-family: Arial, Helvetica, sans-serif;
+            color: antiquewhite;
+            border: 1px solid grey;
+        }
+        
+        #document-result * {
+            background-color: unset;
+            width: unset;
+            text-align: unset;
+            border-radius: unset;
+            margin-left: unset;
+            margin-right: unset;
+            width: unset;
+            padding-bottom: unset;
+            align-items: unset;
+            border-radius: unset;
+            margin: unset;
+            padding: unset;
+        }
+        
+        #document-result {
+            overflow-wrap: break-word;
+            min-height: 100px;
+            width: auto;
+            background-color: lightgoldenrodyellow;
+            white-space: pre-wrap;
+        }
+        /* ALREADY SET FOR PHONE*/
+        
+        main {
+            border: 1px solid grey;
+        }
+        
+        #back-nav {
+            display: none;
+        }
+        /* TABLET*/
+        
+        @media only screen and (min-width: 600px) {
+            /* body>nav, */
+            body,
+            #main-notes,
+            #main-write,
+            #main-contacts-table,
+            #main-calendar-table,
+            #main-tables-table,
+            #top-nav,
+            #back-nav,
+            h1:not(#document-result h1) {
+                width: 600px;
+            }
+            /* undoes the hiding of everything but first 2 cells */
+            #contacts-table th,
+            #contacts-table td {
+                display: table-cell;
+            }
+        }
+        /*DESKTOP*/
+        
+        @media only screen and (min-width: 900px) {
+            /* body>nav, */
+            body,
+            #main-notes,
+            #main-write,
+            #main-contacts-table,
+            #main-calendar-table,
+            #main-tables-table,
+            #top-nav,
+            #back-nav,
+            h1:not(#document-result h1) {
+                width: 900px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>bitOffice</h1>
+    <nav id="top-nav">
+        <button onclick="showMain('main-startup');">&#128194;</button>
+        <button onclick="showMain('main-contacts-table'); processGoToApp('contacts');">&#9742;</button>
+        <button onclick="showMain('main-calendar-start'); processGoToApp('calendar');">&#128197;</button>
+        <button onclick="showMain('main-notes'); processGoToApp('notes');">&#128221;</button>
+        <button onclick="showMain('main-write'); processGoToApp('write');">&#128196;</button>
+        <button onclick="showMain('main-tables-table'); processGoToApp('tables')">&#9638;</button>
+
+        <button onclick="showMain('main-calculator');processGoToApp('calculator')">&#128290;</button>
+
+        <button onclick="showMain('main-help');">?</button>
+    </nav>
+    <nav id="back-nav">
+        <button onclick="processGoBackFromApp(currentApp);">&#127968;</button>
+    </nav>
+
+    <main id="main-startup">
+        <h2>Personal Database</h2>
+        <button onclick="loadCombinedDatabase()">&#128194; Load</button>
+        <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save</button>
+    </main>
+    <main id="main-help">
+        <h2>Help</h2>
+        <pre>
+            <h3>bitOffice64</h3><br> Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.<br>
+            <br> It contains:<br> • A personal database with:<br> - Contacts<br> - A Planner<br> • A notes text editor<br> • A word processor<br> • A CSV spreadsheet editor<br> • A calculator.
+            <br><br>
+            No special server software needs to be installed an there is no installation.  If you an html5 browser, just open this file and you're good to go!
+        </pre>
+        <p>Check out the project at: <a target="_blank" href="https://github.com/garydavenport73/bitOffice">bitOffice64.</a></p>
+        <p>...and other projects at: <a target="_blank" href="https://github.com/garydavenport73">my GitHub Site.</a></p>
+    </main>
+    <main id="main-notes">
+        <h2>Notes</h2>
+        <nav>
+            <button onclick="newNotesEntry()">New</button>
+            <button onclick="notesLoad()">Load</button>
+            <button onclick="notesSave()">Save</button>
+            <button id="copy" onclick="copyToClipBoard(document.getElementById('note').value);">Copy</button>
+            <button onclick="printNotesDiv('note');">&#128424;</button>
+            <button class="plus-minus" onclick="changeFontSize(this);">-</button>
+            <button class="plus-minus" onclick="changeFontSize(this);">+</button>
+            <button onclick="simulateUndo()">&#10226;</button>
+        </nav>
+        <textarea id="note" rows="10" placeholder="your notes here"></textarea>
+    </main>
+    <main id="main-write">
+        <h2>Write</h2>
+        <nav id="file-bar">
+            <button onclick="newDocument();">New</button>
+            <button onclick="writeLoad();">Load</button>
+            <button onclick="writeDataToJSON();">Save</button>
+            <button onclick="exportToHTML()">Export</button>
+            <button onclick="printWriteDiv('document-parent');//window.print()">&#128424;</button>
+        </nav>
+        <nav id="document-settings">
+            <button class="mono" onclick='processSelectedText(this);'>Mono</button>
+            <button class="serif" onclick='processSelectedText(this);'>Serif</button>
+            <button class="sans" onclick='processSelectedText(this);'>Sans</button>
+            <button onclick='processSelectedText(this);//decrease font'><sup>A</sup>A</button>
+            <button onclick='processSelectedText(this);//increase font;'><sub>A</sub>A</button>
+            <button onclick='processSelectedText(this);//inc margin;'>&rarrb;&larrb;</button>
+            <button onclick='processSelectedText(this);//dec margin;'>&larrb;&rarrb;</button>
+            <button onclick='processSelectedText(this);//align left;'>&#8666;</button>
+            <button onclick='processSelectedText(this);//align center;'>&#8667;&#8666;</button>
+            <button onclick='processSelectedText(this);//align right;'>&#8667;</button>
+            <button id="spell-check" onclick='processSelectedText(this);//spellcheck;'>&check;</button>
+        </nav>
+        <nav id="edit-bar">
+            <button onclick='processSelectedText(this);'><b>B</b></button>
+            <button onclick='processSelectedText(this);'><u>U</u></button>
+            <button onclick='processSelectedText(this);'><em>I</em></button> &nbsp;
+            <button onclick='processSelectedText(this);//paragraph;'>&para;</button>
+            <button onclick='processSelectedText(this);'>H1</button>
+            <button onclick='processSelectedText(this);'>H2</button>
+            <button onclick='processSelectedText(this);'>H3</button> &nbsp;
+            <button onclick='processSelectedText(this);//horizontal rule'>&#8213;</button>
+            <button onclick='processSelectedText(this);//bullet;'>&bullet;</button> &nbsp;
+            <button onclick='processSelectedText(this);//undo;'>&#10226;</button>
+        </nav>
+        <textarea id="text-editor" spellcheck="false" oninput="writeUpdateResult();"></textarea>
+        <div id="document-parent">
+            <div id="document-result"></div>
+        </div>
+    </main>
+    <main id="main-tables-table">
+        <h2>Tables</h2>
+        <nav>
+            <button onclick="tablesNewTable();">New</button>
+            <button onclick="tablesLoad();">Load</button>
+            <button onclick="tablesSave();">Save</button>
+            <button onclick="tablesCopyCSVToClipboard()">Copy</button>
+            <button onclick="tablesShowRules();">?</button>
+        </nav>
+        <div class="table-container">
+            <table id="tables-table">
+            </table>
+        </div>
+    </main>
+    <main id="main-tables-header-form">
+        </h2>Tables</h2>
+        <h3>Column: <span id="tables-current-header">header name here</span></h3>
+        <button onclick="updateHeaderName(tablesTable);">Change name to:</button>
+        <input id="tables-new-header-name" type="text" placeholder="name">
+        <button onclick="deleteColumn(tablesTable);">Delete Column</button>
+        <button onclick="copyColumn(tablesTable)">Copy Column</button>
+        <button onclick="moveColumn(tablesTable)">Move To Column</button><select id="move-column"></select>
+        <button onclick="calculateTotal(tablesTable)">Add Total</button>
+        <button onclick="calculateAverage(tablesTable)">Compute Average</button>
+        <button onclick="tablesCancel(tablesTable)">Cancel</button>
+    </main>
+    <main id="main-tables-row-form">
+        <h2>Tables</h2>
+        <h3>Row: <span id="tables-current-row">row number here</span></h3>
+        <button onclick="deleteRow()">Delete Row</button>
+        <button onclick="copyRow()">Copy Row</button>
+        <button onclick="moveRow()">Move To Row</button>
+        <select id="move-row"></select>
+        <button onclick="tablesCancel(tablesTable)">Cancel</button>
+    </main>
+    <main id="main-contacts-table">
+        <h2 id="contacts-table-name">Contacts</h2>
+        <nav>
+            <button onclick='newContactsEntry(contactsTable);'>+ New Contact</button>
+            <button onclick="processCSVClick(contactsTable);">CSV</button>
+        </nav>
+
+        <div id="contacts-table" class="table-container"></div>
+    </main>
+    <main id="main-contacts-form">
+        <h2>Contacts</h2>
+        <div id="contacts-edit-form-message"></div>
+        <div id="contacts-edit-form"></div>
+        <button onclick='saveContactsEntry(contactsTable);'>Save</button>
+        <button onclick='deleteContactsEntry(contactsTable);'>Delete</button>
+        <button onclick='cancelContactsEntry(contactsTable);'>Cancel</button>
+    </main>
+    <main id="main-calendar-start">
+        <h2>Calendar</h2>
+
+        <div>
+            <input type='date' id="calendar-date">
+        </div>
+        <button onclick="processOpenCalendar();">Open</button>
+    </main>
+    <main id="main-calendar-table">
+        <h2>Calendar</h2>
+        <h3 id="calendar-table-name"></h3>
+        <nav>
+            <button onclick='newCalendarEntry();'>+ New Entry</button>
+            <button onclick="processCalendarCSVClick();">CSV</button>
+        </nav>
+        <div id="calendar-table" class="table-container"></div>
+    </main>
+    <main id="main-calendar-form">
+        <h2>Calendar</h2>
+        <h3 id="calendar-edit-form-message"></h3>
+        <div id="calendar-edit-form"></div>
+        <button onclick='saveCalendarEntry();'>Save</button>
+        <button onclick='deleteCalendarEntry();'>Delete</button>
+        <button onclick='cancelCalendarEntry();'>Cancel</button>
+    </main>
+    <main id="main-calculator">
+        <h2>Calculator</h2>
+        <div id="calculator-result-row"><input type=text id='calculator-input'>
+            <button onclick=buildCalcString(this)>&larr;</button>
+            <span class="filler"></span>
+            <button onclick=buildCalcString(this) class="special-calculator-button">CLR</button>
+        </div>
+        <span id="expression-span"></span>
+        <table id="calculator-table">
+            <tr>
+                <td><button onclick=buildCalcString(this)>7</button></td>
+                <td><button onclick=buildCalcString(this)>8</button></td>
+                <td><button onclick=buildCalcString(this)>9</button></td>
+                <td><button onclick=buildCalcString(this)>/</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=buildCalcString(this)>4</button></td>
+                <td><button onclick=buildCalcString(this)>5</button></td>
+                <td><button onclick=buildCalcString(this)>6</button></td>
+                <td><button onclick=buildCalcString(this)>x</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=buildCalcString(this)>1</button></td>
+                <td><button onclick=buildCalcString(this)>2</button></td>
+                <td><button onclick=buildCalcString(this)>3</button></td>
+                <td><button onclick=buildCalcString(this)>-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick=buildCalcString(this)>0</button></td>
+                <td><button onclick=buildCalcString(this)>.</button></td>
+                <td><button id="equals-button" class="special-calculator-button" onclick=buildCalcString(this)>=</button></td>
+                <td><button onclick=buildCalcString(this)>+</button></td>
+            </tr>
+        </table>
+    </main>
+    <script>
+        /////////////////GLOBALS///////////////////
+        //         calculator        //
+        let calcString = "";
+        let calculatorInput = document.getElementById('calculator-input');
+        let charToAdd = "";
+        let expressionSpan = document.getElementById('expression-span');
+
+        //-------------tables-----------------------
+        let tableElement = document.getElementById('tables-table');
+        let tablesSortAscending = 1; //direction -1 is descending, otherwise ascending
+        let tablesTable = {
+            "name": "Table",
+            "headers": ["Column 1", "Column 2", "Column 3"],
+            "data": [{
+                "Column 1": "",
+                "Column 2": "",
+                "Column 3": ""
+            }, {
+                "Column 1": "",
+                "Column 2": "",
+                "Column 3": ""
+            }, {
+                "Column 1": "",
+                "Column 2": "",
+                "Column 3": ""
+            }]
+        }
+
+        let compareTablesTable = JSON.stringify(tablesTable);
+
+        let initialTablesTable = compareTablesTable;
+
+        //------------------contacts and calendar database ----------------------
+
+        let contactsTableElement = document.getElementById("contacts-table");
+        let contactsEditForm = document.getElementById("contacts-edit-form");
+        let contactsEditFormMessage = document.getElementById("contacts-edit-form-message");
+
+        let contactsTable = {
+            "name": "Contacts",
+            "headers": ["name", "cell", "email", "address", "home", "work", "website"],
+            "inputTypes": {
+                "name": "text",
+                "cell": "tel",
+                "email": "email",
+                "address": "text",
+                "home": "tel",
+                "work": "tel",
+                "website": "text"
+            },
+            "data": [{
+                "name": 'John',
+                "cell": '316-123-1234',
+                "email": 'john@junkmail.com',
+                "address": '3160 Patmos Dr., Eden, WV  12345'
+            }]
+        }
+
+        //  ------------notes --------------------
+        let noteFontSize = 2.5 / 3.0;
+        let note = document.getElementById('note');
+        note.value = "";
+        let compareNoteValue = "";
+
+        //-----------------write---------------------
+
+        let writeBaseFilename = "";
+        let textarea = document.getElementById("text-editor");
+        let documentDiv = document.getElementById('document-result');
+        let remSize = 1;
+        let marginSize = 2;
+        let writeUndos = [];
+
+        let compareWriteData = "";
+
+        //----------------calendar-------------------------
+        let calendarTable = document.getElementById("calendar-table");
+        let calendarEditForm = document.getElementById("calendar-edit-form");
+        let calendarEditFormMessage = document.getElementById("calendar-edit-form-message");
+
+        let calendarDatabase = {
+            "name": "Calendar",
+            "headers": ["start", "end", "name", "notes"],
+            "inputTypes": {
+                "start": "time",
+                "end": "time",
+                "name": "text",
+                "notes": "text"
+            },
+            "dates": {
+
+            }
+
+        }
+
+
+
+        //              COMBINED DATABASE
+
+        let combinedDatabase = {
+            "contacts": contactsTable,
+            "calendar": calendarDatabase
+        }
+
+        let compareCombinedDatabase = JSON.stringify(combinedDatabase);
+
+        let initialCombinedDatabase = compareCombinedDatabase;
+
+        let currentApp = "";
+    </script>
+    <script>
+        function loadCombinedDatabase() {
+            let proceed = false;
+            if (compareCombinedDatabase === initialCombinedDatabase) {
+                proceed = true;
+            } else {
+                proceed = confirm("This will overwrite current personal database");
+            }
+            if (proceed) {
+                let fileContents = "";
+                let inputTypeIsFile = document.createElement('input');
+                inputTypeIsFile.type = "file";
+                inputTypeIsFile.accept = ".bof";
+                inputTypeIsFile.addEventListener("change", function() {
+                    let inputFile = inputTypeIsFile.files[0];
+                    let fileReader = new FileReader();
+                    fileReader.onload = function(fileLoadedEvent) {
+                        fileContents = fileLoadedEvent.target.result;
+                        combinedDatabase = JSON.parse(fileContents);
+                        compareCombinedDatabase = JSON.stringify(combinedDatabase);
+                        contactsTable = combinedDatabase["contacts"];
+                        calendarDatabase = combinedDatabase["calendar"];
+                        clearContactFormEntries(contactsTable);
+                        contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+                    };
+
+                    fileReader.readAsText(inputFile, "UTF-8");
+                });
+                inputTypeIsFile.click();
+            }
+
+        }
+
+        function saveCombinedDatabase() {
+            purgeCalendar();
+            let str = JSON.stringify(combinedDatabase);
+            let baseFilename = "bitOfficeProfile" + getTodaysDate();
+            saveStringToTextFile(str, baseFilename, ".bof");
+            compareCombinedDatabase = JSON.stringify(combinedDatabase);
+        }
+
+        function setColorOfBackupSaveButton() {
+            console.log("called set color of backup button")
+            if (compareCombinedDatabase === JSON.stringify(combinedDatabase)) { //saved
+                document.getElementById('saveButton').style.backgroundColor = "unset";
+            } else {
+                document.getElementById('saveButton').style.backgroundColor = "orange";
+            }
+        }
+
+        function processGoToApp(theApp) {
+            if ((theApp === 'contacts') || (theApp === 'calendar')) {
+                compareCombinedDatabase = JSON.stringify(combinedDatabase);
+            }
+            if (theApp === 'tables') {
+                compareTablesTable = JSON.stringify(tablesTable);
+            }
+            if (theApp === 'notes') {
+                compareNoteValue = note.value;
+            }
+            if (theApp === 'write') {
+                compareWriteData = makeCompareWriteData();
+            }
+            if (theApp === 'calculator') {
+                //
+            }
+            currentApp = theApp;
+            document.getElementById('top-nav').style.display = "none";
+            document.getElementById('back-nav').style.display = "flex";
+        }
+
+        function processGoBackFromApp(currentApp) {
+            console.log("process check save for " + currentApp);
+            if ((currentApp === "contacts") || (currentApp === "calendar")) {
+                if (JSON.stringify(combinedDatabase) === compareCombinedDatabase) {
+                    console.log("check not needed, nothing's changed");
+                } else {
+                    console.log("ask about saving the database, it has changed.");
+                    if (confirm("The database has change, save the changes to a file?")) {
+                        saveCombinedDatabase();
+                        compareCombinedDatabase = JSON.stringify(combinedDatabase);
+                    }
+                }
+            }
+            if (currentApp === "tables") {
+                updateDataFromCurrentInputs(tablesTable);
+                if (JSON.stringify(tablesTable) === compareTablesTable) {
+                    console.log("in tables, check not needed, nothing's changed");
+                } else {
+                    console.log("need to ask about saving the table");
+                    if (confirm("The table has change, save the changes to a file?")) {
+                        tablesSave();
+                        compareTablesTable = JSON.stringify(tablesTable);
+                    }
+                }
+            }
+            if (currentApp === "notes") {
+                if (note.value === compareNoteValue) {
+                    console.log("in notes, check not needed, nothing's changed");
+                } else {
+                    console.log("need to ask about saving the note");
+                    if (confirm("The note has changed, save the changes to a file?")) {
+                        notesSave();
+                        compareNoteValue = note.value;
+                    }
+                }
+            }
+            if (currentApp === "write") {
+                if (compareWriteData === makeCompareWriteData()) {
+                    console.log("in write, check not needed, nothing's changed");
+                } else {
+                    console.log("need to ask about saving write document");
+                    if (confirm("The document has changed, save the changes to a file?")) {
+                        writeDataToJSON();
+                        compareWriteData = makeCompareWriteData();
+                    }
+                }
+            }
+            if (currentApp === "calculator") {
+                //
+            }
+            document.getElementById('top-nav').style.display = "flex";
+            document.getElementById('back-nav').style.display = "none";
+            showMain("main-startup");
+        }
+
+
+        function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt") {
+            let filename = basename + fileType;
+            let blobVersionOfText = new Blob([str1], {
+                type: "text/plain"
+            });
+            let urlToBlob = window.URL.createObjectURL(blobVersionOfText);
+            let downloadLink = document.createElement("a");
+            downloadLink.style.display = "none";
+            downloadLink.download = filename;
+            downloadLink.href = urlToBlob;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            downloadLink.parentElement.removeChild(downloadLink);
+        }
+
+        //Date related functions for convience, uses same format as input type="date"
+        function getTodaysDate() {
+            let now = new Date();
+            let day = ("0" + now.getDate()).slice(-2);
+            let month = ("0" + (now.getMonth() + 1)).slice(-2);
+            let today = now.getFullYear() + "-" + month + "-" + day;
+            return today;
+        }
+
+        function getFirstDayOfThisMonthDate() {
+            let now = new Date();
+            let day = "01";
+            let month = ("0" + (now.getMonth() + 1)).slice(-2);
+            return now.getFullYear() + "-" + month + "-" + day;
+        }
+
+        function getLastDayOfThisMonthDate() {
+            let now = new Date();
+            let day = daysInThisMonth().toString();
+            day = "0" + day;
+            day = day.slice(-2);
+            let month = ("0" + (now.getMonth() + 1)).slice(-2);
+            return now.getFullYear() + "-" + month + "-" + day;
+        }
+
+        function daysInSomeMonth(someMonth, someYear) { //use jan month is 0
+            return new Date(someYear, someMonth + 1, 0).getDate();
+        }
+
+        function daysInThisMonth() {
+            thisDate = new Date();
+            thisMonth = thisDate.getMonth();
+            thisYear = thisDate.getYear();
+            return daysInSomeMonth(thisMonth, thisYear);
+        }
+
+        ///////////////// serialize to web page //////////////////////
+
+        function serializeElementToPage(id, extraStyle = "") {
+            let boilerPlate1 = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";
+
+            let allStyleTags = document.getElementsByTagName('style');
+
+            let styleElementContent = "";
+            for (let i = 0; i < allStyleTags.length; i++) {
+                styleElementContent = allStyleTags[i].innerHTML;
+            }
+            let boilerPlate2 = "</style></head><body>"
+            let boilerPlate3 = "</body></html>";
+            let s = new XMLSerializer();
+            let myElement = document.getElementById(id);
+            let str = s.serializeToString(myElement);
+            let htmlPage = boilerPlate1 + styleElementContent + extraStyle + boilerPlate2 + str + boilerPlate3;
+            console.log(htmlPage);
+            return htmlPage;
+        }
+
+        function simulateUndo() {
+            document.execCommand('undo', false, null);
+        }
+
+        function askConfirm() {
+            return "Did you remember to save your data?";
+        }
+
+        //page navigation//
+
+        function showMain(id) {
+            console.log("show mains called with " + id);
+            let mains = document.getElementsByTagName('main');
+            for (let main of mains) {
+                //console.log(main.id);
+                main.style.display = "none"; //comment out
+            }
+            document.getElementById(id).style.display = "flex"; //comment out
+        }
+
+        function getCurrentDisplayedMain() {
+            let mains = document.getElementsByTagName('main');
+            for (let main of mains) {
+                console.log(main.id);
+                if (main.style.display != "none") {
+                    return main.id;
+                }; //comment out
+            }
+        }
+
+        //          clipboard function          //
+        function copyToClipBoard(str) {
+            //https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
+            let el = document.createElement('textarea');
+            el.value = str;
+            el.setAttribute('readonly', '');
+            el.style = {
+                position: 'absolute',
+                left: '-9999px'
+            };
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            alert('Copied to Clipboard.');
+            return (str);
+        }
+
+
+        //  "Table" related functions where tables have data (array of objects) and header (array)
+
+        function fillInEmptyPropertyValues(table) {
+            let data = table["data"];
+            let headers = table["headers"];
+            for (let i = 0; i < data.length; i++) { //fill in empty property values;
+                for (let j = 0; j < headers.length; j++) {
+                    if (data[i][headers[j]] === undefined) {
+                        data[i][headers[j]] = "";
+                    }
+                }
+            }
+        }
+
+
+        //              CSV related functions                   //
+
+        function makeCSV(thisTable, saveWithHeader = true) { ////This one fixed
+            let csvString = "";
+            let tempString = "";
+            let headers = thisTable["headers"];
+            if (saveWithHeader === true) {
+                //fill in header from object
+                for (let header of headers) {
+                    tempString = header.toString().replaceAll('"', '""'); //any interior " needs to be replaced with ""
+                    csvString += "\"" + tempString + "\","; //surround each field with quotes
+                }
+                csvString = csvString.slice(0, -1) + "\n"; //remove last comma and add new line
+            }
+            //fill in body data
+            let bodyData = thisTable["data"];
+            let numberOfRows = bodyData.length;
+            let numberOfColumns = headers.length;
+            for (let i = 0; i < numberOfRows; i++) {
+                for (let j = 0; j < numberOfColumns; j++) {
+                    tempString = bodyData[i][headers[j]].toString().replaceAll('"', '""'); //any interior " needs to be replaced with ""
+                    csvString += "\"" + tempString + "\","; //surround each field with quotes
+                }
+                csvString = csvString.slice(0, -1) + "\n"; //remove last comma and add new line
+            }
+            console.log(csvString);
+            return (csvString);
+        }
+
+        //needs rewritten to match above format
+        function readCSV(csvString, loadWithHeader = true) {
+            //trim string
+            csvString = csvString.trim();
+
+            //make lines out of csvString
+            let lines = csvString.split("\n");
+
+            let newCSVArrayOfArrays = [];
+
+            for (let i = 0; i < lines.length; i++) {
+                //trim whitespace of each line
+                lines[i] = lines[i].trim();
+
+                //remove leading and trailing " character
+                lines[i] = lines[i].slice(1, -1);
+
+                //split by ","
+                let tempRowArray = lines[i].split('","');
+
+                //make randomString
+                let randomString = tokenMaker(32);
+                while (lines[i].includes(randomString) === true) { //tests to see if randomString already in line (seems unlikely)
+                    randomString = tokenMaker(32);
+                };
+
+                //join by a randome string (make real random string here)
+                let newString = tempRowArray.join(randomString);
+
+                //look for the double quotes around randomString that is where the "," ie "","" (CSV convention) was
+                newString = newString.replaceAll('"' + randomString + '"', '","');
+                //split by randomString without the quotes
+                tempRowArray = newString.split(randomString);
+
+                //for each element in the row of elements, replace the "" with " CSV convention
+                for (let j = 0; j < tempRowArray.length; j++) {
+                    tempRowArray[j] = tempRowArray[j].replaceAll('""', '"');
+                }
+
+                // console.log(tempRowArray);
+                newCSVArrayOfArrays.push(tempRowArray); //add each row to the new array
+            }
+
+            console.log(newCSVArrayOfArrays); //now we have a straight array of arrays of strings in a csv style grid
+
+            //convert to headers and data.
+            let headers = [];
+            let data = [];
+
+            if (newCSVArrayOfArrays.length > 0) {
+                if (loadWithHeader === true) {
+                    //finalTable["headerNames"] = JSON.parse(JSON.stringify(newCSVArrayOfArrays[0]));
+                    headers = newCSVArrayOfArrays[0];
+                    if (newCSVArrayOfArrays.length > 1) {
+                        for (let i = 1; i < newCSVArrayOfArrays.length; i++) { //loop through rows
+                            let tempRow = {};
+                            for (let j = 0; j < newCSVArrayOfArrays[i].length; j++) { //loop through cells in rows
+                                tempRow[headers[j]] = newCSVArrayOfArrays[i][j];
+                            }
+                            data.push(tempRow);
+                        }
+                    }
+                } else {
+                    if (newCSVArrayOfArrays.length > 0) {
+                        for (let j = 0; j < newCSVArrayOfArrays[0].length; j++) {
+                            headers.push("Column " + (j + 1).toString());
+                        }
+                        for (let i = 0; i < newCSVArrayOfArrays.length; i++) { //loop through rows
+                            let tempRow = {};
+                            for (let j = 0; j < newCSVArrayOfArrays[i].length; j++) { //loop through cells in rows
+                                tempRow[headers[j]] = newCSVArrayOfArrays[i][j];
+                            }
+                            data.push(tempRow);
+                        }
+                    }
+                }
+            }
+
+            console.log(headers);
+            console.log(data);
+
+            let finalTable = {};
+            finalTable["headers"] = headers;
+            finalTable["data"] = data;
+
+            return JSON.parse(JSON.stringify(finalTable));
+        }
+
+        function tokenMaker(intSize) {
+            let token = "";
+            let specialString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            let index = 0;
+            for (let i = 0; i < intSize; i++) {
+                token += specialString[Math.floor(Math.random() * specialString.length)];
+            }
+            console.log(token);
+            return token;
+        }
+
+        function processCSVClick(table) {
+
+            let thisCSV = "";
+            if (confirm("Include header as first line in csv file?")) {
+                thisCSV = makeCSV(table, true);
+            } else {
+                thisCSV = makeCSV(table, false);
+            }
+
+            copyToClipBoard(thisCSV);
+
+            if (confirm("Table copied to CSV.\n\nSave to file also?")) {
+                saveStringToTextFile(thisCSV, table["name"] + getTodaysDate(), ".csv");
+            }
+
+        }
+
+        //              sort array by field
+
+        function destructiveSort(arrayOfObjects, field, direction = 1) {
+            //direction -1 is descending, otherwise ascending
+            if (direction != -1) {
+                direction = 1;
+            }
+            arrayOfObjects.sort((a, b) => {
+                if (a[field] < b[field]) {
+                    return -1 * direction;
+                }
+                if (a[field] > b[field]) {
+                    return 1 * direction;
+                }
+                return 0;
+            });
+        }
+    </script>
+    <script>
+        initializeNotesApp();
+
+        function initializeNotesApp() {
+            note.style.fontSize = noteFontSize.toString() + "rem";
+            note.spellcheck = false;
+            note.focus();
+        }
+
+
+        function changeFontSize(fontButton) {
+            let doThis = fontButton.innerHTML;
+            if (doThis === "-") {
+                if (noteFontSize > 0.2) {
+                    noteFontSize -= 0.2; //no need to go less than 0.2rem
+                }
+            } else {
+                noteFontSize += 0.2;
+            }
+            note.style.fontSize = noteFontSize.toString() + "rem";
+        }
+
+        function newNotesEntry() {
+            if (note.value != '') {
+                if (confirm("This will erase current contents.")) {
+                    note.value = '';
+                    compareNoteValue = '';
+                }
+            }
+        }
+
+        function notesLoad() {
+            let fileContents = "";
+            let inputTypeIsFile = document.createElement('input');
+            inputTypeIsFile.type = "file";
+            inputTypeIsFile.accept = ".txt";
+            inputTypeIsFile.addEventListener("change", function() {
+                let inputFile = inputTypeIsFile.files[0];
+                let fileReader = new FileReader();
+                fileReader.onload = function(fileLoadedEvent) {
+                    fileContents = fileLoadedEvent.target.result;
+                    note.value = fileContents;
+                };
+                fileReader.readAsText(inputFile, "UTF-8");
+            });
+            inputTypeIsFile.click();
+        }
+
+        function notesSave() {
+            basename = "notes" + getTodaysDate();
+            saveStringToTextFile(note.value, basename, ".txt");
+            compareNoteValue = note.value;
+        }
+
+        function printNotesDiv(id) {
+            let a = window.open();
+            a.document.write(serializeNotesElementToPage(id, "html{background-color:white;}#note{font-size:" + noteFontSize + "rem}"));
+            a.document.close();
+            a.print();
+        }
+
+        function serializeNotesElementToPage(id, extraStyle = "") {
+            let boilerPlate1 = "<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";
+
+            let allStyleTags = document.getElementsByTagName('style');
+
+            let styleElementContent = "";
+            for (let i = 0; i < allStyleTags.length; i++) {
+                styleElementContent = allStyleTags[i].innerHTML;
+            }
+            let boilerPlate2 = "</style></head><body>"
+            let boilerPlate3 = "</body></html>";
+            let str = "<pre id='note'>" + document.getElementById(id).value + "</pre>";
+            let htmlPage = boilerPlate1 + styleElementContent + extraStyle + boilerPlate2 + str + boilerPlate3;
+            console.log(htmlPage);
+            return htmlPage;
+        }
+    </script>
+    <script>
+        initializeWriteApp();
+
+        function initializeWriteApp() {
+            documentDiv.style.fontSize = remSize + "rem";
+            documentDiv.style.marginLeft = marginSize + "rem";
+            documentDiv.style.marginRight = marginSize + "rem";
+            writeUndos.push(textarea.value);
+            writeUpdateResult();
+            textarea.spellcheck = false;
+            textarea.focus(); //ensures spellcheck update
+
+            document.getElementById('text-editor').addEventListener('keydown', function(e) {
+                //https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea
+                //https://stackoverflow.com/users/819732/kasdega
+                if (e.key == 'Tab') {
+                    e.preventDefault();
+                    let start = this.selectionStart;
+                    let end = this.selectionEnd;
+                    // set textarea value to: text before caret + tab + text after caret
+                    this.value = this.value.substring(0, start) +
+                        //"    " + this.value.substring(end); using 4 spaces
+                        "\t" + this.value.substring(end);
+                    // put caret at right position again
+                    this.selectionStart =
+                        //this.selectionEnd = start + 4; using 4 spaces
+                        this.selectionEnd = start + 1;
+                    writeUpdateResult();
+                }
+            });
+            compareWriteData = makeCompareWriteData();
+        }
+
+        //Script to print the content of a div
+        function exportToHTML() {
+            let contents = serializeElementToPage("document-parent", "html,#document-result,#document-parent{background-color:white;}");
+            copyToClipBoard(contents);
+            if (confirm("HTML document exported to clipboard.\n\nWould you like to export to HTML file?")) {
+                saveStringToTextFile(contents, 'write' + getTodaysDate(), '.html');
+            }
+        }
+
+
+
+        function newDocument() {
+            if (confirm("This will overwrite current document.")) {
+                writeResetAll();
+            }
+        }
+
+        function writeResetAll() {
+            //reset global variables;
+            writeBaseFilename = "";
+            remSize = 1;
+            marginSize = 2;
+
+            //reset text area value
+            textarea.value = "";
+
+            //reapply base styles to the div
+            documentDiv.style.textAlign = "left";
+            documentDiv.style.fontFamily = "Georgia, 'Times New Roman', Garamond, Times, serif";
+            documentDiv.style.fontSize = "1rem";
+            documentDiv.style.marginLeft = "2rem";
+            textarea.spellcheck = false;
+
+            //reset undo array
+            writeUndos = [];
+            writeUndos.push(textarea.value);
+
+            //redisplay new result
+            writeUpdateResult();
+
+            //set focus to textarea
+            textarea.focus(); //ensures spell check is refreshed
+
+        }
+
+        function makeCompareWriteData() {
+            writeUpdateResult();
+            let data = {}
+            data["text"] = textarea.value;
+            data["textAlign"] = documentDiv.style.textAlign;
+            data["fontFamily"] = documentDiv.style.fontFamily;
+            data["fontSize"] = documentDiv.style.fontSize;
+            data["marginSize"] = documentDiv.style.marginLeft;
+            data["spellCheck"] = textarea.spellcheck;
+            return JSON.stringify(data);;
+        }
+
+        function writeDataToJSON() {
+            writeUpdateResult();
+            let data = {}
+            data["text"] = textarea.value;
+            data["textAlign"] = documentDiv.style.textAlign;
+            data["fontFamily"] = documentDiv.style.fontFamily;
+            data["fontSize"] = documentDiv.style.fontSize;
+            data["marginSize"] = documentDiv.style.marginLeft;
+            data["spellCheck"] = textarea.spellcheck;
+            //if (writeBaseFilename === "") {
+            writeBaseFilename = "write" + getTodaysDate();
+            //};
+            let saveContents = JSON.stringify(data);
+            saveStringToTextFile(saveContents, writeBaseFilename, ".json");
+            compareWriteData = makeCompareWriteData();
+        }
+
+        function writeLoad() {
+            console.log("writeLoad() called");
+            console.log(textarea.value);
+            console.log(textarea.value.length);
+            let proceed = true;
+            if (textarea.value.length != 0) {
+                proceed = confirm("This will overwrite current document");
+            }
+            if (proceed) {
+                let fileContents = "";
+                let inputTypeIsFile = document.createElement('input');
+                inputTypeIsFile.type = "file";
+                inputTypeIsFile.accept = ".json";
+                inputTypeIsFile.addEventListener("change", function() {
+                    let inputFile = inputTypeIsFile.files[0];
+                    let fileReader = new FileReader();
+                    fileReader.onload = function(fileLoadedEvent) {
+                        fileContents = fileLoadedEvent.target.result;
+                        let loadedData = JSON.parse(fileContents);
+                        textarea.value = loadedData["text"];
+                        documentDiv.style.textAlign = loadedData["textAlign"];
+                        documentDiv.style.fontFamily = loadedData["fontFamily"];
+                        documentDiv.style.fontSize = loadedData["fontSize"];
+                        documentDiv.style.marginLeft = loadedData["marginSize"];
+                        textarea.spellcheck = loadedData["spellCheck"];
+                        writeUpdateResult();
+                        remSize = parseFloat(loadedData["fontSize"].split("rem")[0]);
+                        marginSize = parseFloat(loadedData["marginSize"].split("rem")[0]);
+                        writeUndos = [];
+                        console.log("writeUndos length", writeUndos.length);
+                        writeUndos.push(textarea.value);
+                        textarea.focus(); //ensures spell check is refreshed
+
+                    };
+
+                    fileReader.readAsText(inputFile, "UTF-8");
+                });
+                inputTypeIsFile.click();
+            }
+            //}
+
+        }
+
+
+
+        function processSelectedText(clickedElement) {
+            let action = clickedElement.innerHTML;
+            console.log(action);
+            if (action != "⟲") {
+                if (writeUndos.length >= 316) { //316 levels of undo
+                    writeUndos.shift();
+                    writeUndos.push(textarea.value);
+                } else {
+                    writeUndos.push(textarea.value);
+                }
+            }
+
+            if (action === "⇚") { //align left
+                documentDiv.style.textAlign = "left";
+            } else if (action === "⇛⇚") { //align center
+                documentDiv.style.textAlign = "center";
+            } else if (action === "⇛") { //align right
+                documentDiv.style.textAlign = "right";
+            } else if (action === "Mono") {
+                documentDiv.style.fontFamily = "'Courier New', Courier, monospace";
+            } else if (action === "Serif") {
+                documentDiv.style.fontFamily = "Georgia, 'Times New Roman', Garamond, Times, serif";
+            } else if (action === "Sans") {
+                documentDiv.style.fontFamily = "Arial, Verdana, Helvetica, Tahoma, sans-serif";
+            } else if (action === "<sub>A</sub>A") {
+                remSize = remSize + .2;
+                documentDiv.style.fontSize = remSize.toString() + "rem";
+            } else if (action === "<sup>A</sup>A") {
+                remSize = remSize - .2;
+                documentDiv.style.fontSize = remSize.toString() + "rem";
+            } else if (action === "⇥⇤") { //increase margins
+                marginSize = marginSize + 1;
+                if (marginSize > 20) {
+                    marginSize = 20;
+                }
+                documentDiv.style.marginLeft = marginSize.toString() + "rem";
+                documentDiv.style.marginRight = marginSize.toString() + "rem";
+
+            } else if (action === "⇤⇥") { //decrease margins
+                marginSize = marginSize - 1;
+                if (marginSize < 0) {
+                    marginSize = 0;
+                }
+                documentDiv.style.marginLeft = marginSize.toString() + "rem";
+                documentDiv.style.marginRight = marginSize.toString() + "rem";
+            } else if (action === "⟲") {
+                //console.log("undo called");
+                console.log(writeUndos);
+                if (writeUndos.length > 1) {
+                    let thisText = writeUndos.pop();
+                    textarea.value = thisText;
+                    writeUpdateResult();
+                } else if (writeUndos.length === 1) { //don't go past initial entry
+                    textarea.value = writeUndos[0];
+                    writeUpdateResult()
+                } else if (writeUndos.length === 0) { //should never reach this case;
+                    textarea.value = "";
+                    writeUpdateResult();
+                }
+
+            } else if (action === "✓") {
+                console.log(textarea.spellcheck);
+                textarea.spellcheck = !(textarea.spellcheck);
+                console.log(textarea.spellcheck);
+                textarea.focus();
+                //textarea.blur();
+            }
+
+            let len = textarea.value.length;
+            let start = textarea.selectionStart;
+            let end = textarea.selectionEnd;
+            let sel = textarea.value.substring(start, end);
+
+            // This is the selected text and alert it
+            //alert(sel);
+
+            let replace = sel;
+
+            if (action === "<b>B</b>") {
+                replace = '<b>' + sel + '</b>';
+            } else if (action === "<u>U</u>") {
+                replace = '<u>' + sel + '</u>';
+            } else if (action === "<em>I</em>") {
+                replace = '<em>' + sel + '</em>';
+            } else if (action === "H1") {
+                replace = '<h1>' + sel + '</h1>';
+            } else if (action === "H2") {
+                replace = '<h2>' + sel + '</h2>';
+            } else if (action === "H3") {
+                replace = '<h3>' + sel + '</h3>';
+            } else if (action === "¶") {
+                replace = '<p>' + sel + '</p>';
+            } else if (action === "―") {
+                replace = '<hr>' + sel;
+            } else if (action === "•") {
+                replace = '&bullet; ' + sel;
+            }
+            // Here we are replacing the selected text with this one
+            textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
+            writeUpdateResult();
+        }
+
+        function writeUpdateResult() {
+            let currentContents = document.getElementById('text-editor').value;
+            console.dir(document.getElementById('text-editor'));
+            //console.log(currentContents);
+            document.getElementById('document-result').innerHTML = currentContents.replaceAll('\n', '<br>');
+            if (textarea.spellcheck === true) {
+                document.getElementById("spell-check").style.color = "green";
+            } else {
+                document.getElementById("spell-check").style.color = "red";
+            }
+        }
+
+
+        function printWriteDiv(id) {
+            let a = window.open();
+            a.document.write(serializeElementToPage(id, "html,#document-result,#document-parent{background-color:white;}"));
+            a.document.close();
+            a.print();
+        }
+    </script>
+    <script>
+        initializeTablesApp();
+
+        function initializeTablesApp() {
+            makeTable(tablesTable);
+        }
+
+
+        function backupTablesTable() {
+            updateDataFromCurrentInputs(tablesTable);
+            return JSON.parse(JSON.stringify(currentTablesTable));
+        }
+
+
+        function processColumnClick(header) {
+            updateDataFromCurrentInputs(tablesTable);
+            populateMoveColumnSelect(tablesTable);
+            document.getElementById("tables-current-header").innerHTML = header;
+            document.getElementById("tables-new-header-name").value = header;
+            showMain("main-tables-header-form");
+        }
+
+
+        function processRowClick(row) {
+            updateDataFromCurrentInputs(tablesTable);
+            populateMoveRowSelect(tablesTable);
+            document.getElementById("tables-current-row").innerHTML = row.toString();
+            showMain("main-tables-row-form");
+        }
+
+        function makeTable(table) {
+            //let tableElement = document.getElementById('tables-table');
+            let str = "";
+
+            //fill in header from object
+            str = "";
+            let headers = table["headers"]; //an array of strings
+            str += "<thead><tr><th></th>";
+            for (let i = 0; i < headers.length; i++) {
+                str += "<th id='" + headers[i] + "' onclick=\"processColumnClick('" + headers[i] + "');\">" + headers[i] + "</th>";
+            }
+            str += "<th id='add-column' onclick='addColumn(tablesTable)'>+</th>";
+            str += "</tr></thead>";
+            let tableHeader = str;
+
+            //fill in body data from object
+            str = "<tbody>";
+            let bodyData = table.data; //an array of objects;
+            console.log("bodyData");
+            console.log(bodyData);
+            let rowCount = bodyData.length;
+            for (let i = 0; i < rowCount; i++) {
+                str += "<tr><td id='row-" + i.toString() + "' onclick='processRowClick(" + i.toString() + ")'>" + i.toString() + "</td>";
+                let columnCount = headers.length;
+                console.log(columnCount);
+                for (let j = 0; j < columnCount; j++) {
+                    //console.log(headers[j]);
+                    str += "<td><input type='text' id='cell-" + i.toString() + "-" + j.toString() + "' value='" + bodyData[i][headers[j]].toString() + "'></td>";
+                    //str += "<td><input type='text' id='cell-" + (i + 1).toString() + "-" + (j + 1).toString() + "' value='" + i.toString()+j.toString() + "'></td>";
+                }
+                str += "</tr>";
+            }
+            str += "</tbody>"
+            let tableBody = str;
+
+            //make footer for additional controls
+            str = "<tfoot><tr><th id='add-row' onclick='addRow(tablesTable)'>+</th>";
+            for (let i = 0; i < headers.length; i++) {
+                str += "<th id='footer-" + (i + 1).toString() + "' onclick=\"processColumnClick('" + headers[i] + "');\"></th>";
+            }
+            str += "</tr></tfoot>";
+            let tableFooter = str;
+            let strTable = tableHeader + tableBody + tableFooter;
+
+            //addListenersToTable();
+            populateMoveColumnSelect(table);
+            populateMoveRowSelect(table);
+
+            tableElement.innerHTML = strTable;
+
+            return strTable;
+        }
+
+
+        function populateMoveColumnSelect(table) {
+            let moveColumnSelect = document.getElementById('move-column');
+            moveColumnSelect.options.length = 0;
+            // moveColumnSelect.style.backgroundColor = "orange";
+            let currentTableHeaders = table.headers; //an array of header names
+            for (th of currentTableHeaders) {
+                let option = document.createElement('option');
+                option.value = th;
+                option.text = th;
+                moveColumnSelect.add(option);
+            }
+        }
+
+        function populateMoveRowSelect(table) {
+            // document.getElementById(selectbox).options.length = 0;
+            let moveRowSelect = document.getElementById('move-row');
+            moveRowSelect.options.length = 0;
+            // moveRowSelect.style.backgroundColor = 'orange';
+            for (let i = 0; i < table["data"].length; i++) {
+                let option = document.createElement('option');
+                option.value = i.toString();
+                option.text = i.toString();
+                moveRowSelect.add(option);
+            }
+        }
+
+        function updateDataFromCurrentInputs(table) {
+            let headers = table["headers"];
+            console.log("headers");
+            console.log(headers);
+            for (let i = 0; i < table.data.length; i++) {
+                for (let j = 0; j < table.headers.length; j++) {
+                    let id = "cell-" + i.toString() + "-" + j.toString();
+                    let thisCell = document.getElementById(id);
+                    table.data[i][headers[j]] = thisCell.value;
+                }
+            }
+        }
+        //Column functions
+        function updateHeaderName(table) {
+            //get old name
+            let fieldName = document.getElementById("tables-current-header").innerHTML;
+            //get new name
+            let newName = document.getElementById('tables-new-header-name').value;
+
+            //do nothing if they are the same
+            if (fieldName === newName) {
+                makeTable(table);
+                return;
+            }
+            if (newName === "") { //if blank make new
+                newName = prompt("There is no name listed, please enter the new name");
+                if (newName === null) {
+                    return;
+                }
+            }
+
+            table = _changeHeaderAndDataPropertyName(table, newName, fieldName);
+
+            makeTable(table);
+            showMain('main-tables-table');
+        }
+
+        function _changeHeaderAndDataPropertyName(table, newName, oldName) {
+            let data = table["data"];
+            newName = getBestName(table, newName);
+            let index = table["headers"].indexOf(oldName); //get index of field 
+            table["headers"][index] = newName; //change header name
+            //update rows
+            for (let i = 0; i < data.length; i++) {
+                data[i][newName] = data[i][oldName]; //set new property to old
+                delete data[i][oldName]; //delete old
+            }
+            return table;
+        }
+
+
+        function deleteColumn(table) {
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+            let index = table["headers"].indexOf(columnName);
+
+            table["headers"].splice(index, 1); //delete from header array
+            //loop through rows
+            for (let i = 0; i < table["data"].length; i++) {
+                delete table["data"][i][columnName];
+            }
+            makeTable(table);
+            showMain('main-tables-table');
+        }
+
+        function addColumn(table) {
+            //alert("need to process add column");
+            updateDataFromCurrentInputs(table);
+            let newIndex = 1;
+            let newColumnName = "new" + newIndex.toString(); //make a new name
+
+            //if name already in use, make a new name
+            while (table["headers"].includes(newColumnName)) {
+                console.log("column name already in use");
+                newIndex += 1;
+                newColumnName = "new" + newIndex.toString();
+            }
+
+            table.headers.push(newColumnName);
+
+            fillInEmptyPropertyValues(table);
+            makeTable(table);
+        }
+
+        function moveColumn(table) {
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+            let destinationColumnName = document.getElementById("move-column").value;
+            if (columnName === destinationColumnName) {
+                console.log("destination is same as source");
+                return;
+            }
+            let index = table["headers"].indexOf(columnName);
+
+
+            let destinationIndex = table["headers"].indexOf(destinationColumnName);
+
+            let headerToMove = table["headers"].splice(index, 1)[0]; //splice returns an array length 1
+
+            table["headers"].splice(destinationIndex, 0, headerToMove);
+            makeTable(table);
+            showMain('main-tables-table');
+        }
+
+        function getBestName(table, name) {
+
+            let headers = table["headers"];
+            let nameCount = 0;
+            let bestName = name;
+
+            while (headers.includes(bestName)) {
+                console.log("column name already in use");
+                nameCount += 1;
+                bestName = name + "-" + nameCount.toString();
+            }
+
+            return bestName;
+        }
+
+        function copyColumn(table) {
+            //get column 
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+
+            //make name for new column
+            let newName = getBestName(table, columnName);
+            //add to headers			
+            table["headers"].push(newName);
+
+            //go through rows of data
+            for (let i = 0; i < table["data"].length; i++) {
+                table["data"][i][newName] = table["data"][i][columnName];
+            }
+
+            makeTable(table);
+            showMain('main-tables-table');
+
+        }
+
+
+
+        function calculateTotal(table) {
+            //get column 
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+
+
+            let total = 0;
+            for (let row of table.data) {
+                total = total + Number(row[columnName]);
+            }
+            if (confirm("The total is: " + total.toString() + "\nCopy to clipboard?")) {
+                copyToClipBoard(total.toString());
+            };
+            showMain('main-tables-table');
+        }
+
+        function tablesCancel(table) {
+            console.log("tablesCancel called");
+            makeTable(table); //probably not needed
+            showMain('main-tables-table');
+
+        }
+
+        function calculateAverage() {
+            alert("calculate average called");
+            console.log("calcualtoe average called");
+
+            let columnName = document.getElementById("tables-current-header").innerHTML;
+
+            let total = 0;
+
+            for (let row of table.data) {
+                total = total + Number(row[columnName]);
+            }
+
+            let average = total / table.data.length;
+
+            if (confirm("The average is: " + average.toString() + "\nCopy to clipboard?")) {
+                copyToClipBoard(average.toString());
+            }
+            showMain('main-tables-table');
+        }
+
+        //row functions
+        function addRow(table) {
+            let headers = table["headers"];
+            updateDataFromCurrentInputs(table);
+            let numberOfColumns = table.headers.length;
+            let tempRow = {};
+            for (let i = 0; i < numberOfColumns; i++) {
+                tempRow[headers[i]] = "";
+            }
+            table["data"].push(tempRow);
+            makeTable(table);
+        }
+
+        function deleteRow() {
+            let index = parseInt(document.getElementById("tables-current-row").innerHTML);
+            let data = table["data"];
+            data.splice(index, 1);
+            makeTable(table);
+            showMain('main-tables-table');
+        }
+
+        function copyRow() {
+            console.log("copy row called");
+            let index = parseInt(document.getElementById("tables-current-row").innerHTML);
+            let data = table["data"];
+            console.log(data);
+            let rowToCopy = JSON.parse(JSON.stringify(table.data[index]));
+            data.push(rowToCopy);
+            makeTable(table);
+            showMain('main-tables-table');
+        }
+
+        function moveRow() {
+            console.log("move row called");
+            let index = parseInt(document.getElementById("tables-current-row").innerHTML);
+            let data = tablesTable["data"];
+            let destinationIndex = parseInt(document.getElementById("move-row").value);
+            let rowToMove = data.splice(index, 1)[0];
+            data.splice(destinationIndex, 0, rowToMove);
+            makeTable(tablesTable);
+            showMain('main-tables-table');
+        }
+
+
+        function tablesNewTable() {
+            if (confirm("Are you sure?  This will erase all current data.")) {
+                tablesTable = JSON.parse(initialTablesTable);
+                compareTablesTable = initialTablesTable;
+                makeTable(tablesTable);
+                showMain('main-tables-table');
+                return tablesTable;
+            }
+        }
+
+        function tablesLoad() {
+            console.log("tablesLoad() called");
+            let fileContents = "";
+            let inputTypeIsFile = document.createElement('input');
+            inputTypeIsFile.type = "file";
+            inputTypeIsFile.accept = ".csv";
+            inputTypeIsFile.addEventListener("change", function() {
+                let inputFile = inputTypeIsFile.files[0];
+                let fileReader = new FileReader();
+                fileReader.onload = function(fileLoadedEvent) {
+                    fileContents = fileLoadedEvent.target.result;
+                    if (confirm("Use the first line as the header row?")) {
+                        tablesTable = readCSV(fileContents, true);
+                    } else {
+                        tablesTable = readCSV(fileContents, false);
+                    }
+                    makeTable(tablesTable);
+                    compareTablesTable = JSON.stringify(tablesTable);
+                };
+                fileReader.readAsText(inputFile, "UTF-8");
+            });
+            inputTypeIsFile.click();
+        }
+
+        function tablesSave() {
+            console.log("tablesSave() called");
+            updateDataFromCurrentInputs(tablesTable);
+
+            if (confirm("Include header as first line in csv file?")) {
+                saveStringToTextFile(makeCSV(tablesTable, true), "csvTable" + getTodaysDate(), ".csv");
+            } else {
+                saveStringToTextFile(makeCSV(tablesTable, false), "csvTable" + getTodaysDate(), ".csv");
+            }
+            compareTablesTable = JSON.stringify(tablesTable);
+        }
+
+        function tablesShowRules() {
+            alert('FORMATTING RULES:\n\nWhen Saving:\n1) All cells are quoted text.\n2) Interior double quotes in cells are converted like this: "->""\n\nIf loading CSV from other apps:\n1) Cells should all be text type.\n2) Quote all text strings when saving.')
+        }
+
+        function tablesCopyCSVToClipboard() {
+            updateDataFromCurrentInputs(tablesTable);
+            let thisResult = "";
+            if (confirm("Include header as first line?")) {
+                thisResult = copyToClipBoard(makeCSV(tablesTable, true));
+            } else {
+                thisResult = copyToClipBoard(makeCSV(tablesTable, false));
+            }
+            return thisResult;
+        }
+    </script>
+    <script>
+        initializeContactsApp();
+
+        function initializeContactsApp() {
+            fillInEmptyPropertyValues(contactsTable);
+            document.getElementById("contacts-table-name").innerHTML = contactsTable["name"];
+            contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+            contactsEditForm.innerHTML = buildContactsEditForm(contactsTable, -1);
+        }
+
+        function backupContactsDatabase() {
+            return JSON.parse(JSON.stringify(contactsTable));
+        }
+
+        function buildContactsTableElement(contactsTable) {
+            let tableElement = "";
+            let numberOfColumns = contactsTable["headers"].length;
+            //numberOfColumns = 2; //only showing first 3
+            let numberOfRows = contactsTable["data"].length;
+
+            //start contactsTable
+            tableElement += "<table>";
+
+            //build table header
+            tableElement += "<thead><tr>";
+            for (let j = 0; j < numberOfColumns; j++) {
+                tableElement += "<th onclick='sortContactsByField(this);'>" + contactsTable["headers"][j] + "</th>";
+            }
+            tableElement += "</tr></thead>";
+
+            //build table body	
+            tableElement += "<tbody>";
+
+            for (let i = 0; i < numberOfRows; i++) {
+                tableElement += "<tr id='contacts-table-row-" + i.toString() + "' onclick='selectContactsEditForm(this)'>";
+                for (let j = 0; j < numberOfColumns; j++) {
+                    let fieldName = contactsTable["headers"][j];
+                    //console.log(contactsTable["data"][i][fieldName]);
+                    tableElement += "<td>" + contactsTable["data"][i][fieldName] + "</td>";
+                }
+                tableElement += "</tr>";
+            }
+            tableElement += "</tbody>";
+
+            return tableElement;
+        }
+
+        function newContactsEntry(contactsTable) {
+            //show what's being edited
+            contactsEditFormMessage.innerHTML = contactsTable["name"] + ": New Entry";
+            contactsEditForm.innerHTML = buildContactsEditForm(contactsTable, -1);
+            showMain("main-contacts-form")
+        }
+
+        function selectContactsEditForm(clickedRow) {
+            //show what's being edited
+            let index = parseInt(clickedRow.id.split("-")[3]);
+            contactsEditFormMessage.innerHTML = contactsTable["name"] + ": Entry " + index.toString();
+            contactsEditForm.innerHTML = buildContactsEditForm(contactsTable, index);
+            showMain("main-contacts-form");
+        }
+
+        function buildContactsEditForm(contactsTable, index) {
+            let editForm = "";
+            editForm += "<form>";
+            editForm = "<input type='hidden' id='contacts-row-index' value='" + index.toString() + "'>";
+            let numberOfColumns = contactsTable["headers"].length;
+            let headers = contactsTable["headers"];
+            let row = contactsTable["data"][index];
+            let inputTypes = contactsTable["inputTypes"];
+
+            //make blank form
+            for (let j = 0; j < numberOfColumns; j++) {
+                let extraString = "";
+                if (inputTypes[headers[j]] === "number") {
+                    extraString = " step='any' ";
+                } else if (inputTypes[headers[j]] === "tel") {
+                    extraString = " placeholder='304-424-1000' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' ";
+                }
+                if (index === -1) { //adding new
+                    editForm += "<div><label for='contact-" + headers[j] + "'>" + headers[j] + "</label></div><div><input type='" + inputTypes[headers[j]] + "' id='contact-" + headers[j] + "' " + extraString + "></div>";
+                } else { //editing existing
+                    editForm += "<div><label for='contact-" + headers[j] + "'>" + headers[j] + "</label></div><div><input type='" + inputTypes[headers[j]] + "' id='contact-" + headers[j] + "' value='" + row[headers[j]].replaceAll("\"", "&quot;").replaceAll("\'", "&apos;") + "'" + extraString + "></div>";
+                }
+            }
+            editForm += "</form>";
+            return editForm;
+        }
+
+        function saveContactsEntry(contactsTable) {
+            let index = parseInt(document.getElementById("contacts-row-index").value);
+            //console.log(index);
+            let headers = contactsTable["headers"];
+            let row = {};
+            for (let j = 0; j < headers.length; j++) {
+                row[headers[j]] = document.getElementById("contact-" + headers[j]).value;
+            }
+            if (index >= 0) { //an existing entry
+                contactsTable["data"][index] = row;
+            } else { // a new entry
+                contactsTable["data"].push(row);
+            }
+            clearContactFormEntries(contactsTable);
+            contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+            showMain("main-contacts-table");
+        }
+
+        function deleteContactsEntry(contactsTable) {
+            let index = parseInt(document.getElementById("contacts-row-index").value);
+            if (index >= 0) { //editing an entry
+                if (confirm("Delete this entry?")) {
+                    contactsTable["data"].splice(index, 1); //an object
+                }
+            }
+            clearContactFormEntries(contactsTable);
+            contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+            showMain("main-contacts-table");
+        }
+
+        function cancelContactsEntry(contactsTable) {
+            clearContactFormEntries(contactsTable);
+            contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+            showMain("main-contacts-table");
+        }
+
+
+        function clearContactFormEntries(contactsTable) {
+            let headers = contactsTable["headers"];
+            for (let j = 0; j < headers.length; j++) {
+                document.getElementById("contact-" + headers[j]).value = "";
+            }
+            document.getElementById("contacts-row-index").value = -1;
+            contactsEditFormMessage.innerHTML = "";
+        }
+
+        function sortContactsByField(clickedHeaderElement) {
+            let field = clickedHeaderElement.innerHTML;
+
+            if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
+                destructiveSort(contactsTable["data"], field, sortAscending);
+                contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+                sortAscending = -1 * sortAscending;
+            };
+        }
+
+        function loadContactsTable() {
+            if (confirm("This will overwrite current table")) {
+                let fileContents = "";
+                let inputTypeIsFile = document.createElement('input');
+                inputTypeIsFile.type = "file";
+                inputTypeIsFile.accept = ".json";
+                inputTypeIsFile.addEventListener("change", function() {
+                    let inputFile = inputTypeIsFile.files[0];
+                    let fileReader = new FileReader();
+                    fileReader.onload = function(fileLoadedEvent) {
+                        fileContents = fileLoadedEvent.target.result;
+                        if (inputFile["name"].slice(-5) === ".json") {
+                            baseFilename = inputFile["name"].slice(0, -5);
+                        }
+                        contactsTable = JSON.parse(fileContents);
+                        clearContactFormEntries(contactsTable);
+                        contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+                    };
+
+                    fileReader.readAsText(inputFile, "UTF-8");
+                });
+                inputTypeIsFile.click();
+            }
+        }
+
+        function savecontactsTableElement(contactsTable) {
+            let str = JSON.stringify(contactsTable);
+            //if (baseFilename === "") {
+            baseFilename = contactsTable["name"] + getTodaysDate();
+            //}
+            saveStringToTextFile(str, baseFilename, ".json");
+        }
+    </script>
+    <script>
+        function initializeCalendarApp() {
+            document.getElementById("calendar-table-name").innerHTML = calendarDatabase["name"];
+        }
+
+        function processOpenCalendar() {
+            let date = document.getElementById("calendar-date").value;
+            console.log(date);
+
+            if (date === "") {
+                return;
+            }
+            //check to see if year entry is in datbase
+            if (calendarDatabase["dates"][date] === undefined) {
+                calendarDatabase["dates"][date] = {};
+                calendarDatabase["dates"][date]["data"] = [];
+            }
+
+            document.getElementById("calendar-table-name").innerHTML = "<span onclick='processCalendarHome();'>" + date + " &#128197;</span>";
+
+            calendarTable.innerHTML = buildCalendarTableElement(date);
+            showMain("main-calendar-table");
+            console.log(calendarDatabase);
+        }
+
+        function processCalendarHome() {
+            showMain("main-calendar-start");
+        }
+
+        function processCalendarCSVClick() {
+            let headers = calendarDatabase["headers"];
+            let date = document.getElementById("calendar-date").value;
+            let data = calendarDatabase["dates"][date]["data"];
+            let tempTable = {};
+            tempTable["headers"] = headers;
+            tempTable["data"] = data;
+            tempTable["name"] = "Calendar";
+
+            processCSVClick(tempTable);
+
+        }
+
+        function buildCalendarTableElement(date) { //needs headers data
+            sortCalendarByStartTime(date);
+            let dataEntriesArrayForGivenDay = calendarDatabase["dates"][date]["data"];
+            let tableElement = "";
+            let numberOfColumns = calendarDatabase["headers"].length;
+            let numberOfRows = dataEntriesArrayForGivenDay.length;
+
+            //start table
+            tableElement += "<table>";
+
+            //build table header
+            tableElement += "<thead><tr>";
+            for (let j = 0; j < numberOfColumns; j++) {
+                tableElement += "<th onclick='//sortCalendarByField(this);'>" + calendarDatabase["headers"][j] + "</th>";
+            }
+            tableElement += "</tr></thead>";
+
+            //build table body	
+            tableElement += "<tbody>";
+
+            for (let i = 0; i < numberOfRows; i++) {
+                tableElement += "<tr id='calendar-table-row-" + i.toString() + "' onclick=\"selectCalendarEditForm(" + i.toString() + ")\">";
+                for (let j = 0; j < numberOfColumns; j++) {
+                    let fieldName = calendarDatabase["headers"][j];
+                    //console.log(table["data"][i][fieldName]);
+                    tableElement += "<td>" + dataEntriesArrayForGivenDay[i][fieldName] + "</td>";
+                }
+                tableElement += "</tr>";
+            }
+            tableElement += "</tbody>";
+
+            return tableElement;
+        }
+
+        function newCalendarEntry(table) {
+            //show what's being edited
+            calendarEditFormMessage.innerHTML = document.getElementById("calendar-date").value + ": New Entry";
+            calendarEditForm.innerHTML = buildCalendarEditForm(-1);
+            showMain("main-calendar-form")
+        }
+
+        function selectCalendarEditForm(clickedRowIndex) {
+            //show what's being edited
+            //let index = parseInt(clickedRow.id.split("-")[3]);
+            calendarEditFormMessage.innerHTML = document.getElementById("calendar-date").value + ": Entry " + clickedRowIndex.toString();
+            calendarEditForm.innerHTML = buildCalendarEditForm(clickedRowIndex);
+            showMain("main-calendar-form");
+        }
+
+        function buildCalendarEditForm(index) {
+            let date = document.getElementById("calendar-date").value;
+            let thisEntry = calendarDatabase["dates"][date]["data"][index];
+            let editForm = "";
+            editForm += "<form>";
+            editForm = "<input type='hidden' id='calendar-row-index' value='" + index.toString() + "'>";
+            let numberOfColumns = calendarDatabase["headers"].length;
+            let headers = calendarDatabase["headers"];
+            let row = thisEntry;
+            let inputTypes = calendarDatabase["inputTypes"];
+
+            //make blank form
+            for (let j = 0; j < numberOfColumns; j++) {
+                let extraString = "";
+                if (inputTypes[headers[j]] === "number") {
+                    extraString = " step='any' ";
+                } else if (inputTypes[headers[j]] === "tel") {
+                    extraString = " placeholder='304-424-1000' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' ";
+                }
+                if (index === -1) { //adding new
+                    editForm += "<div><label for='" + headers[j] + "'>" + headers[j] + "</label></div><div><input type='" + inputTypes[headers[j]] + "' id='" + headers[j] + "' " + extraString + "></div>";
+                } else { //editing existing
+                    editForm += "<div><label for='" + headers[j] + "'>" + headers[j] + "</label></div><div><input type='" + inputTypes[headers[j]] + "' id='" + headers[j] + "' value='" + row[headers[j]].replaceAll("\"", "&quot;").replaceAll("\'", "&apos;") + "'" + extraString + "></div>";
+                }
+            }
+            editForm += "</form>";
+            return editForm;
+        }
+
+        function saveCalendarEntry() {
+            let index = parseInt(document.getElementById("calendar-row-index").value);
+            let date = document.getElementById("calendar-date").value;
+            let headers = calendarDatabase["headers"];
+            let row = {};
+            for (let j = 0; j < headers.length; j++) {
+                row[headers[j]] = document.getElementById(headers[j]).value;
+            }
+            if (index >= 0) { //an existing entry
+                calendarDatabase["dates"][date]["data"][index] = row;
+            } else { // a new entry
+                calendarDatabase["dates"][date]["data"].push(row);
+            }
+            clearCalendarFormEntries();
+            calendarTable.innerHTML = buildCalendarTableElement(date);
+            showMain("main-calendar-table");
+        }
+
+        function purgeCalendar() {
+            console.log(calendarDatabase["dates"]);
+            let dates = calendarDatabase["dates"];
+
+            for (let date in dates) {
+                console.log(date);
+                console.log(dates[date]["data"]);
+                console.log(dates[date]["data"].length);
+                if (dates[date]["data"].length === 0) {
+                    t
+                    delete dates[date];
+                }
+            }
+            console.log(calendarDatabase["dates"]);
+        }
+
+        function deleteCalendarEntry() {
+            let index = parseInt(document.getElementById("calendar-row-index").value);
+            let date = document.getElementById("calendar-date").value;
+            if (index >= 0) { //editing an entry
+                if (confirm("Delete this entry?")) {
+                    calendarDatabase["dates"][date]["data"].splice(index, 1); //an object
+                }
+            }
+            clearCalendarFormEntries();
+            calendarTable.innerHTML = buildCalendarTableElement(date);
+            showMain("main-calendar-table");
+        }
+
+        function cancelCalendarEntry() {
+            let date = document.getElementById("calendar-date").value;
+            clearCalendarFormEntries();
+            calendarTable.innerHTML = buildCalendarTableElement(date);
+            showMain("main-calendar-table");
+        }
+
+
+        function clearCalendarFormEntries() {
+            let headers = calendarDatabase["headers"];
+            for (let j = 0; j < headers.length; j++) {
+                document.getElementById(headers[j]).value = "";
+            }
+            document.getElementById("calendar-row-index").value = -1;
+            calendarEditFormMessage.innerHTML = "";
+        }
+
+        function sortCalendarByStartTime(date) {
+            let field = calendarDatabase["headers"][0];
+            destructiveSort(calendarDatabase["dates"][date]["data"], field);
+        }
+
+        function sortCalendarByField(clickedHeaderElement) {
+            let date = document.getElementById("calendar-date").value;
+            let field = clickedHeaderElement.innerHTML;
+            if (calendarDatabase["dates"][date]["data"].length > 1) { //shouldn't sort if there is only one row.
+                if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
+                    destructiveSort(calendarDatabase["dates"][date]["data"], field, sortAscending);
+                    calendarTable.innerHTML = buildCalendarTableElement(date);
+                    sortAscending = -1 * sortAscending;
+                };
+            }
+        }
+
+        function loadCalendarDatabase() {
+            if (confirm("This will overwrite current table")) {
+                let fileContents = "";
+                let inputTypeIsFile = document.createElement('input');
+                inputTypeIsFile.type = "file";
+                inputTypeIsFile.accept = ".json";
+                inputTypeIsFile.addEventListener("change", function() {
+                    let inputFile = inputTypeIsFile.files[0];
+                    let fileReader = new FileReader();
+                    fileReader.onload = function(fileLoadedEvent) {
+                        fileContents = fileLoadedEvent.target.result;
+                        calendarDatabase = JSON.parse(fileContents);
+                    };
+
+                    fileReader.readAsText(inputFile, "UTF-8");
+                });
+                inputTypeIsFile.click();
+            }
+        }
+
+        function saveCalendarDatabase(calendarDatabase) {
+            let str = JSON.stringify(calendarDatabase);
+            let baseFilename = calendarDatabase["name"] + getTodaysDate();
+            saveStringToTextFile(str, baseFilename, ".json");
+        }
+    </script>
+    <script>
+        function initializeCalculatorApp() {
+            //https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+            calculatorInput.addEventListener("keypress", function(event) {
+                if (event.key === "Enter") {
+                    document.getElementById("equals-button").click();
+                }
+            });
+        }
+
+        function buildCalcString(clickedElement) {
+            if (clickedElement.innerHTML === "CLR") {
+                calculatorInput.value = "";
+                calcString = "";
+                calculatorInput.value = calcString;
+                expressionSpan.innerHTML = "";
+            } else if (clickedElement.innerHTML === "←") {
+                calcString = calculatorInput.value;
+                calcString = calcString.slice(0, -1);
+                calculatorInput.value = calcString;
+            } else if (clickedElement.innerHTML === "=") {
+                evaluateExpression(calculatorInput.value);
+            } else {
+                calcString = calculatorInput.value;
+                charToAdd = clickedElement.innerHTML;
+                if (charToAdd === "x") {
+                    charToAdd = "*";
+                }
+                calcString += charToAdd;
+                calculatorInput.value = calcString;
+            }
+        }
+
+        function getAnOperator(str) {
+            let operators = ['/', '*', '-', '+'];
+            str = str.trim();
+            if (str[0] === "-") {
+                str = str.slice(1);
+            }
+            for (let i = 0; i < operators.length; i++) {
+                if (str.includes(operators[i])) {
+                    return operators[i];
+                }
+            }
+            return -1; //indicates no operator found
+        }
+
+
+        function justOneOperator(str) {
+            let operators = ['/', '*', '-', '+'];
+            let operatorCount = 0;
+            str = str.trim();
+            if (str[0] === "-") {
+                str = str.slice(1);
+            }
+
+            for (let i = 0; i < operators.length; i++) {
+                operatorCount += str.split(operators[i]).length - 1;
+            }
+            if (operatorCount != 1) {
+                console.log("incorrect operator count", operatorCount)
+            }
+            return (operatorCount === 1);
+        }
+
+        function tokenEmpty(str, operator) {
+            //trim string
+            str = str.trim();
+            //remove initial - sign if present
+            if (str[0] === "-") {
+                str = str.slice(1);
+            }
+            //split tokens
+            tokens = str.split(operator);
+            //trim tokens
+            for (token of tokens) {
+                token = token.trim();
+            }
+            //check that length is correct
+            if (tokens.length != 2) {
+                console.log("incorrect number of tokens");
+                return true;
+            }
+            // if tokens are empty return true
+            else if (tokens[0] === "") {
+                console.log("first token empty");
+                return true;
+            } else if (tokens[1] === "") {
+                console.log("second token empty");
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        function evaluateExpression(str) {
+            console.log("expression to evaluate", str);
+            expressionSpan.innerHTML = "evaluating: " + str;
+            let result = "can't evaluate";
+
+            if (justOneOperator(str)) {
+                let operator = getAnOperator(str);
+                if (tokenEmpty(str, operator) === false) {
+                    let tokens = getTokens(str, operator);
+                    console.log("operator", operator, "tokens", tokens);
+                    result = proceedWithEvaluation(tokens, operator).toString();
+                }
+            }
+            console.log(result);
+
+            if (Number(result).toString() === "NaN") {
+                //do nothing
+                calculatorInput.style.backgroundColor = "orange";
+            } else {
+                //replace the input box with the result
+                console.log(convertEStringToDecimalString(result));
+                calculatorInput.value = convertEStringToDecimalString(result); /////////
+                calcString = result;
+                calculatorInput.style.backgroundColor = "field";
+            }
+        }
+
+        function getTokens(str, operator) {
+            str = str.trim();
+            let token0Prefix = "";
+            if (str[0] === "-") {
+                str = str.slice(1);
+                token0Prefix = "-";
+            }
+            let tokens = str.split(operator);
+            for (let token of tokens) {
+                token.trim();
+            }
+            tokens[0] = token0Prefix + tokens[0];
+            return tokens;
+        }
+
+        function proceedWithEvaluation(tokens, operator) {
+            if (operator === "+") {
+                return (Number(tokens[0]) + Number(tokens[1]));
+            } else if (operator === "-") {
+                return (Number(tokens[0]) - Number(tokens[1]));
+            } else if (operator === "/") {
+                return (Number(tokens[0]) / Number(tokens[1]));
+            } else if (operator === "*") {
+                return (Number(tokens[0]) * Number(tokens[1]));
+            } else return (NaN);
+        }
+
+        //accepts a string returns a string
+        function convertEStringToDecimalString(str) {
+            let result = str.toString(); //ensures it is a string
+            if (result.includes('e+')) { //must move decimal to right
+                let power = result.split('e+')[1];
+                let number = result.split('e+')[0];
+                if (!(number.includes("."))) {
+                    number = number + ".";
+                }
+                let numberLeft = number.split(".")[0];
+                let numberRight = number.split(".")[1];
+                let addToRightNumberLength = parseInt(power) - numberRight.length;
+                let addZeros = "";
+                for (let i = 0; i < addToRightNumberLength; i++) {
+                    addZeros += "0";
+                }
+                numberRight = numberRight + addZeros;
+                result = numberLeft + numberRight;
+            } else if (result.includes('e-')) { //must move decimal to left
+                let power = result.split('e-')[1];
+                let number = result.split('e-')[0];
+                if (!(number.includes("."))) {
+                    number = number + ".";
+                }
+                let numberLeft = number.split(".")[0];
+                let numberRight = number.split(".")[1];
+                let addToLeftNumberLength = parseInt(power) - numberLeft.length;
+                let addZeros = "";
+                for (let i = 0; i < addToLeftNumberLength; i++) {
+                    addZeros += "0";
+                }
+                result = "0." + addZeros + numberLeft + numberRight;
+            }
+            console.log("input string was", str);
+            console.log("output string is", result);
+            console.log("Number(result)", Number(result));
+            return result;
+        }
+    </script>
+    <script>
+        showMain('main-startup');
+        window.onbeforeunload = askConfirm;
+    </script>
+</body>
+
+</html>

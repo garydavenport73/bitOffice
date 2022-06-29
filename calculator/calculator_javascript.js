@@ -1,24 +1,10 @@
-/////////////////GLOBALS///////////////////
-//         calculator        //
-// let calcString = "";
-// let calculatorInput = document.getElementById('calculator-input');
-// let charToAdd = "";
-// let expressionSpan = document.getElementById('expression-span');
-//////////////////////////////////////////
-
-//initializeCalculatorApp();
-
 function initializeCalculatorApp() {
-    // showMain('main-calculator');
-    // Get the input field
     //https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
     calculatorInput.addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
-            //event.preventDefault();
             document.getElementById("equals-button").click();
         }
     });
-    //showMain('main-calculator');
 }
 
 function buildCalcString(clickedElement) {
@@ -124,14 +110,7 @@ function evaluateExpression(str) {
     if (Number(result).toString() === "NaN") {
         //do nothing
         calculatorInput.style.backgroundColor = "orange";
-    }
-    /////OLD method for just saying out of range and ignoring large/small numbers
-    //else if ((result.toString().includes("e"))||(result.toString().includes("E"))){
-    //	calculatorInput.value="out of range";
-    //	calculatorInput.style.backgroundColor="field";
-    //	}
-    else {
-
+    } else {
         //replace the input box with the result
         console.log(convertEStringToDecimalString(result));
         calculatorInput.value = convertEStringToDecimalString(result); /////////

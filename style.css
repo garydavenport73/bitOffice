@@ -317,12 +317,6 @@ nav {
 }
 
 
-/*///////////////////////////////////////*/
-
-
-/**********************************/
-
-
 /*  Needed for printiing in notes, may refactor to function*/
 
 pre {
@@ -417,15 +411,6 @@ nav>button:hover {
     background-color: #BDBDBD;
 }
 
-nav:not(#document-settings, #edit-bar) button {
-    /* background-color: green; */
-    /* border-radius: 5px;
-    padding: 5px;
-    margin: 2px;
-    min-height: 25px; */
-    /* font-size: 1.4rem; */
-}
-
 #top-nav button {
     padding: 5px;
     margin: 1px;
@@ -442,15 +427,7 @@ nav:not(#document-settings, #edit-bar) button {
     min-height: 25px;
 }
 
-h1:not(#document-result h1)
-/* ,
-h2:not(#document-result h2),
-h3:not(#document-result h3),
-h4:not(#document-result h4),
-h5:not(#document-result h5),
-h6:not(#document-result h6)  */
-
-{
+h1:not(#document-result h1) {
     background-color: mediumblue;
     text-align: center;
     padding: 2px;
@@ -590,40 +567,6 @@ table {
     color: antiquewhite;
     border: 1px solid grey;
 }
-
-
-/*
-colors overall blue:
-O notes         yellow
-O write         darker blue
-O contacts      purple
-O calendar      orange
-O tables        green
-O calculator    dark
-*/
-
-
-/*
-red         --->vermilion: rgb(224, 53, 36);
-orange      --->princeton-orange: rgb(240, 124, 18);
-yellow      --->mikado-yellow: rgb(255, 194, 0);
-lightgreen  --->apple-green: rgb(144, 188, 26);
-green       --->yellow-green-color-wheel: rgb(33, 181, 52);
-light blue  --->blue-munsell: rgb(0, 149, 172);
-blue        --->green-blue: rgb(31, 100, 173);
-dark blue   --->blue-pigment: rgb(64, 64, 160);
-purple      --->dark-magenta: rgb(144, 52, 152);
-*/
-
-
-/*Has to come at end so that 
-the document is displayed correctly 
-in the write app */
-
-
-/*Keep in correct order should set to initial settings
-any property of an ancestor previously set is unset
-for anything inside the result document 				*/
 
 #document-result * {
     background-color: unset;

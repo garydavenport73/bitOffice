@@ -1,14 +1,3 @@
-///////////////////////////GLOBALS/////////////////////////////
-//------------------contacts ----------------------
-// let table = {};
-// let contactsTableElement = document.getElementById("contacts-table");
-// let contactsEditForm = document.getElementById("contacts-edit-form");
-// let contactsEditFormMessage = document.getElementById("contacts-edit-form-message");
-// let sortAscending = 1; //direction -1 is descending, otherwise ascending
-/////////////////////////////////////////////////////
-
-// initializeContactsApp();
-
 initializeContactsApp();
 
 function initializeContactsApp() {
@@ -17,7 +6,6 @@ function initializeContactsApp() {
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
     contactsEditForm.innerHTML = buildContactsEditForm(contactsTable, -1);
 }
-
 
 function backupContactsDatabase() {
     return JSON.parse(JSON.stringify(contactsTable));
@@ -72,12 +60,6 @@ function selectContactsEditForm(clickedRow) {
 }
 
 function buildContactsEditForm(contactsTable, index) {
-    //hidden input is index
-    //select row
-    //loop through the headers
-    //	the label name is the header name
-    //	the id of the input is the header name
-    //  the type of input is determined by inputType
     let editForm = "";
     editForm += "<form>";
     editForm = "<input type='hidden' id='contacts-row-index' value='" + index.toString() + "'>";
@@ -85,7 +67,6 @@ function buildContactsEditForm(contactsTable, index) {
     let headers = contactsTable["headers"];
     let row = contactsTable["data"][index];
     let inputTypes = contactsTable["inputTypes"];
-
 
     //make blank form
     for (let j = 0; j < numberOfColumns; j++) {
@@ -185,7 +166,6 @@ function loadContactsTable() {
         inputTypeIsFile.click();
     }
 }
-
 
 function savecontactsTableElement(contactsTable) {
     let str = JSON.stringify(contactsTable);
