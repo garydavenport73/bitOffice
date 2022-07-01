@@ -1,7 +1,13 @@
-let calcInput = document.getElementById('calculator-input');
+document.getElementById("clear-calc").addEventListener("click", clearCalc);
+document.getElementById("remove-last-char").addEventListener("click", removeLastChar);
+document.getElementById("equals-button").addEventListener("click", evaluateCalculatorInput);
+let theseCalculatorButtons = document.getElementsByClassName('build-calc-string');
+for (let calculatorButton of theseCalculatorButtons) {
+    calculatorButton.addEventListener("click", () => { buildCalcString(calculatorButton.innerHTML) });
+}
 
-function buildCalcString(clickedButton) {
-    calcInput.value += clickedButton.innerHTML;
+function buildCalcString(str) {
+    calcInput.value += str;
 }
 
 function clearCalc() {
@@ -13,10 +19,14 @@ function removeLastChar() {
 }
 
 function evaluateCalculatorInput() {
-    document.getElementById('last-calculator-expression').innerHTML = calcInput.value;
+    let sanitizedValue = calcInput.value.replace(/[^-+/*\d.]/g, '');
+    if (sanitizedValue != calcInput.value) {
+        alert("Unallowed characters replaced with empty space during evaluation.");
+    }
+    document.getElementById('last-calculator-expression').innerHTML = "Evaluated: " + sanitizedValue;
     let result = '';
     try {
-        result = eval(calcInput.value);
+        result = eval(sanitizedValue);
     } catch (error) {
         result = error;
     }

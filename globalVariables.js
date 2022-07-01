@@ -1,9 +1,12 @@
 /////////////////GLOBALS///////////////////
 //         calculator        //
-let calcString = "";
-let calculatorInput = document.getElementById('calculator-input');
-let charToAdd = "";
-let expressionSpan = document.getElementById('expression-span');
+// let calcString = "";
+// let calculatorInput = document.getElementById('calculator-input');
+// let charToAdd = "";
+// let expressionSpan = document.getElementById('expression-span');
+
+
+let calcInput = document.getElementById('calculator-input');
 
 //-------------tables-----------------------
 let tableElement = document.getElementById('tables-table');
