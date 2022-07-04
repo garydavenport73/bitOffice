@@ -3,10 +3,10 @@ To do next on program
     X combine calendar and contacts into one database
     X combine save for both
 
-    Ask to save contacts calendar at close
-    Warn to save documents at close.
+    x Ask to save contacts calendar at close
+    x Warn to save documents at close.
     Write help page
-    Make load contacts calendar button work
+    x Make load contacts calendar button work
 
     Notes
     Undo Redo
