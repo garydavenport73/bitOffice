@@ -1,5 +1,7 @@
 initializeWriteApp();
 
+let lastTextAreaText = textarea.value;
+
 function initializeWriteApp() {
     documentDiv.style.fontSize = remSize + "rem";
     documentDiv.style.marginLeft = marginSize + "rem";
@@ -16,20 +18,25 @@ function initializeWriteApp() {
         if (e.key == 'Tab') {
             e.preventDefault();
             insertTab(this);
-            // let start = this.selectionStart;
-            // let end = this.selectionEnd;
-            // // set textarea value to: text before caret + tab + text after caret
-            // this.value = this.value.substring(0, start) +
-            //     //"    " + this.value.substring(end); using 4 spaces
-            //     "\t" + this.value.substring(end);
-            // // put caret at right position again
-            // this.selectionStart =
-            //     //this.selectionEnd = start + 4; using 4 spaces
-            //     this.selectionEnd = start + 1;
-            // writeUpdateResult();
+            updateUndosIfTextChanges();
         }
     });
+
+    document.getElementById('text-editor').addEventListener('input', updateUndosIfTextChanges); //catching key inputs
+    //document.getElementById('text-editor').addEventListener('change', updateUndosIfTextChanges);
+
     compareWriteData = makeCompareWriteData();
+}
+
+function updateUndosIfTextChanges() {
+    console.log("called");
+    console.log(writeUndos);
+    if (lastTextAreaText != textarea.value) {
+        addUndo();
+        lastTextAreaText = textarea.value;
+    }
+    console.log(writeUndos);
+
 }
 
 function insertTab(aTextarea) {
@@ -349,7 +356,8 @@ function processSelectedText(clickedElement) {
     textarea.selectionEnd = start + replace.length;
     textarea.focus();
     if (action != "⟲") {
-        addUndo();
+        //addUndo();
+        updateUndosIfTextChanges();
     }
 }
 
