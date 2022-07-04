@@ -15,9 +15,6 @@ function loadCombinedDatabase() {
             let fileReader = new FileReader();
             fileReader.onload = function(fileLoadedEvent) {
                 fileContents = fileLoadedEvent.target.result;
-                // if (inputFile["name"].slice(-5) === ".json") {
-                //     baseFilename = inputFile["name"].slice(0, -5);
-                // }
                 combinedDatabase = JSON.parse(fileContents);
                 compareCombinedDatabase = JSON.stringify(combinedDatabase);
                 contactsTable = combinedDatabase["contacts"];
@@ -44,10 +41,8 @@ function saveCombinedDatabase() {
 function setColorOfBackupSaveButton() {
     console.log("called set color of backup button")
     if (compareCombinedDatabase === JSON.stringify(combinedDatabase)) { //saved
-        //document.getElementById('saveButon').style.color="unset";
         document.getElementById('saveButton').style.backgroundColor = "unset";
     } else {
-        //document.getElementById('saveButon').style.color="red";
         document.getElementById('saveButton').style.backgroundColor = "orange";
     }
 }
@@ -60,16 +55,13 @@ function processGoToApp(theApp) {
         compareTablesTable = JSON.stringify(tablesTable);
     }
     if (theApp === 'notes') {
-        // compareTablesTable = JSON.stringify(tablesTable);
         compareNoteValue = note.value;
     }
     if (theApp === 'write') {
-        // compareTablesTable = JSON.stringify(tablesTable);
         compareWriteData = makeCompareWriteData();
     }
     if (theApp === 'calculator') {
-        // compareTablesTable = JSON.stringify(tablesTable);
-        //compareWriteData = makeCompareWriteData();
+        //
     }
     currentApp = theApp;
     document.getElementById('top-nav').style.display = "none";
@@ -118,18 +110,16 @@ function processGoBackFromApp(currentApp) {
         } else {
             console.log("need to ask about saving write document");
             if (confirm("The document has changed, save the changes to a file?")) {
-                //notesSave();
                 writeDataToJSON();
                 compareWriteData = makeCompareWriteData();
             }
         }
     }
     if (currentApp === "calculator") {
-        //noting needed here
+        //
     }
     document.getElementById('top-nav').style.display = "flex";
     document.getElementById('back-nav').style.display = "none";
-    //setColorOfBackupSaveButton();
     showMain("main-startup");
 }
 
@@ -185,7 +175,6 @@ function daysInThisMonth() {
     return daysInSomeMonth(thisMonth, thisYear);
 }
 
-
 ///////////////// serialize to web page //////////////////////
 
 function serializeElementToPage(id, extraStyle = "") {
@@ -197,8 +186,6 @@ function serializeElementToPage(id, extraStyle = "") {
     for (let i = 0; i < allStyleTags.length; i++) {
         styleElementContent = allStyleTags[i].innerHTML;
     }
-    //let styleElementContent = document.getElementsByTagName('style')[0].innerHTML;
-    //let extraStyle = "html,#document-result,#document-parent{background-color:white;}";
     let boilerPlate2 = "</style></head><body>"
     let boilerPlate3 = "</body></html>";
     let s = new XMLSerializer();
@@ -213,18 +200,11 @@ function simulateUndo() {
     document.execCommand('undo', false, null);
 }
 
-///////////before page close
-
 function askConfirm() {
-    //if (needsSave === true) {
     return "Did you remember to save your data?";
-    //} else {
-    //    return;
-    //}
 }
 
-
-////////////page navigation ///////////////////
+//page navigation//
 
 function showMain(id) {
     console.log("show mains called with " + id);
@@ -236,8 +216,6 @@ function showMain(id) {
     document.getElementById(id).style.display = "flex"; //comment out
 }
 
-
-
 function getCurrentDisplayedMain() {
     let mains = document.getElementsByTagName('main');
     for (let main of mains) {
@@ -248,7 +226,7 @@ function getCurrentDisplayedMain() {
     }
 }
 
-/////////////////clipboard function//////////////////
+//          clipboard function          //
 function copyToClipBoard(str) {
     //https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
     let el = document.createElement('textarea');
@@ -267,7 +245,7 @@ function copyToClipBoard(str) {
 }
 
 
-/////// "Table" related functions where tables have data (array of objects) and header (array)
+//  "Table" related functions where tables have data (array of objects) and header (array)
 
 function fillInEmptyPropertyValues(table) {
     let data = table["data"];
@@ -282,7 +260,7 @@ function fillInEmptyPropertyValues(table) {
 }
 
 
-///////////////////////CSV related functions ////////////////////
+//              CSV related functions                   //
 
 function makeCSV(thisTable, saveWithHeader = true) { ////This one fixed
     let csvString = "";
@@ -427,7 +405,7 @@ function processCSVClick(table) {
 
 }
 
-////////////////sort array by field
+//              sort array by field
 
 function destructiveSort(arrayOfObjects, field, direction = 1) {
     //direction -1 is descending, otherwise ascending

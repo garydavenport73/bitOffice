@@ -1,25 +1,11 @@
-////////////////////GLOBALS/////////////////////////
-//-----------------write---------------------
-
-// let writeBaseFilename = "";
-// let textarea = document.getElementById("text-editor");
-// let documentDiv = document.getElementById('document-result');
-// let remSize = 1;
-// let marginSize = 2;
-// let writeUndos = [];
-///////////////////////////////////////////////////////////////
 initializeWriteApp();
-/////////////////////////////////////////////////////////
 
 function initializeWriteApp() {
     documentDiv.style.fontSize = remSize + "rem";
     documentDiv.style.marginLeft = marginSize + "rem";
     documentDiv.style.marginRight = marginSize + "rem";
     writeUndos.push(textarea.value);
-    ////Asks if you really want to close browser
-    //window.onbeforeunload = askConfirm;
     writeUpdateResult();
-
     textarea.spellcheck = false;
     textarea.focus(); //ensures spellcheck update
 
@@ -30,12 +16,10 @@ function initializeWriteApp() {
             e.preventDefault();
             let start = this.selectionStart;
             let end = this.selectionEnd;
-
             // set textarea value to: text before caret + tab + text after caret
             this.value = this.value.substring(0, start) +
                 //"    " + this.value.substring(end); using 4 spaces
                 "\t" + this.value.substring(end);
-
             // put caret at right position again
             this.selectionStart =
                 //this.selectionEnd = start + 4; using 4 spaces
@@ -43,7 +27,6 @@ function initializeWriteApp() {
             writeUpdateResult();
         }
     });
-    //showMain('main-write');
     compareWriteData = makeCompareWriteData();
 }
 
@@ -124,15 +107,7 @@ function writeDataToJSON() {
 function writeLoad() {
     console.log("writeLoad() called");
     console.log(textarea.value);
-    //if (textarea.value != "") {
     console.log(textarea.value.length);
-    // let proceed=true;
-    // if (textarea.value.length===0){
-    //     //nothing needed
-    // }
-    // else{
-    //     proceed=confirm("This will overwrite current document");
-    // }
     let proceed = true;
     if (textarea.value.length != 0) {
         proceed = confirm("This will overwrite current document");
@@ -147,14 +122,6 @@ function writeLoad() {
             let fileReader = new FileReader();
             fileReader.onload = function(fileLoadedEvent) {
                 fileContents = fileLoadedEvent.target.result;
-
-                console.log(inputFile);
-                //if (inputFile["name"].slice(-5) === ".json") {
-                //alert("it's json!");
-                //writeBaseFilename = inputFile["name"].slice(0, -5);
-                //alert("writeBaseFilename: " + writeBaseFilename);
-                //}
-
                 let loadedData = JSON.parse(fileContents);
                 textarea.value = loadedData["text"];
                 documentDiv.style.textAlign = loadedData["textAlign"];
@@ -247,10 +214,8 @@ function processSelectedText(clickedElement) {
         textarea.spellcheck = !(textarea.spellcheck);
         console.log(textarea.spellcheck);
         textarea.focus();
-
         //textarea.blur();
     }
-    //alert(action);
 
     let len = textarea.value.length;
     let start = textarea.selectionStart;

@@ -1,29 +1,6 @@
-////////////////////GLOBALS/////////////////////////
-
-
-// let calendarTable = document.getElementById("calendar-table");
-// let calendarEditForm = document.getElementById("calendar-edit-form");
-// let calendarEditFormMessage = document.getElementById("calendar-edit-form-message");
-// let sortAscending = 1; //direction -1 is descending, otherwise ascending
-// let table = {}
-
-////////////////////GLOBALS/////////////////////////
-
-////////////////////Initialization////////////////////
-// initializeCalendarApp();
-/////////////////////////////////////////////////////
-
-///////////////////FUNCTIONS////////////////
-
 function initializeCalendarApp() {
     document.getElementById("calendar-table-name").innerHTML = calendarDatabase["name"];
-    //calendarTable.innerHTML = buildCalendarTableElement(calendarDatabase);
-    //calendarEditForm.innerHTML = buildCalendarEditForm(calendarDatabase, -1);
 }
-//showMain("main-calendar-start");
-
-
-
 
 function processOpenCalendar() {
     let date = document.getElementById("calendar-date").value;
@@ -36,22 +13,9 @@ function processOpenCalendar() {
     if (calendarDatabase["dates"][date] === undefined) {
         calendarDatabase["dates"][date] = {};
         calendarDatabase["dates"][date]["data"] = [];
-
-        // "2022-07-09": {
-        //     "data": [{
-        //         "start": "09:00",
-        //         "end": "10:00",
-        //         "name": "Eat Breakfast",
-        //         "notes": "Don't overeat"
-        //     }
-
-
     }
 
-    //table["data"] = calendarDatabase[year][month][date]["data"];
-    //table["name"] = year + "-" + month + "-" + date;
     document.getElementById("calendar-table-name").innerHTML = "<span onclick='processCalendarHome();'>" + date + " &#128197;</span>";
-    //sortCalendarByStartTime(date);
 
     calendarTable.innerHTML = buildCalendarTableElement(date);
     showMain("main-calendar-table");
@@ -60,7 +24,6 @@ function processOpenCalendar() {
 
 function processCalendarHome() {
     showMain("main-calendar-start");
-    //setColorOfBackupSaveButton();
 }
 
 function processCalendarCSVClick() {
@@ -126,19 +89,8 @@ function selectCalendarEditForm(clickedRowIndex) {
 }
 
 function buildCalendarEditForm(index) {
-    //hidden input is index
-    //select row
-    //loop through the headers
-    //	the label name is the header name
-    //	the id of the input is the header name
-    //  the type of input is determined by inputType
-
-    //console.log(calendarDatabase[year][month][date]);
     let date = document.getElementById("calendar-date").value;
-
     let thisEntry = calendarDatabase["dates"][date]["data"][index];
-
-
     let editForm = "";
     editForm += "<form>";
     editForm = "<input type='hidden' id='calendar-row-index' value='" + index.toString() + "'>";
@@ -146,7 +98,6 @@ function buildCalendarEditForm(index) {
     let headers = calendarDatabase["headers"];
     let row = thisEntry;
     let inputTypes = calendarDatabase["inputTypes"];
-
 
     //make blank form
     for (let j = 0; j < numberOfColumns; j++) {
@@ -169,8 +120,6 @@ function buildCalendarEditForm(index) {
 function saveCalendarEntry() {
     let index = parseInt(document.getElementById("calendar-row-index").value);
     let date = document.getElementById("calendar-date").value;
-    //let thisEntry = calendarDatabase[date]["data"][index];
-    //console.log(index);
     let headers = calendarDatabase["headers"];
     let row = {};
     for (let j = 0; j < headers.length; j++) {
@@ -182,26 +131,11 @@ function saveCalendarEntry() {
         calendarDatabase["dates"][date]["data"].push(row);
     }
     clearCalendarFormEntries();
-    //sortCalendarByStartTime(date);
     calendarTable.innerHTML = buildCalendarTableElement(date);
     showMain("main-calendar-table");
 }
 
 function purgeCalendar() {
-    //go through calendar "dates"
-    //dates are an object
-    //the objects properties are strings
-    //the objects properties key are arrays
-    //
-    //
-    // "dates": {
-    //     "2022-07-09": {
-    //         "data": [{
-    //             "start": "09:00",
-    //             "end": "10:00",
-    //             "name": "Eat Breakfast",
-    //             "notes": "Don't overeat"
-    //         }, {
     console.log(calendarDatabase["dates"]);
     let dates = calendarDatabase["dates"];
 
@@ -210,18 +144,11 @@ function purgeCalendar() {
         console.log(dates[date]["data"]);
         console.log(dates[date]["data"].length);
         if (dates[date]["data"].length === 0) {
-            //need to remove this specific property 
-            //from the dates object
+            t
             delete dates[date];
         }
     }
-
     console.log(calendarDatabase["dates"]);
-
-    // let date = calendarDatabase["dates"];
-    // for (let date of dates) {
-    //     console.log(date);
-    // }
 }
 
 function deleteCalendarEntry() {
@@ -255,7 +182,6 @@ function clearCalendarFormEntries() {
 }
 
 function sortCalendarByStartTime(date) {
-    //let date = document.getElementById("calendar-date").value;
     let field = calendarDatabase["headers"][0];
     destructiveSort(calendarDatabase["dates"][date]["data"], field);
 }
@@ -283,12 +209,7 @@ function loadCalendarDatabase() {
             let fileReader = new FileReader();
             fileReader.onload = function(fileLoadedEvent) {
                 fileContents = fileLoadedEvent.target.result;
-                //if (inputFile["name"].slice(-5) === ".json") {
-                //	baseFilename = inputFile["name"].slice(0, -5);
-                //}
                 calendarDatabase = JSON.parse(fileContents);
-                //clearCalendarFormEntries(table);
-                //calendarTable.innerHTML=buildCalendarTableElement(table);
             };
 
             fileReader.readAsText(inputFile, "UTF-8");
@@ -299,8 +220,6 @@ function loadCalendarDatabase() {
 
 function saveCalendarDatabase(calendarDatabase) {
     let str = JSON.stringify(calendarDatabase);
-    //if (baseFilename === "") {
     let baseFilename = calendarDatabase["name"] + getTodaysDate();
-    //}
     saveStringToTextFile(str, baseFilename, ".json");
 }
