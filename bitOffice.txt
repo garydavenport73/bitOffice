@@ -1,9 +1,7 @@
 To do next on program
 
-    O combine calendar and contacts into one database
-    O combine save for both
-
-        
+    X combine calendar and contacts into one database
+    X combine save for both
 
     Ask to save contacts calendar at close
     Warn to save documents at close.
