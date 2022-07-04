@@ -44,7 +44,7 @@ function buildContactsTableElement(contactsTable) {
     return tableElement;
 }
 
-function newContactsEntry(contactsTable) {
+function newContactsEntry() {
     //show what's being edited
     contactsEditFormMessage.innerHTML = contactsTable["name"] + ": New Entry";
     contactsEditForm.innerHTML = buildContactsEditForm(contactsTable, -1);
@@ -86,7 +86,7 @@ function buildContactsEditForm(contactsTable, index) {
     return editForm;
 }
 
-function saveContactsEntry(contactsTable) {
+function saveContactsEntry() {
     let index = parseInt(document.getElementById("contacts-row-index").value);
     //console.log(index);
     let headers = contactsTable["headers"];
@@ -104,7 +104,7 @@ function saveContactsEntry(contactsTable) {
     showMain("main-contacts-table");
 }
 
-function deleteContactsEntry(contactsTable) {
+function deleteContactsEntry() {
     let index = parseInt(document.getElementById("contacts-row-index").value);
     if (index >= 0) { //editing an entry
         if (confirm("Delete this entry?")) {
@@ -116,7 +116,7 @@ function deleteContactsEntry(contactsTable) {
     showMain("main-contacts-table");
 }
 
-function cancelContactsEntry(contactsTable) {
+function cancelContactsEntry() {
     clearContactFormEntries(contactsTable);
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
     showMain("main-contacts-table");

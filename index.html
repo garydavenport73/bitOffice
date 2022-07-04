@@ -113,14 +113,14 @@
     <main id="main-tables-header-form">
         </h2>Tables</h2>
         <h3>Column: <span id="tables-current-header">header name here</span></h3>
-        <button onclick="updateHeaderName(tablesTable);">Change name to:</button>
+        <button onclick="updateHeaderName();">Change name to:</button>
         <input id="tables-new-header-name" type="text" placeholder="name">
-        <button onclick="deleteColumn(tablesTable);">Delete Column</button>
-        <button onclick="copyColumn(tablesTable)">Copy Column</button>
-        <button onclick="moveColumn(tablesTable)">Move To Column</button><select id="move-column"></select>
-        <button onclick="calculateTotal(tablesTable)">Add Total</button>
-        <button onclick="calculateAverage(tablesTable)">Compute Average</button>
-        <button onclick="tablesCancel(tablesTable)">Cancel</button>
+        <button onclick="deleteColumn();">Delete Column</button>
+        <button onclick="copyColumn()">Copy Column</button>
+        <button onclick="moveColumn()">Move To Column</button><select id="move-column"></select>
+        <button onclick="calculateTotal()">Add Total</button>
+        <button onclick="calculateAverage()">Compute Average</button>
+        <button onclick="tablesCancel()">Cancel</button>
     </main>
     <main id="main-tables-row-form">
         <h2>Tables</h2>
@@ -129,12 +129,12 @@
         <button onclick="copyRow()">Copy Row</button>
         <button onclick="moveRow()">Move To Row</button>
         <select id="move-row"></select>
-        <button onclick="tablesCancel(tablesTable)">Cancel</button>
+        <button onclick="tablesCancel()">Cancel</button>
     </main>
     <main id="main-contacts-table">
         <h2 id="contacts-table-name">Contacts</h2>
         <nav>
-            <button onclick='newContactsEntry(contactsTable);'>+ New Contact</button>
+            <button onclick='newContactsEntry();'>+ New Contact</button>
             <button onclick="processCSVClick(contactsTable);">CSV</button>
         </nav>
 
@@ -144,9 +144,9 @@
         <h2>Contacts</h2>
         <div id="contacts-edit-form-message"></div>
         <div id="contacts-edit-form"></div>
-        <button onclick='saveContactsEntry(contactsTable);'>Save</button>
-        <button onclick='deleteContactsEntry(contactsTable);'>Delete</button>
-        <button onclick='cancelContactsEntry(contactsTable);'>Cancel</button>
+        <button onclick='saveContactsEntry();'>Save</button>
+        <button onclick='deleteContactsEntry();'>Delete</button>
+        <button onclick='cancelContactsEntry();'>Cancel</button>
     </main>
     <main id="main-calendar-start">
         <h2>Calendar</h2>

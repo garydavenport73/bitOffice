@@ -142,6 +142,11 @@ main>input {
     min-width: 100%;
 }
 
+.tables-table-row-number {
+    min-width: 1rem;
+    text-align: center;
+}
+
 
 /* these 2 used together to apply min width to anything
 in between first and last table header */

@@ -49,7 +49,7 @@ function makeTable(table) {
     console.log(bodyData);
     let rowCount = bodyData.length;
     for (let i = 0; i < rowCount; i++) {
-        str += "<tr><td id='row-" + i.toString() + "' onclick='processRowClick(" + i.toString() + ")'>" + i.toString() + "</td>";
+        str += "<tr><td class='tables-table-row-number' onclick='processRowClick(" + i.toString() + ")'>" + i.toString() + "</td>";
         let columnCount = headers.length;
         console.log(columnCount);
         for (let j = 0; j < columnCount; j++) {
@@ -120,7 +120,8 @@ function updateDataFromCurrentInputs(table) {
     }
 }
 //Column functions
-function updateHeaderName(table) {
+function updateHeaderName() {
+    //let table = tablesTable;
     //get old name
     let fieldName = document.getElementById("tables-current-header").innerHTML;
     //get new name
@@ -128,7 +129,7 @@ function updateHeaderName(table) {
 
     //do nothing if they are the same
     if (fieldName === newName) {
-        makeTable(table);
+        makeTable(tablesTable);
         return;
     }
     if (newName === "") { //if blank make new
@@ -138,9 +139,9 @@ function updateHeaderName(table) {
         }
     }
 
-    table = _changeHeaderAndDataPropertyName(table, newName, fieldName);
+    tablesTable = _changeHeaderAndDataPropertyName(tablesTable, newName, fieldName);
 
-    makeTable(table);
+    makeTable(tablesTable);
     showMain('main-tables-table');
 }
 
@@ -158,17 +159,20 @@ function _changeHeaderAndDataPropertyName(table, newName, oldName) {
 }
 
 
-function deleteColumn(table) {
-    let columnName = document.getElementById("tables-current-header").innerHTML;
-    let index = table["headers"].indexOf(columnName);
+function deleteColumn() {
 
-    table["headers"].splice(index, 1); //delete from header array
-    //loop through rows
-    for (let i = 0; i < table["data"].length; i++) {
-        delete table["data"][i][columnName];
+    let columnName = document.getElementById("tables-current-header").innerHTML;
+    if (confirm("Are you sure? \n\nDelete Column: " + columnName + "?")) {
+        let index = tablesTable["headers"].indexOf(columnName);
+
+        tablesTable["headers"].splice(index, 1); //delete from header array
+        //loop through rows
+        for (let i = 0; i < tablesTable["data"].length; i++) {
+            delete tablesTable["data"][i][columnName];
+        }
+        makeTable(tablesTable);
+        showMain('main-tables-table');
     }
-    makeTable(table);
-    showMain('main-tables-table');
 }
 
 function addColumn(table) {
@@ -190,22 +194,22 @@ function addColumn(table) {
     makeTable(table);
 }
 
-function moveColumn(table) {
+function moveColumn() {
     let columnName = document.getElementById("tables-current-header").innerHTML;
     let destinationColumnName = document.getElementById("move-column").value;
     if (columnName === destinationColumnName) {
         console.log("destination is same as source");
         return;
     }
-    let index = table["headers"].indexOf(columnName);
+    let index = tablesTable["headers"].indexOf(columnName);
 
 
-    let destinationIndex = table["headers"].indexOf(destinationColumnName);
+    let destinationIndex = tablesTable["headers"].indexOf(destinationColumnName);
 
-    let headerToMove = table["headers"].splice(index, 1)[0]; //splice returns an array length 1
+    let headerToMove = tablesTable["headers"].splice(index, 1)[0]; //splice returns an array length 1
 
-    table["headers"].splice(destinationIndex, 0, headerToMove);
-    makeTable(table);
+    tablesTable["headers"].splice(destinationIndex, 0, headerToMove);
+    makeTable(tablesTable);
     showMain('main-tables-table');
 }
 
@@ -224,34 +228,33 @@ function getBestName(table, name) {
     return bestName;
 }
 
-function copyColumn(table) {
+function copyColumn() {
     //get column 
     let columnName = document.getElementById("tables-current-header").innerHTML;
 
     //make name for new column
-    let newName = getBestName(table, columnName);
+    let newName = getBestName(tablesTable, columnName);
     //add to headers			
-    table["headers"].push(newName);
+    tablesTable["headers"].push(newName);
 
     //go through rows of data
-    for (let i = 0; i < table["data"].length; i++) {
-        table["data"][i][newName] = table["data"][i][columnName];
+    for (let i = 0; i < tablesTable["data"].length; i++) {
+        tablesTable["data"][i][newName] = tablesTable["data"][i][columnName];
     }
 
-    makeTable(table);
+    makeTable(tablesTable);
     showMain('main-tables-table');
 
 }
 
 
 
-function calculateTotal(table) {
+function calculateTotal() {
     //get column 
     let columnName = document.getElementById("tables-current-header").innerHTML;
 
-
     let total = 0;
-    for (let row of table.data) {
+    for (let row of tablesTable.data) {
         total = total + Number(row[columnName]);
     }
     if (confirm("The total is: " + total.toString() + "\nCopy to clipboard?")) {
@@ -260,9 +263,9 @@ function calculateTotal(table) {
     showMain('main-tables-table');
 }
 
-function tablesCancel(table) {
+function tablesCancel() {
     console.log("tablesCancel called");
-    makeTable(table); //probably not needed
+    makeTable(tablesTable); //probably not needed
     showMain('main-tables-table');
 
 }
@@ -275,11 +278,11 @@ function calculateAverage() {
 
     let total = 0;
 
-    for (let row of table.data) {
+    for (let row of tablesTable.data) {
         total = total + Number(row[columnName]);
     }
 
-    let average = total / table.data.length;
+    let average = total / tablesTable.data.length;
 
     if (confirm("The average is: " + average.toString() + "\nCopy to clipboard?")) {
         copyToClipBoard(average.toString());
@@ -302,20 +305,20 @@ function addRow(table) {
 
 function deleteRow() {
     let index = parseInt(document.getElementById("tables-current-row").innerHTML);
-    let data = table["data"];
+    let data = tablesTable["data"];
     data.splice(index, 1);
-    makeTable(table);
+    makeTable(tablesTable);
     showMain('main-tables-table');
 }
 
 function copyRow() {
     console.log("copy row called");
     let index = parseInt(document.getElementById("tables-current-row").innerHTML);
-    let data = table["data"];
+    let data = tablesTable["data"];
     console.log(data);
-    let rowToCopy = JSON.parse(JSON.stringify(table.data[index]));
+    let rowToCopy = JSON.parse(JSON.stringify(tablesTable.data[index]));
     data.push(rowToCopy);
-    makeTable(table);
+    makeTable(tablesTable);
     showMain('main-tables-table');
 }
 
