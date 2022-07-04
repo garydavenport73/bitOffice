@@ -142,6 +142,11 @@ main>input {
     min-width: 100%;
 }
 
+.tables-table-row-number {
+    min-width: 1rem;
+    text-align: center;
+}
+
 
 /* these 2 used together to apply min width to anything
 in between first and last table header */
@@ -317,60 +322,11 @@ nav {
 }
 
 
-/*///////////////////////////////////////*/
-
-
-/**********************************/
-
-
 /*  Needed for printiing in notes, may refactor to function*/
 
 pre {
     white-space: pre-wrap;
     overflow-wrap: break-word;
-}
-
-
-/*  CALCULATOR STUFF */
-
-.filler {
-    flex-grow: 1;
-}
-
-#calculator-table {
-    /* background-color: lightblue; */
-    width: 90%;
-    min-width: 0%;
-}
-
-#calculator-table td button {
-    font-size: 2rem;
-    width: 100%;
-    height: 4rem;
-}
-
-.special-calculator-button {
-    background-color: #ffcc33;
-    border: 1px solid grey;
-}
-
-#calculator-result-row {
-    display: flex;
-    flex-direction: row;
-}
-
-#calculator-result-row * {
-    font-size: 1.4rem;
-}
-
-#calculator-result-row input {
-    width: 60%;
-}
-
-#expression-span {
-    overflow-wrap: anywhere;
-    min-height: 18px;
-    color: grey;
 }
 
 
@@ -417,15 +373,6 @@ nav>button:hover {
     background-color: #BDBDBD;
 }
 
-nav:not(#document-settings, #edit-bar) button {
-    /* background-color: green; */
-    /* border-radius: 5px;
-    padding: 5px;
-    margin: 2px;
-    min-height: 25px; */
-    /* font-size: 1.4rem; */
-}
-
 #top-nav button {
     padding: 5px;
     margin: 1px;
@@ -442,15 +389,7 @@ nav:not(#document-settings, #edit-bar) button {
     min-height: 25px;
 }
 
-h1:not(#document-result h1)
-/* ,
-h2:not(#document-result h2),
-h3:not(#document-result h3),
-h4:not(#document-result h4),
-h5:not(#document-result h5),
-h6:not(#document-result h6)  */
-
-{
+h1:not(#document-result h1) {
     background-color: mediumblue;
     text-align: center;
     padding: 2px;
@@ -591,40 +530,6 @@ table {
     border: 1px solid grey;
 }
 
-
-/*
-colors overall blue:
-O notes         yellow
-O write         darker blue
-O contacts      purple
-O calendar      orange
-O tables        green
-O calculator    dark
-*/
-
-
-/*
-red         --->vermilion: rgb(224, 53, 36);
-orange      --->princeton-orange: rgb(240, 124, 18);
-yellow      --->mikado-yellow: rgb(255, 194, 0);
-lightgreen  --->apple-green: rgb(144, 188, 26);
-green       --->yellow-green-color-wheel: rgb(33, 181, 52);
-light blue  --->blue-munsell: rgb(0, 149, 172);
-blue        --->green-blue: rgb(31, 100, 173);
-dark blue   --->blue-pigment: rgb(64, 64, 160);
-purple      --->dark-magenta: rgb(144, 52, 152);
-*/
-
-
-/*Has to come at end so that 
-the document is displayed correctly 
-in the write app */
-
-
-/*Keep in correct order should set to initial settings
-any property of an ancestor previously set is unset
-for anything inside the result document 				*/
-
 #document-result * {
     background-color: unset;
     width: unset;
@@ -657,6 +562,44 @@ main {
 
 #back-nav {
     display: none;
+}
+
+
+/*  CALCULATOR STUFF */
+
+#calculator-table {
+    width: 90%;
+    min-width: 0%;
+}
+
+#calculator-table td button {
+    font-size: 2rem;
+    width: 100%;
+    height: 4rem;
+}
+
+.special-calculator-button {
+    background-color: #ffcc33;
+    border: 1px solid grey;
+}
+
+#last-calculator-expression {
+    overflow-wrap: anywhere;
+    min-height: 18px;
+    color: grey;
+}
+
+#calculator-input {
+    width: 90%;
+    height: 30px;
+    font-size: 1.4rem;
+    text-align: right;
+}
+
+#calc-clr button {
+    width: 50%;
+    font-size: 1.4rem;
+    padding: 5px;
 }
 
 

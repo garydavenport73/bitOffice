@@ -1,22 +1,9 @@
-//////////////GLOBALS/////////////////////////
-//  ------------notes --------------------
-// let noteFontSize = 2.5 / 3.0;
-// let note = document.getElementById('note');
-//////////////GLOBALS/////////////////////////
-
 initializeNotesApp();
 
 function initializeNotesApp() {
-
     note.style.fontSize = noteFontSize.toString() + "rem";
     note.spellcheck = false;
     note.focus();
-    /////////////////////////////////////////////////
-    ////Asks if you really want to close browser
-
-    //window.onbeforeunload = askConfirm;
-    //showMain('main-notes');
-    //let needsSave = true;
 }
 
 
@@ -58,21 +45,12 @@ function notesLoad() {
     inputTypeIsFile.click();
 }
 
-
-
-////////////////////////////////////////////
-//Save related functions, often used with date functions below
 function notesSave() {
     basename = "notes" + getTodaysDate();
     saveStringToTextFile(note.value, basename, ".txt");
     compareNoteValue = note.value;
 }
 
-
-
-
-
-//Trying print functions
 function printNotesDiv(id) {
     let a = window.open();
     a.document.write(serializeNotesElementToPage(id, "html{background-color:white;}#note{font-size:" + noteFontSize + "rem}"));
@@ -89,13 +67,8 @@ function serializeNotesElementToPage(id, extraStyle = "") {
     for (let i = 0; i < allStyleTags.length; i++) {
         styleElementContent = allStyleTags[i].innerHTML;
     }
-    //let styleElementContent = document.getElementsByTagName('style')[0].innerHTML;
-    //let extraStyle = "html,#document-result,#document-parent{background-color:white;}";
     let boilerPlate2 = "</style></head><body>"
     let boilerPlate3 = "</body></html>";
-    //let s = new XMLSerializer();
-    //let myElement = document.getElementById(id);
-    //let str = s.serializeToString(myElement);
     let str = "<pre id='note'>" + document.getElementById(id).value + "</pre>";
     let htmlPage = boilerPlate1 + styleElementContent + extraStyle + boilerPlate2 + str + boilerPlate3;
     console.log(htmlPage);
