@@ -13,24 +13,19 @@ To do next on program
     xRedo
 
     Write
-    Tab button
+    xTab button
     xUndo redo
     xMake textarea smaller
 
     Tables
-    Make row buttons bigger
+    xMake row buttons bigger
 
     Calc
-    Make result row bigger
-    Move back clear buttons
+    xMake result row bigger
+    xMove back clear buttons
 
     Calendar
-    Make always sort by start date
-
-    Check height of all entry forms
-
-
-
+    xMake always sort by start date
 
 bit office 64k
                             non-styled          combined database
