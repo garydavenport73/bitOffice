@@ -1,22 +1,21 @@
 To do next on program
 
-    O combine calendar and contacts into one database
-    O combine save for both
+    x combine calendar and contacts into one database
+    x combine save for both
 
-        
-
-    Ask to save contacts calendar at close
-    Warn to save documents at close.
-    Write help page
-    Make load contacts calendar button work
+    x Ask to save contacts calendar at close
+    x Warn to save documents at close.
+    x Write help page
+    x Make load contacts calendar button work
 
     Notes
-    Undo Redo
+    xUndo 
+    xRedo
 
     Write
     Tab button
-    Undo redo
-    Make textarea smaller
+    xUndo redo
+    xMake textarea smaller
 
     Tables
     Make row buttons bigger

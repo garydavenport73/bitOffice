@@ -200,6 +200,10 @@ function simulateUndo() {
     document.execCommand('undo', false, null);
 }
 
+function simulateRedo() {
+    document.execCommand('redo', false, null);
+}
+
 function askConfirm() {
     return "Did you remember to save your data?";
 }

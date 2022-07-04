@@ -272,11 +272,6 @@ nav {
     max-width: 90%;
 }
 
-#text-editor {
-    height: 200px;
-    max-width: 90%;
-}
-
 
 /***********write layout and css****************/
 
@@ -303,6 +298,10 @@ nav {
     background-color: cadetblue;
     border: 1px solid black;
     /* min-height: 30px; */
+}
+
+#text-editor {
+    height: 150px;
 }
 
 #text-editor {
@@ -373,7 +372,8 @@ nav>button:hover {
     background-color: #BDBDBD;
 }
 
-#top-nav button {
+#top-nav button,
+#back-nav button {
     padding: 5px;
     margin: 1px;
     min-height: 25px;

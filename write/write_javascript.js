@@ -12,23 +12,40 @@ function initializeWriteApp() {
     document.getElementById('text-editor').addEventListener('keydown', function(e) {
         //https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea
         //https://stackoverflow.com/users/819732/kasdega
+        //console.log(this);
         if (e.key == 'Tab') {
             e.preventDefault();
-            let start = this.selectionStart;
-            let end = this.selectionEnd;
-            // set textarea value to: text before caret + tab + text after caret
-            this.value = this.value.substring(0, start) +
-                //"    " + this.value.substring(end); using 4 spaces
-                "\t" + this.value.substring(end);
-            // put caret at right position again
-            this.selectionStart =
-                //this.selectionEnd = start + 4; using 4 spaces
-                this.selectionEnd = start + 1;
-            writeUpdateResult();
+            insertTab(this);
+            // let start = this.selectionStart;
+            // let end = this.selectionEnd;
+            // // set textarea value to: text before caret + tab + text after caret
+            // this.value = this.value.substring(0, start) +
+            //     //"    " + this.value.substring(end); using 4 spaces
+            //     "\t" + this.value.substring(end);
+            // // put caret at right position again
+            // this.selectionStart =
+            //     //this.selectionEnd = start + 4; using 4 spaces
+            //     this.selectionEnd = start + 1;
+            // writeUpdateResult();
         }
     });
     compareWriteData = makeCompareWriteData();
 }
+
+function insertTab(aTextarea) {
+    let start = aTextarea.selectionStart;
+    let end = aTextarea.selectionEnd;
+    // set textarea value to: text before caret + tab + text after caret
+    aTextarea.value = aTextarea.value.substring(0, start) +
+        //"    " + this.value.substring(end); using 4 spaces
+        "\t" + aTextarea.value.substring(end);
+    // put caret at right position again
+    aTextarea.selectionStart =
+        //aTextarea.selectionEnd = start + 4; using 4 spaces
+        aTextarea.selectionEnd = start + 1;
+    writeUpdateResult();
+}
+
 
 //Script to print the content of a div
 function exportToHTML() {
@@ -148,18 +165,99 @@ function writeLoad() {
 }
 
 
+function addUndo() { //moving "foward", check to see if cursor is at end or not
 
-function processSelectedText(clickedElement) {
-    let action = clickedElement.innerHTML;
-    console.log(action);
-    if (action != "⟲") {
+    console.log(writeUndos.length, writeUndosCursor);
+    console.log(writeUndos);
+    if (writeUndos.length - 1 === writeUndosCursor) {
+        console.log("we are at end");
         if (writeUndos.length >= 316) { //316 levels of undo
             writeUndos.shift();
             writeUndos.push(textarea.value);
         } else {
             writeUndos.push(textarea.value);
+            writeUndosCursor += 1;
+
+            //  a   b   c   d   e
+            //  0   1   2   3   4
+            //          ^
+            //  ---keep---  xxxxx
+            //  
+            //use slice(0,-2)
+            //
+            //  -2 is the length - (cursor + 1)
+            //               5   -    3
+
         }
+        console.log(writeUndos);
+    } else {
+        console.log("we are not at end");
+        console.log(writeUndos);
+        let removeNumberOfElements = writeUndos.length - (writeUndosCursor + 1);
+        writeUndos = writeUndos.slice(0, -removeNumberOfElements);
+        console.log(writeUndos);
+        //remove everything past the cursor
+        //then push new value
+
+        writeUndos.push(textarea.value);
+        writeUndosCursor += 1;
+
+        console.log(writeUndos);
+
     }
+
+
+
+}
+
+function backUndo() { //this is just undo
+    console.log("back Undo called");
+    console.log(writeUndos);
+    console.log(writeUndosCursor);
+    //if (writeUndos.length > 1) {
+    if (writeUndosCursor > 0) {
+        //let thisText = writeUndos.pop();
+        let thisText = writeUndos[writeUndosCursor - 1];
+        textarea.value = thisText;
+        writeUpdateResult();
+        writeUndosCursor = writeUndosCursor - 1;
+    }
+    // else if (writeUndos.length === 1) { //don't go past initial entry
+    //     textarea.value = writeUndos[0];
+    //     writeUpdateResult()
+    //     writeUndosCursor = 0;
+    // }
+    // else if (writeUndos.length === 0) { //should never reach this case;
+    //     textarea.value = "";
+    //     writeUpdateResult();
+    //     writeUndosCursor = 0;
+    // }
+    console.log(writeUndos);
+    console.log(writeUndosCursor);
+}
+
+function writeRedo() {
+    console.log("redo called");
+    // if we are at end do nothing, otherwise advance
+    if (writeUndos.length - 1 === writeUndosCursor) {
+        console.log("we are at end");
+    } else {
+        console.log("we are not at end");
+        writeUndosCursor += 1;
+
+        let thisText = writeUndos[writeUndosCursor];
+        textarea.value = thisText;
+        writeUpdateResult();
+
+    }
+}
+
+function processSelectedText(clickedElement) {
+    let action = clickedElement.innerHTML;
+    console.log(action);
+    // if (action != "⟲") {
+    //     addUndo();
+    // }
 
     if (action === "⇚") { //align left
         documentDiv.style.textAlign = "left";
@@ -195,19 +293,10 @@ function processSelectedText(clickedElement) {
         documentDiv.style.marginLeft = marginSize.toString() + "rem";
         documentDiv.style.marginRight = marginSize.toString() + "rem";
     } else if (action === "⟲") {
+
+        backUndo();
         //console.log("undo called");
-        console.log(writeUndos);
-        if (writeUndos.length > 1) {
-            let thisText = writeUndos.pop();
-            textarea.value = thisText;
-            writeUpdateResult();
-        } else if (writeUndos.length === 1) { //don't go past initial entry
-            textarea.value = writeUndos[0];
-            writeUpdateResult()
-        } else if (writeUndos.length === 0) { //should never reach this case;
-            textarea.value = "";
-            writeUpdateResult();
-        }
+
 
     } else if (action === "✓") {
         console.log(textarea.spellcheck);
@@ -216,6 +305,11 @@ function processSelectedText(clickedElement) {
         textarea.focus();
         //textarea.blur();
     }
+    // else if (action === "↹") {
+    //     //alert("tab called");
+    //     insertTab(textarea);
+    //     return;
+    // }
 
     let len = textarea.value.length;
     let start = textarea.selectionStart;
@@ -245,15 +339,23 @@ function processSelectedText(clickedElement) {
         replace = '<hr>' + sel;
     } else if (action === "•") {
         replace = '&bullet; ' + sel;
+    } else if (action === "↹") {
+        replace = "\t" + sel;
     }
     // Here we are replacing the selected text with this one
     textarea.value = textarea.value.substring(0, start) + replace + textarea.value.substring(end, len);
     writeUpdateResult();
+    textarea.selectionStart = start + replace.length;
+    textarea.selectionEnd = start + replace.length;
+    textarea.focus();
+    if (action != "⟲") {
+        addUndo();
+    }
 }
 
 function writeUpdateResult() {
     let currentContents = document.getElementById('text-editor').value;
-    console.dir(document.getElementById('text-editor'));
+    //console.dir(document.getElementById('text-editor'));
     //console.log(currentContents);
     document.getElementById('document-result').innerHTML = currentContents.replaceAll('\n', '<br>');
     if (textarea.spellcheck === true) {

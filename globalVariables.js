@@ -60,6 +60,7 @@ let documentDiv = document.getElementById('document-result');
 let remSize = 1;
 let marginSize = 2;
 let writeUndos = [];
+let writeUndosCursor = 0;
 
 let compareWriteData = "";
 
