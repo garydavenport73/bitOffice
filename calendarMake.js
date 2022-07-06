@@ -19,7 +19,9 @@ function makeCalendar() { //
     let yearToUse = parseInt(monthChooser.value.split("-")[0]);
     let daysInMonth = daysInSomeMonth(monthToUse, yearToUse);
 
-    let calendarString = "<table><tr>";
+    let calendarString = "<table>";
+    calendarString += "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>";
+    calendarString += "<tr>";
 
     //blank days
     //so start day is the number of loops to do conincidentally
@@ -130,5 +132,10 @@ function colorCalendarEntries() {
         } else {
             entry.style["backgroundColor"] = "darkorange";
         }
+        
+        if (getTodaysDate()===thisDate){
+			entry.style["border"]="1px solid mediumblue";
+			entry.style["font-weight"]="bold";
+		}
     }
 }

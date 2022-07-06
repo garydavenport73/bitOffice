@@ -134,6 +134,24 @@ main>input {
     display: none;
 }
 
+#special-calendar{
+	width: 240px;
+}
+
+
+
+#special-calendar table td{
+	height:2rem;
+	text-align:center;
+	width:2rem;
+}
+
+.return-calendar-date:hover{
+	background-color:white;
+}
+
+
+
 
 /* --------------tables app layout -------------------- */
 
