@@ -268,7 +268,7 @@ nav {
 /* -----------notes app layout----------------- */
 
 #note {
-    height: 400px;
+    height: 350px;
     max-width: 90%;
 }
 
@@ -301,7 +301,7 @@ nav {
 }
 
 #text-editor {
-    height: 150px;
+    height: 100px;
 }
 
 #text-editor {

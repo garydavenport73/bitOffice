@@ -43,8 +43,12 @@ let contactsTable = {
         "work": "tel",
         "website": "text"
     },
-    "data": [{ "name": 'John', "cell": '316-123-1234', "email": 'john@junkmail.com', "address": '3160 Patmos Dr., Eden, WV  12345' }]
+    // "data": [{ "name": 'John', "cell": '316-123-1234', "email": 'john@junkmail.com', "address": '3160 Patmos Dr., Eden, WV  12345' }],
+    //"data": [{ "name": "John", "cell": "316-123-1234", "email": "john@junkmail.com", "address": "3160 Patmos Dr., Eden, WV  12345", "home": "", "work": "", "website": "" }]
+    "data": []
 }
+
+
 
 //  ------------notes --------------------
 let noteFontSize = 2.5 / 3.0;

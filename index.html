@@ -26,19 +26,30 @@
     <nav id="back-nav">
         <button onclick="processGoBackFromApp(currentApp);">&#127968;</button>
     </nav>
-
     <main id="main-startup">
-        <h2>Personal Database</h2>
-        <button onclick="loadCombinedDatabase()">&#128194; Load</button>
-        <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save</button>
+        <h2>Load/Save</h2>
+        <button id="startup-load-button" onclick="loadCombinedDatabase()">&#128194; Load my bitOffice Data</button>
+        <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save my bitOffice Data</button>
     </main>
     <main id="main-help">
         <h2>Help</h2>
-        <pre>
-            <h3>bitOffice64</h3><br>Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.<br>
-            <br> It contains:<br> • A personal database with:<br> - Contacts<br> - A Planner<br> • A notes text editor<br> • A word processor<br> • A CSV spreadsheet editor<br> • A calculator.
-            <br><br>No special server software needs to be installed an there is no installation.  If you an html5 browser, just open this file and you're good to go!
+        <pre><h3>bitOffice64</h3>
+Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.
+
+It contains:
+    • A personal database with:
+        - Contacts
+        - Calendar
+    • A notes text editor
+    • A word processor
+    • A CSV spreadsheet editor
+    • A calculator
+
+If you've used bitOffice before go to the 📂Load/Save page to load your bitOffice data.
+
+If you're a new user, you can jump right in and when you're done, save your data on the 📂Load/Save page.
         </pre>
+        <button onclick="showMain('main-startup');">📂Load/Save</button>
         <p>Check out the project at: <a target="_blank" href="https://github.com/garydavenport73/bitOffice">bitOffice64.</a></p>
         <p>...and other projects at: <a target="_blank" href="https://github.com/garydavenport73">my GitHub Site.</a></p>
     </main>
@@ -222,7 +233,7 @@
     <script src="./calendar/calendar_javascript.js"></script>
     <script src="./newCalculator/newCalculator_javascript.js"></script>
     <script>
-        showMain('main-startup');
+        showMain('main-help');
         window.onbeforeunload = askConfirm;
     </script>
 </body>

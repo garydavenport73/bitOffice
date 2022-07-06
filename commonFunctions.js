@@ -33,7 +33,7 @@ function loadCombinedDatabase() {
 function saveCombinedDatabase() {
     purgeCalendar();
     let str = JSON.stringify(combinedDatabase);
-    let baseFilename = "bitOfficeProfile" + getTodaysDate();
+    let baseFilename = "bitOfficeData" + getTodaysDate();
     saveStringToTextFile(str, baseFilename, ".bof");
     compareCombinedDatabase = JSON.stringify(combinedDatabase);
 }
@@ -220,15 +220,15 @@ function showMain(id) {
     document.getElementById(id).style.display = "flex"; //comment out
 }
 
-function getCurrentDisplayedMain() {
-    let mains = document.getElementsByTagName('main');
-    for (let main of mains) {
-        console.log(main.id);
-        if (main.style.display != "none") {
-            return main.id;
-        }; //comment out
-    }
-}
+// function getCurrentDisplayedMain() {
+//     let mains = document.getElementsByTagName('main');
+//     for (let main of mains) {
+//         console.log(main.id);
+//         if (main.style.display != "none") {
+//             return main.id;
+//         }; //comment out
+//     }
+// }
 
 //          clipboard function          //
 function copyToClipBoard(str) {
