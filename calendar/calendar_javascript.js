@@ -23,7 +23,9 @@ function processOpenCalendar() {
 }
 
 function processCalendarHome() {
+    makeCalendar();
     showMain("main-calendar-start");
+
 }
 
 function processCalendarCSVClick() {
@@ -144,12 +146,12 @@ function purgeCalendar() {
         console.log(dates[date]["data"]);
         console.log(dates[date]["data"].length);
         if (dates[date]["data"].length === 0) {
-            t
             delete dates[date];
         }
     }
     console.log(calendarDatabase["dates"]);
 }
+
 
 function deleteCalendarEntry() {
     let index = parseInt(document.getElementById("calendar-row-index").value);

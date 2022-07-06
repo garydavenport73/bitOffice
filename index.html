@@ -163,11 +163,10 @@ If you're a new user, you can jump right in and when you're done, save your data
     </main>
     <main id="main-calendar-start">
         <h2>Calendar</h2>
-
-        <div>
-            <input type='date' id="calendar-date">
-        </div>
-        <button onclick="processOpenCalendar();">Open</button>
+        <div><input type='date' id="calendar-date"></div>
+		<input id="month-chooser" type="month">
+		<div id="special-calendar"></div>
+        <!--<button onclick="processOpenCalendar();">Open</button>-->
     </main>
     <main id="main-calendar-table">
         <h2>Calendar</h2>
@@ -230,6 +229,7 @@ If you're a new user, you can jump right in and when you're done, save your data
     <script src="./contacts/contacts_javascript.js"></script>
     <script src="./calendar/calendar_javascript.js"></script>
     <script src="./newCalculator/newCalculator_javascript.js"></script>
+    <script src="calendarMake.js"></script>  
     <script>
         showMain('main-help');
         window.onbeforeunload = askConfirm;

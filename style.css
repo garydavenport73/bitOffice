@@ -130,6 +130,8 @@ main>input {
     height: 3rem;
     text-align: center;
     font-size: 1.4em;
+    /* added after using as hidden input */
+    display: none;
 }
 
 
