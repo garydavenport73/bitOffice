@@ -210,11 +210,7 @@ function addUndo() { //moving "foward", check to see if cursor is at end or not
         writeUndosCursor += 1;
 
         console.log(writeUndos);
-
     }
-
-
-
 }
 
 function backUndo() { //this is just undo
