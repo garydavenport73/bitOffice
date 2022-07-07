@@ -425,9 +425,6 @@ function destructiveSort(arrayOfObjects, field, direction = 1) {
         return 0;
     });
 }
-<<<<<<< HEAD
-
-
 
 function makeFavicon(){
 /*
@@ -473,5 +470,3 @@ https://stackoverflow.com/users/906658/bengt
 }
 
 makeFavicon();
-=======
->>>>>>> 62450789e5cc86b3183e624eb5f502b4e710fdb1
