@@ -21,6 +21,7 @@ function loadCombinedDatabase() {
                 calendarDatabase = combinedDatabase["calendar"];
                 clearContactFormEntries(contactsTable);
                 contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+                makeCalendar();
             };
 
             fileReader.readAsText(inputFile, "UTF-8");
@@ -424,3 +425,50 @@ function destructiveSort(arrayOfObjects, field, direction = 1) {
         return 0;
     });
 }
+
+
+
+function makeFavicon(){
+/*
+https://stackoverflow.com/questions/12809144/how-to-create-a-favicon-in-javascript
+https://stackoverflow.com/users/906658/bengt
+    var canvas = document.createElement('canvas');
+    canvas.width = 16;
+    canvas.height = 16;
+    var ctx = canvas.getContext('2d');
+    ctx.fillStyle = "#aaa";
+    ctx.fillRect(0, 0, 16, 16);
+    ctx.fillStyle = "#afa";
+    ctx.fillRect(4, 4, 8, 8);            
+    var link = document.createElement('link');
+    link.type = 'image/x-icon';
+    link.rel = 'shortcut icon'; //should be 'icon' I believe
+    link.href = canvas.toDataURL("image/x-icon");
+    document.getElementsByTagName('head')[0].appendChild(link);
+
+ */
+    let canvas = document.createElement('canvas');
+    canvas.width = 16;
+    canvas.height = 16;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = "mediumblue";
+    ctx.fillRect(0, 0, 16, 16);
+	const ctx2 = canvas.getContext("2d");
+	ctx2.fillStyle = "white";
+	ctx2.font = "bold 12px Arial";
+	//ctx2.fillText("ⓑ",1,13);
+	ctx2.fillText("b",4,12);
+	
+	//	const ctx3 = canvas.getContext("2d");
+	//ctx3.fillStyle = "white";
+	//ctx3.font = "20px Arial";
+
+	//ctx3.fillText("O",0,15);
+	
+	
+	
+    let link=document.getElementById("favicon-link");
+    link.href = canvas.toDataURL("image/x-icon");
+}
+
+makeFavicon();

@@ -445,7 +445,7 @@ nav>button:hover {
 #main-tables-table button,
 #main-contacts-table button,
 #main-calendar-table button {
-    padding: 5px;
+    padding: 4px;
     margin: 1px;
     min-height: 25px;
 }
@@ -506,6 +506,8 @@ select {
 button,
 table {
     border: 1px solid grey;
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 

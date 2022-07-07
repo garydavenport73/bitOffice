@@ -102,3 +102,4 @@ let compareCombinedDatabase = JSON.stringify(combinedDatabase);
 let initialCombinedDatabase = compareCombinedDatabase;
 
 let currentApp = "";
+
