@@ -21,6 +21,7 @@ function loadCombinedDatabase() {
                 calendarDatabase = combinedDatabase["calendar"];
                 clearContactFormEntries(contactsTable);
                 contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+                makeCalendar();
             };
 
             fileReader.readAsText(inputFile, "UTF-8");
