@@ -16,7 +16,7 @@ input:invalid {
 
 /* -------------------general tables----------------------- */
 
-tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot>tr, #calculator-table tr) {
+tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot>tr, #calculator-table tr, #special-calendar tr) {
     background-color: white;
 }
 
@@ -146,10 +146,51 @@ main>input {
 	width:2rem;
 }
 
+
+
+
+
+
+#special-calendar, #special-calendar *{
+/*padding:0;
+margin:0;
+border-radius:0;
+background-color:initial;*/
+
+
+
+
+}
+
+#special-calendar table, #special-calendar tr, #special-calendar td, #month-chooser{
+/*font-family: 'Courier New', Courier, monospace;*/
+font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
+font-size:16px;
+padding:0;
+margin:0;
+border-radius:0;
+background-color:white;
+font
+}
+
+#special-calendar .return-calendar-date:hover{
+background-color:#E0E0E0;;
+}
+
+
+
+
 .return-calendar-date:hover{
 	background-color:white;
 }
 
+
+/**************experiment**
+.return-calendar-date:hover{
+	background-color:white;
+}
+
+**************/
 
 
 
@@ -661,4 +702,22 @@ main {
     h1:not(#document-result h1) {
         width: 900px;
     }
+}
+
+button, h1, h2, h3, h4, h5, h6 {
+    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
+    cursor: default;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+   supported by Chrome, Edge, Opera and Firefox */
 }
