@@ -1,9 +1,0 @@
-calculator_javascript.js
-calendar_javascript.js
-commonFunctions.js
-contacts_javascript.js
-globalVariables.js
-notes_javascript.js
-startup.js
-tables_javascript.js
-write_javascript.js

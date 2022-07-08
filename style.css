@@ -240,6 +240,14 @@ in between first and last table header */
     width: auto;
 }
 
+#add-column{
+background-color:#BDBDBD;
+}
+#add-row:hover, #add-column:hover{
+background-color:white;
+border-radius:5px;
+}
+
 #main-tables-header-form input,
 #main-tables-header-form select,
 #main-tables-header-form button,
