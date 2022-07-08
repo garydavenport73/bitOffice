@@ -16,6 +16,10 @@ input:invalid {
 
 /* -------------------general tables----------------------- */
 
+thead {
+    background-color: #E0E0E0;
+}
+
 tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot>tr, #calculator-table tr, #special-calendar tr) {
     background-color: white;
 }

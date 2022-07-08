@@ -165,7 +165,7 @@ function serializeElementToPage(id, extraStyle = "") {
     for (let i = 0; i < allStyleTags.length; i++) {
         styleElementContent = allStyleTags[i].innerHTML;
     }
-    let boilerPlate2 = "</style></head><body>"
+    let boilerPlate2 = "</style></head><body>";
     let boilerPlate3 = "</body></html>";
     let s = new XMLSerializer();
     let myElement = document.getElementById(id);
