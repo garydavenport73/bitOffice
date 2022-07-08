@@ -31,9 +31,7 @@
         <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save my bitOffice Data</button>
     </main>
     <main id="main-help">
-        <h2>Help</h2>
-        <pre><h3>bitOffice64</h3>
-Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.
+        <h2>Help</h2><pre><h3><a href="https://github.com/garydavenport73/bitOffice", target="_blank">bitOffice64</a></h3>Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.
 
 It contains:
     • A personal database with:
@@ -49,8 +47,8 @@ If you've used bitOffice before go to the 📂Load/Save page to load your bitOff
 If you're a new user, you can jump right in and when you're done, save your data on the 📂Load/Save page.
         </pre>
         <button onclick="showMain('main-startup');">📂Load/Save</button>
-        <p>Check out the project at: <a target="_blank" href="https://github.com/garydavenport73/bitOffice">bitOffice64.</a></p>
-        <p>...and other projects at: <a target="_blank" href="https://github.com/garydavenport73">my GitHub Site.</a></p>
+        <!--<p>Check out the project at: <a target="_blank" href="https://github.com/garydavenport73/bitOffice">bitOffice64.</a></p>
+        <p>...and other projects at: <a target="_blank" href="https://github.com/garydavenport73">my GitHub Site.</a></p>-->
     </main>
     <main id="main-notes">
         <h2>Notes</h2>
@@ -125,7 +123,7 @@ If you're a new user, you can jump right in and when you're done, save your data
         </div>
     </main>
     <main id="main-tables-header-form">
-        </h2>Tables</h2>
+        <!--</h2>Tables</h2>-->
         <h3>Column: <span id="tables-current-header">header name here</span></h3>
         <button onclick="updateHeaderName();">Change name to:</button>
         <input id="tables-new-header-name" type="text" placeholder="name">
@@ -134,6 +132,8 @@ If you're a new user, you can jump right in and when you're done, save your data
         <button onclick="moveColumn()">Move To Column</button><select id="move-column"></select>
         <button onclick="calculateTotal()">Add Total</button>
         <button onclick="calculateAverage()">Compute Average</button>
+        <button onclick="tablesSort(1)">Sort Ascending &uarr;</button>
+        <button onclick="tablesSort(-1)">Sort Descending &darr;</button>
         <button onclick="tablesCancel()">Cancel</button>
     </main>
     <main id="main-tables-row-form">
@@ -174,6 +174,7 @@ If you're a new user, you can jump right in and when you're done, save your data
         <h3 id="calendar-table-name"></h3>
         <nav>
             <button onclick='newCalendarEntry();'>+ New Entry</button>
+            <button onclick="processCalendarHome();">Back to Main Calendar</button>
             <button onclick="processCalendarCSVClick();">CSV</button>
         </nav>
         <div id="calendar-table" class="table-container"></div>

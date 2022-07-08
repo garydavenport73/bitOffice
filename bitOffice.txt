@@ -1,3 +1,21 @@
+help screen
+x remove bottom stuff
+x smaller h3 and link
+
+contacts
+x make div min height
+
+calendar
+x showing:
+x back to calendar
+x calendar table min-height
+
+tables
+x model table more like spreadsheet
+x added sort
+
+
+------------------------------------
 To do next on program
 
     x combine calendar and contacts into one database

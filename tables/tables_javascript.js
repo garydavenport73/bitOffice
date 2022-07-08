@@ -145,6 +145,35 @@ function updateHeaderName() {
     showMain('main-tables-table');
 }
 
+function tablesSort(direction){
+	let field = document.getElementById("tables-current-header").innerHTML;
+	sortTablesByField(field,direction);
+	
+	}
+	
+function sortTablesByField(field,direction=1) {
+		if (confirm("Sort by " +field + "?\n\nThis is destructive and irreversible.")) {
+			destructiveSort(tablesTable["data"], field, direction);
+			//tablesSortAscending = -1 * tablesSortAscending;
+			makeTable(tablesTable);
+			showMain('main-tables-table');
+		}
+}
+
+/*
+function sortContactsByField(clickedHeaderElement) {
+    let field = clickedHeaderElement.innerHTML;
+    if (contactsTable["data"].length>0){
+		if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
+			destructiveSort(contactsTable["data"], field, contactsSortAscending);
+			contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+			contactsSortAscending = -1 * contactsSortAscending;
+		}
+	}
+}
+*/
+	
+
 function _changeHeaderAndDataPropertyName(table, newName, oldName) {
     let data = table["data"];
     newName = getBestName(table, newName);

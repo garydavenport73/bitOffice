@@ -10,7 +10,7 @@ let calcInput = document.getElementById('calculator-input');
 
 //-------------tables-----------------------
 let tableElement = document.getElementById('tables-table');
-let tablesSortAscending = 1; //direction -1 is descending, otherwise ascending
+let tablesSortAscending = 1; //direction -1 is descending, otherwise ascending, not needed.
 let tablesTable = {
     "name": "Table",
     "headers": ["Column 1", "Column 2", "Column 3"],
@@ -30,6 +30,7 @@ let initialTablesTable = compareTablesTable;
 let contactsTableElement = document.getElementById("contacts-table");
 let contactsEditForm = document.getElementById("contacts-edit-form");
 let contactsEditFormMessage = document.getElementById("contacts-edit-form-message");
+let contactsSortAscending = 1;//direction -1 is descending, otherwise ascending
 
 let contactsTable = {
     "name": "Contacts",
@@ -72,6 +73,8 @@ let compareWriteData = "";
 let calendarTable = document.getElementById("calendar-table");
 let calendarEditForm = document.getElementById("calendar-edit-form");
 let calendarEditFormMessage = document.getElementById("calendar-edit-form-message");
+let daysAbbreviations = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+let calendarSortAscending = 1;//direction -1 is descending, otherwise ascending
 
 let calendarDatabase = {
     "name": "Calendar",

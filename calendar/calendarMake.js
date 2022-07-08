@@ -8,11 +8,18 @@ console.log(getTodaysDate().slice(0, -3));
 makeCalendar();
 
 
+function getDayOfWeek(isoYearMonthDay){
+	console.log(isoYearMonthDay);
+	let d = new Date(isoYearMonthDay + "T00:00");
+	console.log(d.getDay());
+    return d.getDay(); //zero based day
+	}
+
 function makeCalendar() { //
     console.log("--------------------");
     console.log(monthChooser.value);
     console.log("--------------------");
-    let daysAbbreviations = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
+    
     let d = new Date(monthChooser.value + "-01T00:00");
     let startDayIndex = d.getDay(); //zero based day
     let monthToUse = parseInt(monthChooser.value.split("-")[1]) - 1;
@@ -88,9 +95,9 @@ function openDayEntry(evt) {
         calendarDatabase["dates"][theDate]["data"] = [];
     }
 
-    document.getElementById("calendar-table-name").innerHTML = "<span onclick='processCalendarHome();'>" + theDate + " &#128197;</span>";
+    //document.getElementById("calendar-table-name").innerHTML = "<span onclick='processCalendarHome();'>" + theDate + " &#128197;</span>";
 
-    //document.getElementById("calendar-table-name").innerHTML = "<span onclick='processCalendarHome();'>" + theDate + "</span>";
+    document.getElementById("calendar-table-name").innerHTML = daysAbbreviations[getDayOfWeek(theDate)] +" "+ theDate + "</span>";
 
     calendarTable.innerHTML = buildCalendarTableElement(theDate);
 

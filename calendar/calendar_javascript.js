@@ -2,6 +2,7 @@ function initializeCalendarApp() {
     document.getElementById("calendar-table-name").innerHTML = calendarDatabase["name"];
 }
 
+/*
 function processOpenCalendar() {
     let date = document.getElementById("calendar-date").value;
     console.log(date);
@@ -16,11 +17,13 @@ function processOpenCalendar() {
     }
 
     document.getElementById("calendar-table-name").innerHTML = "<span onclick='processCalendarHome();'>" + date + " &#128197;</span>";
+    //document.getElementById("calendar-table-name").innerHTML = "<span>Showing events for: " + date + "</span>";
 
     calendarTable.innerHTML = buildCalendarTableElement(date);
     showMain("main-calendar-table");
     console.log(calendarDatabase);
 }
+*/
 
 function processCalendarHome() {
     makeCalendar();
@@ -193,9 +196,9 @@ function sortCalendarByField(clickedHeaderElement) {
     let field = clickedHeaderElement.innerHTML;
     if (calendarDatabase["dates"][date]["data"].length > 1) { //shouldn't sort if there is only one row.
         if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
-            destructiveSort(calendarDatabase["dates"][date]["data"], field, sortAscending);
+            destructiveSort(calendarDatabase["dates"][date]["data"], field, calendarSortAscending);
             calendarTable.innerHTML = buildCalendarTableElement(date);
-            sortAscending = -1 * sortAscending;
+            calendarSortAscending = -1 * calendarSortAscending;
         };
     }
 }

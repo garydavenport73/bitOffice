@@ -134,12 +134,13 @@ function clearContactFormEntries(contactsTable) {
 
 function sortContactsByField(clickedHeaderElement) {
     let field = clickedHeaderElement.innerHTML;
-
-    if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
-        destructiveSort(contactsTable["data"], field, sortAscending);
-        contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
-        sortAscending = -1 * sortAscending;
-    };
+    if (contactsTable["data"].length>1){
+		if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
+			destructiveSort(contactsTable["data"], field, contactsSortAscending);
+			contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+			contactsSortAscending = -1 * contactsSortAscending;
+		}
+	}
 }
 
 function loadContactsTable() {
