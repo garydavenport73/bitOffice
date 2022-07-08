@@ -67,6 +67,8 @@ function serializeNotesElementToPage(id, extraStyle = "") {
     for (let i = 0; i < allStyleTags.length; i++) {
         styleElementContent = allStyleTags[i].innerHTML;
     }
+
+    styleElementContent += "pre{white-space: pre-wrap;overflow-wrap: break-word;margin: 0;padding: 0;}"
     let boilerPlate2 = "</style></head><body>"
     let boilerPlate3 = "</body></html>";
     let str = "<pre id='note'>" + document.getElementById(id).value + "</pre>";

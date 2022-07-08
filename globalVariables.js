@@ -1,16 +1,8 @@
-/////////////////GLOBALS///////////////////
-//         calculator        //
-// let calcString = "";
-// let calculatorInput = document.getElementById('calculator-input');
-// let charToAdd = "";
-// let expressionSpan = document.getElementById('expression-span');
-
-
+//---calculator----
 let calcInput = document.getElementById('calculator-input');
 
-//-------------tables-----------------------
+//---tables----
 let tableElement = document.getElementById('tables-table');
-let tablesSortAscending = 1; //direction -1 is descending, otherwise ascending, not needed.
 let tablesTable = {
     "name": "Table",
     "headers": ["Column 1", "Column 2", "Column 3"],
@@ -22,15 +14,13 @@ let tablesTable = {
 }
 
 let compareTablesTable = JSON.stringify(tablesTable);
-
 let initialTablesTable = compareTablesTable;
 
 //------------------contacts and calendar database ----------------------
-
 let contactsTableElement = document.getElementById("contacts-table");
 let contactsEditForm = document.getElementById("contacts-edit-form");
 let contactsEditFormMessage = document.getElementById("contacts-edit-form-message");
-let contactsSortAscending = 1;//direction -1 is descending, otherwise ascending
+let contactsSortAscending = 1;
 
 let contactsTable = {
     "name": "Contacts",
@@ -44,12 +34,9 @@ let contactsTable = {
         "work": "tel",
         "website": "text"
     },
-    // "data": [{ "name": 'John', "cell": '316-123-1234', "email": 'john@junkmail.com', "address": '3160 Patmos Dr., Eden, WV  12345' }],
     //"data": [{ "name": "John", "cell": "316-123-1234", "email": "john@junkmail.com", "address": "3160 Patmos Dr., Eden, WV  12345", "home": "", "work": "", "website": "" }]
     "data": []
 }
-
-
 
 //  ------------notes --------------------
 let noteFontSize = 2.5 / 3.0;
@@ -58,23 +45,21 @@ note.value = "";
 let compareNoteValue = "";
 
 //-----------------write---------------------
-
-let writeBaseFilename = "";
 let textarea = document.getElementById("text-editor");
 let documentDiv = document.getElementById('document-result');
 let remSize = 1;
 let marginSize = 2;
 let writeUndos = [];
 let writeUndosCursor = 0;
-
 let compareWriteData = "";
 
 //----------------calendar-------------------------
 let calendarTable = document.getElementById("calendar-table");
 let calendarEditForm = document.getElementById("calendar-edit-form");
 let calendarEditFormMessage = document.getElementById("calendar-edit-form-message");
+let monthChooser = document.getElementById("month-chooser");
 let daysAbbreviations = ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"];
-let calendarSortAscending = 1;//direction -1 is descending, otherwise ascending
+let calendarSortAscending = 1;
 
 let calendarDatabase = {
     "name": "Calendar",
@@ -85,15 +70,11 @@ let calendarDatabase = {
         "name": "text",
         "notes": "text"
     },
-    "dates": {
-
-    }
+    "dates": {}
 
 }
 
-
-
-//              COMBINED DATABASE
+//	COMBINED DATABASE
 
 let combinedDatabase = {
     "contacts": contactsTable,
@@ -101,8 +82,5 @@ let combinedDatabase = {
 }
 
 let compareCombinedDatabase = JSON.stringify(combinedDatabase);
-
 let initialCombinedDatabase = compareCombinedDatabase;
-
 let currentApp = "";
-

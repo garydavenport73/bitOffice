@@ -4,12 +4,10 @@ function initializeTablesApp() {
     makeTable(tablesTable);
 }
 
-
 function backupTablesTable() {
     updateDataFromCurrentInputs(tablesTable);
     return JSON.parse(JSON.stringify(currentTablesTable));
 }
-
 
 function processColumnClick(header) {
     updateDataFromCurrentInputs(tablesTable);
@@ -18,7 +16,6 @@ function processColumnClick(header) {
     document.getElementById("tables-new-header-name").value = header;
     showMain("main-tables-header-form");
 }
-
 
 function processRowClick(row) {
     updateDataFromCurrentInputs(tablesTable);
@@ -145,34 +142,19 @@ function updateHeaderName() {
     showMain('main-tables-table');
 }
 
-function tablesSort(direction){
-	let field = document.getElementById("tables-current-header").innerHTML;
-	sortTablesByField(field,direction);
-	
-	}
-	
-function sortTablesByField(field,direction=1) {
-		if (confirm("Sort by " +field + "?\n\nThis is destructive and irreversible.")) {
-			destructiveSort(tablesTable["data"], field, direction);
-			//tablesSortAscending = -1 * tablesSortAscending;
-			makeTable(tablesTable);
-			showMain('main-tables-table');
-		}
+function tablesSort(direction) {
+    let field = document.getElementById("tables-current-header").innerHTML;
+    sortTablesByField(field, direction);
+
 }
 
-/*
-function sortContactsByField(clickedHeaderElement) {
-    let field = clickedHeaderElement.innerHTML;
-    if (contactsTable["data"].length>0){
-		if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
-			destructiveSort(contactsTable["data"], field, contactsSortAscending);
-			contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
-			contactsSortAscending = -1 * contactsSortAscending;
-		}
-	}
+function sortTablesByField(field, direction = 1) {
+    if (confirm("Sort by " + field + "?\n\nThis is destructive and irreversible.")) {
+        destructiveSort(tablesTable["data"], field, direction);
+        makeTable(tablesTable);
+        showMain('main-tables-table');
+    }
 }
-*/
-	
 
 function _changeHeaderAndDataPropertyName(table, newName, oldName) {
     let data = table["data"];
@@ -189,11 +171,9 @@ function _changeHeaderAndDataPropertyName(table, newName, oldName) {
 
 
 function deleteColumn() {
-
     let columnName = document.getElementById("tables-current-header").innerHTML;
     if (confirm("Are you sure? \n\nDelete Column: " + columnName + "?")) {
         let index = tablesTable["headers"].indexOf(columnName);
-
         tablesTable["headers"].splice(index, 1); //delete from header array
         //loop through rows
         for (let i = 0; i < tablesTable["data"].length; i++) {
@@ -231,29 +211,22 @@ function moveColumn() {
         return;
     }
     let index = tablesTable["headers"].indexOf(columnName);
-
-
     let destinationIndex = tablesTable["headers"].indexOf(destinationColumnName);
-
     let headerToMove = tablesTable["headers"].splice(index, 1)[0]; //splice returns an array length 1
-
     tablesTable["headers"].splice(destinationIndex, 0, headerToMove);
     makeTable(tablesTable);
     showMain('main-tables-table');
 }
 
-function getBestName(table, name) {
-
+function getBestName(table, name) { //if header name taken, returns similar name
     let headers = table["headers"];
     let nameCount = 0;
     let bestName = name;
-
     while (headers.includes(bestName)) {
         console.log("column name already in use");
         nameCount += 1;
         bestName = name + "-" + nameCount.toString();
     }
-
     return bestName;
 }
 
@@ -263,6 +236,7 @@ function copyColumn() {
 
     //make name for new column
     let newName = getBestName(tablesTable, columnName);
+
     //add to headers			
     tablesTable["headers"].push(newName);
 
@@ -273,10 +247,7 @@ function copyColumn() {
 
     makeTable(tablesTable);
     showMain('main-tables-table');
-
 }
-
-
 
 function calculateTotal() {
     //get column 

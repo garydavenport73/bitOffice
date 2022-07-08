@@ -134,44 +134,11 @@ function clearContactFormEntries(contactsTable) {
 
 function sortContactsByField(clickedHeaderElement) {
     let field = clickedHeaderElement.innerHTML;
-    if (contactsTable["data"].length>1){
-		if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
-			destructiveSort(contactsTable["data"], field, contactsSortAscending);
-			contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
-			contactsSortAscending = -1 * contactsSortAscending;
-		}
-	}
-}
-
-function loadContactsTable() {
-    if (confirm("This will overwrite current table")) {
-        let fileContents = "";
-        let inputTypeIsFile = document.createElement('input');
-        inputTypeIsFile.type = "file";
-        inputTypeIsFile.accept = ".json";
-        inputTypeIsFile.addEventListener("change", function() {
-            let inputFile = inputTypeIsFile.files[0];
-            let fileReader = new FileReader();
-            fileReader.onload = function(fileLoadedEvent) {
-                fileContents = fileLoadedEvent.target.result;
-                if (inputFile["name"].slice(-5) === ".json") {
-                    baseFilename = inputFile["name"].slice(0, -5);
-                }
-                contactsTable = JSON.parse(fileContents);
-                clearContactFormEntries(contactsTable);
-                contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
-            };
-
-            fileReader.readAsText(inputFile, "UTF-8");
-        });
-        inputTypeIsFile.click();
+    if (contactsTable["data"].length > 1) {
+        if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
+            destructiveSort(contactsTable["data"], field, contactsSortAscending);
+            contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+            contactsSortAscending = -1 * contactsSortAscending;
+        }
     }
-}
-
-function savecontactsTableElement(contactsTable) {
-    let str = JSON.stringify(contactsTable);
-    //if (baseFilename === "") {
-    baseFilename = contactsTable["name"] + getTodaysDate();
-    //}
-    saveStringToTextFile(str, baseFilename, ".json");
 }

@@ -23,8 +23,6 @@ function initializeWriteApp() {
     });
 
     document.getElementById('text-editor').addEventListener('input', updateUndosIfTextChanges); //catching key inputs
-    //document.getElementById('text-editor').addEventListener('change', updateUndosIfTextChanges);
-
     compareWriteData = makeCompareWriteData();
 }
 
@@ -53,7 +51,6 @@ function insertTab(aTextarea) {
     writeUpdateResult();
 }
 
-
 //Script to print the content of a div
 function exportToHTML() {
     let contents = serializeElementToPage("document-parent", "html,#document-result,#document-parent{background-color:white;}");
@@ -62,8 +59,6 @@ function exportToHTML() {
         saveStringToTextFile(contents, 'write' + getTodaysDate(), '.html');
     }
 }
-
-
 
 function newDocument() {
     if (confirm("This will overwrite current document.")) {
@@ -225,16 +220,6 @@ function backUndo() { //this is just undo
         writeUpdateResult();
         writeUndosCursor = writeUndosCursor - 1;
     }
-    // else if (writeUndos.length === 1) { //don't go past initial entry
-    //     textarea.value = writeUndos[0];
-    //     writeUpdateResult()
-    //     writeUndosCursor = 0;
-    // }
-    // else if (writeUndos.length === 0) { //should never reach this case;
-    //     textarea.value = "";
-    //     writeUpdateResult();
-    //     writeUndosCursor = 0;
-    // }
     console.log(writeUndos);
     console.log(writeUndosCursor);
 }
@@ -368,7 +353,6 @@ function writeUpdateResult() {
         document.getElementById("spell-check").style.color = "red";
     }
 }
-
 
 function printWriteDiv(id) {
     let a = window.open();

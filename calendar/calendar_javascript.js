@@ -1,55 +1,35 @@
+initializeCalendarApp();
+
 function initializeCalendarApp() {
-    document.getElementById("calendar-table-name").innerHTML = calendarDatabase["name"];
+    monthChooser.addEventListener("input", makeCalendar);
+    monthChooser.addEventListener("change", makeCalendar);
+    monthChooser.value = getTodaysDate().slice(0, -3);
+    console.log(getTodaysDate().slice(0, -3));
+    makeCalendar();
 }
-
-/*
-function processOpenCalendar() {
-    let date = document.getElementById("calendar-date").value;
-    console.log(date);
-
-    if (date === "") {
-        return;
-    }
-    //check to see if year entry is in datbase
-    if (calendarDatabase["dates"][date] === undefined) {
-        calendarDatabase["dates"][date] = {};
-        calendarDatabase["dates"][date]["data"] = [];
-    }
-
-    document.getElementById("calendar-table-name").innerHTML = "<span onclick='processCalendarHome();'>" + date + " &#128197;</span>";
-    //document.getElementById("calendar-table-name").innerHTML = "<span>Showing events for: " + date + "</span>";
-
-    calendarTable.innerHTML = buildCalendarTableElement(date);
-    showMain("main-calendar-table");
-    console.log(calendarDatabase);
-}
-*/
 
 function processCalendarHome() {
     makeCalendar();
     showMain("main-calendar-start");
-
 }
 
 function processCalendarCSVClick() {
-    let headers = calendarDatabase["headers"];
-    let date = document.getElementById("calendar-date").value;
-    let data = calendarDatabase["dates"][date]["data"];
+    let date = document.getElementById("calendar-date").value;;
     let tempTable = {};
-    tempTable["headers"] = headers;
-    tempTable["data"] = data;
+    tempTable["headers"] = calendarDatabase["headers"];
+    tempTable["data"] = calendarDatabase["dates"][date]["data"];
     tempTable["name"] = "Calendar";
-
     processCSVClick(tempTable);
-
 }
 
 function buildCalendarTableElement(date) { //needs headers data
-    sortCalendarByStartTime(date);
-    let dataEntriesArrayForGivenDay = calendarDatabase["dates"][date]["data"];
+
+    destructiveSort(calendarDatabase["dates"][date]["data"], calendarDatabase["headers"][0]); //sort by start time
+
+    let daysEntries = calendarDatabase["dates"][date]["data"];
     let tableElement = "";
     let numberOfColumns = calendarDatabase["headers"].length;
-    let numberOfRows = dataEntriesArrayForGivenDay.length;
+    let numberOfRows = daysEntries.length;
 
     //start table
     tableElement += "<table>";
@@ -63,13 +43,11 @@ function buildCalendarTableElement(date) { //needs headers data
 
     //build table body	
     tableElement += "<tbody>";
-
     for (let i = 0; i < numberOfRows; i++) {
         tableElement += "<tr id='calendar-table-row-" + i.toString() + "' onclick=\"selectCalendarEditForm(" + i.toString() + ")\">";
         for (let j = 0; j < numberOfColumns; j++) {
             let fieldName = calendarDatabase["headers"][j];
-            //console.log(table["data"][i][fieldName]);
-            tableElement += "<td>" + dataEntriesArrayForGivenDay[i][fieldName] + "</td>";
+            tableElement += "<td>" + daysEntries[i][fieldName] + "</td>";
         }
         tableElement += "</tr>";
     }
@@ -87,7 +65,6 @@ function newCalendarEntry(table) {
 
 function selectCalendarEditForm(clickedRowIndex) {
     //show what's being edited
-    //let index = parseInt(clickedRow.id.split("-")[3]);
     calendarEditFormMessage.innerHTML = document.getElementById("calendar-date").value + ": Entry " + clickedRowIndex.toString();
     calendarEditForm.innerHTML = buildCalendarEditForm(clickedRowIndex);
     showMain("main-calendar-form");
@@ -141,9 +118,7 @@ function saveCalendarEntry() {
 }
 
 function purgeCalendar() {
-    console.log(calendarDatabase["dates"]);
     let dates = calendarDatabase["dates"];
-
     for (let date in dates) {
         console.log(date);
         console.log(dates[date]["data"]);
@@ -152,9 +127,7 @@ function purgeCalendar() {
             delete dates[date];
         }
     }
-    console.log(calendarDatabase["dates"]);
 }
-
 
 function deleteCalendarEntry() {
     let index = parseInt(document.getElementById("calendar-row-index").value);
@@ -176,7 +149,6 @@ function cancelCalendarEntry() {
     showMain("main-calendar-table");
 }
 
-
 function clearCalendarFormEntries() {
     let headers = calendarDatabase["headers"];
     for (let j = 0; j < headers.length; j++) {
@@ -186,15 +158,10 @@ function clearCalendarFormEntries() {
     calendarEditFormMessage.innerHTML = "";
 }
 
-function sortCalendarByStartTime(date) {
-    let field = calendarDatabase["headers"][0];
-    destructiveSort(calendarDatabase["dates"][date]["data"], field);
-}
-
 function sortCalendarByField(clickedHeaderElement) {
     let date = document.getElementById("calendar-date").value;
     let field = clickedHeaderElement.innerHTML;
-    if (calendarDatabase["dates"][date]["data"].length > 1) { //shouldn't sort if there is only one row.
+    if (calendarDatabase["dates"][date]["data"].length > 1) { //don't sort if less than 2 rows.
         if (confirm("Sort by " + clickedHeaderElement.innerHTML + "?")) {
             destructiveSort(calendarDatabase["dates"][date]["data"], field, calendarSortAscending);
             calendarTable.innerHTML = buildCalendarTableElement(date);
@@ -203,28 +170,102 @@ function sortCalendarByField(clickedHeaderElement) {
     }
 }
 
-function loadCalendarDatabase() {
-    if (confirm("This will overwrite current table")) {
-        let fileContents = "";
-        let inputTypeIsFile = document.createElement('input');
-        inputTypeIsFile.type = "file";
-        inputTypeIsFile.accept = ".json";
-        inputTypeIsFile.addEventListener("change", function() {
-            let inputFile = inputTypeIsFile.files[0];
-            let fileReader = new FileReader();
-            fileReader.onload = function(fileLoadedEvent) {
-                fileContents = fileLoadedEvent.target.result;
-                calendarDatabase = JSON.parse(fileContents);
-            };
+function makeCalendar() {
+    console.log("--------------------");
+    console.log(monthChooser.value);
+    console.log("--------------------");
 
-            fileReader.readAsText(inputFile, "UTF-8");
-        });
-        inputTypeIsFile.click();
+    let d = new Date(monthChooser.value + "-01T00:00");
+    let startDayIndex = d.getDay(); //zero based day
+    let monthToUse = parseInt(monthChooser.value.split("-")[1]) - 1;
+    let yearToUse = parseInt(monthChooser.value.split("-")[0]);
+    let daysInMonth = daysInSomeMonth(monthToUse, yearToUse);
+
+    let calendarString = "<table>";
+    //header
+    calendarString += "<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>";
+
+    //start rows
+    calendarString += "<tr>";
+
+    //blank days
+    //so start day is the number of loops to do conincidentally
+    for (let i = 0; i < startDayIndex; i++) {
+        console.log("x", daysAbbreviations[i]);
+        calendarString += "<td>" + "-" + "</td>";
+    }
+
+    //days
+    for (let i = 0; i < daysInMonth; i++) {
+        let thisDate = i + 1; //date 1 indexed
+        let thisDayOfWeek = daysAbbreviations[(i + startDayIndex) % 7];
+        if ((i + startDayIndex) % 7 === 0) {
+            console.log("--------new line ----------");
+            calendarString += "</tr><tr>"
+        }
+        calendarString += "<td class='return-calendar-date'>" + (i + 1).toString() + "</td>";
+        console.log(thisDate, thisDayOfWeek);
+    }
+
+    //blank days at end
+    //find out what day of week last day is on
+    let lastDayIndex = (daysInMonth - 1 + startDayIndex) % 7;
+    let blankSpacesRemaining = 6 - lastDayIndex;
+    for (let i = 0; i < blankSpacesRemaining; i++) {
+        console.log("x", daysAbbreviations[lastDayIndex + 1 + i]);
+        calendarString += "<td>" + "-" + "</td>";
+    }
+    calendarString += "</tr></table>";
+
+    document.getElementById('special-calendar').innerHTML = calendarString;
+    addEventListenersToCalendarEntries();
+    purgeCalendar();
+    colorCalendarEntries();
+    return calendarString;
+
+}
+
+function addEventListenersToCalendarEntries() {
+    let calendarEntries = document.getElementsByClassName('return-calendar-date');
+    for (let entry of calendarEntries) {
+        entry.addEventListener("click", (evt) => { openDayEntry(evt) });
     }
 }
 
-function saveCalendarDatabase(calendarDatabase) {
-    let str = JSON.stringify(calendarDatabase);
-    let baseFilename = calendarDatabase["name"] + getTodaysDate();
-    saveStringToTextFile(str, baseFilename, ".json");
+function openDayEntry(evt) {
+    //add "0" to date then slice -2 to ensure leading 0
+    let theDate = monthChooser.value + "-" + ("0" + evt.target.innerHTML).slice(-2);
+    document.getElementById("calendar-date").value = theDate;
+    if (theDate === "") {
+        return;
+    }
+    //check to see if year entry is in database, if needed make entry
+    if (calendarDatabase["dates"][theDate] === undefined) {
+        calendarDatabase["dates"][theDate] = {};
+        calendarDatabase["dates"][theDate]["data"] = [];
+    }
+
+    document.getElementById("calendar-table-name").innerHTML = daysAbbreviations[getDayOfWeek(theDate)] + " " + theDate + "</span>";
+    calendarTable.innerHTML = buildCalendarTableElement(theDate);
+    showMain("main-calendar-table");
+}
+
+function colorCalendarEntries() {
+    purgeCalendar();
+    let calendarEntries = document.getElementsByClassName('return-calendar-date');
+    for (let entry of calendarEntries) {
+
+        let thisDate = monthChooser.value + "-" + ("0" + entry.innerHTML).slice(-2);
+
+        if (calendarDatabase["dates"][thisDate] === undefined) {
+            entry.style["backgroundColor"] = "#E0E0E0;";
+        } else {
+            entry.style["backgroundColor"] = "darkorange";
+        }
+
+        if (getTodaysDate() === thisDate) {
+            entry.style["border"] = "1px solid grey";
+            entry.style["font-weight"] = "bold";
+        }
+    }
 }

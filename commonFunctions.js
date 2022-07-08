@@ -39,15 +39,6 @@ function saveCombinedDatabase() {
     compareCombinedDatabase = JSON.stringify(combinedDatabase);
 }
 
-function setColorOfBackupSaveButton() {
-    console.log("called set color of backup button")
-    if (compareCombinedDatabase === JSON.stringify(combinedDatabase)) { //saved
-        document.getElementById('saveButton').style.backgroundColor = "unset";
-    } else {
-        document.getElementById('saveButton').style.backgroundColor = "orange";
-    }
-}
-
 function processGoToApp(theApp) {
     if ((theApp === 'contacts') || (theApp === 'calendar')) {
         compareCombinedDatabase = JSON.stringify(combinedDatabase);
@@ -61,9 +52,6 @@ function processGoToApp(theApp) {
     if (theApp === 'write') {
         compareWriteData = makeCompareWriteData();
     }
-    if (theApp === 'calculator') {
-        //
-    }
     currentApp = theApp;
     document.getElementById('top-nav').style.display = "none";
     document.getElementById('back-nav').style.display = "flex";
@@ -72,11 +60,8 @@ function processGoToApp(theApp) {
 function processGoBackFromApp(currentApp) {
     console.log("process check save for " + currentApp);
     if ((currentApp === "contacts") || (currentApp === "calendar")) {
-        if (JSON.stringify(combinedDatabase) === compareCombinedDatabase) {
-            console.log("check not needed, nothing's changed");
-        } else {
-            console.log("ask about saving the database, it has changed.");
-            if (confirm("The database has change, save the changes to a file?")) {
+        if (JSON.stringify(combinedDatabase) != compareCombinedDatabase) {
+            if (confirm("The database has changed, save the changes to a file?")) {
                 saveCombinedDatabase();
                 compareCombinedDatabase = JSON.stringify(combinedDatabase);
             }
@@ -84,21 +69,15 @@ function processGoBackFromApp(currentApp) {
     }
     if (currentApp === "tables") {
         updateDataFromCurrentInputs(tablesTable);
-        if (JSON.stringify(tablesTable) === compareTablesTable) {
-            console.log("in tables, check not needed, nothing's changed");
-        } else {
-            console.log("need to ask about saving the table");
-            if (confirm("The table has change, save the changes to a file?")) {
+        if (JSON.stringify(tablesTable) != compareTablesTable) {
+            if (confirm("The table has changed, save the changes to a file?")) {
                 tablesSave();
                 compareTablesTable = JSON.stringify(tablesTable);
             }
         }
     }
     if (currentApp === "notes") {
-        if (note.value === compareNoteValue) {
-            console.log("in notes, check not needed, nothing's changed");
-        } else {
-            console.log("need to ask about saving the note");
+        if (note.value != compareNoteValue) {
             if (confirm("The note has changed, save the changes to a file?")) {
                 notesSave();
                 compareNoteValue = note.value;
@@ -106,18 +85,12 @@ function processGoBackFromApp(currentApp) {
         }
     }
     if (currentApp === "write") {
-        if (compareWriteData === makeCompareWriteData()) {
-            console.log("in write, check not needed, nothing's changed");
-        } else {
-            console.log("need to ask about saving write document");
+        if (compareWriteData != makeCompareWriteData()) {
             if (confirm("The document has changed, save the changes to a file?")) {
                 writeDataToJSON();
                 compareWriteData = makeCompareWriteData();
             }
         }
-    }
-    if (currentApp === "calculator") {
-        //
     }
     document.getElementById('top-nav').style.display = "flex";
     document.getElementById('back-nav').style.display = "none";
@@ -176,6 +149,11 @@ function daysInThisMonth() {
     return daysInSomeMonth(thisMonth, thisYear);
 }
 
+function getDayOfWeek(isoYearMonthDay) {
+    let d = new Date(isoYearMonthDay + "T00:00");
+    return d.getDay(); //zero based day
+}
+
 ///////////////// serialize to web page //////////////////////
 
 function serializeElementToPage(id, extraStyle = "") {
@@ -212,24 +190,13 @@ function askConfirm() {
 //page navigation//
 
 function showMain(id) {
-    console.log("show mains called with " + id);
+    //console.log("show mains called with " + id);
     let mains = document.getElementsByTagName('main');
     for (let main of mains) {
-        //console.log(main.id);
-        main.style.display = "none"; //comment out
+        main.style.display = "none";
     }
-    document.getElementById(id).style.display = "flex"; //comment out
+    document.getElementById(id).style.display = "flex";
 }
-
-// function getCurrentDisplayedMain() {
-//     let mains = document.getElementsByTagName('main');
-//     for (let main of mains) {
-//         console.log(main.id);
-//         if (main.style.display != "none") {
-//             return main.id;
-//         }; //comment out
-//     }
-// }
 
 //          clipboard function          //
 function copyToClipBoard(str) {
@@ -251,7 +218,6 @@ function copyToClipBoard(str) {
 
 
 //  "Table" related functions where tables have data (array of objects) and header (array)
-
 function fillInEmptyPropertyValues(table) {
     let data = table["data"];
     let headers = table["headers"];
@@ -264,9 +230,7 @@ function fillInEmptyPropertyValues(table) {
     }
 }
 
-
 //              CSV related functions                   //
-
 function makeCSV(thisTable, saveWithHeader = true) { ////This one fixed
     let csvString = "";
     let tempString = "";
@@ -298,54 +262,39 @@ function makeCSV(thisTable, saveWithHeader = true) { ////This one fixed
 function readCSV(csvString, loadWithHeader = true) {
     //trim string
     csvString = csvString.trim();
-
     //make lines out of csvString
     let lines = csvString.split("\n");
-
     let newCSVArrayOfArrays = [];
-
     for (let i = 0; i < lines.length; i++) {
         //trim whitespace of each line
         lines[i] = lines[i].trim();
-
         //remove leading and trailing " character
         lines[i] = lines[i].slice(1, -1);
-
         //split by ","
         let tempRowArray = lines[i].split('","');
-
         //make randomString
         let randomString = tokenMaker(32);
         while (lines[i].includes(randomString) === true) { //tests to see if randomString already in line (seems unlikely)
             randomString = tokenMaker(32);
         };
-
         //join by a randome string (make real random string here)
         let newString = tempRowArray.join(randomString);
-
         //look for the double quotes around randomString that is where the "," ie "","" (CSV convention) was
         newString = newString.replaceAll('"' + randomString + '"', '","');
         //split by randomString without the quotes
         tempRowArray = newString.split(randomString);
-
         //for each element in the row of elements, replace the "" with " CSV convention
         for (let j = 0; j < tempRowArray.length; j++) {
             tempRowArray[j] = tempRowArray[j].replaceAll('""', '"');
         }
-
-        // console.log(tempRowArray);
         newCSVArrayOfArrays.push(tempRowArray); //add each row to the new array
     }
-
-    console.log(newCSVArrayOfArrays); //now we have a straight array of arrays of strings in a csv style grid
-
+    //console.log(newCSVArrayOfArrays); //now we have a straight array of arrays of strings in a csv style grid
     //convert to headers and data.
     let headers = [];
     let data = [];
-
     if (newCSVArrayOfArrays.length > 0) {
         if (loadWithHeader === true) {
-            //finalTable["headerNames"] = JSON.parse(JSON.stringify(newCSVArrayOfArrays[0]));
             headers = newCSVArrayOfArrays[0];
             if (newCSVArrayOfArrays.length > 1) {
                 for (let i = 1; i < newCSVArrayOfArrays.length; i++) { //loop through rows
@@ -372,13 +321,10 @@ function readCSV(csvString, loadWithHeader = true) {
         }
     }
 
-    console.log(headers);
-    console.log(data);
-
     let finalTable = {};
     finalTable["headers"] = headers;
     finalTable["data"] = data;
-
+    console.log(JSON.stringify(finalTable));
     return JSON.parse(JSON.stringify(finalTable));
 }
 
@@ -394,24 +340,19 @@ function tokenMaker(intSize) {
 }
 
 function processCSVClick(table) {
-
     let thisCSV = "";
     if (confirm("Include header as first line in csv file?")) {
         thisCSV = makeCSV(table, true);
     } else {
         thisCSV = makeCSV(table, false);
     }
-
     copyToClipBoard(thisCSV);
-
     if (confirm("Table copied to CSV.\n\nSave to file also?")) {
         saveStringToTextFile(thisCSV, table["name"] + getTodaysDate(), ".csv");
     }
-
 }
 
 //              sort array by field
-
 function destructiveSort(arrayOfObjects, field, direction = 1) {
     //direction -1 is descending, otherwise ascending
     if (direction != -1) { direction = 1; }
@@ -426,47 +367,20 @@ function destructiveSort(arrayOfObjects, field, direction = 1) {
     });
 }
 
-function makeFavicon(){
-/*
-https://stackoverflow.com/questions/12809144/how-to-create-a-favicon-in-javascript
-https://stackoverflow.com/users/906658/bengt
-    var canvas = document.createElement('canvas');
-    canvas.width = 16;
-    canvas.height = 16;
-    var ctx = canvas.getContext('2d');
-    ctx.fillStyle = "#aaa";
-    ctx.fillRect(0, 0, 16, 16);
-    ctx.fillStyle = "#afa";
-    ctx.fillRect(4, 4, 8, 8);            
-    var link = document.createElement('link');
-    link.type = 'image/x-icon';
-    link.rel = 'shortcut icon'; //should be 'icon' I believe
-    link.href = canvas.toDataURL("image/x-icon");
-    document.getElementsByTagName('head')[0].appendChild(link);
-
- */
+function makeFavicon(letter, color, backgroundColor) {
     let canvas = document.createElement('canvas');
     canvas.width = 16;
     canvas.height = 16;
-    const ctx = canvas.getContext('2d');
-    ctx.fillStyle = "mediumblue";
-    ctx.fillRect(0, 0, 16, 16);
-	const ctx2 = canvas.getContext("2d");
-	ctx2.fillStyle = "white";
-	ctx2.font = "bold 12px Arial";
-	//ctx2.fillText("ⓑ",1,13);
-	ctx2.fillText("b",4,12);
-	
-	//	const ctx3 = canvas.getContext("2d");
-	//ctx3.fillStyle = "white";
-	//ctx3.font = "20px Arial";
 
-	//ctx3.fillText("O",0,15);
-	
-	
-	
-    let link=document.getElementById("favicon-link");
+    let ctx = canvas.getContext('2d');
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(0, 0, 16, 16);
+
+    let ctx2 = canvas.getContext("2d");
+    ctx2.fillStyle = color;
+    ctx2.font = "bold 12px Arial";
+    ctx2.fillText("b", 4, 12);
+
+    let link = document.getElementById("favicon-link");
     link.href = canvas.toDataURL("image/x-icon");
 }
-
-makeFavicon();

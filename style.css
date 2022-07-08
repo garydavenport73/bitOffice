@@ -134,75 +134,51 @@ main>input {
     display: none;
 }
 
-#special-calendar{
-	width: 240px;
+#special-calendar {
+    width: 240px;
 }
 
-
-
-#special-calendar table td{
-	height:2rem;
-	text-align:center;
-	width:2rem;
+#special-calendar table td {
+    height: 2rem;
+    text-align: center;
+    width: 2rem;
 }
 
-#calendar-table>table{
-	min-height:150px;
-	margin:auto;
-	display:block;
+#calendar-table>table {
+    min-height: 150px;
+    margin: auto;
+    display: block;
 }
 
 
 /*, #contacts-table td:nth-of-type(1)*/
+
 #calendar-table th:nth-of-type(3) {
     /*display: table-cell;*/
     width: 100%;
 }
 
-
-
-
-#special-calendar, #special-calendar *{
-/*padding:0;
-margin:0;
-border-radius:0;
-background-color:initial;*/
-
-
-
-
+#special-calendar table,
+#special-calendar tr,
+#special-calendar td,
+#month-chooser {
+    /*font-family: 'Courier New', Courier, monospace;*/
+    font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
+    font-size: 16px;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    background-color: white;
 }
 
-#special-calendar table, #special-calendar tr, #special-calendar td, #month-chooser{
-/*font-family: 'Courier New', Courier, monospace;*/
-font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
-font-size:16px;
-padding:0;
-margin:0;
-border-radius:0;
-background-color:white;
-font
+#special-calendar .return-calendar-date:hover {
+    background-color: #E0E0E0;
+    ;
 }
 
-#special-calendar .return-calendar-date:hover{
-background-color:#E0E0E0;;
+.return-calendar-date:hover {
+    background-color: white;
 }
-
-
-
-
-.return-calendar-date:hover{
-	background-color:white;
-}
-
-
-/**************experiment**
-.return-calendar-date:hover{
-	background-color:white;
-}
-
-**************/
-
 
 
 /* --------------tables app layout -------------------- */
@@ -232,25 +208,25 @@ in between first and last table header */
     min-width: 0;
 }
 
-
-
-#tables-table input[type="text"]{
-	padding:0;
-	margin:0;
-	border:0px solid orange;
-}
-#tables-table{
-border-spacing:0;
-border-collapse:collapse;
-min-height:150px;
+#tables-table input[type="text"] {
+    padding: 0;
+    margin: 0;
+    border: 0px solid orange;
 }
 
-#tables-table td:not(.tables-table-row-number){
-padding:0;
-border:1px solid grey;
-background-color:white;
-border-radius:0;
+#tables-table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    min-height: 150px;
 }
+
+#tables-table td:not(.tables-table-row-number) {
+    padding: 0;
+    border: 1px solid grey;
+    background-color: white;
+    border-radius: 0;
+}
+
 
 /* these 2 used together to apply min width to anything
 in between first and last table header */
@@ -288,7 +264,7 @@ in between first and last table header */
 #contacts-table>table {
     margin: auto;
     display: block;
-    min-height:150px;
+    min-height: 150px;
 }
 
 
@@ -305,7 +281,6 @@ in between first and last table header */
 #contacts-table td {
     display: none;
 }
-
 
 #contacts-table td:nth-of-type(1),
 #contacts-table th:nth-of-type(1) {
@@ -340,15 +315,7 @@ main>input {
     text-align: center;
 }
 
-h1:not(#document-result h1)
-/* ,
-h2:not(#document-result h2),
-h3:not(#document-result h3),
-h4:not(#document-result h4),
-h5:not(#document-result h5),
-h6:not(#document-result h6)  */
-
-{
+h1:not(#document-result h1) {
     background-color: lightblue;
     text-align: center;
 }
@@ -414,22 +381,25 @@ nav {
 }
 
 
-/*  Needed for printiing in notes, may refactor to function*/
+/*  Needed for printing in notes, also placed in notes print function*/
 
 pre {
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    margin:0;
-    padding:0;
+    margin: 0;
+    padding: 0;
 }
 
-a{
-text-decoration:none;
-color:black;
+a {
+    text-decoration: none;
+    color: black;
 }
-a:hover{
-color:mediumblue;
+
+a:hover {
+    color: mediumblue;
 }
+
+
 /*  CALCULATOR STUFF ENDS*/
 
 
@@ -705,13 +675,16 @@ main {
     padding: 5px;
 }
 
+
 /*Generic Footer Styling*/
+
 footer {
-	position: fixed;
-	bottom: 0px;
-	left: 50%;
-	transform: translate(-50%, 0%);
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
+
 
 /* TABLET*/
 
@@ -753,7 +726,13 @@ footer {
     }
 }
 
-button, h1, h2, h3, h4, h5, h6 {
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
     cursor: default;
     -webkit-touch-callout: none;
