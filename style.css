@@ -148,6 +148,15 @@ main>input {
 
 #calendar-table>table{
 	min-height:150px;
+	margin:auto;
+	display:block;
+}
+
+
+/*, #contacts-table td:nth-of-type(1)*/
+#calendar-table th:nth-of-type(3) {
+    /*display: table-cell;*/
+    width: 100%;
 }
 
 
@@ -297,8 +306,9 @@ in between first and last table header */
     display: none;
 }
 
-#contacts-table th:nth-of-type(1),
-#contacts-table td:nth-of-type(1) {
+
+#contacts-table td:nth-of-type(1),
+#contacts-table th:nth-of-type(1) {
     display: table-cell;
     width: 100%;
 }
@@ -695,6 +705,13 @@ main {
     padding: 5px;
 }
 
+/*Generic Footer Styling*/
+footer {
+	position: fixed;
+	bottom: 0px;
+	left: 50%;
+	transform: translate(-50%, 0%);
+}
 
 /* TABLET*/
 

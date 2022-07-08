@@ -1,3 +1,9 @@
+x calendar day form,  make cell not grow
+
+x calculator make allow entry
+
+x add copyright to bottom
+
 help screen
 x remove bottom stuff
 x smaller h3 and link
