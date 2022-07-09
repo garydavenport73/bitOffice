@@ -7,6 +7,8 @@
 <button onclick="showMain('main-calculator');processGoToApp('calculator')">&#128290;</button>
 <button onclick="showMain('main-help');">?</button></nav><nav id=back-nav><button onclick=processGoBackFromApp(currentApp);>&#127968;</button></nav><main id=main-startup><h2>Load/Save</h2><button id=startup-load-button onclick=loadCombinedDatabase()>&#128194; Load my bitOffice Data</button>
 <button id=saveButton onclick=saveCombinedDatabase()>&#128193; Save my bitOffice Data</button></main><main id=main-help><h2>Help</h2><pre><h3><a href=https://github.com/garydavenport73/bitOffice , target=_blank>bitOffice64</a></h3>Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.
+        
+Right click this <a href=https://www.garydavenport.com/bitoffice/index.html><b><u>DOWNLOAD</u></b></a> link to download the file for offline use.
 
 It contains:
     • A personal database with:
@@ -284,6 +286,7 @@ if(getTodaysDate()===thisDate){entry.style["border"]="1px solid grey";entry.styl
 function buildCalcString(str){calcInput.value+=str;}
 function clearCalc(){calcInput.value="";}
 function removeLastChar(){calcInput.value=calcInput.value.slice(0,-1);}
-function evaluateCalculatorInput(){let sanitizedValue=calcInput.value.replace(/[^-+/*\d.]/g,'');if(sanitizedValue!=calcInput.value){alert("Unallowed characters replaced with empty space during evaluation.");}
+function evaluateCalculatorInput(){let sanitizedValue=calcInput.value.replace(/[^-+/*\de.]/g,'');if(sanitizedValue!=calcInput.value){alert("Unallowed characters replaced with empty space during evaluation.");}
 document.getElementById('last-calculator-expression').innerHTML="Evaluated: "+sanitizedValue;let result='';try{result=eval(sanitizedValue);}catch(error){result=error;}
-calcInput.value=result;}showMain('main-help');makeFavicon("b","white","mediumblue");window.onbeforeunload=askConfirm;</script>
+calcInput.value=result;}
+showMain('main-help');makeFavicon("b","white","mediumblue");window.onbeforeunload=askConfirm;</script>

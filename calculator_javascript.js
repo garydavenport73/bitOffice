@@ -19,7 +19,7 @@ function removeLastChar() {
 }
 
 function evaluateCalculatorInput() {
-    let sanitizedValue = calcInput.value.replace(/[^-+/*\d.]/g, '');
+    let sanitizedValue = calcInput.value.replace(/[^-+/*\de.]/g, '');
     if (sanitizedValue != calcInput.value) {
         alert("Unallowed characters replaced with empty space during evaluation.");
     }
