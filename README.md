@@ -10,6 +10,11 @@
 * A CSV spreadsheet editor (Tables)
 * A calculator
 
+## To download the suite, simply download the index.html file.  It is a single file and will open in any modern browser.  That's it.
+
+### Alternatively, copy the raw contents of index.html file available on this page and save it to yourName.html. 
+ Generally this file will be usable on any machine with a modern browser like a phone, a laptop, or a desktop machine.
+
 ![Main Screen Screenshot](screenshot0.png)
 
 ![Contacts App Screenshot](screenshotContacts.png)
