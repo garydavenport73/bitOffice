@@ -1,4 +1,4 @@
-csplit bitoffice.html /splitsplitsplit/ {*}
+csplit bitOfficeNotMinified.html /splitsplitsplit/ {*}
 
 cat globalVariables.js commonFunctions.js notes_javascript.js write_javascript.js tables_javascript.js contacts_javascript.js calendar_javascript.js calculator_javascript.js startup.js >javascript.js
 
@@ -21,7 +21,7 @@ minify -o style.min.css style.css
 
 cat xx00 xx02 style.min.css xx03 xx05 javascript.min.js xx06 >deleteme.html
 
-minify -o index.html deleteme.html
+minify -o bitoffice.html deleteme.html
 
 rm -rf xx00 xx01 xx02 xx03 xx04 xx05 xx06 style.min.css javascript.min.js javascript.js deleteme.html
 

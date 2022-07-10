@@ -98,6 +98,21 @@ function processGoBackFromApp(currentApp) {
 }
 
 
+function downloadPageAsText(url, basename, suffix){
+	let xhttp = new XMLHttpRequest();
+	xhttp.timeout = 1000;
+    xhttp.ontimeout = function(e) {
+        alert("Request timed out.  Try again later");
+    };
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+		   saveStringToTextFile(xhttp.responseText, basename, suffix);
+		}
+	};
+	xhttp.open("GET", url, true);
+	xhttp.send();
+	}
+
 function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt") {
     let filename = basename + fileType;
     let blobVersionOfText = new Blob([str1], {

@@ -533,7 +533,15 @@ table {
 }
 
 
-/* MAIN COLORS FOR THE APPS */
+/* MAIN COLORS FOR THE APPS 
+	main        mediumblue
+	notes       khaki
+	write       cadetblue
+	contacts    indigo
+	calendar    darkorange
+	tables      forestgreen
+	calculator  dimgrey
+*/
 
 #main-notes h2 {
     background-color: khaki;
