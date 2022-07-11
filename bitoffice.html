@@ -10,7 +10,7 @@
         
 Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.
         
-Click here to <a onclick="downloadPageAsText('https://www.garydavenport.com/bitoffice/bitoffice.php','bitOffice','.html');"><b><u>DOWNLOAD</u></b></a> the file for offline use.
+Click here to <a href=https://www.garydavenport.com/bitoffice/bitoffice.php target=_blank><b><u>DOWNLOAD</u></b></a> the file for offline use.
 
 Note: for offline IPhone users, you will need to <a href=https://support.apple.com/en-us/HT200294 target=_blank><b>add the webpage to your "Reading List", and make sure "Automatically Save Offline is on"</b></a>.
 
@@ -117,7 +117,6 @@ if(currentApp==="tables"){updateDataFromCurrentInputs(tablesTable);if(JSON.strin
 if(currentApp==="notes"){if(note.value!=compareNoteValue){if(confirm("The note has changed, save the changes to a file?")){notesSave();compareNoteValue=note.value;}}}
 if(currentApp==="write"){if(compareWriteData!=makeCompareWriteData()){if(confirm("The document has changed, save the changes to a file?")){writeDataToJSON();compareWriteData=makeCompareWriteData();}}}
 document.getElementById('top-nav').style.display="flex";document.getElementById('back-nav').style.display="none";showMain("main-startup");}
-function downloadPageAsText(url,basename,suffix){let xhttp=new XMLHttpRequest();xhttp.timeout=1000;xhttp.ontimeout=function(e){alert("Request timed out.  Try again later");};xhttp.onreadystatechange=function(){if(this.readyState==4&&this.status==200){saveStringToTextFile(xhttp.responseText,basename,suffix);}};xhttp.open("GET",url,true);xhttp.send();}
 function saveStringToTextFile(str1,basename="myfile",fileType=".txt"){let filename=basename+fileType;let blobVersionOfText=new Blob([str1],{type:"text/plain"});let urlToBlob=window.URL.createObjectURL(blobVersionOfText);let downloadLink=document.createElement("a");downloadLink.style.display="none";downloadLink.download=filename;downloadLink.href=urlToBlob;document.body.appendChild(downloadLink);downloadLink.click();downloadLink.parentElement.removeChild(downloadLink);}
 function getTodaysDate(){let now=new Date();let day=("0"+now.getDate()).slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);let today=now.getFullYear()+"-"+month+"-"+day;return today;}
 function getFirstDayOfThisMonthDate(){let now=new Date();let day="01";let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
