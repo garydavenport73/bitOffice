@@ -98,7 +98,7 @@ function processGoBackFromApp(currentApp) {
 }
 
 
-function downloadPageAsText(url, basename, suffix){
+/*function downloadPageAsText(url, basename, suffix){
 	let xhttp = new XMLHttpRequest();
 	xhttp.timeout = 1000;
     xhttp.ontimeout = function(e) {
@@ -112,6 +112,7 @@ function downloadPageAsText(url, basename, suffix){
 	xhttp.open("GET", url, true);
 	xhttp.send();
 	}
+*/
 
 function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt") {
     let filename = basename + fileType;
