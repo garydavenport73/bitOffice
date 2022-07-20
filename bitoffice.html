@@ -10,7 +10,7 @@
         
 Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.
         
-Click here to <a href=https://www.garydavenport.com/bitoffice/bitoffice.php target=_blank><b><u>DOWNLOAD</u></b></a> the file for offline use.
+Click here to <a href=https://www.garydavenport.com/bitoffice/bitoffice.html target=_blank download><b><u>DOWNLOAD</u></b></a> the file for offline use.
 
 Note: for offline IPhone users, you will need to <a href=https://support.apple.com/en-us/HT200294 target=_blank><b>add the webpage to your "Reading List", and make sure "Automatically Save Offline is on"</b></a>.
 
@@ -193,7 +193,8 @@ function backupTablesTable(){updateDataFromCurrentInputs(tablesTable);return JSO
 function processColumnClick(header){updateDataFromCurrentInputs(tablesTable);populateMoveColumnSelect(tablesTable);document.getElementById("tables-current-header").innerHTML=header;document.getElementById("tables-new-header-name").value=header;showMain("main-tables-header-form");}
 function processRowClick(row){updateDataFromCurrentInputs(tablesTable);populateMoveRowSelect(tablesTable);document.getElementById("tables-current-row").innerHTML=row.toString();showMain("main-tables-row-form");}
 function makeTable(table){let str="";str="";let headers=table["headers"];str+="<thead><tr><th></th>";for(let i=0;i<headers.length;i++){str+="<th id='"+headers[i]+"' onclick=\"processColumnClick('"+headers[i]+"');\">"+headers[i]+"</th>";}
-str+="<th id='add-column' onclick='addColumn(tablesTable)'>+</th>";str+="</tr></thead>";let tableHeader=str;str="<tbody>";let bodyData=table.data;console.log("bodyData");console.log(bodyData);let rowCount=bodyData.length;for(let i=0;i<rowCount;i++){str+="<tr><td class='tables-table-row-number' onclick='processRowClick("+i.toString()+")'>"+i.toString()+"</td>";let columnCount=headers.length;console.log(columnCount);for(let j=0;j<columnCount;j++){str+="<td><input type='text' id='cell-"+i.toString()+"-"+j.toString()+"' value='"+bodyData[i][headers[j]].toString()+"'></td>";}
+str+="<th id='add-column' onclick='addColumn(tablesTable)'>+</th>";str+="</tr></thead>";let tableHeader=str;str="<tbody>";let bodyData=table.data;console.log("bodyData");console.log(bodyData);let rowCount=bodyData.length;for(let i=0;i<rowCount;i++){str+="<tr><td class='tables-table-row-number' onclick='processRowClick("+i.toString()+")'>"+i.toString()+"</td>";let columnCount=headers.length;console.log(columnCount);for(let j=0;j<columnCount;j++){if(bodyData[i][headers[j]]===undefined){bodyData[i][headers[j]]="input read error";}
+str+="<td><input type='text' id='cell-"+i.toString()+"-"+j.toString()+"' value='"+bodyData[i][headers[j]].toString()+"'></td>";}
 str+="</tr>";}
 str+="</tbody>"
 let tableBody=str;str="<tfoot><tr><th id='add-row' onclick='addRow(tablesTable)'>+</th>";for(let i=0;i<headers.length;i++){str+="<th id='footer-"+(i+1).toString()+"' onclick=\"processColumnClick('"+headers[i]+"');\"></th>";}

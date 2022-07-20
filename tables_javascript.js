@@ -51,6 +51,10 @@ function makeTable(table) {
         console.log(columnCount);
         for (let j = 0; j < columnCount; j++) {
             //console.log(headers[j]);
+            //console.log(bodyData[i][headers[j]]);
+            if (bodyData[i][headers[j]] === undefined) {
+                bodyData[i][headers[j]] = "input read error";
+            }
             str += "<td><input type='text' id='cell-" + i.toString() + "-" + j.toString() + "' value='" + bodyData[i][headers[j]].toString() + "'></td>";
             //str += "<td><input type='text' id='cell-" + (i + 1).toString() + "-" + (j + 1).toString() + "' value='" + i.toString()+j.toString() + "'></td>";
         }
