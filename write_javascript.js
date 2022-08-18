@@ -354,9 +354,18 @@ function writeUpdateResult() {
     }
 }
 
-function printWriteDiv(id) {
-    let a = window.open();
-    a.document.write(serializeElementToPage(id, "html,#document-result,#document-parent{background-color:white;}"));
+function printDiv(id){
+    let mySerializer= new XMLSerializer(id);
+    let s = new XMLSerializer();
+    let d = document;
+    let str = s.serializeToString(d.getElementById(id));
+    //var divContents = document.getElementById("GFG").innerHTML;
+    var a = window.open('', '');
+    a.document.write('<html>');
+    a.document.write("<style> #document-result {overflow-wrap: break-word;width: auto;white-space: pre-wrap;} </style>");
+    //a.document.write('<body > <h1>Div contents are <br>');
+    a.document.write(str);
+    a.document.write('</body></html>');
     a.document.close();
     a.print();
 }

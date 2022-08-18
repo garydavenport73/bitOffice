@@ -38,7 +38,7 @@ If you're a new user, you can jump right in and when you're done, save your data
 <button onclick=writeLoad();>Load</button>
 <button onclick=writeDataToJSON();>Save</button>
 <button onclick=exportToHTML()>Export</button>
-<button onclick="printWriteDiv('document-parent');">&#128424;</button></nav><nav id=document-settings><button class=mono onclick=processSelectedText(this);>Mono</button>
+<button onclick="printDiv('document-parent');">&#128424;</button></nav><nav id=document-settings><button class=mono onclick=processSelectedText(this);>Mono</button>
 <button class=serif onclick=processSelectedText(this);>Serif</button>
 <button class=sans onclick=processSelectedText(this);>Sans</button>
 <button onclick=processSelectedText(this);><sup>A</sup>A</button>
@@ -188,7 +188,7 @@ documentDiv.style.marginLeft=marginSize.toString()+"rem";documentDiv.style.margi
 let len=textarea.value.length;let start=textarea.selectionStart;let end=textarea.selectionEnd;let sel=textarea.value.substring(start,end);let replace=sel;if(action==="<b>B</b>"){replace='<b>'+sel+'</b>';}else if(action==="<u>U</u>"){replace='<u>'+sel+'</u>';}else if(action==="<em>I</em>"){replace='<em>'+sel+'</em>';}else if(action==="H1"){replace='<h1>'+sel+'</h1>';}else if(action==="H2"){replace='<h2>'+sel+'</h2>';}else if(action==="H3"){replace='<h3>'+sel+'</h3>';}else if(action==="¶"){replace='<p>'+sel+'</p>';}else if(action==="―"){replace='<hr>'+sel;}else if(action==="•"){replace='&bullet; '+sel;}else if(action==="↹"){replace="\t"+sel;}
 textarea.value=textarea.value.substring(0,start)+replace+textarea.value.substring(end,len);writeUpdateResult();textarea.selectionStart=start+replace.length;textarea.selectionEnd=start+replace.length;textarea.focus();if(action!="⟲"){updateUndosIfTextChanges();}}
 function writeUpdateResult(){let currentContents=document.getElementById('text-editor').value;document.getElementById('document-result').innerHTML=currentContents.replaceAll('\n','<br>');if(textarea.spellcheck===true){document.getElementById("spell-check").style.color="green";}else{document.getElementById("spell-check").style.color="red";}}
-function printWriteDiv(id){let a=window.open();a.document.write(serializeElementToPage(id,"html,#document-result,#document-parent{background-color:white;}"));a.document.close();a.print();}initializeTablesApp();function initializeTablesApp(){makeTable(tablesTable);}
+function printDiv(id){let mySerializer=new XMLSerializer(id);let s=new XMLSerializer();let d=document;let str=s.serializeToString(d.getElementById(id));var a=window.open('','');a.document.write('<html>');a.document.write("<style> #document-result {overflow-wrap: break-word;width: auto;white-space: pre-wrap;} </style>");a.document.write(str);a.document.write('</body></html>');a.document.close();a.print();}initializeTablesApp();function initializeTablesApp(){makeTable(tablesTable);}
 function backupTablesTable(){updateDataFromCurrentInputs(tablesTable);return JSON.parse(JSON.stringify(currentTablesTable));}
 function processColumnClick(header){updateDataFromCurrentInputs(tablesTable);populateMoveColumnSelect(tablesTable);document.getElementById("tables-current-header").innerHTML=header;document.getElementById("tables-new-header-name").value=header;showMain("main-tables-header-form");}
 function processRowClick(row){updateDataFromCurrentInputs(tablesTable);populateMoveRowSelect(tablesTable);document.getElementById("tables-current-row").innerHTML=row.toString();showMain("main-tables-row-form");}
