@@ -58,8 +58,6 @@ If you've used bitOffice before go to the 📂Load/Save page to load your bitOff
 If you're a new user, you can jump right in and when you're done, save your data on the 📂Load/Save page.
         </pre>
         <button onclick="showMain('main-startup');">📂Load/Save</button>
-        <!--<p>Check out the project at: <a target="_blank" href="https://github.com/garydavenport73/bitOffice">bitOffice64.</a></p>
-        <p>...and other projects at: <a target="_blank" href="https://github.com/garydavenport73">my GitHub Site.</a></p>-->
     </main>
     <main id="main-notes">
         <h2>Notes</h2>
@@ -84,7 +82,7 @@ If you're a new user, you can jump right in and when you're done, save your data
             <button onclick="writeLoad();">Load</button>
             <button onclick="writeDataToJSON();">Save</button>
             <button onclick="exportToHTML()">Export</button>
-            <button onclick="printWriteDiv('document-parent');//window.print()">&#128424;</button>
+            <button onclick="printDiv('document-parent');//window.print()">&#128424;</button>
         </nav>
         <nav id="document-settings">
             <button class="mono" onclick='processSelectedText(this);'>Mono</button>
@@ -133,7 +131,6 @@ If you're a new user, you can jump right in and when you're done, save your data
         </div>
     </main>
     <main id="main-tables-header-form">
-        <!--</h2>Tables</h2>-->
         <h3>Column: <span id="tables-current-header">header name here</span></h3>
         <button onclick="updateHeaderName();">Change name to:</button>
         <input id="tables-new-header-name" type="text" placeholder="name">

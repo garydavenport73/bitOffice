@@ -1,46 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--splitsplitsplit-->
-    <link rel="stylesheet" href="style.css">
-    <!--splitsplitsplit-->
-    <link id="favicon-link" rel="icon" type="image/x-icon" href="">
-    <style>
-        /*splitsplitsplit*/
-    </style>
-    <title>bitOffice</title>
-</head>
-
-<body>
-    <h1 onclick="alert(license);">bitOffice</h1>
-    <nav id="top-nav">
-        <button onclick="showMain('main-startup');">&#128194;</button>
-        <button onclick="showMain('main-contacts-table'); processGoToApp('contacts');">&#9742;</button>
-        <button onclick="showMain('main-calendar-start'); processGoToApp('calendar');makeCalendar();">&#128197;</button>
-        <button onclick="showMain('main-notes'); processGoToApp('notes');">&#128196;</button>
-        <button onclick="showMain('main-write'); processGoToApp('write');">&#128221;</button>
-        <button onclick="showMain('main-tables-table'); processGoToApp('tables')">&#9638;</button>
-        <button onclick="showMain('main-calculator');processGoToApp('calculator')">&#128290;</button>
-        <button onclick="showMain('main-help');">?</button>
-    </nav>
-    <nav id="back-nav">
-        <button onclick="processGoBackFromApp(currentApp);">&#127968;</button>
-    </nav>
-    <main id="main-startup">
-        <h2>Load/Save</h2>
-        <button id="startup-load-button" onclick="loadCombinedDatabase()">&#128194; Load my bitOffice Data</button>
-        <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save my bitOffice Data</button>
-    </main>
-    <main id="main-help">
-        <h2>Help</h2><pre><big><b><a href="https://github.com/garydavenport73/bitOffice", target="_blank">bitOffice64</a></b></big>
+<!doctype html><html lang=en><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1"><link id=favicon-link rel=icon type=image/x-icon href><style>*{box-sizing:border-box}html{background-color:#add8e6}input:invalid{background-color:orange}thead{background-color:#e0e0e0}tr:hover:not(#tables-table>thead>tr,#tables-table>tbody>tr,#tables-table>tfoot>tr,#calculator-table tr,#special-calendar tr){background-color:#fff}#tables-table th:hover:not(:first-of-type),#tables-table td:first-of-type:hover{background-color:#fff}th:hover{background-color:lightgrey}.table-container{display:block;overflow-x:auto;margin-left:auto;margin-right:auto;width:90%;text-align:center}table{background-color:#add8e6}table{min-width:100%}tr{text-align:left;height:1rem}td{background-color:#ff0}main{width:320px;margin:auto;background-color:#ff0;display:flex;flex-direction:column;align-items:center;padding-bottom:20px}main>*{width:90%}main>div:not(#document-parent,#calculator-result-row),#calendar-edit-form{display:flex;flex-direction:column;align-items:center}main>nav{display:flex;flex-direction:row;flex-wrap:wrap}#top-nav,#back-nav{background-color:#ff0}main input,main>select{width:240px}main>button{width:120px}select,main>input{text-align:center}#main-calendar-start>button{width:240px}#calendar-date{height:3rem;text-align:center;font-size:1.4em;display:none}#special-calendar{width:240px}#special-calendar table td{height:2rem;text-align:center;width:2rem}#calendar-table>table{min-height:150px;margin:auto;display:block}#calendar-table th:nth-of-type(3){width:100%}#special-calendar table,#special-calendar tr,#special-calendar td,#month-chooser{font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif;font-size:16px;padding:0;margin:0;border-radius:0;background-color:#fff}#special-calendar .return-calendar-date:hover{background-color:#e0e0e0}.return-calendar-date:hover{background-color:#fff}#tables-table{display:block;margin:auto;min-width:100%}.tables-table-row-number{min-width:1rem;text-align:center}#tables-table th:not(:last-of-type){min-width:5rem}#tables-table th:first-of-type{min-width:0}#tables-table input[type=text]{padding:0;margin:0;border:0 solid orange}#tables-table{border-spacing:0;border-collapse:collapse;min-height:150px}#tables-table td:not(.tables-table-row-number){padding:0;border:1px solid grey;background-color:#fff;border-radius:0}#tables-table td{width:auto}#add-column{background-color:#bdbdbd}#add-row:hover,#add-column:hover{background-color:#fff;border-radius:5px}#main-tables-header-form input,#main-tables-header-form select,#main-tables-header-form button,#main-tables-row-form select,#main-tables-row-form button{width:200px}#add-column,#add-row,#blank-th{width:auto}#tables-table input{width:100%}#contacts-table>table{margin:auto;display:block;min-height:150px}#contacts-table>table>thead>tr>th:nth-of-type(2){min-width:7rem}#contacts-table th,#contacts-table td{display:none}#contacts-table td:nth-of-type(1),#contacts-table th:nth-of-type(1){display:table-cell;width:100%}#contacts-table th:nth-of-type(2),#contacts-table td:nth-of-type(2){display:table-cell}#add-column,#add-row,#blank-th{width:auto}#tables-table input{width:100%}select,main>input{text-align:center}h1:not(#document-result h1){background-color:#add8e6;text-align:center}nav{background-color:#add8e6}#note{height:350px;max-width:90%}.mono{font-family:courier new,Courier,monospace}.serif{font-family:Georgia,times new roman,Garamond,Times,serif}.sans{font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif}#document-settings,#edit-bar{width:90%;display:flex;flex-direction:row;flex-wrap:wrap;margin:0;padding:0;background-color:#5f9ea0;border:1px solid #000}#text-editor{height:100px}#text-editor{width:90%;max-width:90%;overflow-wrap:break-word;min-height:100px;margin-top:0;margin-bottom:0}#document-parent{margin:0;padding:0;width:90%;background-color:#fafad2}pre{white-space:pre-wrap;overflow-wrap:break-word;margin:0;padding:0}a{text-decoration:none;color:#000}a:hover{color:#0000cd}html{background-color:#bdbdbd}body{background-color:#e0e0e0;width:320px;margin:auto}main,td,nav>button{background-color:#e0e0e0;border-radius:5px}main>button{background-color:#bdbdbd;min-height:30px;border-radius:5px;padding:3px;margin:2px}main>button:hover{background-color:#e0e0e0}nav>button:hover{background-color:#bdbdbd}#top-nav button,#back-nav button{padding:5px;margin:1px;min-height:25px}#main-notes button,#file-bar button,#main-tables-table button,#main-contacts-table button,#main-calendar-table button{padding:4px;margin:1px;min-height:25px}h1:not(#document-result h1){background-color:#0000cd;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif}h1:not(#document-result h1){color:#e6e6fa;font-family:Arial,Helvetica,sans-serif;width:320px;margin:auto;border-radius:0}nav:not(#document-settings,#edit-bar,#top-nav,#back-nav){border-radius:5px;margin:5px;background-color:#bdbdbd}#top-nav,#back-nav{background-color:#0000cd;width:320px;margin:auto;display:flex;flex-direction:row;justify-content:center;flex-wrap:wrap}#top-nav button,#back-nav button{font-size:1.4rem}table{border-radius:5px;background-color:#bdbdbd}input:not(#tables-table input,#calendar-date,#calculator-input),select{background-color:#f5f5f5;min-height:30px;border-radius:5px}button,table{border:1px solid grey;padding-left:4px;padding-right:4px}#main-notes h2{background-color:khaki;border:1px solid grey;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif}#main-startup h2,#main-help h2{background-color:#0000cd;color:#e6e6fa;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif}#main-write h2:not(#document-result h2){background-color:#5f9ea0;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;color:#faebd7;border:1px solid grey}#main-contacts-table h2,#main-contacts-form h2{background-color:indigo;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;color:#faebd7;border:1px solid grey}#main-calendar-start h2,#main-calendar-table h2,#main-calendar-form h2,#main-calendar-start h3,#main-calendar-table h3,#main-calendar-form h3{background-color:#ff8c00;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;border:1px solid grey}#main-tables-table h2,#main-tables-header-form h2,#main-tables-row-form h2,#main-tables-table h3,#main-tables-header-form h3,#main-tables-row-form h3{background-color:#228b22;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;color:#faebd7;border:1px solid grey}#main-calculator h2{background-color:dimgrey;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;color:#faebd7;border:1px solid grey}#document-result *{background-color:unset;width:unset;text-align:unset;border-radius:unset;margin-left:unset;margin-right:unset;width:unset;padding-bottom:unset;align-items:unset;border-radius:unset;margin:unset;padding:unset}#document-result{overflow-wrap:break-word;min-height:100px;width:auto;background-color:#fafad2;white-space:pre-wrap}main{border:1px solid grey}#back-nav{display:none}#calculator-table{width:90%;min-width:0%}#calculator-table td button{font-size:2rem;width:100%;height:4rem}.special-calculator-button{background-color:#fc3;border:1px solid grey}#last-calculator-expression{overflow-wrap:anywhere;min-height:18px;color:grey}#calculator-input{width:90%;height:30px;font-size:1.4rem;text-align:right}#calc-clr button{width:50%;font-size:1.4rem;padding:5px}footer{position:fixed;bottom:0;left:50%;transform:translate(-50%,0%)}@media only screen and (min-width:600px){body,#main-notes,#main-write,#main-contacts-table,#main-calendar-table,#main-tables-table,#top-nav,#back-nav,h1:not(#document-result h1){width:600px}#contacts-table th,#contacts-table td{display:table-cell}}@media only screen and (min-width:900px){body,#main-notes,#main-write,#main-contacts-table,#main-calendar-table,#main-tables-table,#top-nav,#back-nav,h1:not(#document-result h1){width:900px}}button,h1,h2,h3,h4,h5,h6{cursor:default;-webkit-touch-callout:none;-webkit-user-select:none;-khtml-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}</style><title>bitOffice</title><h1 onclick=alert(license);>bitOffice</h1><nav id=top-nav><button onclick="showMain('main-startup');">&#128194;</button>
+<button onclick="showMain('main-contacts-table');processGoToApp('contacts');">&#9742;</button>
+<button onclick="showMain('main-calendar-start');processGoToApp('calendar');makeCalendar();">&#128197;</button>
+<button onclick="showMain('main-notes');processGoToApp('notes');">&#128196;</button>
+<button onclick="showMain('main-write');processGoToApp('write');">&#128221;</button>
+<button onclick="showMain('main-tables-table');processGoToApp('tables')">&#9638;</button>
+<button onclick="showMain('main-calculator');processGoToApp('calculator')">&#128290;</button>
+<button onclick="showMain('main-help');">?</button></nav><nav id=back-nav><button onclick=processGoBackFromApp(currentApp);>&#127968;</button></nav><main id=main-startup><h2>Load/Save</h2><button id=startup-load-button onclick=loadCombinedDatabase()>&#128194; Load my bitOffice Data</button>
+<button id=saveButton onclick=saveCombinedDatabase()>&#128193; Save my bitOffice Data</button></main><main id=main-help><h2>Help</h2><pre><big><b><a href=https://github.com/garydavenport73/bitOffice , target=_blank>bitOffice64</a></b></big>
         
 Here is a super small file that weighs in under 64kb and runs on any device with a modern browser.
         
-Right click the <a href="https://www.garydavenport.com/bitoffice/index.html" download><b><u>DOWNLOAD</u></b></a> link and choose save as to download the file for offline use.
+Click here to <a href=https://www.garydavenport.com/bitoffice/bitoffice.html target=_blank download><b><u>DOWNLOAD</u></b></a> the file for offline use.
+
+Note: for offline IPhone users, you will need to <a href=https://support.apple.com/en-us/HT200294 target=_blank><b>add the webpage to your "Reading List", and make sure "Automatically Save Offline is on"</b></a>.
 
 It contains:
     • A personal database with:
@@ -54,199 +26,273 @@ It contains:
 If you've used bitOffice before go to the 📂Load/Save page to load your bitOffice data.
 
 If you're a new user, you can jump right in and when you're done, save your data on the 📂Load/Save page.
-        </pre>
-        <button onclick="showMain('main-startup');">📂Load/Save</button>
-        <!--<p>Check out the project at: <a target="_blank" href="https://github.com/garydavenport73/bitOffice">bitOffice64.</a></p>
-        <p>...and other projects at: <a target="_blank" href="https://github.com/garydavenport73">my GitHub Site.</a></p>-->
-    </main>
-    <main id="main-notes">
-        <h2>Notes</h2>
-        <nav>
-            <button onclick="newNotesEntry()">New</button>
-            <button onclick="notesLoad()">Load</button>
-            <button onclick="notesSave()">Save</button>
-            <button id="copy" onclick="copyToClipBoard(document.getElementById('note').value);">Copy</button>
-            <button onclick="printNotesDiv('note');">&#128424;</button>
-            <button class="plus-minus" onclick="changeFontSize(this);">-</button>
-            <button class="plus-minus" onclick="changeFontSize(this);">+</button>
-            <button onclick="simulateUndo()">&#10226;</button>
-            <button onclick="simulateRedo()">&#10227;</button>
-
-        </nav>
-        <textarea id="note" rows="10" placeholder="your notes here"></textarea>
-    </main>
-    <main id="main-write">
-        <h2>Write</h2>
-        <nav id="file-bar">
-            <button onclick="newDocument();">New</button>
-            <button onclick="writeLoad();">Load</button>
-            <button onclick="writeDataToJSON();">Save</button>
-            <button onclick="exportToHTML()">Export</button>
-            <button onclick="printWriteDiv('document-parent');//window.print()">&#128424;</button>
-        </nav>
-        <nav id="document-settings">
-            <button class="mono" onclick='processSelectedText(this);'>Mono</button>
-            <button class="serif" onclick='processSelectedText(this);'>Serif</button>
-            <button class="sans" onclick='processSelectedText(this);'>Sans</button>
-            <button onclick='processSelectedText(this);//decrease font'><sup>A</sup>A</button>
-            <button onclick='processSelectedText(this);//increase font;'><sub>A</sub>A</button>
-            <button onclick='processSelectedText(this);//inc margin;'>&rarrb;&larrb;</button>
-            <button onclick='processSelectedText(this);//dec margin;'>&larrb;&rarrb;</button>
-            <button onclick='processSelectedText(this);//align left;'>&#8666;</button>
-            <button onclick='processSelectedText(this);//align center;'>&#8667;&#8666;</button>
-            <button onclick='processSelectedText(this);//align right;'>&#8667;</button>
-            <button id="spell-check" onclick='processSelectedText(this);//spellcheck;'>&check;</button>
-        </nav>
-        <nav id="edit-bar">
-            <button onclick='processSelectedText(this);'><b>B</b></button>
-            <button onclick='processSelectedText(this);'><u>U</u></button>
-            <button onclick='processSelectedText(this);'><em>I</em></button> &nbsp;
-            <button onclick='processSelectedText(this);'>&#8633;</button>
-            <button onclick='processSelectedText(this);//paragraph;'>&para;</button>
-            <button onclick='processSelectedText(this);'>H1</button>
-            <button onclick='processSelectedText(this);'>H2</button>
-            <button onclick='processSelectedText(this);'>H3</button> &nbsp;
-            <button onclick='processSelectedText(this);//horizontal rule'>&#8213;</button>
-            <button onclick='processSelectedText(this);//bullet;'>&bullet;</button> &nbsp;
-            <button onclick='processSelectedText(this);//undo;'>&#10226;</button>
-            <button onclick="writeRedo()">&#10227;</button>
-        </nav>
-        <textarea id="text-editor" spellcheck="false" oninput="writeUpdateResult();"></textarea>
-        <div id="document-parent">
-            <div id="document-result"></div>
-        </div>
-    </main>
-    <main id="main-tables-table">
-        <h2>Tables</h2>
-        <nav>
-            <button onclick="tablesNewTable();">New</button>
-            <button onclick="tablesLoad();">Load</button>
-            <button onclick="tablesSave();">Save</button>
-            <button onclick="tablesCopyCSVToClipboard()">Copy</button>
-            <button onclick="tablesShowRules();">?</button>
-        </nav>
-        <div class="table-container">
-            <table id="tables-table">
-            </table>
-        </div>
-    </main>
-    <main id="main-tables-header-form">
-        <!--</h2>Tables</h2>-->
-        <h3>Column: <span id="tables-current-header">header name here</span></h3>
-        <button onclick="updateHeaderName();">Change name to:</button>
-        <input id="tables-new-header-name" type="text" placeholder="name">
-        <button onclick="deleteColumn();">Delete Column</button>
-        <button onclick="copyColumn()">Copy Column</button>
-        <button onclick="moveColumn()">Move To Column</button><select id="move-column"></select>
-        <button onclick="calculateTotal()">Add Total</button>
-        <button onclick="calculateAverage()">Compute Average</button>
-        <button onclick="tablesSort(1)">Sort Ascending &uarr;</button>
-        <button onclick="tablesSort(-1)">Sort Descending &darr;</button>
-        <button onclick="tablesCancel()">Cancel</button>
-    </main>
-    <main id="main-tables-row-form">
-        <h2>Tables</h2>
-        <h3>Row: <span id="tables-current-row">row number here</span></h3>
-        <button onclick="deleteRow()">Delete Row</button>
-        <button onclick="copyRow()">Copy Row</button>
-        <button onclick="moveRow()">Move To Row</button>
-        <select id="move-row"></select>
-        <button onclick="tablesCancel()">Cancel</button>
-    </main>
-    <main id="main-contacts-table">
-        <h2 id="contacts-table-name">Contacts</h2>
-        <nav>
-            <button onclick='newContactsEntry();'>+ New Contact</button>
-            <button onclick="processCSVClick(contactsTable);">CSV</button>
-        </nav>
-
-        <div id="contacts-table" class="table-container"></div>
-    </main>
-    <main id="main-contacts-form">
-        <h2>Contacts</h2>
-        <div id="contacts-edit-form-message"></div>
-        <div id="contacts-edit-form"></div>
-        <button onclick='saveContactsEntry();'>Save</button>
-        <button onclick='deleteContactsEntry();'>Delete</button>
-        <button onclick='cancelContactsEntry();'>Cancel</button>
-    </main>
-    <main id="main-calendar-start">
-        <h2>Calendar</h2>
-        <div><input type='date' id="calendar-date"></div>
-        <input id="month-chooser" type="month">
-        <div id="special-calendar"></div>
-    </main>
-    <main id="main-calendar-table">
-        <h2>Calendar</h2>
-        <h3 id="calendar-table-name"></h3>
-        <nav>
-            <button onclick='newCalendarEntry();'>+ New Entry</button>
-            <button onclick="processCalendarHome();">Back to Main Calendar</button>
-            <button onclick="processCalendarCSVClick();">CSV</button>
-        </nav>
-        <div id="calendar-table" class="table-container"></div>
-    </main>
-    <main id="main-calendar-form">
-        <h2>Calendar</h2>
-        <h3 id="calendar-edit-form-message"></h3>
-        <div id="calendar-edit-form"></div>
-        <button onclick='saveCalendarEntry();'>Save</button>
-        <button onclick='deleteCalendarEntry();'>Delete</button>
-        <button onclick='cancelCalendarEntry();'>Cancel</button>
-    </main>
-    <main id="main-calculator">
-        <h2>Calculator</h2>
-        <input type=text id='calculator-input'>
-        <nav id="calc-clr">
-            <button class="special-calculator-button" id="clear-calc">CLR</button>
-            <button id="remove-last-char">&larr;</button>
-        </nav>
-
-        <div id="last-calculator-expression"></div>
-        <table id="calculator-table">
-            <tr>
-                <td><button class='build-calc-string'>7</button></td>
-                <td><button class='build-calc-string'>8</button></td>
-                <td><button class='build-calc-string'>9</button></td>
-                <td><button class='build-calc-string'>/</button></td>
-            </tr>
-            <tr>
-                <td><button class='build-calc-string'>4</button></td>
-                <td><button class='build-calc-string'>5</button></td>
-                <td><button class='build-calc-string'>6</button></td>
-                <td><button class='build-calc-string'>*</button></td>
-            </tr>
-            <tr>
-                <td><button class='build-calc-string'>1</button></td>
-                <td><button class='build-calc-string'>2</button></td>
-                <td><button class='build-calc-string'>3</button></td>
-                <td><button class='build-calc-string'>-</button></td>
-            </tr>
-            <tr>
-                <td><button class='build-calc-string'>0</button></td>
-                <td><button class='build-calc-string'>.</button></td>
-                <td><button class="special-calculator-button" id="equals-button">=</button></td>
-                <td><button class='build-calc-string'>+</button></td>
-            </tr>
-        </table>
-    </main>
-
-    <footer onclick="alert(license)">bitOffice &copy; 2022</footer>
-    <!--splitsplitsplit-->
-    <script src="globalVariables.js"></script>
-    <script src="commonFunctions.js"></script>
-    <script src="notes_javascript.js"></script>
-    <script src="write_javascript.js"></script>
-    <script src="tables_javascript.js"></script>
-    <script src="contacts_javascript.js"></script>
-    <script src="calendar_javascript.js"></script>
-    <script src="calculator_javascript.js"></script>
-    <script src="startup.js"></script>
-    <!--splitsplitsplit-->
-    <script>
-        //splitsplitsplit
-    </script>
-
-</body>
-
-</html>
+        </pre><button onclick="showMain('main-startup');">📂Load/Save</button></main><main id=main-notes><h2>Notes</h2><nav><button onclick=newNotesEntry()>New</button>
+<button onclick=notesLoad()>Load</button>
+<button onclick=notesSave()>Save</button>
+<button id=copy onclick="copyToClipBoard(document.getElementById('note').value);">Copy</button>
+<button onclick="printNotesDiv('note');">&#128424;</button>
+<button class=plus-minus onclick=changeFontSize(this);>-</button>
+<button class=plus-minus onclick=changeFontSize(this);>+</button>
+<button onclick=simulateUndo()>&#10226;</button>
+<button onclick=simulateRedo()>&#10227;</button></nav><textarea id=note rows=10 placeholder="your notes here"></textarea></main><main id=main-write><h2>Write</h2><nav id=file-bar><button onclick=newDocument();>New</button>
+<button onclick=writeLoad();>Load</button>
+<button onclick=writeDataToJSON();>Save</button>
+<button onclick=exportToHTML()>Export</button>
+<button onclick="printDiv('document-parent');">&#128424;</button></nav><nav id=document-settings><button class=mono onclick=processSelectedText(this);>Mono</button>
+<button class=serif onclick=processSelectedText(this);>Serif</button>
+<button class=sans onclick=processSelectedText(this);>Sans</button>
+<button onclick=processSelectedText(this);><sup>A</sup>A</button>
+<button onclick=processSelectedText(this);><sub>A</sub>A</button>
+<button onclick=processSelectedText(this);>&rarrb;&larrb;</button>
+<button onclick=processSelectedText(this);>&larrb;&rarrb;</button>
+<button onclick=processSelectedText(this);>&#8666;</button>
+<button onclick=processSelectedText(this);>&#8667;&#8666;</button>
+<button onclick=processSelectedText(this);>&#8667;</button>
+<button id=spell-check onclick=processSelectedText(this);>&check;</button></nav><nav id=edit-bar><button onclick=processSelectedText(this);><b>B</b></button>
+<button onclick=processSelectedText(this);><u>U</u></button>
+<button onclick=processSelectedText(this);><em>I</em></button> &nbsp;
+<button onclick=processSelectedText(this);>&#8633;</button>
+<button onclick=processSelectedText(this);>&para;</button>
+<button onclick=processSelectedText(this);>H1</button>
+<button onclick=processSelectedText(this);>H2</button>
+<button onclick=processSelectedText(this);>H3</button> &nbsp;
+<button onclick=processSelectedText(this);>&#8213;</button>
+<button onclick=processSelectedText(this);>&bullet;</button> &nbsp;
+<button onclick=processSelectedText(this);>&#10226;</button>
+<button onclick=writeRedo()>&#10227;</button></nav><textarea id=text-editor spellcheck=false oninput=writeUpdateResult();></textarea><div id=document-parent><div id=document-result></div></div></main><main id=main-tables-table><h2>Tables</h2><nav><button onclick=tablesNewTable();>New</button>
+<button onclick=tablesLoad();>Load</button>
+<button onclick=tablesSave();>Save</button>
+<button onclick=tablesCopyCSVToClipboard()>Copy</button>
+<button onclick=tablesShowRules();>?</button></nav><div class=table-container><table id=tables-table></table></div></main><main id=main-tables-header-form><h3>Column: <span id=tables-current-header>header name here</span></h3><button onclick=updateHeaderName();>Change name to:</button>
+<input id=tables-new-header-name placeholder=name>
+<button onclick=deleteColumn();>Delete Column</button>
+<button onclick=copyColumn()>Copy Column</button>
+<button onclick=moveColumn()>Move To Column</button><select id=move-column></select>
+<button onclick=calculateTotal()>Add Total</button>
+<button onclick=calculateAverage()>Compute Average</button>
+<button onclick=tablesSort(1)>Sort Ascending &uarr;</button>
+<button onclick=tablesSort(-1)>Sort Descending &darr;</button>
+<button onclick=tablesCancel()>Cancel</button></main><main id=main-tables-row-form><h2>Tables</h2><h3>Row: <span id=tables-current-row>row number here</span></h3><button onclick=deleteRow()>Delete Row</button>
+<button onclick=copyRow()>Copy Row</button>
+<button onclick=moveRow()>Move To Row</button>
+<select id=move-row></select>
+<button onclick=tablesCancel()>Cancel</button></main><main id=main-contacts-table><h2 id=contacts-table-name>Contacts</h2><nav><button onclick=newContactsEntry();>+ New Contact</button>
+<button onclick=processCSVClick(contactsTable);>CSV</button></nav><div id=contacts-table class=table-container></div></main><main id=main-contacts-form><h2>Contacts</h2><div id=contacts-edit-form-message></div><div id=contacts-edit-form></div><button onclick=saveContactsEntry();>Save</button>
+<button onclick=deleteContactsEntry();>Delete</button>
+<button onclick=cancelContactsEntry();>Cancel</button></main><main id=main-calendar-start><h2>Calendar</h2><div><input type=date id=calendar-date></div><input id=month-chooser type=month><div id=special-calendar></div></main><main id=main-calendar-table><h2>Calendar</h2><h3 id=calendar-table-name></h3><nav><button onclick=newCalendarEntry();>+ New Entry</button>
+<button onclick=processCalendarHome();>Back to Main Calendar</button>
+<button onclick=processCalendarCSVClick();>CSV</button></nav><div id=calendar-table class=table-container></div></main><main id=main-calendar-form><h2>Calendar</h2><h3 id=calendar-edit-form-message></h3><div id=calendar-edit-form></div><button onclick=saveCalendarEntry();>Save</button>
+<button onclick=deleteCalendarEntry();>Delete</button>
+<button onclick=cancelCalendarEntry();>Cancel</button></main><main id=main-calculator><h2>Calculator</h2><input id=calculator-input><nav id=calc-clr><button class=special-calculator-button id=clear-calc>CLR</button>
+<button id=remove-last-char>&larr;</button></nav><div id=last-calculator-expression></div><table id=calculator-table><tr><td><button class=build-calc-string>7</button><td><button class=build-calc-string>8</button><td><button class=build-calc-string>9</button><td><button class=build-calc-string>/</button><tr><td><button class=build-calc-string>4</button><td><button class=build-calc-string>5</button><td><button class=build-calc-string>6</button><td><button class=build-calc-string>*</button><tr><td><button class=build-calc-string>1</button><td><button class=build-calc-string>2</button><td><button class=build-calc-string>3</button><td><button class=build-calc-string>-</button><tr><td><button class=build-calc-string>0</button><td><button class=build-calc-string>.</button><td><button class=special-calculator-button id=equals-button>=</button><td><button class=build-calc-string>+</button></table></main><footer onclick=alert(license)>bitOffice &copy; 2022</footer><script>let license="MIT License\n\n\
+Copyright (c) 2022 Gary Davenport\n\n\
+Permission is hereby granted, free of charge, to any person obtaining a copy \
+of this software and associated documentation files (the \"Software\"), to deal \
+in the Software without restriction, including without limitation the rights \
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell \
+copies of the Software, and to permit persons to whom the Software is \
+furnished to do so, subject to the following conditions:\n\n\
+The above copyright notice and this permission notice shall be included in all \
+copies or substantial portions of the Software.\n\n\
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR \
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, \
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE \
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, \
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE \
+SOFTWARE.";let calcInput=document.getElementById('calculator-input');let tableElement=document.getElementById('tables-table');let tablesTable={"name":"Table","headers":["Column 1","Column 2","Column 3"],"data":[{"Column 1":"","Column 2":"","Column 3":""},{"Column 1":"","Column 2":"","Column 3":""},{"Column 1":"","Column 2":"","Column 3":""}]}
+let compareTablesTable=JSON.stringify(tablesTable);let initialTablesTable=compareTablesTable;let contactsTableElement=document.getElementById("contacts-table");let contactsEditForm=document.getElementById("contacts-edit-form");let contactsEditFormMessage=document.getElementById("contacts-edit-form-message");let contactsSortAscending=1;let contactsTable={"name":"Contacts","headers":["name","cell","email","address","home","work","website"],"inputTypes":{"name":"text","cell":"tel","email":"email","address":"text","home":"tel","work":"tel","website":"text"},"data":[]}
+let noteFontSize=2.5/3.0;let note=document.getElementById('note');note.value="";let compareNoteValue="";let textarea=document.getElementById("text-editor");let documentDiv=document.getElementById('document-result');let remSize=1;let marginSize=2;let writeUndos=[];let writeUndosCursor=0;let compareWriteData="";let calendarTable=document.getElementById("calendar-table");let calendarEditForm=document.getElementById("calendar-edit-form");let calendarEditFormMessage=document.getElementById("calendar-edit-form-message");let monthChooser=document.getElementById("month-chooser");let daysAbbreviations=["Sun","Mon","Tue","Wed","Thur","Fri","Sat"];let calendarSortAscending=1;let calendarDatabase={"name":"Calendar","headers":["start","end","name","notes"],"inputTypes":{"start":"time","end":"time","name":"text","notes":"text"},"dates":{}}
+let combinedDatabase={"contacts":contactsTable,"calendar":calendarDatabase}
+let compareCombinedDatabase=JSON.stringify(combinedDatabase);let initialCombinedDatabase=compareCombinedDatabase;let currentApp="";function loadCombinedDatabase(){let proceed=false;if(compareCombinedDatabase===initialCombinedDatabase){proceed=true;}else{proceed=confirm("This will overwrite current personal database");}
+if(proceed){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".bof";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;combinedDatabase=JSON.parse(fileContents);compareCombinedDatabase=JSON.stringify(combinedDatabase);contactsTable=combinedDatabase["contacts"];calendarDatabase=combinedDatabase["calendar"];clearContactFormEntries(contactsTable);contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);makeCalendar();};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}}
+function saveCombinedDatabase(){purgeCalendar();let str=JSON.stringify(combinedDatabase);let baseFilename="bitOfficeData"+getTodaysDate();saveStringToTextFile(str,baseFilename,".bof");compareCombinedDatabase=JSON.stringify(combinedDatabase);}
+function processGoToApp(theApp){if((theApp==='contacts')||(theApp==='calendar')){compareCombinedDatabase=JSON.stringify(combinedDatabase);}
+if(theApp==='tables'){compareTablesTable=JSON.stringify(tablesTable);}
+if(theApp==='notes'){compareNoteValue=note.value;}
+if(theApp==='write'){compareWriteData=makeCompareWriteData();}
+currentApp=theApp;document.getElementById('top-nav').style.display="none";document.getElementById('back-nav').style.display="flex";}
+function processGoBackFromApp(currentApp){console.log("process check save for "+currentApp);if((currentApp==="contacts")||(currentApp==="calendar")){if(JSON.stringify(combinedDatabase)!=compareCombinedDatabase){if(confirm("The database has changed, save the changes to a file?")){saveCombinedDatabase();compareCombinedDatabase=JSON.stringify(combinedDatabase);}}}
+if(currentApp==="tables"){updateDataFromCurrentInputs(tablesTable);if(JSON.stringify(tablesTable)!=compareTablesTable){if(confirm("The table has changed, save the changes to a file?")){tablesSave();compareTablesTable=JSON.stringify(tablesTable);}}}
+if(currentApp==="notes"){if(note.value!=compareNoteValue){if(confirm("The note has changed, save the changes to a file?")){notesSave();compareNoteValue=note.value;}}}
+if(currentApp==="write"){if(compareWriteData!=makeCompareWriteData()){if(confirm("The document has changed, save the changes to a file?")){writeDataToJSON();compareWriteData=makeCompareWriteData();}}}
+document.getElementById('top-nav').style.display="flex";document.getElementById('back-nav').style.display="none";showMain("main-startup");}
+function saveStringToTextFile(str1,basename="myfile",fileType=".txt"){let filename=basename+fileType;let blobVersionOfText=new Blob([str1],{type:"text/plain"});let urlToBlob=window.URL.createObjectURL(blobVersionOfText);let downloadLink=document.createElement("a");downloadLink.style.display="none";downloadLink.download=filename;downloadLink.href=urlToBlob;document.body.appendChild(downloadLink);downloadLink.click();downloadLink.parentElement.removeChild(downloadLink);}
+function getTodaysDate(){let now=new Date();let day=("0"+now.getDate()).slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);let today=now.getFullYear()+"-"+month+"-"+day;return today;}
+function getFirstDayOfThisMonthDate(){let now=new Date();let day="01";let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
+function getLastDayOfThisMonthDate(){let now=new Date();let day=daysInThisMonth().toString();day="0"+day;day=day.slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
+function daysInSomeMonth(someMonth,someYear){return new Date(someYear,someMonth+1,0).getDate();}
+function daysInThisMonth(){thisDate=new Date();thisMonth=thisDate.getMonth();thisYear=thisDate.getYear();return daysInSomeMonth(thisMonth,thisYear);}
+function getDayOfWeek(isoYearMonthDay){let d=new Date(isoYearMonthDay+"T00:00");return d.getDay();}
+function serializeElementToPage(id,extraStyle=""){let boilerPlate1="<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";let allStyleTags=document.getElementsByTagName('style');let styleElementContent="";for(let i=0;i<allStyleTags.length;i++){styleElementContent=allStyleTags[i].innerHTML;}
+let boilerPlate2="</style></head><body>";let boilerPlate3="</body></html>";let s=new XMLSerializer();let myElement=document.getElementById(id);let str=s.serializeToString(myElement);let htmlPage=boilerPlate1+styleElementContent+extraStyle+boilerPlate2+str+boilerPlate3;console.log(htmlPage);return htmlPage;}
+function simulateUndo(){document.execCommand('undo',false,null);}
+function simulateRedo(){document.execCommand('redo',false,null);}
+function askConfirm(){return "Did you remember to save your data?";}
+function showMain(id){let mains=document.getElementsByTagName('main');for(let main of mains){main.style.display="none";}
+document.getElementById(id).style.display="flex";}
+function copyToClipBoard(str){let el=document.createElement('textarea');el.value=str;el.setAttribute('readonly','');el.style={position:'absolute',left:'-9999px'};document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);alert('Copied to Clipboard.');return(str);}
+function fillInEmptyPropertyValues(table){let data=table["data"];let headers=table["headers"];for(let i=0;i<data.length;i++){for(let j=0;j<headers.length;j++){if(data[i][headers[j]]===undefined){data[i][headers[j]]="";}}}}
+function makeCSV(thisTable,saveWithHeader=true){let csvString="";let tempString="";let headers=thisTable["headers"];if(saveWithHeader===true){for(let header of headers){tempString=header.toString().replaceAll('"','""');csvString+="\""+tempString+"\",";}
+csvString=csvString.slice(0,-1)+"\n";}
+let bodyData=thisTable["data"];let numberOfRows=bodyData.length;let numberOfColumns=headers.length;for(let i=0;i<numberOfRows;i++){for(let j=0;j<numberOfColumns;j++){tempString=bodyData[i][headers[j]].toString().replaceAll('"','""');csvString+="\""+tempString+"\",";}
+csvString=csvString.slice(0,-1)+"\n";}
+console.log(csvString);return(csvString);}
+function readCSV(csvString,loadWithHeader=true){csvString=csvString.trim();let lines=csvString.split("\n");let newCSVArrayOfArrays=[];for(let i=0;i<lines.length;i++){lines[i]=lines[i].trim();lines[i]=lines[i].slice(1,-1);let tempRowArray=lines[i].split('","');let randomString=tokenMaker(32);while(lines[i].includes(randomString)===true){randomString=tokenMaker(32);};let newString=tempRowArray.join(randomString);newString=newString.replaceAll('"'+randomString+'"','","');tempRowArray=newString.split(randomString);for(let j=0;j<tempRowArray.length;j++){tempRowArray[j]=tempRowArray[j].replaceAll('""','"');}
+newCSVArrayOfArrays.push(tempRowArray);}
+let headers=[];let data=[];if(newCSVArrayOfArrays.length>0){if(loadWithHeader===true){headers=newCSVArrayOfArrays[0];if(newCSVArrayOfArrays.length>1){for(let i=1;i<newCSVArrayOfArrays.length;i++){let tempRow={};for(let j=0;j<newCSVArrayOfArrays[i].length;j++){tempRow[headers[j]]=newCSVArrayOfArrays[i][j];}
+data.push(tempRow);}}}else{if(newCSVArrayOfArrays.length>0){for(let j=0;j<newCSVArrayOfArrays[0].length;j++){headers.push("Column "+(j+1).toString());}
+for(let i=0;i<newCSVArrayOfArrays.length;i++){let tempRow={};for(let j=0;j<newCSVArrayOfArrays[i].length;j++){tempRow[headers[j]]=newCSVArrayOfArrays[i][j];}
+data.push(tempRow);}}}}
+let finalTable={};finalTable["headers"]=headers;finalTable["data"]=data;console.log(JSON.stringify(finalTable));return JSON.parse(JSON.stringify(finalTable));}
+function tokenMaker(intSize){let token="";let specialString="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";let index=0;for(let i=0;i<intSize;i++){token+=specialString[Math.floor(Math.random()*specialString.length)];}
+console.log(token);return token;}
+function processCSVClick(table){let thisCSV="";if(confirm("Include header as first line in csv file?")){thisCSV=makeCSV(table,true);}else{thisCSV=makeCSV(table,false);}
+copyToClipBoard(thisCSV);if(confirm("Table copied to CSV.\n\nSave to file also?")){saveStringToTextFile(thisCSV,table["name"]+getTodaysDate(),".csv");}}
+function destructiveSort(arrayOfObjects,field,direction=1){if(direction!=-1){direction=1;}
+arrayOfObjects.sort((a,b)=>{if(a[field]<b[field]){return-1*direction;}
+if(a[field]>b[field]){return 1*direction;}
+return 0;});}
+function makeFavicon(letter,color,backgroundColor){let canvas=document.createElement('canvas');canvas.width=16;canvas.height=16;let ctx=canvas.getContext('2d');ctx.fillStyle=backgroundColor;ctx.fillRect(0,0,16,16);let ctx2=canvas.getContext("2d");ctx2.fillStyle=color;ctx2.font="bold 12px Arial";ctx2.fillText("b",4,12);let link=document.getElementById("favicon-link");link.href=canvas.toDataURL("image/x-icon");}
+initializeNotesApp();function initializeNotesApp(){note.style.fontSize=noteFontSize.toString()+"rem";note.spellcheck=false;note.focus();}
+function changeFontSize(fontButton){let doThis=fontButton.innerHTML;if(doThis==="-"){if(noteFontSize>0.2){noteFontSize-=0.2;}}else{noteFontSize+=0.2;}
+note.style.fontSize=noteFontSize.toString()+"rem";}
+function newNotesEntry(){if(note.value!=''){if(confirm("This will erase current contents.")){note.value='';compareNoteValue='';}}}
+function notesLoad(){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".txt";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;note.value=fileContents;};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
+function notesSave(){basename="notes"+getTodaysDate();saveStringToTextFile(note.value,basename,".txt");compareNoteValue=note.value;}
+function printNotesDiv(id){let a=window.open();a.document.write(serializeNotesElementToPage(id,"html{background-color:white;}#note{font-size:"+noteFontSize+"rem}"));a.document.close();a.print();}
+function serializeNotesElementToPage(id,extraStyle=""){let boilerPlate1="<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";let allStyleTags=document.getElementsByTagName('style');let styleElementContent="";for(let i=0;i<allStyleTags.length;i++){styleElementContent=allStyleTags[i].innerHTML;}
+styleElementContent+="pre{white-space: pre-wrap;overflow-wrap: break-word;margin: 0;padding: 0;}"
+let boilerPlate2="</style></head><body>";let boilerPlate3="</body></html>";let str="<pre id='note'>"+document.getElementById(id).value+"</pre>";let htmlPage=boilerPlate1+styleElementContent+extraStyle+boilerPlate2+str+boilerPlate3;console.log(htmlPage);return htmlPage;}initializeWriteApp();let lastTextAreaText=textarea.value;function initializeWriteApp(){documentDiv.style.fontSize=remSize+"rem";documentDiv.style.marginLeft=marginSize+"rem";documentDiv.style.marginRight=marginSize+"rem";writeUndos.push(textarea.value);writeUpdateResult();textarea.spellcheck=false;textarea.focus();document.getElementById('text-editor').addEventListener('keydown',function(e){if(e.key=='Tab'){e.preventDefault();insertTab(this);updateUndosIfTextChanges();}});document.getElementById('text-editor').addEventListener('input',updateUndosIfTextChanges);compareWriteData=makeCompareWriteData();}
+function updateUndosIfTextChanges(){console.log("called");console.log(writeUndos);if(lastTextAreaText!=textarea.value){addUndo();lastTextAreaText=textarea.value;}
+console.log(writeUndos);}
+function insertTab(aTextarea){let start=aTextarea.selectionStart;let end=aTextarea.selectionEnd;aTextarea.value=aTextarea.value.substring(0,start)+
+"\t"+aTextarea.value.substring(end);aTextarea.selectionStart=aTextarea.selectionEnd=start+1;writeUpdateResult();}
+function exportToHTML(){let contents=serializeElementToPage("document-parent","html,#document-result,#document-parent{background-color:white;}");copyToClipBoard(contents);if(confirm("HTML document exported to clipboard.\n\nWould you like to export to HTML file?")){saveStringToTextFile(contents,'write'+getTodaysDate(),'.html');}}
+function newDocument(){if(confirm("This will overwrite current document.")){writeResetAll();}}
+function writeResetAll(){writeBaseFilename="";remSize=1;marginSize=2;textarea.value="";documentDiv.style.textAlign="left";documentDiv.style.fontFamily="Georgia, 'Times New Roman', Garamond, Times, serif";documentDiv.style.fontSize="1rem";documentDiv.style.marginLeft="2rem";textarea.spellcheck=false;writeUndos=[];writeUndos.push(textarea.value);writeUpdateResult();textarea.focus();}
+function makeCompareWriteData(){writeUpdateResult();let data={}
+data["text"]=textarea.value;data["textAlign"]=documentDiv.style.textAlign;data["fontFamily"]=documentDiv.style.fontFamily;data["fontSize"]=documentDiv.style.fontSize;data["marginSize"]=documentDiv.style.marginLeft;data["spellCheck"]=textarea.spellcheck;return JSON.stringify(data);;}
+function writeDataToJSON(){writeUpdateResult();let data={}
+data["text"]=textarea.value;data["textAlign"]=documentDiv.style.textAlign;data["fontFamily"]=documentDiv.style.fontFamily;data["fontSize"]=documentDiv.style.fontSize;data["marginSize"]=documentDiv.style.marginLeft;data["spellCheck"]=textarea.spellcheck;writeBaseFilename="write"+getTodaysDate();let saveContents=JSON.stringify(data);saveStringToTextFile(saveContents,writeBaseFilename,".json");compareWriteData=makeCompareWriteData();}
+function writeLoad(){console.log("writeLoad() called");console.log(textarea.value);console.log(textarea.value.length);let proceed=true;if(textarea.value.length!=0){proceed=confirm("This will overwrite current document");}
+if(proceed){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".json";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;let loadedData=JSON.parse(fileContents);textarea.value=loadedData["text"];documentDiv.style.textAlign=loadedData["textAlign"];documentDiv.style.fontFamily=loadedData["fontFamily"];documentDiv.style.fontSize=loadedData["fontSize"];documentDiv.style.marginLeft=loadedData["marginSize"];textarea.spellcheck=loadedData["spellCheck"];writeUpdateResult();remSize=parseFloat(loadedData["fontSize"].split("rem")[0]);marginSize=parseFloat(loadedData["marginSize"].split("rem")[0]);writeUndos=[];console.log("writeUndos length",writeUndos.length);writeUndos.push(textarea.value);textarea.focus();};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}}
+function addUndo(){console.log(writeUndos.length,writeUndosCursor);console.log(writeUndos);if(writeUndos.length-1===writeUndosCursor){console.log("we are at end");if(writeUndos.length>=316){writeUndos.shift();writeUndos.push(textarea.value);}else{writeUndos.push(textarea.value);writeUndosCursor+=1;}
+console.log(writeUndos);}else{console.log("we are not at end");console.log(writeUndos);let removeNumberOfElements=writeUndos.length-(writeUndosCursor+1);writeUndos=writeUndos.slice(0,-removeNumberOfElements);console.log(writeUndos);writeUndos.push(textarea.value);writeUndosCursor+=1;console.log(writeUndos);}}
+function backUndo(){console.log("back Undo called");console.log(writeUndos);console.log(writeUndosCursor);if(writeUndosCursor>0){let thisText=writeUndos[writeUndosCursor-1];textarea.value=thisText;writeUpdateResult();writeUndosCursor=writeUndosCursor-1;}
+console.log(writeUndos);console.log(writeUndosCursor);}
+function writeRedo(){console.log("redo called");if(writeUndos.length-1===writeUndosCursor){console.log("we are at end");}else{console.log("we are not at end");writeUndosCursor+=1;let thisText=writeUndos[writeUndosCursor];textarea.value=thisText;writeUpdateResult();}}
+function processSelectedText(clickedElement){let action=clickedElement.innerHTML;console.log(action);if(action==="⇚"){documentDiv.style.textAlign="left";}else if(action==="⇛⇚"){documentDiv.style.textAlign="center";}else if(action==="⇛"){documentDiv.style.textAlign="right";}else if(action==="Mono"){documentDiv.style.fontFamily="'Courier New', Courier, monospace";}else if(action==="Serif"){documentDiv.style.fontFamily="Georgia, 'Times New Roman', Garamond, Times, serif";}else if(action==="Sans"){documentDiv.style.fontFamily="Arial, Verdana, Helvetica, Tahoma, sans-serif";}else if(action==="<sub>A</sub>A"){remSize=remSize+.2;documentDiv.style.fontSize=remSize.toString()+"rem";}else if(action==="<sup>A</sup>A"){remSize=remSize-.2;documentDiv.style.fontSize=remSize.toString()+"rem";}else if(action==="⇥⇤"){marginSize=marginSize+1;if(marginSize>20){marginSize=20;}
+documentDiv.style.marginLeft=marginSize.toString()+"rem";documentDiv.style.marginRight=marginSize.toString()+"rem";}else if(action==="⇤⇥"){marginSize=marginSize-1;if(marginSize<0){marginSize=0;}
+documentDiv.style.marginLeft=marginSize.toString()+"rem";documentDiv.style.marginRight=marginSize.toString()+"rem";}else if(action==="⟲"){backUndo();}else if(action==="✓"){console.log(textarea.spellcheck);textarea.spellcheck=!(textarea.spellcheck);console.log(textarea.spellcheck);textarea.focus();}
+let len=textarea.value.length;let start=textarea.selectionStart;let end=textarea.selectionEnd;let sel=textarea.value.substring(start,end);let replace=sel;if(action==="<b>B</b>"){replace='<b>'+sel+'</b>';}else if(action==="<u>U</u>"){replace='<u>'+sel+'</u>';}else if(action==="<em>I</em>"){replace='<em>'+sel+'</em>';}else if(action==="H1"){replace='<h1>'+sel+'</h1>';}else if(action==="H2"){replace='<h2>'+sel+'</h2>';}else if(action==="H3"){replace='<h3>'+sel+'</h3>';}else if(action==="¶"){replace='<p>'+sel+'</p>';}else if(action==="―"){replace='<hr>'+sel;}else if(action==="•"){replace='&bullet; '+sel;}else if(action==="↹"){replace="\t"+sel;}
+textarea.value=textarea.value.substring(0,start)+replace+textarea.value.substring(end,len);writeUpdateResult();textarea.selectionStart=start+replace.length;textarea.selectionEnd=start+replace.length;textarea.focus();if(action!="⟲"){updateUndosIfTextChanges();}}
+function writeUpdateResult(){let currentContents=document.getElementById('text-editor').value;document.getElementById('document-result').innerHTML=currentContents.replaceAll('\n','<br>');if(textarea.spellcheck===true){document.getElementById("spell-check").style.color="green";}else{document.getElementById("spell-check").style.color="red";}}
+function printDiv(id){let mySerializer=new XMLSerializer(id);let s=new XMLSerializer();let d=document;let str=s.serializeToString(d.getElementById(id));var a=window.open('','');a.document.write('<html>');a.document.write("<style> #document-result {overflow-wrap: break-word;width: auto;white-space: pre-wrap;} </style>");a.document.write(str);a.document.write('</body></html>');a.document.close();a.print();}initializeTablesApp();function initializeTablesApp(){makeTable(tablesTable);}
+function backupTablesTable(){updateDataFromCurrentInputs(tablesTable);return JSON.parse(JSON.stringify(currentTablesTable));}
+function processColumnClick(header){updateDataFromCurrentInputs(tablesTable);populateMoveColumnSelect(tablesTable);document.getElementById("tables-current-header").innerHTML=header;document.getElementById("tables-new-header-name").value=header;showMain("main-tables-header-form");}
+function processRowClick(row){updateDataFromCurrentInputs(tablesTable);populateMoveRowSelect(tablesTable);document.getElementById("tables-current-row").innerHTML=row.toString();showMain("main-tables-row-form");}
+function makeTable(table){let str="";str="";let headers=table["headers"];str+="<thead><tr><th></th>";for(let i=0;i<headers.length;i++){str+="<th id='"+headers[i]+"' onclick=\"processColumnClick('"+headers[i]+"');\">"+headers[i]+"</th>";}
+str+="<th id='add-column' onclick='addColumn(tablesTable)'>+</th>";str+="</tr></thead>";let tableHeader=str;str="<tbody>";let bodyData=table.data;console.log("bodyData");console.log(bodyData);let rowCount=bodyData.length;for(let i=0;i<rowCount;i++){str+="<tr><td class='tables-table-row-number' onclick='processRowClick("+i.toString()+")'>"+i.toString()+"</td>";let columnCount=headers.length;console.log(columnCount);for(let j=0;j<columnCount;j++){if(bodyData[i][headers[j]]===undefined){bodyData[i][headers[j]]="input read error";}
+str+="<td><input type='text' id='cell-"+i.toString()+"-"+j.toString()+"' value='"+bodyData[i][headers[j]].toString()+"'></td>";}
+str+="</tr>";}
+str+="</tbody>"
+let tableBody=str;str="<tfoot><tr><th id='add-row' onclick='addRow(tablesTable)'>+</th>";for(let i=0;i<headers.length;i++){str+="<th id='footer-"+(i+1).toString()+"' onclick=\"processColumnClick('"+headers[i]+"');\"></th>";}
+str+="</tr></tfoot>";let tableFooter=str;let strTable=tableHeader+tableBody+tableFooter;populateMoveColumnSelect(table);populateMoveRowSelect(table);tableElement.innerHTML=strTable;return strTable;}
+function populateMoveColumnSelect(table){let moveColumnSelect=document.getElementById('move-column');moveColumnSelect.options.length=0;let currentTableHeaders=table.headers;for(th of currentTableHeaders){let option=document.createElement('option');option.value=th;option.text=th;moveColumnSelect.add(option);}}
+function populateMoveRowSelect(table){let moveRowSelect=document.getElementById('move-row');moveRowSelect.options.length=0;for(let i=0;i<table["data"].length;i++){let option=document.createElement('option');option.value=i.toString();option.text=i.toString();moveRowSelect.add(option);}}
+function updateDataFromCurrentInputs(table){let headers=table["headers"];console.log("headers");console.log(headers);for(let i=0;i<table.data.length;i++){for(let j=0;j<table.headers.length;j++){let id="cell-"+i.toString()+"-"+j.toString();let thisCell=document.getElementById(id);table.data[i][headers[j]]=thisCell.value;}}}
+function updateHeaderName(){let fieldName=document.getElementById("tables-current-header").innerHTML;let newName=document.getElementById('tables-new-header-name').value;if(fieldName===newName){makeTable(tablesTable);return;}
+if(newName===""){newName=prompt("There is no name listed, please enter the new name");if(newName===null){return;}}
+tablesTable=_changeHeaderAndDataPropertyName(tablesTable,newName,fieldName);makeTable(tablesTable);showMain('main-tables-table');}
+function tablesSort(direction){let field=document.getElementById("tables-current-header").innerHTML;sortTablesByField(field,direction);}
+function sortTablesByField(field,direction=1){if(confirm("Sort by "+field+"?\n\nThis is destructive and irreversible.")){destructiveSort(tablesTable["data"],field,direction);makeTable(tablesTable);showMain('main-tables-table');}}
+function _changeHeaderAndDataPropertyName(table,newName,oldName){let data=table["data"];newName=getBestName(table,newName);let index=table["headers"].indexOf(oldName);table["headers"][index]=newName;for(let i=0;i<data.length;i++){data[i][newName]=data[i][oldName];delete data[i][oldName];}
+return table;}
+function deleteColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;if(confirm("Are you sure? \n\nDelete Column: "+columnName+"?")){let index=tablesTable["headers"].indexOf(columnName);tablesTable["headers"].splice(index,1);for(let i=0;i<tablesTable["data"].length;i++){delete tablesTable["data"][i][columnName];}
+makeTable(tablesTable);showMain('main-tables-table');}}
+function addColumn(table){updateDataFromCurrentInputs(table);let newIndex=1;let newColumnName="new"+newIndex.toString();while(table["headers"].includes(newColumnName)){console.log("column name already in use");newIndex+=1;newColumnName="new"+newIndex.toString();}
+table.headers.push(newColumnName);fillInEmptyPropertyValues(table);makeTable(table);}
+function moveColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;let destinationColumnName=document.getElementById("move-column").value;if(columnName===destinationColumnName){console.log("destination is same as source");return;}
+let index=tablesTable["headers"].indexOf(columnName);let destinationIndex=tablesTable["headers"].indexOf(destinationColumnName);let headerToMove=tablesTable["headers"].splice(index,1)[0];tablesTable["headers"].splice(destinationIndex,0,headerToMove);makeTable(tablesTable);showMain('main-tables-table');}
+function getBestName(table,name){let headers=table["headers"];let nameCount=0;let bestName=name;while(headers.includes(bestName)){console.log("column name already in use");nameCount+=1;bestName=name+"-"+nameCount.toString();}
+return bestName;}
+function copyColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;let newName=getBestName(tablesTable,columnName);tablesTable["headers"].push(newName);for(let i=0;i<tablesTable["data"].length;i++){tablesTable["data"][i][newName]=tablesTable["data"][i][columnName];}
+makeTable(tablesTable);showMain('main-tables-table');}
+function calculateTotal(){let columnName=document.getElementById("tables-current-header").innerHTML;let total=0;for(let row of tablesTable.data){total=total+Number(row[columnName]);}
+if(confirm("The total is: "+total.toString()+"\nCopy to clipboard?")){copyToClipBoard(total.toString());};showMain('main-tables-table');}
+function tablesCancel(){console.log("tablesCancel called");makeTable(tablesTable);showMain('main-tables-table');}
+function calculateAverage(){alert("calculate average called");console.log("calcualtoe average called");let columnName=document.getElementById("tables-current-header").innerHTML;let total=0;for(let row of tablesTable.data){total=total+Number(row[columnName]);}
+let average=total/tablesTable.data.length;if(confirm("The average is: "+average.toString()+"\nCopy to clipboard?")){copyToClipBoard(average.toString());}
+showMain('main-tables-table');}
+function addRow(table){let headers=table["headers"];updateDataFromCurrentInputs(table);let numberOfColumns=table.headers.length;let tempRow={};for(let i=0;i<numberOfColumns;i++){tempRow[headers[i]]="";}
+table["data"].push(tempRow);makeTable(table);}
+function deleteRow(){let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];data.splice(index,1);makeTable(tablesTable);showMain('main-tables-table');}
+function copyRow(){console.log("copy row called");let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];console.log(data);let rowToCopy=JSON.parse(JSON.stringify(tablesTable.data[index]));data.push(rowToCopy);makeTable(tablesTable);showMain('main-tables-table');}
+function moveRow(){console.log("move row called");let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];let destinationIndex=parseInt(document.getElementById("move-row").value);let rowToMove=data.splice(index,1)[0];data.splice(destinationIndex,0,rowToMove);makeTable(tablesTable);showMain('main-tables-table');}
+function tablesNewTable(){if(confirm("Are you sure?  This will erase all current data.")){tablesTable=JSON.parse(initialTablesTable);compareTablesTable=initialTablesTable;makeTable(tablesTable);showMain('main-tables-table');return tablesTable;}}
+function tablesLoad(){console.log("tablesLoad() called");let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".csv";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;if(confirm("Use the first line as the header row?")){tablesTable=readCSV(fileContents,true);}else{tablesTable=readCSV(fileContents,false);}
+makeTable(tablesTable);compareTablesTable=JSON.stringify(tablesTable);};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
+function tablesSave(){console.log("tablesSave() called");updateDataFromCurrentInputs(tablesTable);if(confirm("Include header as first line in csv file?")){saveStringToTextFile(makeCSV(tablesTable,true),"csvTable"+getTodaysDate(),".csv");}else{saveStringToTextFile(makeCSV(tablesTable,false),"csvTable"+getTodaysDate(),".csv");}
+compareTablesTable=JSON.stringify(tablesTable);}
+function tablesShowRules(){alert('FORMATTING RULES:\n\nWhen Saving:\n1) All cells are quoted text.\n2) Interior double quotes in cells are converted like this: "->""\n\nIf loading CSV from other apps:\n1) Cells should all be text type.\n2) Quote all text strings when saving.')}
+function tablesCopyCSVToClipboard(){updateDataFromCurrentInputs(tablesTable);let thisResult="";if(confirm("Include header as first line?")){thisResult=copyToClipBoard(makeCSV(tablesTable,true));}else{thisResult=copyToClipBoard(makeCSV(tablesTable,false));}
+return thisResult;}initializeContactsApp();function initializeContactsApp(){fillInEmptyPropertyValues(contactsTable);document.getElementById("contacts-table-name").innerHTML=contactsTable["name"];contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);contactsEditForm.innerHTML=buildContactsEditForm(contactsTable,-1);}
+function backupContactsDatabase(){return JSON.parse(JSON.stringify(contactsTable));}
+function buildContactsTableElement(contactsTable){let tableElement="";let numberOfColumns=contactsTable["headers"].length;let numberOfRows=contactsTable["data"].length;tableElement+="<table>";tableElement+="<thead><tr>";for(let j=0;j<numberOfColumns;j++){tableElement+="<th onclick='sortContactsByField(this);'>"+contactsTable["headers"][j]+"</th>";}
+tableElement+="</tr></thead>";tableElement+="<tbody>";for(let i=0;i<numberOfRows;i++){tableElement+="<tr id='contacts-table-row-"+i.toString()+"' onclick='selectContactsEditForm(this)'>";for(let j=0;j<numberOfColumns;j++){let fieldName=contactsTable["headers"][j];tableElement+="<td>"+contactsTable["data"][i][fieldName]+"</td>";}
+tableElement+="</tr>";}
+tableElement+="</tbody>";return tableElement;}
+function newContactsEntry(){contactsEditFormMessage.innerHTML=contactsTable["name"]+": New Entry";contactsEditForm.innerHTML=buildContactsEditForm(contactsTable,-1);showMain("main-contacts-form")}
+function selectContactsEditForm(clickedRow){let index=parseInt(clickedRow.id.split("-")[3]);contactsEditFormMessage.innerHTML=contactsTable["name"]+": Entry "+index.toString();contactsEditForm.innerHTML=buildContactsEditForm(contactsTable,index);showMain("main-contacts-form");}
+function buildContactsEditForm(contactsTable,index){let editForm="";editForm+="<form>";editForm="<input type='hidden' id='contacts-row-index' value='"+index.toString()+"'>";let numberOfColumns=contactsTable["headers"].length;let headers=contactsTable["headers"];let row=contactsTable["data"][index];let inputTypes=contactsTable["inputTypes"];for(let j=0;j<numberOfColumns;j++){let extraString="";if(inputTypes[headers[j]]==="number"){extraString=" step='any' ";}else if(inputTypes[headers[j]]==="tel"){extraString=" placeholder='304-424-1000' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' ";}
+if(index===-1){editForm+="<div><label for='contact-"+headers[j]+"'>"+headers[j]+"</label></div><div><input type='"+inputTypes[headers[j]]+"' id='contact-"+headers[j]+"' "+extraString+"></div>";}else{editForm+="<div><label for='contact-"+headers[j]+"'>"+headers[j]+"</label></div><div><input type='"+inputTypes[headers[j]]+"' id='contact-"+headers[j]+"' value='"+row[headers[j]].replaceAll("\"","&quot;").replaceAll("\'","&apos;")+"'"+extraString+"></div>";}}
+editForm+="</form>";return editForm;}
+function saveContactsEntry(){let index=parseInt(document.getElementById("contacts-row-index").value);let headers=contactsTable["headers"];let row={};for(let j=0;j<headers.length;j++){row[headers[j]]=document.getElementById("contact-"+headers[j]).value;}
+if(index>=0){contactsTable["data"][index]=row;}else{contactsTable["data"].push(row);}
+clearContactFormEntries(contactsTable);contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);showMain("main-contacts-table");}
+function deleteContactsEntry(){let index=parseInt(document.getElementById("contacts-row-index").value);if(index>=0){if(confirm("Delete this entry?")){contactsTable["data"].splice(index,1);}}
+clearContactFormEntries(contactsTable);contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);showMain("main-contacts-table");}
+function cancelContactsEntry(){clearContactFormEntries(contactsTable);contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);showMain("main-contacts-table");}
+function clearContactFormEntries(contactsTable){let headers=contactsTable["headers"];for(let j=0;j<headers.length;j++){document.getElementById("contact-"+headers[j]).value="";}
+document.getElementById("contacts-row-index").value=-1;contactsEditFormMessage.innerHTML="";}
+function sortContactsByField(clickedHeaderElement){let field=clickedHeaderElement.innerHTML;if(contactsTable["data"].length>1){if(confirm("Sort by "+clickedHeaderElement.innerHTML+"?")){destructiveSort(contactsTable["data"],field,contactsSortAscending);contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);contactsSortAscending=-1*contactsSortAscending;}}}initializeCalendarApp();function initializeCalendarApp(){monthChooser.addEventListener("input",makeCalendar);monthChooser.addEventListener("change",makeCalendar);monthChooser.value=getTodaysDate().slice(0,-3);console.log(getTodaysDate().slice(0,-3));makeCalendar();}
+function processCalendarHome(){makeCalendar();showMain("main-calendar-start");}
+function processCalendarCSVClick(){let date=document.getElementById("calendar-date").value;;let tempTable={};tempTable["headers"]=calendarDatabase["headers"];tempTable["data"]=calendarDatabase["dates"][date]["data"];tempTable["name"]="Calendar";processCSVClick(tempTable);}
+function buildCalendarTableElement(date){destructiveSort(calendarDatabase["dates"][date]["data"],calendarDatabase["headers"][0]);let daysEntries=calendarDatabase["dates"][date]["data"];let tableElement="";let numberOfColumns=calendarDatabase["headers"].length;let numberOfRows=daysEntries.length;tableElement+="<table>";tableElement+="<thead><tr>";for(let j=0;j<numberOfColumns;j++){tableElement+="<th onclick='//sortCalendarByField(this);'>"+calendarDatabase["headers"][j]+"</th>";}
+tableElement+="</tr></thead>";tableElement+="<tbody>";for(let i=0;i<numberOfRows;i++){tableElement+="<tr id='calendar-table-row-"+i.toString()+"' onclick=\"selectCalendarEditForm("+i.toString()+")\">";for(let j=0;j<numberOfColumns;j++){let fieldName=calendarDatabase["headers"][j];tableElement+="<td>"+daysEntries[i][fieldName]+"</td>";}
+tableElement+="</tr>";}
+tableElement+="</tbody>";return tableElement;}
+function newCalendarEntry(table){calendarEditFormMessage.innerHTML=document.getElementById("calendar-date").value+": New Entry";calendarEditForm.innerHTML=buildCalendarEditForm(-1);showMain("main-calendar-form")}
+function selectCalendarEditForm(clickedRowIndex){calendarEditFormMessage.innerHTML=document.getElementById("calendar-date").value+": Entry "+clickedRowIndex.toString();calendarEditForm.innerHTML=buildCalendarEditForm(clickedRowIndex);showMain("main-calendar-form");}
+function buildCalendarEditForm(index){let date=document.getElementById("calendar-date").value;let thisEntry=calendarDatabase["dates"][date]["data"][index];let editForm="";editForm+="<form>";editForm="<input type='hidden' id='calendar-row-index' value='"+index.toString()+"'>";let numberOfColumns=calendarDatabase["headers"].length;let headers=calendarDatabase["headers"];let row=thisEntry;let inputTypes=calendarDatabase["inputTypes"];for(let j=0;j<numberOfColumns;j++){let extraString="";if(inputTypes[headers[j]]==="number"){extraString=" step='any' ";}else if(inputTypes[headers[j]]==="tel"){extraString=" placeholder='304-424-1000' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' ";}
+if(index===-1){editForm+="<div><label for='"+headers[j]+"'>"+headers[j]+"</label></div><div><input type='"+inputTypes[headers[j]]+"' id='"+headers[j]+"' "+extraString+"></div>";}else{editForm+="<div><label for='"+headers[j]+"'>"+headers[j]+"</label></div><div><input type='"+inputTypes[headers[j]]+"' id='"+headers[j]+"' value='"+row[headers[j]].replaceAll("\"","&quot;").replaceAll("\'","&apos;")+"'"+extraString+"></div>";}}
+editForm+="</form>";return editForm;}
+function saveCalendarEntry(){let index=parseInt(document.getElementById("calendar-row-index").value);let date=document.getElementById("calendar-date").value;let headers=calendarDatabase["headers"];let row={};for(let j=0;j<headers.length;j++){row[headers[j]]=document.getElementById(headers[j]).value;}
+if(index>=0){calendarDatabase["dates"][date]["data"][index]=row;}else{calendarDatabase["dates"][date]["data"].push(row);}
+clearCalendarFormEntries();calendarTable.innerHTML=buildCalendarTableElement(date);showMain("main-calendar-table");}
+function purgeCalendar(){let dates=calendarDatabase["dates"];for(let date in dates){console.log(date);console.log(dates[date]["data"]);console.log(dates[date]["data"].length);if(dates[date]["data"].length===0){delete dates[date];}}}
+function deleteCalendarEntry(){let index=parseInt(document.getElementById("calendar-row-index").value);let date=document.getElementById("calendar-date").value;if(index>=0){if(confirm("Delete this entry?")){calendarDatabase["dates"][date]["data"].splice(index,1);}}
+clearCalendarFormEntries();calendarTable.innerHTML=buildCalendarTableElement(date);showMain("main-calendar-table");}
+function cancelCalendarEntry(){let date=document.getElementById("calendar-date").value;clearCalendarFormEntries();calendarTable.innerHTML=buildCalendarTableElement(date);showMain("main-calendar-table");}
+function clearCalendarFormEntries(){let headers=calendarDatabase["headers"];for(let j=0;j<headers.length;j++){document.getElementById(headers[j]).value="";}
+document.getElementById("calendar-row-index").value=-1;calendarEditFormMessage.innerHTML="";}
+function sortCalendarByField(clickedHeaderElement){let date=document.getElementById("calendar-date").value;let field=clickedHeaderElement.innerHTML;if(calendarDatabase["dates"][date]["data"].length>1){if(confirm("Sort by "+clickedHeaderElement.innerHTML+"?")){destructiveSort(calendarDatabase["dates"][date]["data"],field,calendarSortAscending);calendarTable.innerHTML=buildCalendarTableElement(date);calendarSortAscending=-1*calendarSortAscending;};}}
+function makeCalendar(){console.log("--------------------");console.log(monthChooser.value);console.log("--------------------");let d=new Date(monthChooser.value+"-01T00:00");let startDayIndex=d.getDay();let monthToUse=parseInt(monthChooser.value.split("-")[1])-1;let yearToUse=parseInt(monthChooser.value.split("-")[0]);let daysInMonth=daysInSomeMonth(monthToUse,yearToUse);let calendarString="<table>";calendarString+="<tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>";calendarString+="<tr>";for(let i=0;i<startDayIndex;i++){console.log("x",daysAbbreviations[i]);calendarString+="<td>"+"-"+"</td>";}
+for(let i=0;i<daysInMonth;i++){let thisDate=i+1;let thisDayOfWeek=daysAbbreviations[(i+startDayIndex)%7];if((i+startDayIndex)%7===0){console.log("--------new line ----------");calendarString+="</tr><tr>"}
+calendarString+="<td class='return-calendar-date'>"+(i+1).toString()+"</td>";console.log(thisDate,thisDayOfWeek);}
+let lastDayIndex=(daysInMonth-1+startDayIndex)%7;let blankSpacesRemaining=6-lastDayIndex;for(let i=0;i<blankSpacesRemaining;i++){console.log("x",daysAbbreviations[lastDayIndex+1+i]);calendarString+="<td>"+"-"+"</td>";}
+calendarString+="</tr></table>";document.getElementById('special-calendar').innerHTML=calendarString;addEventListenersToCalendarEntries();purgeCalendar();colorCalendarEntries();return calendarString;}
+function addEventListenersToCalendarEntries(){let calendarEntries=document.getElementsByClassName('return-calendar-date');for(let entry of calendarEntries){entry.addEventListener("click",(evt)=>{openDayEntry(evt)});}}
+function openDayEntry(evt){let theDate=monthChooser.value+"-"+("0"+evt.target.innerHTML).slice(-2);document.getElementById("calendar-date").value=theDate;if(theDate===""){return;}
+if(calendarDatabase["dates"][theDate]===undefined){calendarDatabase["dates"][theDate]={};calendarDatabase["dates"][theDate]["data"]=[];}
+document.getElementById("calendar-table-name").innerHTML=daysAbbreviations[getDayOfWeek(theDate)]+" "+theDate+"</span>";calendarTable.innerHTML=buildCalendarTableElement(theDate);showMain("main-calendar-table");}
+function colorCalendarEntries(){purgeCalendar();let calendarEntries=document.getElementsByClassName('return-calendar-date');for(let entry of calendarEntries){let thisDate=monthChooser.value+"-"+("0"+entry.innerHTML).slice(-2);if(calendarDatabase["dates"][thisDate]===undefined){entry.style["backgroundColor"]="#E0E0E0;";}else{entry.style["backgroundColor"]="darkorange";}
+if(getTodaysDate()===thisDate){entry.style["border"]="1px solid grey";entry.style["font-weight"]="bold";}}}document.getElementById("clear-calc").addEventListener("click",clearCalc);document.getElementById("remove-last-char").addEventListener("click",removeLastChar);document.getElementById("equals-button").addEventListener("click",evaluateCalculatorInput);let theseCalculatorButtons=document.getElementsByClassName('build-calc-string');for(let calculatorButton of theseCalculatorButtons){calculatorButton.addEventListener("click",()=>{buildCalcString(calculatorButton.innerHTML)});}
+function buildCalcString(str){calcInput.value+=str;}
+function clearCalc(){calcInput.value="";}
+function removeLastChar(){calcInput.value=calcInput.value.slice(0,-1);}
+function evaluateCalculatorInput(){let sanitizedValue=calcInput.value.replace(/[^-+/*\de.]/g,'');if(sanitizedValue!=calcInput.value){alert("Unallowed characters replaced with empty space during evaluation.");}
+document.getElementById('last-calculator-expression').innerHTML="Evaluated: "+sanitizedValue;let result='';try{result=eval(sanitizedValue);}catch(error){result=error;}
+calcInput.value=result;}
+showMain('main-help');makeFavicon("b","white","mediumblue");window.onbeforeunload=askConfirm;</script>

@@ -21,6 +21,8 @@ minify -o style.min.css style.css
 
 cat xx00 xx02 style.min.css xx03 xx05 javascript.min.js xx06 >deleteme.html
 
+mv bitoffice.html bitofficeBackup.html
+
 minify -o bitoffice.html deleteme.html
 
 rm -rf xx00 xx01 xx02 xx03 xx04 xx05 xx06 style.min.css javascript.min.js javascript.js deleteme.html
