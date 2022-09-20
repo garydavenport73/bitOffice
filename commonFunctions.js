@@ -254,7 +254,7 @@ function makeCSV(thisTable, saveWithHeader = true) { ////This one fixed
     if (saveWithHeader === true) {
         //fill in header from object
         for (let header of headers) {
-            tempString = header.toString().replaceAll('"', '""'); //any interior " needs to be replaced with ""
+            tempString = header.toString().split('"').join('""'); //any interior " needs to be replaced with ""
             csvString += "\"" + tempString + "\","; //surround each field with quotes
         }
         csvString = csvString.slice(0, -1) + "\n"; //remove last comma and add new line
@@ -265,7 +265,7 @@ function makeCSV(thisTable, saveWithHeader = true) { ////This one fixed
     let numberOfColumns = headers.length;
     for (let i = 0; i < numberOfRows; i++) {
         for (let j = 0; j < numberOfColumns; j++) {
-            tempString = bodyData[i][headers[j]].toString().replaceAll('"', '""'); //any interior " needs to be replaced with ""
+            tempString = bodyData[i][headers[j]].toString().split('"').join('""'); //any interior " needs to be replaced with ""
             csvString += "\"" + tempString + "\","; //surround each field with quotes
         }
         csvString = csvString.slice(0, -1) + "\n"; //remove last comma and add new line
@@ -296,12 +296,12 @@ function readCSV(csvString, loadWithHeader = true) {
         //join by a randome string (make real random string here)
         let newString = tempRowArray.join(randomString);
         //look for the double quotes around randomString that is where the "," ie "","" (CSV convention) was
-        newString = newString.replaceAll('"' + randomString + '"', '","');
+        newString = newString.split('"' + randomString + '"').join('","');
         //split by randomString without the quotes
         tempRowArray = newString.split(randomString);
         //for each element in the row of elements, replace the "" with " CSV convention
         for (let j = 0; j < tempRowArray.length; j++) {
-            tempRowArray[j] = tempRowArray[j].replaceAll('""', '"');
+            tempRowArray[j] = tempRowArray[j].split('""').join('"');
         }
         newCSVArrayOfArrays.push(tempRowArray); //add each row to the new array
     }
@@ -384,6 +384,8 @@ function destructiveSort(arrayOfObjects, field, direction = 1) {
 }
 
 function makeFavicon(letter, color, backgroundColor) {
+    //put this in head of html document
+    //<link id="favicon-link" rel="icon" type="image/x-icon" href="">
     let canvas = document.createElement('canvas');
     canvas.width = 16;
     canvas.height = 16;

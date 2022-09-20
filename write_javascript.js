@@ -346,7 +346,7 @@ function writeUpdateResult() {
     let currentContents = document.getElementById('text-editor').value;
     //console.dir(document.getElementById('text-editor'));
     //console.log(currentContents);
-    document.getElementById('document-result').innerHTML = currentContents.replaceAll('\n', '<br>');
+    document.getElementById('document-result').innerHTML = currentContents.split('\n').join('<br>');
     if (textarea.spellcheck === true) {
         document.getElementById("spell-check").style.color = "green";
     } else {
