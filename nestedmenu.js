@@ -32,5 +32,5 @@ function openSelectedInitialNests() {
     }
 }
 
-toggleAll()
-openSelectedInitialNests()
+toggleAll();
+openSelectedInitialNests();
