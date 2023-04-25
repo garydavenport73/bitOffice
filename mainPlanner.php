@@ -1,5 +1,8 @@
 <main id="main-planner">
     <h2>Planner</h2>
+    <nav id="back-home-nav">
+            <button onclick="backHomePlanner();">&larr;Back to Main</button>
+        </nav>
     <nav id="planner-ribbon">
         <!-- <button onclick="showPlannerDiv('planner-startup');">&#128194;</button>
             <button onclick="showPlannerDiv('planner-contacts-table');">&#9742;</button>
@@ -10,8 +13,11 @@
         <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">Calendar</button>
         <button onclick="showPlannerDiv('planner-planner-help');">?</button>
     </nav>
+    <div class="planner-div" id="planner-home">
+        <h3>Planner-Home</h3>
+    </div>
     <div class="planner-div" id="planner-startup">
-        <h3>Load/Save</h3>
+        <h3>Planner-Load/Save</h3>
         <nav>
             <button id="startup-load-button" onclick="loadCombinedDatabase()">&#128194; Load</button>
             <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save</button>
@@ -19,6 +25,7 @@
     </div>
     <div class="planner-div" id="planner-planner-help">
         <h3>Planner-Help</h3>
+
         <p>You can:
         <ul>
             <li>Load/Save your data to its native format. This will save both the Contacts and Calendar in one file.
@@ -47,6 +54,7 @@
         <h3>Planner-Contacts</h3>
         <nav>
             <!--<button onclick="processCSVClick(contactsTable);">CSV</button>-->
+
 
             <button onclick='newContactsEntry();'>+ New Contact</button>
             <nav>
@@ -81,6 +89,7 @@
             <button onclick="clearCalendar();">Clear Calendar</button>
             <span class="nested-menu">&lrarr;</span>
         </nav>
+
         <div id="calendar-container">
             <div><input type='date' id="calendar-date"></div>
             <input id="month-chooser" type="month">

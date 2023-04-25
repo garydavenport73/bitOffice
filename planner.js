@@ -1294,7 +1294,6 @@ function makeSingleVCFString(row) {
     return str;
 }
 
-
 ///////////////// PLANNER /////////////////////
 function showPlannerDiv(id) {
     //console.log("show mains called with " + id);
@@ -1303,6 +1302,14 @@ function showPlannerDiv(id) {
         div.style.display = "none";
     }
     document.getElementById(id).style.display = "unset";
+    document.getElementById("planner-ribbon").style.display="none";
+    document.getElementById("back-home-nav").style.display="flex";
+}
+
+function backHomePlanner(){
+    showPlannerDiv("planner-home");
+    document.getElementById("planner-ribbon").style.display="flex";
+    document.getElementById("back-home-nav").style.display="none";
 }
 
 function loadCombinedDatabase() {
