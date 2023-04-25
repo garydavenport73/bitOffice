@@ -1,4 +1,10 @@
-html {
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><style>html {
     box-sizing: border-box;
     font-size: 16px;
 }
@@ -511,4 +517,139 @@ main nav button{
     /* font-size: 12px; */
 }
 
-/* make dim grey color */
+/* make dim grey color */</style><link id="favicon-link" rel="icon" type="image/x-icon" href="">
+<title>bitOffice</title>
+</head>
+
+<body>
+    <h1 onclick="alert(license);">bitOffice</h1>
+    <nav id="top-nav">
+        <button onclick="showMain('main-planner');">&#9742;&#128197;</button><button onclick="showMain('main-notes');">&#128196;</button><button onclick="showMain('main-write');">&#128221;</button><button onclick="showMain('main-tables');">&#9638;</button><button onclick="showMain('main-calculator');">&#128290;</button>
+    </nav><main id="main-calculator">
+    <h2>Calculator</h2>
+    <input type=text id='calculator-input'>
+    <nav id="calc-clr">
+        <button class="special-calculator-button" id="clear-calc">CLR</button>
+        <button id="remove-last-char">&larr;</button>
+    </nav>
+
+    <div id="last-calculator-expression"></div>
+    <table id="calculator-table">
+        <tr>
+            <td><button class='build-calc-string'>7</button></td>
+            <td><button class='build-calc-string'>8</button></td>
+            <td><button class='build-calc-string'>9</button></td>
+            <td><button class='build-calc-string'>/</button></td>
+        </tr>
+        <tr>
+            <td><button class='build-calc-string'>4</button></td>
+            <td><button class='build-calc-string'>5</button></td>
+            <td><button class='build-calc-string'>6</button></td>
+            <td><button class='build-calc-string'>*</button></td>
+        </tr>
+        <tr>
+            <td><button class='build-calc-string'>1</button></td>
+            <td><button class='build-calc-string'>2</button></td>
+            <td><button class='build-calc-string'>3</button></td>
+            <td><button class='build-calc-string'>-</button></td>
+        </tr>
+        <tr>
+            <td><button class='build-calc-string'>0</button></td>
+            <td><button class='build-calc-string'>.</button></td>
+            <td><button class="special-calculator-button" id="equals-button">=</button></td>
+            <td><button class='build-calc-string'>+</button></td>
+        </tr>
+    </table>
+</main><footer onclick="alert(license)">bitOffice &copy; 2022</footer><script>let license = "MIT License\n\n\
+Copyright (c) 2022 Gary Davenport\n\n\
+Permission is hereby granted, free of charge, to any person obtaining a copy \
+of this software and associated documentation files (the \"Software\"), to deal \
+in the Software without restriction, including without limitation the rights \
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell \
+copies of the Software, and to permit persons to whom the Software is \
+furnished to do so, subject to the following conditions:\n\n\
+The above copyright notice and this permission notice shall be included in all \
+copies or substantial portions of the Software.\n\n\
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR \
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, \
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE \
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, \
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE \
+SOFTWARE.";
+
+
+
+
+
+
+
+
+
+let calcInput = document.getElementById('calculator-input');
+document.getElementById("clear-calc").addEventListener("click", clearCalc);
+document.getElementById("remove-last-char").addEventListener("click", removeLastChar);
+document.getElementById("equals-button").addEventListener("click", evaluateCalculatorInput);
+let theseCalculatorButtons = document.getElementsByClassName('build-calc-string');
+for (let calculatorButton of theseCalculatorButtons) {
+    calculatorButton.addEventListener("click", () => { buildCalcString(calculatorButton.innerHTML) });
+}
+
+function buildCalcString(str) {
+    calcInput.value += str;
+}
+
+function clearCalc() {
+    calcInput.value = "";
+}
+
+function removeLastChar() {
+    calcInput.value = calcInput.value.slice(0, -1);
+}
+
+function evaluateCalculatorInput() {
+    let sanitizedValue = calcInput.value.replace(/[^-+/*\de.]/g, '');
+    if (sanitizedValue != calcInput.value) {
+        alert("Unallowed characters replaced with empty space during evaluation.");
+    }
+    document.getElementById('last-calculator-expression').innerHTML = "Evaluated: " + sanitizedValue;
+    let result = '';
+    try {
+        // result = eval(sanitizedValue);
+        result = evalReplaceFunction(sanitizedValue);
+    } catch (error) {
+        result = error;
+    }
+    calcInput.value = result;
+}
+
+function evalReplaceFunction(str) {
+    return Function("'use strict'; return (" + str + ")")();
+}
+</script><script>function makeFavicon(letter, color, backgroundColor) {
+    //put this in head of html document
+    //<link id="favicon-link" rel="icon" type="image/x-icon" href="">
+    let canvas = document.createElement('canvas');
+    canvas.width = 16;
+    canvas.height = 16;
+
+    let ctx = canvas.getContext('2d');
+    ctx.fillStyle = backgroundColor;
+    ctx.fillRect(0, 0, 16, 16);
+
+    let ctx2 = canvas.getContext("2d");
+    ctx2.fillStyle = color;
+    ctx2.font = "bold 12px Arial";
+    ctx2.fillText(letter, 4, 12);
+
+    let link = document.getElementById("favicon-link");
+    link.href = canvas.toDataURL("image/x-icon");
+}
+function askConfirm() {
+    return "Did you remember to save your data?";
+}
+makeFavicon("p", "white", "mediumblue");
+window.onbeforeunload = askConfirm;
+document.getElementById("top-nav").style.display="none";
+// showMain('main-calculator');</script></body>
+</html>

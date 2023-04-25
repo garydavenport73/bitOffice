@@ -1,13 +1,13 @@
 for file in *.js;
 do
   destination=${file%.*};
-  minify $file > "./min/"$destination".min.js";
+  minify $file > $destination".min.js";
 done;
 
 for file in *.css;
 do
   destination=${file%.*};
-  minify $file > "./min/"$destination".min.css";
+  minify $file > $destination".min.css";
 done;
 
 # for file in *.html;
