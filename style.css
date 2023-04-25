@@ -1,626 +1,123 @@
-/* --------------Layout------------------- */
-
-* {
-    box-sizing: border-box;
-}
-
 html {
-    /*this is the light color*/
-    background-color: lightblue;
-}
-
-input:invalid {
-    background-color: orange;
-}
-
-
-/* -------------------general tables----------------------- */
-
-thead {
-    background-color: #E0E0E0;
-}
-
-tr:hover:not(#tables-table>thead>tr, #tables-table>tbody>tr, #tables-table>tfoot>tr, #calculator-table tr, #special-calendar tr) {
-    background-color: white;
-}
-
-#tables-table th:hover:not(:first-of-type),
-#tables-table td:first-of-type:hover {
-    background-color: white;
-}
-
-th:hover {
-    background-color: lightgrey;
-}
-
-.table-container {
-    display: block;
-    overflow-x: auto;
-    margin-left: auto;
-    margin-right: auto;
-    width: 90%;
-    text-align: center;
-}
-
-table {
-    background-color: lightblue;
-}
-
-table {
-    min-width: 100%;
-}
-
-tr {
-    text-align: left;
-    /* prevents collaps of row, acts like min-height in other elements */
-    height: 1rem;
-}
-
-td {
-    background-color: yellow;
-}
-
-
-/* ---------------------general mains--------------------- */
-
-main {
-    width: 320px;
-    margin: auto;
-    /* width: 320px;
-    margin: auto; */
-    /*this is the dark color */
-    background-color: yellow;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 20px;
-}
-
-main>* {
-    width: 90%;
-}
-
-main>div:not(#document-parent, #calculator-result-row),
-#calendar-edit-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-main>nav {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-}
-
-
-/* body>nav {
-    text-align: center;
-    width: 320px;
-    margin: auto;
-    background-color: blueviolet;
-} */
-
-#top-nav,
-#back-nav {
-    background-color: yellow;
-}
-
-main input,
-main>select {
-    width: 240px;
-}
-
-main>button {
-    width: 120px;
-}
-
-
-/* --------------general styling -------------------- */
-
-select,
-main>input {
-    text-align: center;
-}
-
-
-/* ---------calendar app layout --------------- */
-
-#main-calendar-start>button {
-    width: 240px;
-}
-
-#calendar-date {
-    height: 3rem;
-    text-align: center;
-    font-size: 1.4em;
-    /* added after using as hidden input */
-    display: none;
-}
-
-#special-calendar {
-    width: 240px;
-}
-
-#special-calendar table td {
-    height: 2rem;
-    text-align: center;
-    width: 2rem;
-}
-
-#calendar-table>table {
-    min-height: 150px;
-    margin: auto;
-    display: block;
-}
-
-
-/*, #contacts-table td:nth-of-type(1)*/
-
-#calendar-table th:nth-of-type(3) {
-    /*display: table-cell;*/
-    width: 100%;
-}
-
-#special-calendar table,
-#special-calendar tr,
-#special-calendar td,
-#month-chooser {
-    /*font-family: 'Courier New', Courier, monospace;*/
-    font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
+    box-sizing: border-box;
     font-size: 16px;
-    padding: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
     margin: 0;
-    border-radius: 0;
-    background-color: white;
-}
-
-#special-calendar .return-calendar-date:hover {
-    background-color: #E0E0E0;
-    ;
-}
-
-.return-calendar-date:hover {
-    background-color: white;
-}
-
-
-/* --------------tables app layout -------------------- */
-
-#tables-table {
-    display: block;
-    margin: auto;
-    /* background-color: lightblue; */
-    min-width: 100%;
-}
-
-.tables-table-row-number {
-    min-width: 1rem;
-    text-align: center;
-}
-
-
-/* these 2 used together to apply min width to anything
-in between first and last table header */
-
-#tables-table th:not(:last-of-type) {
-    /* background-color: red; */
-    min-width: 5rem;
-}
-
-#tables-table th:first-of-type {
-    min-width: 0;
-}
-
-#tables-table input[type="text"] {
     padding: 0;
-    margin: 0;
-    border: 0px solid orange;
+    font-weight: normal;
 }
 
-#tables-table {
-    border-spacing: 0;
-    border-collapse: collapse;
-    min-height: 150px;
+ol,
+ul {
+    list-style: none;
 }
 
-#tables-table td:not(.tables-table-row-number) {
-    padding: 0;
-    border: 1px solid grey;
-    background-color: white;
-    border-radius: 0;
+img {
+    max-width: 100%;
+    height: auto;
 }
 
-
-/* these 2 used together to apply min width to anything
-in between first and last table header */
-
-#tables-table td {
-    /* max-width: 50px; */
-    width: auto;
-}
-
-#add-column{
-background-color:#BDBDBD;
-}
-#add-row:hover, #add-column:hover{
-background-color:white;
-border-radius:5px;
-}
-
-#main-tables-header-form input,
-#main-tables-header-form select,
-#main-tables-header-form button,
-#main-tables-row-form select,
-#main-tables-row-form button {
-    width: 200px;
-}
-
-#add-column,
-#add-row,
-#blank-th {
-    width: auto;
-}
-
-#tables-table input {
-    /* background-color: aqua; */
-    width: 100%;
-}
-
-
-/* -------------contacts app layout----------------- */
-
-
-/* makes scroll right start at left */
-
-#contacts-table>table {
-    margin: auto;
-    display: block;
-    min-height: 150px;
-}
-
-
-/* keeps cell phone column from collapsing */
-
-#contacts-table>table>thead>tr>th:nth-of-type(2) {
-    min-width: 7rem;
-}
-
-
-/* hides everything, then shows next 2 columns, the first widest */
-
-#contacts-table th,
-#contacts-table td {
-    display: none;
-}
-
-#contacts-table td:nth-of-type(1),
-#contacts-table th:nth-of-type(1) {
-    display: table-cell;
-    width: 100%;
-}
-
-#contacts-table th:nth-of-type(2),
-#contacts-table td:nth-of-type(2) {
-    display: table-cell;
-}
-
-
-/* hides everything, then shows next 2 columns, the first widest */
-
-
-/*       contacts table*/
-
-#add-column,
-#add-row,
-#blank-th {
-    width: auto;
-}
-
-#tables-table input {
-    /* background-color: aqua; */
-    width: 100%;
-}
-
-select,
-main>input {
-    text-align: center;
+/* RESET FINSIHED */
+html {
+    background-color: aliceblue;
 }
 
 h1:not(#document-result h1) {
-    background-color: lightblue;
-    text-align: center;
+    color: lavender;
+    background-color: mediumblue;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    padding: 2px;
 }
 
-nav {
-    background-color: lightblue;
+#top-nav {
+    color: white;
+    background-color: mediumblue;
+    padding-bottom: 2px;
 }
 
-
-/* -----------notes app layout----------------- */
-
-#note {
-    height: 350px;
-    max-width: 90%;
-}
-
-
-/***********write layout and css****************/
-
-.mono {
-    font-family: 'Courier New', Courier, monospace;
-}
-
-.serif {
-    font-family: Georgia, 'Times New Roman', Garamond, Times, serif;
-}
-
-.sans {
-    font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
-}
-
-#document-settings,
-#edit-bar {
-    width: 90%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    background-color: cadetblue;
-    border: 1px solid black;
-    /* min-height: 30px; */
-}
-
-#text-editor {
-    height: 100px;
-}
-
-#text-editor {
-    width: 90%;
-    max-width: 90%;
-    overflow-wrap: break-word;
-    min-height: 100px;
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-#document-parent {
-    margin: 0;
-    padding: 0;
-    width: 90%;
-    background-color: lightgoldenrodyellow;
-}
-
-
-/*  Needed for printing in notes, also placed in notes print function*/
-
-pre {
-    white-space: pre-wrap;
-    overflow-wrap: break-word;
-    margin: 0;
-    padding: 0;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-
-a:hover {
-    color: mediumblue;
-}
-
-
-/*  CALCULATOR STUFF ENDS*/
-
-
-/***************add on styles can be switched out****************************/
-
-html {
-    /*this is the light color*/
-    /* background-color: lightblue; */
-    background-color: #BDBDBD;
-}
-
-body {
-    background-color: #E0E0E0;
-    width: 320px;
-    margin: auto;
-}
-
-main,
-td,
-nav>button {
-    /*this is the background to main color */
-    /* background-color: yellow; */
-    background-color: #E0E0E0;
-    border-radius: 5px;
-}
-
-main>button {
-    /* background-color: red; */
-    background-color: #BDBDBD;
-    min-height: 30px;
-    border-radius: 5px;
-    padding: 3px;
-    margin: 2px;
-}
-
-main>button:hover {
-    background-color: #E0E0E0;
-}
-
-nav>button:hover {
-    background-color: #BDBDBD;
-}
-
-#top-nav button,
-#back-nav button {
+#top-nav button {
+    font-size: 1.4rem;
     padding: 5px;
     margin: 1px;
     min-height: 25px;
+    background-color: #e0e0e0;
+    border: #e0e0e0;
+    border-radius: 5px;
 }
 
-#main-notes button,
-#file-bar button,
-#main-tables-table button,
-#main-contacts-table button,
-#main-calendar-table button {
-    padding: 4px;
-    margin: 1px;
-    min-height: 25px;
-}
-
-h1:not(#document-result h1) {
-    background-color: mediumblue;
+h2:not(#document-result h2) {
+    margin: 16px;
+    /* padding: 2px; */
+    /* background-color: mediumblue; */
+    font-weight: bold;
+    /* color: lavender; */
     text-align: center;
     padding: 2px;
     border-radius: 5px;
     font-family: Arial, Helvetica, sans-serif;
-}
-
-h1:not(#document-result h1) {
-    color: lavender;
-    font-family: Arial, Helvetica, sans-serif;
-    width: 320px;
-    margin: auto;
-    border-radius: 0;
-}
-
-nav:not(#document-settings, #edit-bar, #top-nav, #back-nav) {
-    border-radius: 5px;
-    margin: 5px;
-    /* background-color: lightblue; */
-    background-color: #BDBDBD;
-}
-
-#top-nav,
-#back-nav {
-    background-color: mediumblue;
-    width: 320px;
-    margin: auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-#top-nav button,
-#back-nav button {
-    font-size: 1.4rem;
-}
-
-table {
-    border-radius: 5px;
-    /* background-color: lightblue; */
-    background-color: #BDBDBD;
-}
-
-input:not(#tables-table input, #calendar-date, #calculator-input),
-select {
-    /* background-color: coral; */
-    background-color: #F5F5F5;
-    min-height: 30px;
-    border-radius: 5px;
-}
-
-button,
-table {
     border: 1px solid grey;
-    padding-left: 4px;
-    padding-right: 4px;
 }
 
+#main-planner h2 {
+    color: white;
+    background-color: purple;
+}
 
-/* MAIN COLORS FOR THE APPS 
-	main        mediumblue
-	notes       khaki
-	write       cadetblue
-	contacts    indigo
-	calendar    darkorange
-	tables      forestgreen
-	calculator  dimgrey
-*/
 
 #main-notes h2 {
-    background-color: khaki;
-    border: 1px solid grey;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: orange;
+    color: black;
 }
 
-#main-startup h2,
-#main-help h2 {
-    background-color: mediumblue;
-    color: lavender;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#main-write h2:not(#document-result h2) {
+#main-write h2 {
     background-color: cadetblue;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: antiquewhite;
-    border: 1px solid grey;
 }
 
-#main-contacts-table h2,
-#main-contacts-form h2 {
-    background-color: indigo;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: antiquewhite;
-    border: 1px solid grey;
-}
-
-#main-calendar-start h2,
-#main-calendar-table h2,
-#main-calendar-form h2,
-#main-calendar-start h3,
-#main-calendar-table h3,
-#main-calendar-form h3 {
-    background-color: darkorange;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    border: 1px solid grey;
-}
-
-#main-tables-table h2,
-#main-tables-header-form h2,
-#main-tables-row-form h2,
-#main-tables-table h3,
-#main-tables-header-form h3,
-#main-tables-row-form h3 {
+#main-tables h2 {
     background-color: forestgreen;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
     color: antiquewhite;
-    border: 1px solid grey;
-    /* color: ghostwhite; */
+}
+
+/* #main-write h2:not(#document-result h2) {
+    background-color: cadetblue;
+    color: antiquewhite;
+} */
+
+#main-write h2 {
+    background-color: cadetblue;
+    color: antiquewhite;
 }
 
 #main-calculator h2 {
     background-color: dimgrey;
-    text-align: center;
-    padding: 2px;
-    border-radius: 5px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: antiquewhite;
-    border: 1px solid grey;
+    color:snow;
+}
+
+#document-result h1,
+#document-result h2,
+#document-result h3,
+#document-result h4 {
+    background-color: unset;
+    color: unset;
 }
 
 #document-result * {
@@ -638,6 +135,13 @@ table {
     padding: unset;
 }
 
+#document-parent {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: lightgoldenrodyellow;
+}
+
 #document-result {
     overflow-wrap: break-word;
     min-height: 100px;
@@ -646,22 +150,325 @@ table {
     white-space: pre-wrap;
 }
 
-
-/* ALREADY SET FOR PHONE*/
-
 main {
-    border: 1px solid grey;
+    background-color: #e0e0e0;
+    /* border: 1px solid orange; */
 }
 
-#back-nav {
+body {
+    width: 320px;
+    background-color: lightskyblue;
+    background-color: #e0e0e0;
+    margin: auto;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+h1:not(#document-result h1),
+h2:not(#document-result h2),
+h3:not(#document-result h3),
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+#edit-bar,
+#document-settings {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    background-color: cadetblue;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+
+#edit-bar button,
+#document-settings button {
+    border-radius: 5px;
+    background-color: #e0e0e0;
+    border: 1px solid grey;
+    padding: 1px 4px;
+    margin: 0;
+}
+
+#text-editor {
+    width: 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    min-height: 100px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+button {
+    padding: 5px;
+}
+
+#main-planner,
+#main-notes,
+#main-write,
+#main-tables,
+#main-calculator {
+    display: flex;
+    flex-direction: column;
+}
+
+/* #planner-ribbon{
+    border-bottom: 1px solid lightslategray;
+    padding-bottom: 0.5re;
+}
+#main-planner h3{
+    border-bottom: 1px solid lightslategray;
+} */
+main {
+    min-height: 320px;
+}
+
+#planner-contacts-form *,
+#planner-calendar-form * {
+    width: 100%;
+    display: auto;
+    box-sizing: border-box;
+}
+
+#planner-planner-help ul li, #tables-help ul li {
+    list-style-position: inside;
+    list-style-type: disc;
+    margin: 0 15px;
+}
+#planner-planner-help ol li, #tables-help ol li {
+    list-style-position: inside;
+    list-style-type:decimal;
+    margin: 0 15px;
+}
+
+
+#planner-planner-help p,#tables-help p {
+    margin: 15px;
+}
+#planner-help, #tables-help pre{
+    font-size: 12px;
+}
+
+.table-container table,
+.table-container table td,
+.table-container table th {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.table-container pre {
+    /* https://stackoverflow.com/questions/248011/how-do-i-wrap-text-in-a-pre-tag */
+    white-space: pre-wrap;
+    font-size: 12px;
+    word-break: break-all;
+}
+
+.table-container table {
+    box-sizing: border-box;
+    margin: auto;
+    width: 100%;
+    /* min-height: 100px; */
+}
+
+#contacts-table th,
+#contacts-table td,
+#calendar-table th,
+#calendar-table td {
     display: none;
 }
+
+#calendar-table th:nth-of-type(1),
+#calendar-table th:nth-of-type(3),
+#calendar-table th:nth-of-type(6),
+#calendar-table td:nth-of-type(1),
+#calendar-table td:nth-of-type(3),
+#calendar-table td:nth-of-type(6) {
+    display: table-cell;
+}
+
+#contacts-table td:nth-of-type(1),
+#contacts-table th:nth-of-type(1),
+#contacts-table th:nth-of-type(4),
+#contacts-table td:nth-of-type(4) {
+    display: table-cell;
+    /* max-width:7rem; */
+    /* overflow-wrap:break-word; */
+}
+
+#contacts-table th:nth-of-type(3),
+#contacts-table td:nth-of-type(3) {
+    display: table-cell;
+    /* max-width:5rem;
+     overflow-wrap:break-word; */
+}
+
+#calendar-container {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#special-calendar {
+    background-color: snow;
+        /* font-family: 'Courier New', Courier, monospace; */
+        font-family: Arial, Verdana, Helvetica, Tahoma, sans-serif;
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+        background-color: white;
+}
+#special-calendar table td{
+    height: 32px;
+    text-align: center;
+    width: 32px;
+}
+#special-calendar {
+    border: 1px solid grey;
+    width: 240px;
+}
+#month-chooser{
+    background-color: #F5F5F5;
+    min-height: 30px;
+    border-radius: 5px;
+    width: 240px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+
+
+
+#calendar-date {
+    display: none;
+}
+
+/* #UID{
+    display: none;
+} */
+main h3 {
+    background-color: #e0e0e0;
+}
+
+.nested-menu:hover {
+    color: snow;
+    background-color: grey;
+}
+
+/* TABLES APP */
+#tables-table th:hover:not(:first-of-type),
+#tables-table td:first-of-type:hover {
+    background-color: white;
+}
+
+#add-row:hover,
+#add-column:hover {
+    background-color: white;
+}
+/* #add-row, */
+/* not needed due to th first of type */
+#add-column
+{
+   min-width: 1rem;
+}
+
+.table-container {
+    display: block;
+    overflow-x: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    text-align: center;
+}
+
+#tables-table input {
+    width: 100%;
+    border: none;
+}
+
+#tables-table input:hover {
+    background-color: lightgrey;
+}
+
+#tables-table td {
+    padding: 0px;
+}
+
+/* NEXT 2 Keep From collapsing first last columns */
+#tables-table th:not(:last-of-type) {
+    min-width: 3rem;
+}
+
+#tables-table th:first-of-type {
+    min-width: 1rem;
+}
+
+#tables-table {
+    border: none;
+}
+
+/* #tables-table tfoot, 
+#tables-table tfoot tr, */
+/* #tables-table tfoot th {
+    border: none;
+} */
+
+#tables-table th {
+    border: none;
+}
+
+.tables-table-row-number {
+    border: none !important;
+
+}
+
+#tables-table {
+    background-color: lightgrey;
+}
+
+#tables-table-table {}
+
+#tables-tables-header-form>div,
+#tables-tables-row-form>div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 50%;
+    margin: auto;
+}
+
+#tables-tables-header-form *,
+#tables-tables-row-form * {
+    text-align: center;
+}
+
+/* Handles groups of inputs and buttons together on form */
+#tables-tables-header-form>div>div, #tables-tables-row-form>div>div {
+    margin: 5px 0px;
+}
+
+#tables-tables-header-form>div>div>*, #tables-tables-row-form>div>div>* {
+    width: 100%;
+}
+
 
 
 /*  CALCULATOR STUFF */
 
 #calculator-table {
-    width: 90%;
+    width: 100%;
     min-width: 0%;
 }
 
@@ -683,8 +490,8 @@ main {
 }
 
 #calculator-input {
-    width: 90%;
-    height: 30px;
+    width: 100%;
+    height: 40px;
     font-size: 1.4rem;
     text-align: right;
 }
@@ -695,77 +502,13 @@ main {
     padding: 5px;
 }
 
-
-/*Generic Footer Styling*/
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0%);
+main nav button{
+    /* border-radius: 5px;
+    border:1px solid grey; */
+    background-color: #e0e0e0;
+    border: 1px solid grey;
+    border-radius: 3px;
+    /* font-size: 12px; */
 }
 
-
-/* TABLET*/
-
-@media only screen and (min-width: 600px) {
-    /* body>nav, */
-    body,
-    #main-notes,
-    #main-write,
-    #main-contacts-table,
-    #main-calendar-table,
-    #main-tables-table,
-    #top-nav,
-    #back-nav,
-    h1:not(#document-result h1) {
-        width: 600px;
-    }
-    /* undoes the hiding of everything but first 2 cells */
-    #contacts-table th,
-    #contacts-table td {
-        display: table-cell;
-    }
-}
-
-
-/*DESKTOP*/
-
-@media only screen and (min-width: 900px) {
-    /* body>nav, */
-    body,
-    #main-notes,
-    #main-write,
-    #main-contacts-table,
-    #main-calendar-table,
-    #main-tables-table,
-    #top-nav,
-    #back-nav,
-    h1:not(#document-result h1) {
-        width: 900px;
-    }
-}
-
-button,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    /* https://stackoverflow.com/questions/826782/how-to-disable-text-selection-highlighting */
-    cursor: default;
-    -webkit-touch-callout: none;
-    /* iOS Safari */
-    -webkit-user-select: none;
-    /* Safari */
-    -khtml-user-select: none;
-    /* Konqueror HTML */
-    -moz-user-select: none;
-    /* Old versions of Firefox */
-    -ms-user-select: none;
-    /* Internet Explorer/Edge */
-    user-select: none;
-    /* Non-prefixed version, currently
-   supported by Chrome, Edge, Opera and Firefox */
-}
+/* make dim grey color */

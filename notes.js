@@ -1,3 +1,9 @@
+//  ------------notes --------------------
+let noteFontSize = 2.5 / 3.0;
+let note = document.getElementById('note');
+note.value = "";
+let compareNoteValue = "";
+
 initializeNotesApp();
 
 function initializeNotesApp() {
@@ -47,8 +53,7 @@ function notesLoad() {
 
 function notesSave() {
     basename = "notes" + getTodaysDate();
-    saveStringToTextFile(note.value, basename, ".txt");
-    compareNoteValue = note.value;
+    copyAndSaveString(note.value, basename, ".txt");
 }
 
 function printNotesDiv(id) {

@@ -1,3 +1,4 @@
+let calcInput = document.getElementById('calculator-input');
 document.getElementById("clear-calc").addEventListener("click", clearCalc);
 document.getElementById("remove-last-char").addEventListener("click", removeLastChar);
 document.getElementById("equals-button").addEventListener("click", evaluateCalculatorInput);
@@ -26,9 +27,14 @@ function evaluateCalculatorInput() {
     document.getElementById('last-calculator-expression').innerHTML = "Evaluated: " + sanitizedValue;
     let result = '';
     try {
-        result = eval(sanitizedValue);
+        // result = eval(sanitizedValue);
+        result = evalReplaceFunction(sanitizedValue);
     } catch (error) {
         result = error;
     }
     calcInput.value = result;
+}
+
+function evalReplaceFunction(str) {
+    return Function("'use strict'; return (" + str + ")")();
 }

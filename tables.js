@@ -1,7 +1,40 @@
+//---tables----
+let tableElement = document.getElementById('tables-table');
+let tablesTable = {
+    "name": "Table",
+    "headers": ["Column 1", "Column 2", "Column 3"],
+    "data": [
+        { "Column 1": "", "Column 2": "", "Column 3": "" },
+        { "Column 1": "", "Column 2": "", "Column 3": "" },
+        { "Column 1": "", "Column 2": "", "Column 3": "" }
+    ]
+}
+
+// let compareTablesTable = JSON.stringify(tablesTable);
+// let initialTablesTable = compareTablesTable;
+let initialTablesTable = JSON.stringify(tablesTable);
 initializeTablesApp();
 
+
+//////////TABLES//////////
+function showTablesDiv(id) {
+    //console.log("show mains called with " + id);
+    updateDataFromCurrentInputs(tablesTable);
+
+    let divs = document.getElementsByClassName('tables-div');
+    for (let div of divs) {
+        div.style.display = "none";
+    }
+    document.getElementById(id).style.display = "unset";
+    // document.getElementById(id).style.flexDirection="column";
+}
+
+
+
 function initializeTablesApp() {
-    makeTable(tablesTable);
+    makeTable(JSON.parse(initialTablesTable));
+    updateDataFromCurrentInputs(tablesTable);
+    showTablesDiv('tables-tables-table');
 }
 
 function backupTablesTable() {
@@ -14,14 +47,14 @@ function processColumnClick(header) {
     populateMoveColumnSelect(tablesTable);
     document.getElementById("tables-current-header").innerHTML = header;
     document.getElementById("tables-new-header-name").value = header;
-    showMain("main-tables-header-form");
+    showTablesDiv("tables-tables-header-form");
 }
 
 function processRowClick(row) {
     updateDataFromCurrentInputs(tablesTable);
     populateMoveRowSelect(tablesTable);
     document.getElementById("tables-current-row").innerHTML = row.toString();
-    showMain("main-tables-row-form");
+    showTablesDiv("tables-tables-row-form");
 }
 
 function makeTable(table) {
@@ -33,7 +66,7 @@ function makeTable(table) {
     let headers = table["headers"]; //an array of strings
     str += "<thead><tr><th></th>";
     for (let i = 0; i < headers.length; i++) {
-        str += "<th id='" + headers[i] + "' onclick=\"processColumnClick('" + headers[i] + "');\">" + headers[i] + "</th>";
+        str += "<th id='" + headers[i] + "' onclick=\"processColumnClick('" + headers[i] + "');\">" + headers[i].replace(/</g, "&lt;").replace(/>/g, "&gt;"); + "</th>";
     }
     str += "<th id='add-column' onclick='addColumn(tablesTable)'>+</th>";
     str += "</tr></thead>";
@@ -140,10 +173,12 @@ function updateHeaderName() {
         }
     }
 
+    //newName = newName.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
     tablesTable = _changeHeaderAndDataPropertyName(tablesTable, newName, fieldName);
 
     makeTable(tablesTable);
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 function tablesSort(direction) {
@@ -156,7 +191,7 @@ function sortTablesByField(field, direction = 1) {
     if (confirm("Sort by " + field + "?\n\nThis is destructive and irreversible.")) {
         destructiveSort(tablesTable["data"], field, direction);
         makeTable(tablesTable);
-        showMain('main-tables-table');
+        showTablesDiv('tables-tables-table');
     }
 }
 
@@ -184,7 +219,7 @@ function deleteColumn() {
             delete tablesTable["data"][i][columnName];
         }
         makeTable(tablesTable);
-        showMain('main-tables-table');
+        showTablesDiv('tables-tables-table');
     }
 }
 
@@ -219,7 +254,7 @@ function moveColumn() {
     let headerToMove = tablesTable["headers"].splice(index, 1)[0]; //splice returns an array length 1
     tablesTable["headers"].splice(destinationIndex, 0, headerToMove);
     makeTable(tablesTable);
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 function getBestName(table, name) { //if header name taken, returns similar name
@@ -250,7 +285,7 @@ function copyColumn() {
     }
 
     makeTable(tablesTable);
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 function calculateTotal() {
@@ -264,13 +299,13 @@ function calculateTotal() {
     if (confirm("The total is: " + total.toString() + "\nCopy to clipboard?")) {
         copyToClipBoard(total.toString());
     };
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 function tablesCancel() {
     console.log("tablesCancel called");
     makeTable(tablesTable); //probably not needed
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 
 }
 
@@ -291,7 +326,7 @@ function calculateAverage() {
     if (confirm("The average is: " + average.toString() + "\nCopy to clipboard?")) {
         copyToClipBoard(average.toString());
     }
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 //row functions
@@ -312,7 +347,7 @@ function deleteRow() {
     let data = tablesTable["data"];
     data.splice(index, 1);
     makeTable(tablesTable);
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 function copyRow() {
@@ -323,7 +358,7 @@ function copyRow() {
     let rowToCopy = JSON.parse(JSON.stringify(tablesTable.data[index]));
     data.push(rowToCopy);
     makeTable(tablesTable);
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 function moveRow() {
@@ -334,17 +369,13 @@ function moveRow() {
     let rowToMove = data.splice(index, 1)[0];
     data.splice(destinationIndex, 0, rowToMove);
     makeTable(tablesTable);
-    showMain('main-tables-table');
+    showTablesDiv('tables-tables-table');
 }
 
 
 function tablesNewTable() {
     if (confirm("Are you sure?  This will erase all current data.")) {
-        tablesTable = JSON.parse(initialTablesTable);
-        compareTablesTable = initialTablesTable;
-        makeTable(tablesTable);
-        showMain('main-tables-table');
-        return tablesTable;
+        initializeTablesApp();
     }
 }
 
@@ -360,12 +391,14 @@ function tablesLoad() {
         fileReader.onload = function(fileLoadedEvent) {
             fileContents = fileLoadedEvent.target.result;
             if (confirm("Use the first line as the header row?")) {
-                tablesTable = readCSV(fileContents, true);
+                //tablesTable = readCSV(fileContents, true);
+                tablesTable=csvToJSON(fileContents, true);
             } else {
-                tablesTable = readCSV(fileContents, false);
+                //tablesTable = readCSV(fileContents, false);
+                tablesTable=csvToJSON(fileContents, true);
             }
             makeTable(tablesTable);
-            compareTablesTable = JSON.stringify(tablesTable);
+            // compareTablesTable = JSON.stringify(tablesTable);
         };
         fileReader.readAsText(inputFile, "UTF-8");
     });
@@ -381,12 +414,12 @@ function tablesSave() {
     } else {
         saveStringToTextFile(makeCSV(tablesTable, false), "csvTable" + getTodaysDate(), ".csv");
     }
-    compareTablesTable = JSON.stringify(tablesTable);
+    // compareTablesTable = JSON.stringify(tablesTable);
 }
 
-function tablesShowRules() {
-    alert('FORMATTING RULES:\n\nWhen Saving:\n1) All cells are quoted text.\n2) Interior double quotes in cells are converted like this: "->""\n\nIf loading CSV from other apps:\n1) Cells should all be text type.\n2) Quote all text strings when saving.')
-}
+// function tablesShowRules() {
+//     alert('FORMATTING RULES:\n\nWhen Saving:\n1) All cells are quoted text.\n2) Interior double quotes in cells are converted like this: "->""\n\nIf loading CSV from other apps:\n1) Cells should all be text type.\n2) Quote all text strings when saving.')
+// }
 
 function tablesCopyCSVToClipboard() {
     updateDataFromCurrentInputs(tablesTable);
