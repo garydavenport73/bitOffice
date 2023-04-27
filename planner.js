@@ -274,6 +274,9 @@ function saveCalendarEntry() {
     //destructiveSort(calendarDatabase["data"], "sort value");
     calendarTable.innerHTML = buildCalendarTableElement(date);
     showPlannerDiv("planner-calendar-table");
+    if (confirm("Current data updated.  Save updated data to file?")){
+        saveCombinedDatabase();
+    }
 }
 
 function exportSingleICalEvent(){
@@ -349,6 +352,9 @@ function deleteCalendarEntry() {
     clearCalendarFormEntries();
     calendarTable.innerHTML = buildCalendarTableElement(date);
     showPlannerDiv("planner-calendar-table");
+    if (confirm("Current data updated.  Save updated data to file?")){
+        saveCombinedDatabase();
+    }
 }
 
 function cancelCalendarEntry() {
@@ -609,21 +615,21 @@ function loadOutlookCSV() {
     }
 
 }
-function addSortValueToCalendarData() {
-    for (let i = 0; i < calendarDatabase["data"].length; i++) {
-        let row = calendarDatabase["data"][i];
+// function addSortValueToCalendarData() {
+//     for (let i = 0; i < calendarDatabase["data"].length; i++) {
+//         let row = calendarDatabase["data"][i];
 
-        //insist start date exists
-        if ((row["Start Date"] === "") || (row["Start Date"] === undefined)) {
-            row["Start Date"] = "1970-01-01";
-        }
-        if ((row["Start Time"] === "") || (row["Start Time"] === undefined)) {
-            row["Start Time"] = "00:00";
-        }
+//         //insist start date exists
+//         if ((row["Start Date"] === "") || (row["Start Date"] === undefined)) {
+//             row["Start Date"] = "1970-01-01";
+//         }
+//         if ((row["Start Time"] === "") || (row["Start Time"] === undefined)) {
+//             row["Start Time"] = "00:00";
+//         }
 
-        calendarDatabase["data"][i]["sort value"] = row["Start Date"] + row["Start Time"];
-    }
-}
+//         calendarDatabase["data"][i]["sort value"] = row["Start Date"] + row["Start Time"];
+//     }
+// }
 
 
 function outlookDateToPlannerDate(outlookDate) {
@@ -818,6 +824,10 @@ function saveContactsEntry() {
     clearContactFormEntries(contactsTable);
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
     showPlannerDiv("planner-contacts-table");
+
+    if (confirm("Data updated.  Save updated data to file?")){
+        saveCombinedDatabase();
+    }
 }
 
 function exportSingleVCard() {
@@ -855,6 +865,9 @@ function deleteContactsEntry() {
     clearContactFormEntries(contactsTable);
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
     showPlannerDiv("planner-contacts-table");
+    if (confirm("Current data updated.  Save updated data to file?")){
+        saveCombinedDatabase();
+    }
 }
 
 function cancelContactsEntry() {
@@ -1348,6 +1361,7 @@ function loadCombinedDatabase() {
             clearContactFormEntries(contactsTable);
             contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
             makeCalendar();
+            backHomePlanner();
         };
 
         fileReader.readAsText(inputFile, "UTF-8");
@@ -1359,7 +1373,8 @@ function saveCombinedDatabase() {
     purgeCalendar();
     let str = JSON.stringify(combinedDatabase);
     let baseFilename = "bitOfficePlanner" + getTodaysDate();
-    copyAndSaveString(str, baseFilename, ".bof");
+    //copyAndSaveString(str, baseFilename, ".bof");
+    saveStringToTextFile(str,baseFilename,".bof");
 }
 
 

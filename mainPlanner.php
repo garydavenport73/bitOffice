@@ -9,8 +9,8 @@
             <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#128197;</button>
             <button onclick="showPlannerDiv('planner-planner-help');">?</button> -->
         <button onclick="showPlannerDiv('planner-startup');">&#128194;</button>
-        <button onclick="showPlannerDiv('planner-contacts-table');">Contacts</button>
         <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">Calendar</button>
+        <button onclick="showPlannerDiv('planner-contacts-table');">Contacts</button>
         <button onclick="showPlannerDiv('planner-planner-help');">?</button>
     </nav>
     <div class="planner-div" id="planner-home">
