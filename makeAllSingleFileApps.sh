@@ -1,6 +1,8 @@
 mkdir -p min
 mkdir -p singleFileApps
+#minify the style file
 minify style.css > ./min/style.min.css
+#minify all js files
 minify license.js > ./min/license.min.js;
 minify csvreaderwriter.js > ./min/csvreaderwriter.min.js;
 minify commonFunctions.js > ./min/commonFunctions.min.js;
@@ -17,6 +19,7 @@ minify open-script-write.js > ./min/open-script-write.min.js;
 minify open-script-tables.js > ./min/open-script-tables.min.js;
 minify open-script-calculator.js > ./min/open-script-calculator.min.js;
 
+#use minified files to make all apps
 node nodeMakeBitOffice.js;
 node nodeMakePlanner.js;
 node nodeMakeNotes.js;
@@ -24,6 +27,7 @@ node nodeMakeWrite.js;
 node nodeMakeTables.js;
 node nodeMakeCalculator.js;
 
+#minify the html files/markup portion of apps
 minify ./singleFileApps/bitOffice.html > ./singleFileApps/bitOffice.min.html;
 cp ./singleFileApps/bitOffice.min.html ./singleFileApps/bitOffice.html;
 rm ./singleFileApps/bitOffice.min.html;
@@ -44,6 +48,6 @@ minify ./singleFileApps/tables.html > ./singleFileApps/tables.min.html;
 cp ./singleFileApps/tables.min.html ./singleFileApps/tables.html;
 rm ./singleFileApps/tables.min.html;
 
-minify ./singleFileApps/calculator.html > ./singleFileApps/calcualtor.min.html;
-cp ./singleFileApps/calcualtor.min.html ./singleFileApps/calcualtor.html;
-rm ./singleFileApps/calcualtor.min.html;
+minify ./singleFileApps/calculator.html > ./singleFileApps/calculator.min.html;
+cp ./singleFileApps/calculator.min.html ./singleFileApps/calculator.html;
+rm ./singleFileApps/calculator.min.html;

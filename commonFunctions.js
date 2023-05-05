@@ -1,27 +1,47 @@
 
 
 function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt") {
-        let filename = basename + fileType;
-        let blobVersionOfText = new Blob([str1], {
-            type: "text/plain"
-        });
-        let urlToBlob = window.URL.createObjectURL(blobVersionOfText);
-        let downloadLink = document.createElement("a");
-        downloadLink.style.display = "none";
-        downloadLink.download = filename;
-        downloadLink.href = urlToBlob;
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        downloadLink.parentElement.removeChild(downloadLink);
+    let filename = basename + fileType;
+    let blobVersionOfText = new Blob([str1], {
+        type: "text/plain",
+    });
+    let urlToBlob = window.URL.createObjectURL(blobVersionOfText);
+    let downloadLink = document.createElement("a");
+    downloadLink.style.display = "none";
+    downloadLink.download = filename;
+    downloadLink.href = urlToBlob;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    downloadLink.parentElement.removeChild(downloadLink);
 }
 
 function copyAndSaveString(str1, basename = "myfile", fileType = ".txt") {
     copyToClipBoard(str1, false);
-    if (confirm("Copied to clipboard, save to file also?")){
-        saveStringToTextFile(str1,basename,fileType);
+    if (confirm("Copied to clipboard, save to file also?")) {
+        saveStringToTextFile(str1, basename, fileType);
     }
 }
 
+function saveWebsiteAsTextFile(url) {
+    //note requires header in php file
+    let http = new XMLHttpRequest();
+    http.timeout = 2000; // time in milliseconds
+    http.ontimeout = function (e) {
+        alert("The request timed out.");
+    };
+    http.open('GET', url, true);
+    http.onreadystatechange = function () {
+        if (http.readyState == 4 && http.status == 200) {
+            alert(http.responseText);
+            console.log(http.responseText);
+        }
+    }
+    http.send();
+}
+
+function saveSelf(){
+    alert("Coming soon!");
+}
 
 //Date related functions for convience, uses same format as input type="date"
 function getTodaysDate() {
@@ -109,7 +129,7 @@ function showMain(id) {
 }
 
 //          clipboard function          //
-function copyToClipBoard(str, message=true) {
+function copyToClipBoard(str, message = true) {
     //https://techoverflow.net/2018/03/30/copying-strings-to-the-clipboard-using-pure-javascript/
     let el = document.createElement('textarea');
     el.value = str;
@@ -122,7 +142,7 @@ function copyToClipBoard(str, message=true) {
     el.select();
     document.execCommand('copy');
     document.body.removeChild(el);
-    if (message){
+    if (message) {
         alert('Copied to Clipboard.');
     }
     return (str);
@@ -144,7 +164,7 @@ function fillInEmptyPropertyValues(table) {
 
 //              CSV related functions                   //
 function makeCSV(thisTable, saveWithHeader = true) { ////This one fixed
-    return JSONToCSV(thisTable, saveWithHeader ,"\n");
+    return JSONToCSV(thisTable, saveWithHeader, "\n");
     // let csvString = "";
     // let tempString = "";
     // let headers = thisTable["headers"];
@@ -187,7 +207,7 @@ function tokenMaker(intSize) {
 function processCSVClick(table) {
     let thisCSV = "";
     //if (confirm("Include header as first line in csv file?")) {
-        thisCSV = makeCSV(table, true);
+    thisCSV = makeCSV(table, true);
     //} else {
     //    thisCSV = makeCSV(table, false);
     //}
@@ -212,7 +232,7 @@ function destructiveSort(arrayOfObjects, field, direction = 1) {
     });
 }
 
-function destructiveDoubleSortAscending(arrayOfObjects,date,time){
+function destructiveDoubleSortAscending(arrayOfObjects, date, time) {
     arrayOfObjects.sort((a, b) => {
         if (a[date] > b[date]) {
             return 1;

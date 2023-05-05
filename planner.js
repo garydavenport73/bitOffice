@@ -1374,7 +1374,7 @@ function saveCombinedDatabase() {
     let str = JSON.stringify(combinedDatabase);
     let baseFilename = "bitOfficePlanner" + getTodaysDate();
     //copyAndSaveString(str, baseFilename, ".bof");
-    saveStringToTextFile(str,baseFilename,".bof");
+    saveStringToTextFile(str,baseFilename,".json");
 }
 
 
