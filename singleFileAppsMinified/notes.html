@@ -16,7 +16,7 @@
         <button onclick="showMain('main-write');">&#128221;</button>
         <button onclick="showMain('main-tables');">&#9638;</button>
         <button onclick="showMain('main-calculator');">&#128290;</button>
-        <button onclick="saveSelf()">Download</button>
+        <button onclick="saveSelf()">&darr;</button>
     </nav><main id="main-notes">
     <h2>Notes</h2>
     <nav>
@@ -51,7 +51,7 @@ SOFTWARE.";function saveStringToTextFile(str1,basename="myfile",fileType=".txt")
 function copyAndSaveString(str1,basename="myfile",fileType=".txt"){copyToClipBoard(str1,false);if(confirm("Copied to clipboard, save to file also?")){saveStringToTextFile(str1,basename,fileType);}}
 function saveWebsiteAsTextFile(url){let http=new XMLHttpRequest();http.timeout=2000;http.ontimeout=function(e){alert("The request timed out.");};http.open('GET',url,true);http.onreadystatechange=function(){if(http.readyState==4&&http.status==200){alert(http.responseText);console.log(http.responseText);}}
 http.send();}
-function saveSelf(){saveStringToTextFile(selfString,"bitOfficeClone",".html");}
+function saveSelf(){let docTitle=document.getElementsByTagName("title")[0].innerText;if(confirm("Duplicate and download "+docTitle+" ?")){saveStringToTextFile(selfString,docTitle+"Clone",".html");}}
 function getTodaysDate(){let now=new Date();let day=("0"+now.getDate()).slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);let today=now.getFullYear()+"-"+month+"-"+day;return today;}
 function getFirstDayOfThisMonthDate(){let now=new Date();let day="01";let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
 function getLastDayOfThisMonthDate(){let now=new Date();let day=daysInThisMonth().toString();day="0"+day;day=day.slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}

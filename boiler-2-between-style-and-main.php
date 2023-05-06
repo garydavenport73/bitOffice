@@ -10,5 +10,5 @@
         <button onclick="showMain('main-write');">&#128221;</button>
         <button onclick="showMain('main-tables');">&#9638;</button>
         <button onclick="showMain('main-calculator');">&#128290;</button>
-        <button onclick="saveSelf()">Download</button>
+        <button onclick="saveSelf()">&darr;</button>
     </nav>

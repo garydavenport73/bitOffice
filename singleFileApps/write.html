@@ -529,7 +529,7 @@ main nav button{
         <button onclick="showMain('main-write');">&#128221;</button>
         <button onclick="showMain('main-tables');">&#9638;</button>
         <button onclick="showMain('main-calculator');">&#128290;</button>
-        <button onclick="saveSelf()">Download</button>
+        <button onclick="saveSelf()">&darr;</button>
     </nav><main id="main-write">
     <h2>Write</h2>
     <nav id="file-bar">
@@ -638,7 +638,11 @@ function saveWebsiteAsTextFile(url) {
 }
 
 function saveSelf(){
-    saveStringToTextFile(selfString,"bitOfficeClone",".html");
+    let docTitle=document.getElementsByTagName("title")[0].innerText;
+    if (confirm("Duplicate and download " + docTitle + " ?")){
+        saveStringToTextFile(selfString, docTitle + "Clone",".html");
+    }
+
 }
 
 //Date related functions for convience, uses same format as input type="date"

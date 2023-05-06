@@ -40,7 +40,11 @@ function saveWebsiteAsTextFile(url) {
 }
 
 function saveSelf(){
-    saveStringToTextFile(selfString,"bitOfficeClone",".html");
+    let docTitle=document.getElementsByTagName("title")[0].innerText;
+    if (confirm("Duplicate and download " + docTitle + " ?")){
+        saveStringToTextFile(selfString, docTitle + "Clone",".html");
+    }
+
 }
 
 //Date related functions for convience, uses same format as input type="date"
