@@ -22,6 +22,7 @@ include("calculator.js");
 include("nestedmenu.js");
 echo("</script>");
 echo("<script>");
+include("selfSave.js");
 include("open-script-bitoffice.js");
 // include("open-script-planner.js");
 // include("open-script-notes.js");

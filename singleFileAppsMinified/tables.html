@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><style>html{box-sizing:border-box;font-size:16px}*,*:before,*:after{box-sizing:inherit}body,h1,h2,h3,h4,h5,h6,p,ol,ul{margin:0;padding:0;font-weight:400}ol,ul{list-style:none}img{max-width:100%;height:auto}html{background-color:#f0f8ff}h1:not(#document-result h1){color:#e6e6fa;background-color:#0000cd;font-family:Arial,Helvetica,sans-serif;font-size:32px;font-weight:700;padding:2px}#top-nav{color:#fff;background-color:#0000cd;padding-bottom:2px}#top-nav button{font-size:1.4rem;padding:5px;margin:1px;min-height:25px;background-color:#e0e0e0;border:#e0e0e0;border-radius:5px}h2:not(#document-result h2){margin:16px;font-weight:700;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;border:1px solid grey}#main-planner h2{color:#000;background-color:orange}#main-notes h2{background-color:orange;color:#000}#main-write h2{background-color:#5f9ea0}#main-tables h2{background-color:#228b22;color:#faebd7}#main-write h2{background-color:#5f9ea0;color:#faebd7}#main-calculator h2{background-color:dimgrey;color:snow}#document-result h1,#document-result h2,#document-result h3,#document-result h4{background-color:unset;color:unset}#document-result *{background-color:unset;width:unset;text-align:unset;border-radius:unset;margin-left:unset;margin-right:unset;width:unset;padding-bottom:unset;align-items:unset;border-radius:unset;margin:unset;padding:unset}#document-parent{margin:0;padding:0;width:100%;background-color:#fafad2}#document-result{overflow-wrap:break-word;min-height:100px;width:auto;background-color:#fafad2;white-space:pre-wrap}main{background-color:#e0e0e0}body{width:320px;background-color:#87cefa;background-color:#e0e0e0;margin:auto;padding:5px;box-sizing:border-box}h1:not(#document-result h1),h2:not(#document-result h2),h3:not(#document-result h3),nav{display:flex;flex-direction:row;justify-content:center}#edit-bar,#document-settings{display:flex;justify-content:left;flex-wrap:wrap;background-color:#5f9ea0;border:1px solid #000;margin:0;padding:0}#edit-bar button,#document-settings button{border-radius:5px;background-color:#e0e0e0;border:1px solid grey;padding:1px 4px;margin:0}#text-editor{width:100%;max-width:100%;overflow-wrap:break-word;min-height:100px;margin-top:0;margin-bottom:0}footer{position:fixed;bottom:0;left:50%;transform:translate(-50%,0%)}button{padding:5px}#main-planner,#main-notes,#main-write,#main-tables,#main-calculator{display:flex;flex-direction:column}main{min-height:320px}#planner-contacts-form *,#planner-calendar-form *{width:100%;display:auto;box-sizing:border-box}#planner-planner-help ul li,#tables-help ul li{list-style-position:inside;list-style-type:disc;margin:0 15px}#planner-planner-help ol li,#tables-help ol li{list-style-position:inside;list-style-type:decimal;margin:0 15px}#planner-planner-help p,#tables-help p{margin:15px}#planner-help,#tables-help pre{font-size:12px}.table-container table,.table-container table td,.table-container table th{border:1px solid #000;border-collapse:collapse}.table-container pre{white-space:pre-wrap;font-size:12px;word-break:break-all}.table-container table{box-sizing:border-box;margin:auto;width:100%}#contacts-table th,#contacts-table td,#calendar-table th,#calendar-table td{display:none}#calendar-table th:nth-of-type(1),#calendar-table th:nth-of-type(3),#calendar-table th:nth-of-type(6),#calendar-table td:nth-of-type(1),#calendar-table td:nth-of-type(3),#calendar-table td:nth-of-type(6){display:table-cell}#contacts-table td:nth-of-type(1),#contacts-table th:nth-of-type(1),#contacts-table th:nth-of-type(4),#contacts-table td:nth-of-type(4){display:table-cell}#contacts-table th:nth-of-type(3),#contacts-table td:nth-of-type(3){display:table-cell}#calendar-container{margin:10px;display:flex;flex-direction:column;align-items:center}#special-calendar{background-color:snow;font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif;font-size:16px;padding:0;margin:0;background-color:#fff}#special-calendar table td{height:32px;text-align:center;width:32px}#special-calendar{border:1px solid grey;width:240px}#month-chooser{background-color:#f5f5f5;min-height:30px;border-radius:5px;width:240px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:16px}#calendar-date{display:none}main h3{background-color:#e0e0e0}.nested-menu:hover{color:snow;background-color:grey}#tables-table th:hover:not(:first-of-type),#tables-table td:first-of-type:hover{background-color:#fff}#add-row:hover,#add-column:hover{background-color:#fff}#add-column{min-width:1rem}.table-container{display:block;overflow-x:auto;margin-left:auto;margin-right:auto;width:100%;text-align:center}#tables-table input{width:100%;border:none}#tables-table input:hover{background-color:lightgrey}#tables-table td{padding:0}#tables-table th:not(:last-of-type){min-width:3rem}#tables-table th:first-of-type{min-width:1rem}#tables-table{border:none}#tables-table th{border:none}.tables-table-row-number{border:none!important}#tables-table{background-color:lightgrey}#tables-table-table{}#tables-tables-header-form>div,#tables-tables-row-form>div{display:flex;flex-direction:column;text-align:center;width:50%;margin:auto}#tables-tables-header-form *,#tables-tables-row-form *{text-align:center}#tables-tables-header-form>div>div,#tables-tables-row-form>div>div{margin:5px 0}#tables-tables-header-form>div>div>*,#tables-tables-row-form>div>div>*{width:100%}#calculator-table{width:100%;min-width:0%}#calculator-table td button{font-size:2rem;width:100%;height:4rem}.special-calculator-button{background-color:#fc3;border:1px solid grey}#last-calculator-expression{overflow-wrap:anywhere;min-height:18px;color:grey}#calculator-input{width:100%;height:40px;font-size:1.4rem;text-align:right}#calc-clr button{width:50%;font-size:1.4rem;padding:5px}main nav button{background-color:#e0e0e0;border:1px solid grey;border-radius:3px}</style><link id="favicon-link" rel="icon" type="image/x-icon" href="">
+<title>bitOffice</title>
+</head>
+
+<body>
+    <h1 onclick="alert(license);">bitOffice</h1>
+    <nav id="top-nav">
+        <button onclick="showMain('main-planner');">&#9742;&#128197;</button>
+        <button onclick="showMain('main-notes');">&#128196;</button>
+        <button onclick="showMain('main-write');">&#128221;</button>
+        <button onclick="showMain('main-tables');">&#9638;</button>
+        <button onclick="showMain('main-calculator');">&#128290;</button>
+        <button onclick="saveSelf()">Download</button>
+    </nav><main id="main-tables">
+    <h2>Tables</h2>
+    <nav>
+        <button onclick="tablesNewTable();">New</button>
+        <button onclick="tablesLoad();">Load</button>
+        <button onclick="tablesSave();">Save</button>
+        <button onclick="tablesCopyCSVToClipboard()">Copy</button>
+        <button onclick="showTablesDiv('tables-help');">?</button>
+    </nav>
+    <div class="tables-div" id="tables-tables-table">
+
+        <div class="table-container">
+            <table id="tables-table">
+            </table>
+        </div>
+    </div>
+    <div class="tables-div" id="tables-tables-header-form">
+        <!-- <h2>Tables</h2> -->
+        <div>
+            <h3>Column: <span id="tables-current-header">header name here</span></h3>
+
+            <div class="surround-box">
+                <button onclick="updateHeaderName();">Change name to:</button>
+                <input id="tables-new-header-name" type="text" placeholder="name">
+            </div>
+            <div class="surround-box">
+                <button onclick="deleteColumn();">Delete Column</button>
+                <button onclick="copyColumn()">Copy Column</button>
+            </div>
+            <div class="surround-box">
+                <button onclick="moveColumn()">Move To Column</button><select id="move-column"></select>
+            </div>
+            <div>
+                <button onclick="calculateTotal()">Add Total</button>
+                <button onclick="calculateAverage()">Compute Average</button>
+            </div>
+            <div>
+                <button onclick="tablesSort(1)">Sort Ascending &uarr;</button>
+                <button onclick="tablesSort(-1)">Sort Descending &darr;</button>
+            </div>
+            <div>
+                <button onclick="tablesCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="tables-div" id="tables-tables-row-form">
+        <!-- <h2>Tables</h2> -->
+        <div>
+            <h3>Row: <span id="tables-current-row">row number here</span></h3>
+            <div>
+                <button onclick="deleteRow()">Delete Row</button>
+                <button onclick="copyRow()">Copy Row</button>
+            </div>
+            <div>
+                <button onclick="moveRow()">Move To Row</button>
+                <select id="move-row"></select>
+            </div>
+            <div>
+                <button onclick="tablesCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="tables-div" id="tables-help">
+        <p>
+        <h3>Tables-Help</h3>
+        </p>
+        <p>
+        <nav><button onclick="showTablesDiv('tables-tables-table');">Back To Table</button></nav>
+        </p>
+        <p>FORMATTING RULES:</p>
+        <p>When Saving:
+        <ol>
+            <li>All cells are quoted text.
+            </li>
+            <li>Interior double quotes in cells are converted like this: "-&gt;""</li>
+        </ol>
+        </p>
+        <p>If loading CSV from other apps:
+        <ol>
+            <li>Cells should all be text type.</li>
+            <li>Quote all text strings when saving is best practice.</li>
+            <li>There should be no spaces or tabs between the comma delimiter.</li>
+            <li>Interior double quotation marks (i.e. ") in a cell should be stored as ""</li>
+        </ol>
+        </p>
+        <p>
+            For example, these 2 cell contents:
+        <pre>  She said "Yeah, Yeah, Yeah",Hi</pre>
+        </p>
+        <p>
+            Would be stored as
+        <pre>  "She said ""Yeah, Yeah, Yeah""","Hi"</pre>
+        </p>
+        <hr>
+        <p>
+            <i>Notes on CSV:</i>
+        </p>
+        <p>
+            There is no universal standard among programs, but this program uses the following standards
+            adapted from <a href="https://en.wikipedia.org/wiki/Comma-separated_values#Standardization" target="_blank">RFC 4180 and MIME standards</a>.:
+        <ul>
+            <li>Each record should contain the same number of comma-separated fields.</li>
+            <li>Any field may be quoted (with double quotes).</li>
+            <li>If double-quotes are used to enclose fields, then a double-quote in a field must be represented by two double-quote characters. (internal " is escaped with "")</li>
+            <li>Some type of carriage return/line feed must be used- this program uses the "\n" convention, not "\r\n".</li>
+        </ul>
+        </p>
+    </div>
+</main><footer onclick="alert(license)">bitOffice &copy; 2022</footer><script>let license="MIT License\n\n\
+Copyright (c) 2022 Gary Davenport\n\n\
+Permission is hereby granted, free of charge, to any person obtaining a copy \
+of this software and associated documentation files (the \"Software\"), to deal \
+in the Software without restriction, including without limitation the rights \
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell \
+copies of the Software, and to permit persons to whom the Software is \
+furnished to do so, subject to the following conditions:\n\n\
+The above copyright notice and this permission notice shall be included in all \
+copies or substantial portions of the Software.\n\n\
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR \
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, \
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE \
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, \
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE \
+SOFTWARE.";function _replaceReallCommmasInCSV(contents,commaReplacement){let newContents="";let inside=-1;for(let i=0;i<contents.length;i++){let thisChar=contents.charAt(i);if(thisChar==='"'){inside=inside*-1;newContents+=thisChar;}
+else if(thisChar===","){if(inside===-1){newContents+=commaReplacement;}
+else{newContents+=thisChar;}}
+else{newContents+=thisChar;}}
+return(newContents);}
+function _replaceRealNewlinesInCSV(contents,newLineReplacement){let newContents="";let inside=-1;for(let i=0;i<contents.length;i++){let thisChar=contents.charAt(i);if(thisChar==='"'){inside=inside*-1;newContents+=thisChar;}
+else if(thisChar==="\n"){if(inside===-1){newContents+=newLineReplacement;}
+else{newContents+=thisChar;}}
+else{newContents+=thisChar;}}
+return(newContents);}
+function _replaceRealCommasAndRealNewlinesInCSV(contents,commaReplacement,newlineReplacement){let newContents="";let inside=-1;for(let i=0;i<contents.length;i++){let thisChar=contents.charAt(i);if(thisChar==='"'){inside=inside*-1;newContents+=thisChar;}
+else if(thisChar===","){if(inside===-1){newContents+=commaReplacement;}
+else{newContents+=thisChar;}}
+else if(thisChar==="\n"){if(inside===-1){newContents+=newlineReplacement;}
+else{newContents+=thisChar;}}
+else{newContents+=thisChar;}}
+return(newContents);}
+function tokenMaker(intSize){let token="";let specialString="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";for(let i=0;i<intSize;i++){token+=specialString[Math.floor(Math.random()*specialString.length)];}
+return token;}
+function escapeRegExp(string){return string.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function myReplaceAll(str,match,replacement){return str.replace(new RegExp(escapeRegExp(match),'g'),()=>replacement);}
+function getTokenNotInString(myString,intSize=16){let token=tokenMaker(16);while(myString.indexOf(token)!==-1){token=tokenMaker(16);}
+return token;}
+function csvToArrays(CSVString){CSVString=CSVString.trim();let carriageReturnToken=getTokenNotInString(CSVString);CSVString=CSVString.split("\r").join(carriageReturnToken);CSVString=CSVString.split(carriageReturnToken+"\n").join("\n");let myArray=[];CSVString=CSVString.trim();let commaToken=getTokenNotInString(CSVString);CSVString=_replaceReallCommmasInCSV(CSVString,commaToken);let newlineToken=getTokenNotInString(CSVString);CSVString=_replaceRealNewlinesInCSV(CSVString,newlineToken);let lines=CSVString.split(newlineToken);for(let i=0;i<lines.length;i++){let rowArray=lines[i].split(commaToken);for(let j=0;j<rowArray.length;j++){if(rowArray[j][rowArray[j].length-1]==='"'){rowArray[j]=rowArray[j].slice(0,rowArray[j].length-1);}
+if(rowArray[j][0]==='"'){rowArray[j]=rowArray[j].slice(1,rowArray[j].length);}
+rowArray[j]=rowArray[j].split('""').join('"');}
+myArray.push(rowArray);}
+return myArray;}
+function arraysToCSV(arrayOfArrays,newLineString="\n"){let CSVString="";for(let i=0;i<arrayOfArrays.length;i++){for(let j=0;j<arrayOfArrays[i].length;j++){CSVString+='"';CSVString+=arrayOfArrays[i][j].split('"').join('""');CSVString+='",'}
+CSVString=CSVString.slice(0,-1)+newLineString;}
+CSVString=CSVString.slice(0,-(newLineString.length));return CSVString;}
+function arraysToJSON(arrayOfArrays,usingHeaders=true){let headers=[];let data=[];let table={};if(usingHeaders===true){for(let i=0;i<arrayOfArrays[0].length;i++){let header=arrayOfArrays[0][i];let index=0;while(headers.includes(header)){console.log("WARNING - Duplicate header found: "+header);index+=1;header=header+index.toString();console.log("Attempting rename to: "+header);}
+headers.push(header);}}else{for(let i=0;i<arrayOfArrays[0].length;i++){headers.push("header"+i.toString());}}
+if(usingHeaders===true){startRow=1;}
+else{startRow=0;}
+for(let i=startRow;i<arrayOfArrays.length;i++){let tempRow={};for(let j=0;j<headers.length;j++){tempRow[headers[j]]=arrayOfArrays[i][j];}
+data.push(tempRow);}
+table["headers"]=headers;table["data"]=data;return(table);}
+function JSONToArrays(jsonObject,includeHeaders=true){let headers=jsonObject["headers"];let data=jsonObject["data"];let arrayOfArrays=[];if(includeHeaders===true){let row=[];for(let i=0;i<headers.length;i++){row.push(headers[i].toString());}
+arrayOfArrays.push(row);}
+for(i=0;i<data.length;i++){let row=[];for(let j=0;j<headers.length;j++){if(data[i][headers[j]]===undefined){row.push("");}
+else{row.push(data[i][headers[j]].toString());}}
+arrayOfArrays.push(row);}
+return(arrayOfArrays);}
+function unorderedJSONToArrays(jsonObject,includeHeaders=true){let newObject={};newObject["data"]=jsonObject;let headers=[];for(rowObject of jsonObject){for(const key in rowObject){if(!headers.includes(key)){headers.push(key.toString());};}}
+newObject["headers"]=headers;return JSONToArrays(newObject,includeHeaders);}
+function csvToJSON(csvString,usingHeaders=true){let arrays=csvToArrays(csvString);console.log(arrays);let jsonObject=arraysToJSON(arrays,usingHeaders);return jsonObject;}
+function JSONToCSV(jsonObject,includeHeaders=true,newLineString="\n"){let arrays=JSONToArrays(jsonObject,includeHeaders);let csvString=arraysToCSV(arrays,newLineString);return csvString;}
+function unorderedJSONToCSV(jsonObject,includeHeaders=true){let arrays=unorderedJSONToArrays(jsonObject,includeHeaders);let csvString=arraysToCSV(arrays);return csvString;}function saveStringToTextFile(str1,basename="myfile",fileType=".txt"){let filename=basename+fileType;let blobVersionOfText=new Blob([str1],{type:"text/plain",});let urlToBlob=window.URL.createObjectURL(blobVersionOfText);let downloadLink=document.createElement("a");downloadLink.style.display="none";downloadLink.download=filename;downloadLink.href=urlToBlob;document.body.appendChild(downloadLink);downloadLink.click();downloadLink.parentElement.removeChild(downloadLink);}
+function copyAndSaveString(str1,basename="myfile",fileType=".txt"){copyToClipBoard(str1,false);if(confirm("Copied to clipboard, save to file also?")){saveStringToTextFile(str1,basename,fileType);}}
+function saveWebsiteAsTextFile(url){let http=new XMLHttpRequest();http.timeout=2000;http.ontimeout=function(e){alert("The request timed out.");};http.open('GET',url,true);http.onreadystatechange=function(){if(http.readyState==4&&http.status==200){alert(http.responseText);console.log(http.responseText);}}
+http.send();}
+function saveSelf(){saveStringToTextFile(selfString,"bitOfficeClone",".html");}
+function getTodaysDate(){let now=new Date();let day=("0"+now.getDate()).slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);let today=now.getFullYear()+"-"+month+"-"+day;return today;}
+function getFirstDayOfThisMonthDate(){let now=new Date();let day="01";let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
+function getLastDayOfThisMonthDate(){let now=new Date();let day=daysInThisMonth().toString();day="0"+day;day=day.slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
+function daysInSomeMonth(someMonth,someYear){return new Date(someYear,someMonth+1,0).getDate();}
+function daysInThisMonth(){thisDate=new Date();thisMonth=thisDate.getMonth();thisYear=thisDate.getYear();return daysInSomeMonth(thisMonth,thisYear);}
+function getDayOfWeek(isoYearMonthDay){let d=new Date(isoYearMonthDay+"T00:00");return d.getDay();}
+function serializeElementToPage(id,extraStyle=""){let boilerPlate1="<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";let allStyleTags=document.getElementsByTagName('style');let styleElementContent="";for(let i=0;i<allStyleTags.length;i++){styleElementContent=allStyleTags[i].innerHTML;}
+let boilerPlate2="</style></head><body>";let boilerPlate3="</body></html>";let s=new XMLSerializer();let myElement=document.getElementById(id);let str=s.serializeToString(myElement);let htmlPage=boilerPlate1+styleElementContent+extraStyle+boilerPlate2+str+boilerPlate3;console.log(htmlPage);return htmlPage;}
+function simulateUndo(){document.execCommand('undo',false,null);}
+function simulateRedo(){document.execCommand('redo',false,null);}
+function askConfirm(){return "Did you remember to save your data?";}
+function showMain(id){let mains=document.getElementsByTagName('main');for(let main of mains){main.style.display="none";}
+document.getElementById(id).style.display="flex";}
+function copyToClipBoard(str,message=true){let el=document.createElement('textarea');el.value=str;el.setAttribute('readonly','');el.style={position:'absolute',left:'-9999px'};document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);if(message){alert('Copied to Clipboard.');}
+return(str);}
+function fillInEmptyPropertyValues(table){let data=table["data"];let headers=table["headers"];for(let i=0;i<data.length;i++){for(let j=0;j<headers.length;j++){if(data[i][headers[j]]===undefined){data[i][headers[j]]="";}}}}
+function makeCSV(thisTable,saveWithHeader=true){return JSONToCSV(thisTable,saveWithHeader,"\n");}
+function tokenMaker(intSize){let token="";let specialString="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";let index=0;for(let i=0;i<intSize;i++){token+=specialString[Math.floor(Math.random()*specialString.length)];}
+console.log(token);return token;}
+function processCSVClick(table){let thisCSV="";thisCSV=makeCSV(table,true);copyToClipBoard(thisCSV);if(confirm("Table copied to CSV.\n\nSave to file also?")){copyAndSaveString(thisCSV,table["name"]+getTodaysDate(),".csv");}}
+function destructiveSort(arrayOfObjects,field,direction=1){if(direction!=-1){direction=1;}
+arrayOfObjects.sort((a,b)=>{if(a[field]<b[field]){return-1*direction;}
+if(a[field]>b[field]){return 1*direction;}
+return 0;});}
+function destructiveDoubleSortAscending(arrayOfObjects,date,time){arrayOfObjects.sort((a,b)=>{if(a[date]>b[date]){return 1;}
+else if(a[date]<b[date]){return-1;}
+if(a[time]>b[time]){return 1;}
+else if(a[time]<b[time]){return-1;}
+return 0;});}
+function makeFavicon(letter,color,backgroundColor){let canvas=document.createElement('canvas');canvas.width=16;canvas.height=16;let ctx=canvas.getContext('2d');ctx.fillStyle=backgroundColor;ctx.fillRect(0,0,16,16);let ctx2=canvas.getContext("2d");ctx2.fillStyle=color;ctx2.font="bold 12px Arial";ctx2.fillText(letter,4,12);let link=document.getElementById("favicon-link");link.href=canvas.toDataURL("image/x-icon");}let tableElement=document.getElementById('tables-table');let tablesTable={"name":"Table","headers":["Column 1","Column 2","Column 3"],"data":[{"Column 1":"","Column 2":"","Column 3":""},{"Column 1":"","Column 2":"","Column 3":""},{"Column 1":"","Column 2":"","Column 3":""}]}
+let initialTablesTable=JSON.stringify(tablesTable);initializeTablesApp();function showTablesDiv(id){updateDataFromCurrentInputs(tablesTable);let divs=document.getElementsByClassName('tables-div');for(let div of divs){div.style.display="none";}
+document.getElementById(id).style.display="unset";}
+function initializeTablesApp(){makeTable(JSON.parse(initialTablesTable));updateDataFromCurrentInputs(tablesTable);showTablesDiv('tables-tables-table');}
+function backupTablesTable(){updateDataFromCurrentInputs(tablesTable);return JSON.parse(JSON.stringify(currentTablesTable));}
+function processColumnClick(header){updateDataFromCurrentInputs(tablesTable);populateMoveColumnSelect(tablesTable);document.getElementById("tables-current-header").innerHTML=header;document.getElementById("tables-new-header-name").value=header;showTablesDiv("tables-tables-header-form");}
+function processRowClick(row){updateDataFromCurrentInputs(tablesTable);populateMoveRowSelect(tablesTable);document.getElementById("tables-current-row").innerHTML=row.toString();showTablesDiv("tables-tables-row-form");}
+function makeTable(table){let str="";str="";let headers=table["headers"];str+="<thead><tr><th></th>";for(let i=0;i<headers.length;i++){str+="<th id='"+headers[i]+"' onclick=\"processColumnClick('"+headers[i]+"');\">"+headers[i].replace(/</g,"&lt;").replace(/>/g,"&gt;");+"</th>";}
+str+="<th id='add-column' onclick='addColumn(tablesTable)'>+</th>";str+="</tr></thead>";let tableHeader=str;str="<tbody>";let bodyData=table.data;console.log("bodyData");console.log(bodyData);let rowCount=bodyData.length;for(let i=0;i<rowCount;i++){str+="<tr><td class='tables-table-row-number' onclick='processRowClick("+i.toString()+")'>"+i.toString()+"</td>";let columnCount=headers.length;console.log(columnCount);for(let j=0;j<columnCount;j++){if(bodyData[i][headers[j]]===undefined){bodyData[i][headers[j]]="input read error";}
+str+="<td><input type='text' id='cell-"+i.toString()+"-"+j.toString()+"' value='"+bodyData[i][headers[j]].toString()+"'></td>";}
+str+="</tr>";}
+str+="</tbody>"
+let tableBody=str;str="<tfoot><tr><th id='add-row' onclick='addRow(tablesTable)'>+</th>";for(let i=0;i<headers.length;i++){str+="<th id='footer-"+(i+1).toString()+"' onclick=\"processColumnClick('"+headers[i]+"');\"></th>";}
+str+="</tr></tfoot>";let tableFooter=str;let strTable=tableHeader+tableBody+tableFooter;populateMoveColumnSelect(table);populateMoveRowSelect(table);tableElement.innerHTML=strTable;return strTable;}
+function populateMoveColumnSelect(table){let moveColumnSelect=document.getElementById('move-column');moveColumnSelect.options.length=0;let currentTableHeaders=table.headers;for(th of currentTableHeaders){let option=document.createElement('option');option.value=th;option.text=th;moveColumnSelect.add(option);}}
+function populateMoveRowSelect(table){let moveRowSelect=document.getElementById('move-row');moveRowSelect.options.length=0;for(let i=0;i<table["data"].length;i++){let option=document.createElement('option');option.value=i.toString();option.text=i.toString();moveRowSelect.add(option);}}
+function updateDataFromCurrentInputs(table){let headers=table["headers"];console.log("headers");console.log(headers);for(let i=0;i<table.data.length;i++){for(let j=0;j<table.headers.length;j++){let id="cell-"+i.toString()+"-"+j.toString();let thisCell=document.getElementById(id);table.data[i][headers[j]]=thisCell.value;}}}
+function updateHeaderName(){let fieldName=document.getElementById("tables-current-header").innerHTML;let newName=document.getElementById('tables-new-header-name').value;if(fieldName===newName){makeTable(tablesTable);return;}
+if(newName===""){newName=prompt("There is no name listed, please enter the new name");if(newName===null){return;}}
+tablesTable=_changeHeaderAndDataPropertyName(tablesTable,newName,fieldName);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function tablesSort(direction){let field=document.getElementById("tables-current-header").innerHTML;sortTablesByField(field,direction);}
+function sortTablesByField(field,direction=1){if(confirm("Sort by "+field+"?\n\nThis is destructive and irreversible.")){destructiveSort(tablesTable["data"],field,direction);makeTable(tablesTable);showTablesDiv('tables-tables-table');}}
+function _changeHeaderAndDataPropertyName(table,newName,oldName){let data=table["data"];newName=getBestName(table,newName);let index=table["headers"].indexOf(oldName);table["headers"][index]=newName;for(let i=0;i<data.length;i++){data[i][newName]=data[i][oldName];delete data[i][oldName];}
+return table;}
+function deleteColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;if(confirm("Are you sure? \n\nDelete Column: "+columnName+"?")){let index=tablesTable["headers"].indexOf(columnName);tablesTable["headers"].splice(index,1);for(let i=0;i<tablesTable["data"].length;i++){delete tablesTable["data"][i][columnName];}
+makeTable(tablesTable);showTablesDiv('tables-tables-table');}}
+function addColumn(table){updateDataFromCurrentInputs(table);let newIndex=1;let newColumnName="new"+newIndex.toString();while(table["headers"].includes(newColumnName)){console.log("column name already in use");newIndex+=1;newColumnName="new"+newIndex.toString();}
+table.headers.push(newColumnName);fillInEmptyPropertyValues(table);makeTable(table);}
+function moveColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;let destinationColumnName=document.getElementById("move-column").value;if(columnName===destinationColumnName){console.log("destination is same as source");return;}
+let index=tablesTable["headers"].indexOf(columnName);let destinationIndex=tablesTable["headers"].indexOf(destinationColumnName);let headerToMove=tablesTable["headers"].splice(index,1)[0];tablesTable["headers"].splice(destinationIndex,0,headerToMove);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function getBestName(table,name){let headers=table["headers"];let nameCount=0;let bestName=name;while(headers.includes(bestName)){console.log("column name already in use");nameCount+=1;bestName=name+"-"+nameCount.toString();}
+return bestName;}
+function copyColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;let newName=getBestName(tablesTable,columnName);tablesTable["headers"].push(newName);for(let i=0;i<tablesTable["data"].length;i++){tablesTable["data"][i][newName]=tablesTable["data"][i][columnName];}
+makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function calculateTotal(){let columnName=document.getElementById("tables-current-header").innerHTML;let total=0;for(let row of tablesTable.data){total=total+Number(row[columnName]);}
+if(confirm("The total is: "+total.toString()+"\nCopy to clipboard?")){copyToClipBoard(total.toString());};showTablesDiv('tables-tables-table');}
+function tablesCancel(){console.log("tablesCancel called");makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function calculateAverage(){alert("calculate average called");console.log("calcualtoe average called");let columnName=document.getElementById("tables-current-header").innerHTML;let total=0;for(let row of tablesTable.data){total=total+Number(row[columnName]);}
+let average=total/tablesTable.data.length;if(confirm("The average is: "+average.toString()+"\nCopy to clipboard?")){copyToClipBoard(average.toString());}
+showTablesDiv('tables-tables-table');}
+function addRow(table){let headers=table["headers"];updateDataFromCurrentInputs(table);let numberOfColumns=table.headers.length;let tempRow={};for(let i=0;i<numberOfColumns;i++){tempRow[headers[i]]="";}
+table["data"].push(tempRow);makeTable(table);}
+function deleteRow(){let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];data.splice(index,1);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function copyRow(){console.log("copy row called");let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];console.log(data);let rowToCopy=JSON.parse(JSON.stringify(tablesTable.data[index]));data.push(rowToCopy);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function moveRow(){console.log("move row called");let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];let destinationIndex=parseInt(document.getElementById("move-row").value);let rowToMove=data.splice(index,1)[0];data.splice(destinationIndex,0,rowToMove);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function tablesNewTable(){if(confirm("Are you sure?  This will erase all current data.")){initializeTablesApp();}}
+function tablesLoad(){console.log("tablesLoad() called");let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".csv";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;if(confirm("Use the first line as the header row?")){tablesTable=csvToJSON(fileContents,true);}else{tablesTable=csvToJSON(fileContents,true);}
+makeTable(tablesTable);};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
+function tablesSave(){console.log("tablesSave() called");updateDataFromCurrentInputs(tablesTable);if(confirm("Include header as first line in csv file?")){saveStringToTextFile(makeCSV(tablesTable,true),"csvTable"+getTodaysDate(),".csv");}else{saveStringToTextFile(makeCSV(tablesTable,false),"csvTable"+getTodaysDate(),".csv");}}
+function tablesCopyCSVToClipboard(){updateDataFromCurrentInputs(tablesTable);let thisResult="";if(confirm("Include header as first line?")){thisResult=copyToClipBoard(makeCSV(tablesTable,true));}else{thisResult=copyToClipBoard(makeCSV(tablesTable,false));}
+return thisResult;}let nestedMenues=document.getElementsByClassName("nested-menu");for(let nestedmenu of nestedMenues){nestedmenu.addEventListener("click",(evt)=>{toggleNest(evt.target)});}
+function toggleNest(menu){let siblings=menu.parentElement.children;for(let sibling of siblings){if(sibling===menu){}else{if(sibling.style.display==="none"){sibling.style.display="inherit";}else{sibling.style.display="none";}}}}
+function toggleAll(){for(let nestedmenu of nestedMenues){toggleNest(nestedmenu)}}
+function openSelectedInitialNests(){for(let nestedmenu of nestedMenues){if(nestedmenu.classList.contains("initial-open")){toggleNest(nestedmenu);}}}
+toggleAll();openSelectedInitialNests();</script><script>let selfString="";function createSelf(){let html=document.getElementsByTagName("html")[0].innerHTML;selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";}
+window.onload=createSelf();makeFavicon("p", "white", "mediumblue");
+window.onbeforeunload = askConfirm;
+document.getElementById("top-nav").style.display="none";
+showTablesDiv('tables-tables-table');//used for table
+showMain('main-tables');
+</script></body>
+</html>

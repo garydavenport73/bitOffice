@@ -134,6 +134,203 @@
             <button onclick="exportSingleICalEvent()">Export Event</button>
         </nav>
     </div>
+</main><main id="main-notes">
+    <h2>Notes</h2>
+    <nav>
+        <button onclick="newNotesEntry()">New</button>
+        <button onclick="notesLoad()">Load</button>
+        <button onclick="notesSave()">Save</button>
+        <button id="copy" onclick="copyToClipBoard(document.getElementById('note').value);">Copy</button>
+        <button onclick="printNotesDiv('note');">&#128424;</button>
+        <button class="plus-minus" onclick="changeFontSize(this);">-</button>
+        <button class="plus-minus" onclick="changeFontSize(this);">+</button>
+        <button onclick="simulateUndo()">&#10226;</button>
+        <button onclick="simulateRedo()">&#10227;</button>
+    </nav>
+    <textarea id="note" rows="10" placeholder="your notes here"></textarea>
+</main><main id="main-write">
+    <h2>Write</h2>
+    <nav id="file-bar">
+        <button onclick="newDocument();">New</button>
+        <button onclick="writeLoad();">Load</button>
+        <button onclick="writeDataToJSON();">Save</button>
+        <button onclick="exportToHTML()">Export</button>
+        <button onclick="printDiv('document-parent');//window.print()">&#128424;</button>
+    </nav>
+    <nav id="document-settings">
+        <button class="mono" onclick='processSelectedText(this);'>Mono</button>
+        <button class="serif" onclick='processSelectedText(this);'>Serif</button>
+        <button class="sans" onclick='processSelectedText(this);'>Sans</button>
+        <button onclick='processSelectedText(this);//decrease font'><sup>A</sup>A</button>
+        <button onclick='processSelectedText(this);//increase font;'><sub>A</sub>A</button>
+        <button onclick='processSelectedText(this);//inc margin;'>&rarrb;&larrb;</button>
+        <button onclick='processSelectedText(this);//dec margin;'>&larrb;&rarrb;</button>
+        <button onclick='processSelectedText(this);//align left;'>&#8666;</button>
+        <button onclick='processSelectedText(this);//align center;'>&#8667;&#8666;</button>
+        <button onclick='processSelectedText(this);//align right;'>&#8667;</button>
+        <button id="spell-check" onclick='processSelectedText(this);//spellcheck;'>&check;</button>
+    </nav>
+    <nav id="edit-bar">
+        <button onclick='processSelectedText(this);'><b>B</b></button>
+        <button onclick='processSelectedText(this);'><u>U</u></button>
+        <button onclick='processSelectedText(this);'><em>I</em></button> &nbsp;
+        <button onclick='processSelectedText(this);'>&#8633;</button>
+        <button onclick='processSelectedText(this);//paragraph;'>&para;</button>
+        <button onclick='processSelectedText(this);'>H1</button>
+        <button onclick='processSelectedText(this);'>H2</button>
+        <button onclick='processSelectedText(this);'>H3</button> &nbsp;
+        <button onclick='processSelectedText(this);//horizontal rule'>&#8213;</button>
+        <button onclick='processSelectedText(this);//bullet;'>&bullet;</button> &nbsp;
+        <button onclick='processSelectedText(this);//undo;'>&#10226;</button>
+        <button onclick="writeRedo()">&#10227;</button>
+    </nav>
+    <textarea id="text-editor" spellcheck="false" oninput="writeUpdateResult();"></textarea>
+    <div id="document-parent">
+        <div id="document-result"></div>
+    </div>
+</main><main id="main-tables">
+    <h2>Tables</h2>
+    <nav>
+        <button onclick="tablesNewTable();">New</button>
+        <button onclick="tablesLoad();">Load</button>
+        <button onclick="tablesSave();">Save</button>
+        <button onclick="tablesCopyCSVToClipboard()">Copy</button>
+        <button onclick="showTablesDiv('tables-help');">?</button>
+    </nav>
+    <div class="tables-div" id="tables-tables-table">
+
+        <div class="table-container">
+            <table id="tables-table">
+            </table>
+        </div>
+    </div>
+    <div class="tables-div" id="tables-tables-header-form">
+        <!-- <h2>Tables</h2> -->
+        <div>
+            <h3>Column: <span id="tables-current-header">header name here</span></h3>
+
+            <div class="surround-box">
+                <button onclick="updateHeaderName();">Change name to:</button>
+                <input id="tables-new-header-name" type="text" placeholder="name">
+            </div>
+            <div class="surround-box">
+                <button onclick="deleteColumn();">Delete Column</button>
+                <button onclick="copyColumn()">Copy Column</button>
+            </div>
+            <div class="surround-box">
+                <button onclick="moveColumn()">Move To Column</button><select id="move-column"></select>
+            </div>
+            <div>
+                <button onclick="calculateTotal()">Add Total</button>
+                <button onclick="calculateAverage()">Compute Average</button>
+            </div>
+            <div>
+                <button onclick="tablesSort(1)">Sort Ascending &uarr;</button>
+                <button onclick="tablesSort(-1)">Sort Descending &darr;</button>
+            </div>
+            <div>
+                <button onclick="tablesCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="tables-div" id="tables-tables-row-form">
+        <!-- <h2>Tables</h2> -->
+        <div>
+            <h3>Row: <span id="tables-current-row">row number here</span></h3>
+            <div>
+                <button onclick="deleteRow()">Delete Row</button>
+                <button onclick="copyRow()">Copy Row</button>
+            </div>
+            <div>
+                <button onclick="moveRow()">Move To Row</button>
+                <select id="move-row"></select>
+            </div>
+            <div>
+                <button onclick="tablesCancel()">Cancel</button>
+            </div>
+        </div>
+    </div>
+    <div class="tables-div" id="tables-help">
+        <p>
+        <h3>Tables-Help</h3>
+        </p>
+        <p>
+        <nav><button onclick="showTablesDiv('tables-tables-table');">Back To Table</button></nav>
+        </p>
+        <p>FORMATTING RULES:</p>
+        <p>When Saving:
+        <ol>
+            <li>All cells are quoted text.
+            </li>
+            <li>Interior double quotes in cells are converted like this: "-&gt;""</li>
+        </ol>
+        </p>
+        <p>If loading CSV from other apps:
+        <ol>
+            <li>Cells should all be text type.</li>
+            <li>Quote all text strings when saving is best practice.</li>
+            <li>There should be no spaces or tabs between the comma delimiter.</li>
+            <li>Interior double quotation marks (i.e. ") in a cell should be stored as ""</li>
+        </ol>
+        </p>
+        <p>
+            For example, these 2 cell contents:
+        <pre>  She said "Yeah, Yeah, Yeah",Hi</pre>
+        </p>
+        <p>
+            Would be stored as
+        <pre>  "She said ""Yeah, Yeah, Yeah""","Hi"</pre>
+        </p>
+        <hr>
+        <p>
+            <i>Notes on CSV:</i>
+        </p>
+        <p>
+            There is no universal standard among programs, but this program uses the following standards
+            adapted from <a href="https://en.wikipedia.org/wiki/Comma-separated_values#Standardization" target="_blank">RFC 4180 and MIME standards</a>.:
+        <ul>
+            <li>Each record should contain the same number of comma-separated fields.</li>
+            <li>Any field may be quoted (with double quotes).</li>
+            <li>If double-quotes are used to enclose fields, then a double-quote in a field must be represented by two double-quote characters. (internal " is escaped with "")</li>
+            <li>Some type of carriage return/line feed must be used- this program uses the "\n" convention, not "\r\n".</li>
+        </ul>
+        </p>
+    </div>
+</main><main id="main-calculator">
+    <h2>Calculator</h2>
+    <input type=text id='calculator-input'>
+    <nav id="calc-clr">
+        <button class="special-calculator-button" id="clear-calc">CLR</button>
+        <button id="remove-last-char">&larr;</button>
+    </nav>
+
+    <div id="last-calculator-expression"></div>
+    <table id="calculator-table">
+        <tr>
+            <td><button class='build-calc-string'>7</button></td>
+            <td><button class='build-calc-string'>8</button></td>
+            <td><button class='build-calc-string'>9</button></td>
+            <td><button class='build-calc-string'>/</button></td>
+        </tr>
+        <tr>
+            <td><button class='build-calc-string'>4</button></td>
+            <td><button class='build-calc-string'>5</button></td>
+            <td><button class='build-calc-string'>6</button></td>
+            <td><button class='build-calc-string'>*</button></td>
+        </tr>
+        <tr>
+            <td><button class='build-calc-string'>1</button></td>
+            <td><button class='build-calc-string'>2</button></td>
+            <td><button class='build-calc-string'>3</button></td>
+            <td><button class='build-calc-string'>-</button></td>
+        </tr>
+        <tr>
+            <td><button class='build-calc-string'>0</button></td>
+            <td><button class='build-calc-string'>.</button></td>
+            <td><button class="special-calculator-button" id="equals-button">=</button></td>
+            <td><button class='build-calc-string'>+</button></td>
+        </tr>
+    </table>
 </main><footer onclick="alert(license)">bitOffice &copy; 2022</footer><script>let license="MIT License\n\n\
 Copyright (c) 2022 Gary Davenport\n\n\
 Permission is hereby granted, free of charge, to any person obtaining a copy \
@@ -388,14 +585,101 @@ function makeVEventsArr(dataRows){let arr=[];for(let i=0;i<dataRows.length;i++){
 return arr;}
 function makeVCalendar(vEventsArr,lineTerminator="\n"){let str="";let lt=lineTerminator;str+="BEGIN:VCALENDAR"+lt;str+="VERSION:2.0"+lt;str+="PRODID:bitOffice"+lt;str+="CALSCALE:GREGORIAN"+lt;for(let i=0;i<vEventsArr.length;i++){str+=vEventsArr[i].trim()+lt;}
 str+="END:VCALENDAR";return str;}
-function exportICSCalendar(){let eventsArr=makeVEventsArr(calendarDatabase["data"]);let cal=makeVCalendar(eventsArr);copyAndSaveString(cal,"ICSCalendar"+getTodaysDate(),".ics");}let nestedMenues=document.getElementsByClassName("nested-menu");for(let nestedmenu of nestedMenues){nestedmenu.addEventListener("click",(evt)=>{toggleNest(evt.target)});}
+function exportICSCalendar(){let eventsArr=makeVEventsArr(calendarDatabase["data"]);let cal=makeVCalendar(eventsArr);copyAndSaveString(cal,"ICSCalendar"+getTodaysDate(),".ics");}let noteFontSize=2.5/3.0;let note=document.getElementById('note');note.value="";let compareNoteValue="";initializeNotesApp();function initializeNotesApp(){note.style.fontSize=noteFontSize.toString()+"rem";note.spellcheck=false;note.focus();}
+function changeFontSize(fontButton){let doThis=fontButton.innerHTML;if(doThis==="-"){if(noteFontSize>0.2){noteFontSize-=0.2;}}else{noteFontSize+=0.2;}
+note.style.fontSize=noteFontSize.toString()+"rem";}
+function newNotesEntry(){if(note.value!=''){if(confirm("This will erase current contents.")){note.value='';compareNoteValue='';}}}
+function notesLoad(){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".txt";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;note.value=fileContents;};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
+function notesSave(){basename="notes"+getTodaysDate();copyAndSaveString(note.value,basename,".txt");}
+function printNotesDiv(id){let a=window.open();a.document.write(serializeNotesElementToPage(id,"html{background-color:white;}#note{font-size:"+noteFontSize+"rem}"));a.document.close();a.print();}
+function serializeNotesElementToPage(id,extraStyle=""){let boilerPlate1="<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";let allStyleTags=document.getElementsByTagName('style');let styleElementContent="";for(let i=0;i<allStyleTags.length;i++){styleElementContent=allStyleTags[i].innerHTML;}
+styleElementContent+="pre{white-space: pre-wrap;overflow-wrap: break-word;margin: 0;padding: 0;}"
+let boilerPlate2="</style></head><body>";let boilerPlate3="</body></html>";let str="<pre id='note'>"+document.getElementById(id).value+"</pre>";let htmlPage=boilerPlate1+styleElementContent+extraStyle+boilerPlate2+str+boilerPlate3;console.log(htmlPage);return htmlPage;}let textarea=document.getElementById("text-editor");let documentDiv=document.getElementById('document-result');let remSize=1;let marginSize=2;let writeUndos=[];let writeUndosCursor=0;let compareWriteData="";initializeWriteApp();let lastTextAreaText=textarea.value;function initializeWriteApp(){documentDiv.style.fontSize=remSize+"rem";documentDiv.style.marginLeft=marginSize+"rem";documentDiv.style.marginRight=marginSize+"rem";writeUndos.push(textarea.value);writeUpdateResult();textarea.spellcheck=false;textarea.focus();document.getElementById('text-editor').addEventListener('keydown',function(e){if(e.key=='Tab'){e.preventDefault();insertTab(this);updateUndosIfTextChanges();}});document.getElementById('text-editor').addEventListener('input',updateUndosIfTextChanges);compareWriteData=makeCompareWriteData();}
+function updateUndosIfTextChanges(){console.log("called");console.log(writeUndos);if(lastTextAreaText!=textarea.value){addUndo();lastTextAreaText=textarea.value;}
+console.log(writeUndos);}
+function insertTab(aTextarea){let start=aTextarea.selectionStart;let end=aTextarea.selectionEnd;aTextarea.value=aTextarea.value.substring(0,start)+
+"\t"+aTextarea.value.substring(end);aTextarea.selectionStart=aTextarea.selectionEnd=start+1;writeUpdateResult();}
+function exportToHTML(){let contents=serializeElementToPage("document-parent","html,#document-result,#document-parent{background-color:white;}");copyToClipBoard(contents);if(confirm("HTML document exported to clipboard.\n\nWould you like to export to HTML file?")){saveStringToTextFile(contents,'write'+getTodaysDate(),'.html');}}
+function newDocument(){if(confirm("This will overwrite current document.")){writeResetAll();}}
+function writeResetAll(){writeBaseFilename="";remSize=1;marginSize=2;textarea.value="";documentDiv.style.textAlign="left";documentDiv.style.fontFamily="Georgia, 'Times New Roman', Garamond, Times, serif";documentDiv.style.fontSize="1rem";documentDiv.style.marginLeft="2rem";textarea.spellcheck=false;writeUndos=[];writeUndos.push(textarea.value);writeUpdateResult();textarea.focus();}
+function makeCompareWriteData(){writeUpdateResult();let data={}
+data["text"]=textarea.value;data["textAlign"]=documentDiv.style.textAlign;data["fontFamily"]=documentDiv.style.fontFamily;data["fontSize"]=documentDiv.style.fontSize;data["marginSize"]=documentDiv.style.marginLeft;data["spellCheck"]=textarea.spellcheck;return JSON.stringify(data);;}
+function writeDataToJSON(){writeUpdateResult();let data={}
+data["text"]=textarea.value;data["textAlign"]=documentDiv.style.textAlign;data["fontFamily"]=documentDiv.style.fontFamily;data["fontSize"]=documentDiv.style.fontSize;data["marginSize"]=documentDiv.style.marginLeft;data["spellCheck"]=textarea.spellcheck;writeBaseFilename="write"+getTodaysDate();let saveContents=JSON.stringify(data);saveStringToTextFile(saveContents,writeBaseFilename,".json");compareWriteData=makeCompareWriteData();}
+function writeLoad(){console.log("writeLoad() called");console.log(textarea.value);console.log(textarea.value.length);let proceed=true;if(textarea.value.length!=0){proceed=confirm("This will overwrite current document");}
+if(proceed){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".json";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;let loadedData=JSON.parse(fileContents);textarea.value=loadedData["text"];documentDiv.style.textAlign=loadedData["textAlign"];documentDiv.style.fontFamily=loadedData["fontFamily"];documentDiv.style.fontSize=loadedData["fontSize"];documentDiv.style.marginLeft=loadedData["marginSize"];textarea.spellcheck=loadedData["spellCheck"];writeUpdateResult();remSize=parseFloat(loadedData["fontSize"].split("rem")[0]);marginSize=parseFloat(loadedData["marginSize"].split("rem")[0]);writeUndos=[];console.log("writeUndos length",writeUndos.length);writeUndos.push(textarea.value);textarea.focus();};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}}
+function addUndo(){console.log(writeUndos.length,writeUndosCursor);console.log(writeUndos);if(writeUndos.length-1===writeUndosCursor){console.log("we are at end");if(writeUndos.length>=316){writeUndos.shift();writeUndos.push(textarea.value);}else{writeUndos.push(textarea.value);writeUndosCursor+=1;}
+console.log(writeUndos);}else{console.log("we are not at end");console.log(writeUndos);let removeNumberOfElements=writeUndos.length-(writeUndosCursor+1);writeUndos=writeUndos.slice(0,-removeNumberOfElements);console.log(writeUndos);writeUndos.push(textarea.value);writeUndosCursor+=1;console.log(writeUndos);}}
+function backUndo(){console.log("back Undo called");console.log(writeUndos);console.log(writeUndosCursor);if(writeUndosCursor>0){let thisText=writeUndos[writeUndosCursor-1];textarea.value=thisText;writeUpdateResult();writeUndosCursor=writeUndosCursor-1;}
+console.log(writeUndos);console.log(writeUndosCursor);}
+function writeRedo(){console.log("redo called");if(writeUndos.length-1===writeUndosCursor){console.log("we are at end");}else{console.log("we are not at end");writeUndosCursor+=1;let thisText=writeUndos[writeUndosCursor];textarea.value=thisText;writeUpdateResult();}}
+function processSelectedText(clickedElement){let action=clickedElement.innerHTML;console.log(action);if(action==="⇚"){documentDiv.style.textAlign="left";}else if(action==="⇛⇚"){documentDiv.style.textAlign="center";}else if(action==="⇛"){documentDiv.style.textAlign="right";}else if(action==="Mono"){documentDiv.style.fontFamily="'Courier New', Courier, monospace";}else if(action==="Serif"){documentDiv.style.fontFamily="Georgia, 'Times New Roman', Garamond, Times, serif";}else if(action==="Sans"){documentDiv.style.fontFamily="Arial, Verdana, Helvetica, Tahoma, sans-serif";}else if(action==="<sub>A</sub>A"){remSize=remSize+.2;documentDiv.style.fontSize=remSize.toString()+"rem";}else if(action==="<sup>A</sup>A"){remSize=remSize-.2;documentDiv.style.fontSize=remSize.toString()+"rem";}else if(action==="⇥⇤"){marginSize=marginSize+1;if(marginSize>20){marginSize=20;}
+documentDiv.style.marginLeft=marginSize.toString()+"rem";documentDiv.style.marginRight=marginSize.toString()+"rem";}else if(action==="⇤⇥"){marginSize=marginSize-1;if(marginSize<0){marginSize=0;}
+documentDiv.style.marginLeft=marginSize.toString()+"rem";documentDiv.style.marginRight=marginSize.toString()+"rem";}else if(action==="⟲"){backUndo();}else if(action==="✓"){console.log(textarea.spellcheck);textarea.spellcheck=!(textarea.spellcheck);console.log(textarea.spellcheck);textarea.focus();}
+let len=textarea.value.length;let start=textarea.selectionStart;let end=textarea.selectionEnd;let sel=textarea.value.substring(start,end);let replace=sel;if(action==="<b>B</b>"){replace='<b>'+sel+'</b>';}else if(action==="<u>U</u>"){replace='<u>'+sel+'</u>';}else if(action==="<em>I</em>"){replace='<em>'+sel+'</em>';}else if(action==="H1"){replace='<h1>'+sel+'</h1>';}else if(action==="H2"){replace='<h2>'+sel+'</h2>';}else if(action==="H3"){replace='<h3>'+sel+'</h3>';}else if(action==="¶"){replace='<p>'+sel+'</p>';}else if(action==="―"){replace='<hr>'+sel;}else if(action==="•"){replace='&bullet; '+sel;}else if(action==="↹"){replace="\t"+sel;}
+textarea.value=textarea.value.substring(0,start)+replace+textarea.value.substring(end,len);writeUpdateResult();textarea.selectionStart=start+replace.length;textarea.selectionEnd=start+replace.length;textarea.focus();if(action!="⟲"){updateUndosIfTextChanges();}}
+function writeUpdateResult(){let currentContents=document.getElementById('text-editor').value;document.getElementById('document-result').innerHTML=currentContents.split('\n').join('<br>');if(textarea.spellcheck===true){document.getElementById("spell-check").style.color="green";}else{document.getElementById("spell-check").style.color="red";}}
+function printDiv(id){let mySerializer=new XMLSerializer(id);let s=new XMLSerializer();let d=document;let str=s.serializeToString(d.getElementById(id));var a=window.open('','');a.document.write('<html>');a.document.write("<style> #document-result {overflow-wrap: break-word;width: auto;white-space: pre-wrap;} </style>");a.document.write(str);a.document.write('</body></html>');a.document.close();a.print();}let tableElement=document.getElementById('tables-table');let tablesTable={"name":"Table","headers":["Column 1","Column 2","Column 3"],"data":[{"Column 1":"","Column 2":"","Column 3":""},{"Column 1":"","Column 2":"","Column 3":""},{"Column 1":"","Column 2":"","Column 3":""}]}
+let initialTablesTable=JSON.stringify(tablesTable);initializeTablesApp();function showTablesDiv(id){updateDataFromCurrentInputs(tablesTable);let divs=document.getElementsByClassName('tables-div');for(let div of divs){div.style.display="none";}
+document.getElementById(id).style.display="unset";}
+function initializeTablesApp(){makeTable(JSON.parse(initialTablesTable));updateDataFromCurrentInputs(tablesTable);showTablesDiv('tables-tables-table');}
+function backupTablesTable(){updateDataFromCurrentInputs(tablesTable);return JSON.parse(JSON.stringify(currentTablesTable));}
+function processColumnClick(header){updateDataFromCurrentInputs(tablesTable);populateMoveColumnSelect(tablesTable);document.getElementById("tables-current-header").innerHTML=header;document.getElementById("tables-new-header-name").value=header;showTablesDiv("tables-tables-header-form");}
+function processRowClick(row){updateDataFromCurrentInputs(tablesTable);populateMoveRowSelect(tablesTable);document.getElementById("tables-current-row").innerHTML=row.toString();showTablesDiv("tables-tables-row-form");}
+function makeTable(table){let str="";str="";let headers=table["headers"];str+="<thead><tr><th></th>";for(let i=0;i<headers.length;i++){str+="<th id='"+headers[i]+"' onclick=\"processColumnClick('"+headers[i]+"');\">"+headers[i].replace(/</g,"&lt;").replace(/>/g,"&gt;");+"</th>";}
+str+="<th id='add-column' onclick='addColumn(tablesTable)'>+</th>";str+="</tr></thead>";let tableHeader=str;str="<tbody>";let bodyData=table.data;console.log("bodyData");console.log(bodyData);let rowCount=bodyData.length;for(let i=0;i<rowCount;i++){str+="<tr><td class='tables-table-row-number' onclick='processRowClick("+i.toString()+")'>"+i.toString()+"</td>";let columnCount=headers.length;console.log(columnCount);for(let j=0;j<columnCount;j++){if(bodyData[i][headers[j]]===undefined){bodyData[i][headers[j]]="input read error";}
+str+="<td><input type='text' id='cell-"+i.toString()+"-"+j.toString()+"' value='"+bodyData[i][headers[j]].toString()+"'></td>";}
+str+="</tr>";}
+str+="</tbody>"
+let tableBody=str;str="<tfoot><tr><th id='add-row' onclick='addRow(tablesTable)'>+</th>";for(let i=0;i<headers.length;i++){str+="<th id='footer-"+(i+1).toString()+"' onclick=\"processColumnClick('"+headers[i]+"');\"></th>";}
+str+="</tr></tfoot>";let tableFooter=str;let strTable=tableHeader+tableBody+tableFooter;populateMoveColumnSelect(table);populateMoveRowSelect(table);tableElement.innerHTML=strTable;return strTable;}
+function populateMoveColumnSelect(table){let moveColumnSelect=document.getElementById('move-column');moveColumnSelect.options.length=0;let currentTableHeaders=table.headers;for(th of currentTableHeaders){let option=document.createElement('option');option.value=th;option.text=th;moveColumnSelect.add(option);}}
+function populateMoveRowSelect(table){let moveRowSelect=document.getElementById('move-row');moveRowSelect.options.length=0;for(let i=0;i<table["data"].length;i++){let option=document.createElement('option');option.value=i.toString();option.text=i.toString();moveRowSelect.add(option);}}
+function updateDataFromCurrentInputs(table){let headers=table["headers"];console.log("headers");console.log(headers);for(let i=0;i<table.data.length;i++){for(let j=0;j<table.headers.length;j++){let id="cell-"+i.toString()+"-"+j.toString();let thisCell=document.getElementById(id);table.data[i][headers[j]]=thisCell.value;}}}
+function updateHeaderName(){let fieldName=document.getElementById("tables-current-header").innerHTML;let newName=document.getElementById('tables-new-header-name').value;if(fieldName===newName){makeTable(tablesTable);return;}
+if(newName===""){newName=prompt("There is no name listed, please enter the new name");if(newName===null){return;}}
+tablesTable=_changeHeaderAndDataPropertyName(tablesTable,newName,fieldName);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function tablesSort(direction){let field=document.getElementById("tables-current-header").innerHTML;sortTablesByField(field,direction);}
+function sortTablesByField(field,direction=1){if(confirm("Sort by "+field+"?\n\nThis is destructive and irreversible.")){destructiveSort(tablesTable["data"],field,direction);makeTable(tablesTable);showTablesDiv('tables-tables-table');}}
+function _changeHeaderAndDataPropertyName(table,newName,oldName){let data=table["data"];newName=getBestName(table,newName);let index=table["headers"].indexOf(oldName);table["headers"][index]=newName;for(let i=0;i<data.length;i++){data[i][newName]=data[i][oldName];delete data[i][oldName];}
+return table;}
+function deleteColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;if(confirm("Are you sure? \n\nDelete Column: "+columnName+"?")){let index=tablesTable["headers"].indexOf(columnName);tablesTable["headers"].splice(index,1);for(let i=0;i<tablesTable["data"].length;i++){delete tablesTable["data"][i][columnName];}
+makeTable(tablesTable);showTablesDiv('tables-tables-table');}}
+function addColumn(table){updateDataFromCurrentInputs(table);let newIndex=1;let newColumnName="new"+newIndex.toString();while(table["headers"].includes(newColumnName)){console.log("column name already in use");newIndex+=1;newColumnName="new"+newIndex.toString();}
+table.headers.push(newColumnName);fillInEmptyPropertyValues(table);makeTable(table);}
+function moveColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;let destinationColumnName=document.getElementById("move-column").value;if(columnName===destinationColumnName){console.log("destination is same as source");return;}
+let index=tablesTable["headers"].indexOf(columnName);let destinationIndex=tablesTable["headers"].indexOf(destinationColumnName);let headerToMove=tablesTable["headers"].splice(index,1)[0];tablesTable["headers"].splice(destinationIndex,0,headerToMove);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function getBestName(table,name){let headers=table["headers"];let nameCount=0;let bestName=name;while(headers.includes(bestName)){console.log("column name already in use");nameCount+=1;bestName=name+"-"+nameCount.toString();}
+return bestName;}
+function copyColumn(){let columnName=document.getElementById("tables-current-header").innerHTML;let newName=getBestName(tablesTable,columnName);tablesTable["headers"].push(newName);for(let i=0;i<tablesTable["data"].length;i++){tablesTable["data"][i][newName]=tablesTable["data"][i][columnName];}
+makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function calculateTotal(){let columnName=document.getElementById("tables-current-header").innerHTML;let total=0;for(let row of tablesTable.data){total=total+Number(row[columnName]);}
+if(confirm("The total is: "+total.toString()+"\nCopy to clipboard?")){copyToClipBoard(total.toString());};showTablesDiv('tables-tables-table');}
+function tablesCancel(){console.log("tablesCancel called");makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function calculateAverage(){alert("calculate average called");console.log("calcualtoe average called");let columnName=document.getElementById("tables-current-header").innerHTML;let total=0;for(let row of tablesTable.data){total=total+Number(row[columnName]);}
+let average=total/tablesTable.data.length;if(confirm("The average is: "+average.toString()+"\nCopy to clipboard?")){copyToClipBoard(average.toString());}
+showTablesDiv('tables-tables-table');}
+function addRow(table){let headers=table["headers"];updateDataFromCurrentInputs(table);let numberOfColumns=table.headers.length;let tempRow={};for(let i=0;i<numberOfColumns;i++){tempRow[headers[i]]="";}
+table["data"].push(tempRow);makeTable(table);}
+function deleteRow(){let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];data.splice(index,1);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function copyRow(){console.log("copy row called");let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];console.log(data);let rowToCopy=JSON.parse(JSON.stringify(tablesTable.data[index]));data.push(rowToCopy);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function moveRow(){console.log("move row called");let index=parseInt(document.getElementById("tables-current-row").innerHTML);let data=tablesTable["data"];let destinationIndex=parseInt(document.getElementById("move-row").value);let rowToMove=data.splice(index,1)[0];data.splice(destinationIndex,0,rowToMove);makeTable(tablesTable);showTablesDiv('tables-tables-table');}
+function tablesNewTable(){if(confirm("Are you sure?  This will erase all current data.")){initializeTablesApp();}}
+function tablesLoad(){console.log("tablesLoad() called");let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".csv";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;if(confirm("Use the first line as the header row?")){tablesTable=csvToJSON(fileContents,true);}else{tablesTable=csvToJSON(fileContents,true);}
+makeTable(tablesTable);};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
+function tablesSave(){console.log("tablesSave() called");updateDataFromCurrentInputs(tablesTable);if(confirm("Include header as first line in csv file?")){saveStringToTextFile(makeCSV(tablesTable,true),"csvTable"+getTodaysDate(),".csv");}else{saveStringToTextFile(makeCSV(tablesTable,false),"csvTable"+getTodaysDate(),".csv");}}
+function tablesCopyCSVToClipboard(){updateDataFromCurrentInputs(tablesTable);let thisResult="";if(confirm("Include header as first line?")){thisResult=copyToClipBoard(makeCSV(tablesTable,true));}else{thisResult=copyToClipBoard(makeCSV(tablesTable,false));}
+return thisResult;}let calcInput=document.getElementById('calculator-input');document.getElementById("clear-calc").addEventListener("click",clearCalc);document.getElementById("remove-last-char").addEventListener("click",removeLastChar);document.getElementById("equals-button").addEventListener("click",evaluateCalculatorInput);let theseCalculatorButtons=document.getElementsByClassName('build-calc-string');for(let calculatorButton of theseCalculatorButtons){calculatorButton.addEventListener("click",()=>{buildCalcString(calculatorButton.innerHTML)});}
+function buildCalcString(str){calcInput.value+=str;}
+function clearCalc(){calcInput.value="";}
+function removeLastChar(){calcInput.value=calcInput.value.slice(0,-1);}
+function evaluateCalculatorInput(){let sanitizedValue=calcInput.value.replace(/[^-+/*\de.]/g,'');if(sanitizedValue!=calcInput.value){alert("Unallowed characters replaced with empty space during evaluation.");}
+document.getElementById('last-calculator-expression').innerHTML="Evaluated: "+sanitizedValue;let result='';try{result=evalReplaceFunction(sanitizedValue);}catch(error){result=error;}
+calcInput.value=result;}
+function evalReplaceFunction(str){return Function("'use strict'; return ("+str+")")();}let nestedMenues=document.getElementsByClassName("nested-menu");for(let nestedmenu of nestedMenues){nestedmenu.addEventListener("click",(evt)=>{toggleNest(evt.target)});}
 function toggleNest(menu){let siblings=menu.parentElement.children;for(let sibling of siblings){if(sibling===menu){}else{if(sibling.style.display==="none"){sibling.style.display="inherit";}else{sibling.style.display="none";}}}}
 function toggleAll(){for(let nestedmenu of nestedMenues){toggleNest(nestedmenu)}}
 function openSelectedInitialNests(){for(let nestedmenu of nestedMenues){if(nestedmenu.classList.contains("initial-open")){toggleNest(nestedmenu);}}}
-toggleAll();openSelectedInitialNests();</script><script>let selfString="";
-function createSelf(){
-    let html=document.getElementsByTagName("html")[0].innerHTML;
-    selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";
-}
-window.onload=createSelf();makeFavicon("p","white","mediumblue");window.onbeforeunload=askConfirm;document.getElementById("top-nav").style.display="none";showPlannerDiv('planner-startup');showMain('main-planner');</script></body>
+toggleAll();openSelectedInitialNests();</script><script>let selfString="";function createSelf(){let html=document.getElementsByTagName("html")[0].innerHTML;selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";}
+window.onload=createSelf();makeFavicon("p","white","mediumblue");window.onbeforeunload=askConfirm;showPlannerDiv('planner-startup');showMain('main-planner');</script></body>
 </html>

@@ -392,10 +392,12 @@ function exportICSCalendar(){let eventsArr=makeVEventsArr(calendarDatabase["data
 function toggleNest(menu){let siblings=menu.parentElement.children;for(let sibling of siblings){if(sibling===menu){}else{if(sibling.style.display==="none"){sibling.style.display="inherit";}else{sibling.style.display="none";}}}}
 function toggleAll(){for(let nestedmenu of nestedMenues){toggleNest(nestedmenu)}}
 function openSelectedInitialNests(){for(let nestedmenu of nestedMenues){if(nestedmenu.classList.contains("initial-open")){toggleNest(nestedmenu);}}}
-toggleAll();openSelectedInitialNests();</script><script>let selfString="";
-function createSelf(){
-    let html=document.getElementsByTagName("html")[0].innerHTML;
-    selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";
-}
-window.onload=createSelf();makeFavicon("p","white","mediumblue");window.onbeforeunload=askConfirm;document.getElementById("top-nav").style.display="none";showPlannerDiv('planner-startup');showMain('main-planner');</script></body>
+toggleAll();openSelectedInitialNests();</script><script>let selfString="";function createSelf(){let html=document.getElementsByTagName("html")[0].innerHTML;selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";}
+window.onload=createSelf();makeFavicon("p", "white", "mediumblue");
+window.onbeforeunload = askConfirm;
+document.getElementById("top-nav").style.display="none";
+showPlannerDiv('planner-startup');
+showMain('main-planner');
+
+</script></body>
 </html>

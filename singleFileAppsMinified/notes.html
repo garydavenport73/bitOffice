@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><style>html{box-sizing:border-box;font-size:16px}*,*:before,*:after{box-sizing:inherit}body,h1,h2,h3,h4,h5,h6,p,ol,ul{margin:0;padding:0;font-weight:400}ol,ul{list-style:none}img{max-width:100%;height:auto}html{background-color:#f0f8ff}h1:not(#document-result h1){color:#e6e6fa;background-color:#0000cd;font-family:Arial,Helvetica,sans-serif;font-size:32px;font-weight:700;padding:2px}#top-nav{color:#fff;background-color:#0000cd;padding-bottom:2px}#top-nav button{font-size:1.4rem;padding:5px;margin:1px;min-height:25px;background-color:#e0e0e0;border:#e0e0e0;border-radius:5px}h2:not(#document-result h2){margin:16px;font-weight:700;text-align:center;padding:2px;border-radius:5px;font-family:Arial,Helvetica,sans-serif;border:1px solid grey}#main-planner h2{color:#000;background-color:orange}#main-notes h2{background-color:orange;color:#000}#main-write h2{background-color:#5f9ea0}#main-tables h2{background-color:#228b22;color:#faebd7}#main-write h2{background-color:#5f9ea0;color:#faebd7}#main-calculator h2{background-color:dimgrey;color:snow}#document-result h1,#document-result h2,#document-result h3,#document-result h4{background-color:unset;color:unset}#document-result *{background-color:unset;width:unset;text-align:unset;border-radius:unset;margin-left:unset;margin-right:unset;width:unset;padding-bottom:unset;align-items:unset;border-radius:unset;margin:unset;padding:unset}#document-parent{margin:0;padding:0;width:100%;background-color:#fafad2}#document-result{overflow-wrap:break-word;min-height:100px;width:auto;background-color:#fafad2;white-space:pre-wrap}main{background-color:#e0e0e0}body{width:320px;background-color:#87cefa;background-color:#e0e0e0;margin:auto;padding:5px;box-sizing:border-box}h1:not(#document-result h1),h2:not(#document-result h2),h3:not(#document-result h3),nav{display:flex;flex-direction:row;justify-content:center}#edit-bar,#document-settings{display:flex;justify-content:left;flex-wrap:wrap;background-color:#5f9ea0;border:1px solid #000;margin:0;padding:0}#edit-bar button,#document-settings button{border-radius:5px;background-color:#e0e0e0;border:1px solid grey;padding:1px 4px;margin:0}#text-editor{width:100%;max-width:100%;overflow-wrap:break-word;min-height:100px;margin-top:0;margin-bottom:0}footer{position:fixed;bottom:0;left:50%;transform:translate(-50%,0%)}button{padding:5px}#main-planner,#main-notes,#main-write,#main-tables,#main-calculator{display:flex;flex-direction:column}main{min-height:320px}#planner-contacts-form *,#planner-calendar-form *{width:100%;display:auto;box-sizing:border-box}#planner-planner-help ul li,#tables-help ul li{list-style-position:inside;list-style-type:disc;margin:0 15px}#planner-planner-help ol li,#tables-help ol li{list-style-position:inside;list-style-type:decimal;margin:0 15px}#planner-planner-help p,#tables-help p{margin:15px}#planner-help,#tables-help pre{font-size:12px}.table-container table,.table-container table td,.table-container table th{border:1px solid #000;border-collapse:collapse}.table-container pre{white-space:pre-wrap;font-size:12px;word-break:break-all}.table-container table{box-sizing:border-box;margin:auto;width:100%}#contacts-table th,#contacts-table td,#calendar-table th,#calendar-table td{display:none}#calendar-table th:nth-of-type(1),#calendar-table th:nth-of-type(3),#calendar-table th:nth-of-type(6),#calendar-table td:nth-of-type(1),#calendar-table td:nth-of-type(3),#calendar-table td:nth-of-type(6){display:table-cell}#contacts-table td:nth-of-type(1),#contacts-table th:nth-of-type(1),#contacts-table th:nth-of-type(4),#contacts-table td:nth-of-type(4){display:table-cell}#contacts-table th:nth-of-type(3),#contacts-table td:nth-of-type(3){display:table-cell}#calendar-container{margin:10px;display:flex;flex-direction:column;align-items:center}#special-calendar{background-color:snow;font-family:Arial,Verdana,Helvetica,Tahoma,sans-serif;font-size:16px;padding:0;margin:0;background-color:#fff}#special-calendar table td{height:32px;text-align:center;width:32px}#special-calendar{border:1px solid grey;width:240px}#month-chooser{background-color:#f5f5f5;min-height:30px;border-radius:5px;width:240px;text-align:center;font-family:Arial,Helvetica,sans-serif;font-size:16px}#calendar-date{display:none}main h3{background-color:#e0e0e0}.nested-menu:hover{color:snow;background-color:grey}#tables-table th:hover:not(:first-of-type),#tables-table td:first-of-type:hover{background-color:#fff}#add-row:hover,#add-column:hover{background-color:#fff}#add-column{min-width:1rem}.table-container{display:block;overflow-x:auto;margin-left:auto;margin-right:auto;width:100%;text-align:center}#tables-table input{width:100%;border:none}#tables-table input:hover{background-color:lightgrey}#tables-table td{padding:0}#tables-table th:not(:last-of-type){min-width:3rem}#tables-table th:first-of-type{min-width:1rem}#tables-table{border:none}#tables-table th{border:none}.tables-table-row-number{border:none!important}#tables-table{background-color:lightgrey}#tables-table-table{}#tables-tables-header-form>div,#tables-tables-row-form>div{display:flex;flex-direction:column;text-align:center;width:50%;margin:auto}#tables-tables-header-form *,#tables-tables-row-form *{text-align:center}#tables-tables-header-form>div>div,#tables-tables-row-form>div>div{margin:5px 0}#tables-tables-header-form>div>div>*,#tables-tables-row-form>div>div>*{width:100%}#calculator-table{width:100%;min-width:0%}#calculator-table td button{font-size:2rem;width:100%;height:4rem}.special-calculator-button{background-color:#fc3;border:1px solid grey}#last-calculator-expression{overflow-wrap:anywhere;min-height:18px;color:grey}#calculator-input{width:100%;height:40px;font-size:1.4rem;text-align:right}#calc-clr button{width:50%;font-size:1.4rem;padding:5px}main nav button{background-color:#e0e0e0;border:1px solid grey;border-radius:3px}</style><link id="favicon-link" rel="icon" type="image/x-icon" href="">
+<title>bitOffice</title>
+</head>
+
+<body>
+    <h1 onclick="alert(license);">bitOffice</h1>
+    <nav id="top-nav">
+        <button onclick="showMain('main-planner');">&#9742;&#128197;</button>
+        <button onclick="showMain('main-notes');">&#128196;</button>
+        <button onclick="showMain('main-write');">&#128221;</button>
+        <button onclick="showMain('main-tables');">&#9638;</button>
+        <button onclick="showMain('main-calculator');">&#128290;</button>
+        <button onclick="saveSelf()">Download</button>
+    </nav><main id="main-notes">
+    <h2>Notes</h2>
+    <nav>
+        <button onclick="newNotesEntry()">New</button>
+        <button onclick="notesLoad()">Load</button>
+        <button onclick="notesSave()">Save</button>
+        <button id="copy" onclick="copyToClipBoard(document.getElementById('note').value);">Copy</button>
+        <button onclick="printNotesDiv('note');">&#128424;</button>
+        <button class="plus-minus" onclick="changeFontSize(this);">-</button>
+        <button class="plus-minus" onclick="changeFontSize(this);">+</button>
+        <button onclick="simulateUndo()">&#10226;</button>
+        <button onclick="simulateRedo()">&#10227;</button>
+    </nav>
+    <textarea id="note" rows="10" placeholder="your notes here"></textarea>
+</main><footer onclick="alert(license)">bitOffice &copy; 2022</footer><script>let license="MIT License\n\n\
+Copyright (c) 2022 Gary Davenport\n\n\
+Permission is hereby granted, free of charge, to any person obtaining a copy \
+of this software and associated documentation files (the \"Software\"), to deal \
+in the Software without restriction, including without limitation the rights \
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell \
+copies of the Software, and to permit persons to whom the Software is \
+furnished to do so, subject to the following conditions:\n\n\
+The above copyright notice and this permission notice shall be included in all \
+copies or substantial portions of the Software.\n\n\
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR \
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, \
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE \
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER \
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, \
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE \
+SOFTWARE.";function saveStringToTextFile(str1,basename="myfile",fileType=".txt"){let filename=basename+fileType;let blobVersionOfText=new Blob([str1],{type:"text/plain",});let urlToBlob=window.URL.createObjectURL(blobVersionOfText);let downloadLink=document.createElement("a");downloadLink.style.display="none";downloadLink.download=filename;downloadLink.href=urlToBlob;document.body.appendChild(downloadLink);downloadLink.click();downloadLink.parentElement.removeChild(downloadLink);}
+function copyAndSaveString(str1,basename="myfile",fileType=".txt"){copyToClipBoard(str1,false);if(confirm("Copied to clipboard, save to file also?")){saveStringToTextFile(str1,basename,fileType);}}
+function saveWebsiteAsTextFile(url){let http=new XMLHttpRequest();http.timeout=2000;http.ontimeout=function(e){alert("The request timed out.");};http.open('GET',url,true);http.onreadystatechange=function(){if(http.readyState==4&&http.status==200){alert(http.responseText);console.log(http.responseText);}}
+http.send();}
+function saveSelf(){saveStringToTextFile(selfString,"bitOfficeClone",".html");}
+function getTodaysDate(){let now=new Date();let day=("0"+now.getDate()).slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);let today=now.getFullYear()+"-"+month+"-"+day;return today;}
+function getFirstDayOfThisMonthDate(){let now=new Date();let day="01";let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
+function getLastDayOfThisMonthDate(){let now=new Date();let day=daysInThisMonth().toString();day="0"+day;day=day.slice(-2);let month=("0"+(now.getMonth()+1)).slice(-2);return now.getFullYear()+"-"+month+"-"+day;}
+function daysInSomeMonth(someMonth,someYear){return new Date(someYear,someMonth+1,0).getDate();}
+function daysInThisMonth(){thisDate=new Date();thisMonth=thisDate.getMonth();thisYear=thisDate.getYear();return daysInSomeMonth(thisMonth,thisYear);}
+function getDayOfWeek(isoYearMonthDay){let d=new Date(isoYearMonthDay+"T00:00");return d.getDay();}
+function serializeElementToPage(id,extraStyle=""){let boilerPlate1="<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";let allStyleTags=document.getElementsByTagName('style');let styleElementContent="";for(let i=0;i<allStyleTags.length;i++){styleElementContent=allStyleTags[i].innerHTML;}
+let boilerPlate2="</style></head><body>";let boilerPlate3="</body></html>";let s=new XMLSerializer();let myElement=document.getElementById(id);let str=s.serializeToString(myElement);let htmlPage=boilerPlate1+styleElementContent+extraStyle+boilerPlate2+str+boilerPlate3;console.log(htmlPage);return htmlPage;}
+function simulateUndo(){document.execCommand('undo',false,null);}
+function simulateRedo(){document.execCommand('redo',false,null);}
+function askConfirm(){return "Did you remember to save your data?";}
+function showMain(id){let mains=document.getElementsByTagName('main');for(let main of mains){main.style.display="none";}
+document.getElementById(id).style.display="flex";}
+function copyToClipBoard(str,message=true){let el=document.createElement('textarea');el.value=str;el.setAttribute('readonly','');el.style={position:'absolute',left:'-9999px'};document.body.appendChild(el);el.select();document.execCommand('copy');document.body.removeChild(el);if(message){alert('Copied to Clipboard.');}
+return(str);}
+function fillInEmptyPropertyValues(table){let data=table["data"];let headers=table["headers"];for(let i=0;i<data.length;i++){for(let j=0;j<headers.length;j++){if(data[i][headers[j]]===undefined){data[i][headers[j]]="";}}}}
+function makeCSV(thisTable,saveWithHeader=true){return JSONToCSV(thisTable,saveWithHeader,"\n");}
+function tokenMaker(intSize){let token="";let specialString="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";let index=0;for(let i=0;i<intSize;i++){token+=specialString[Math.floor(Math.random()*specialString.length)];}
+console.log(token);return token;}
+function processCSVClick(table){let thisCSV="";thisCSV=makeCSV(table,true);copyToClipBoard(thisCSV);if(confirm("Table copied to CSV.\n\nSave to file also?")){copyAndSaveString(thisCSV,table["name"]+getTodaysDate(),".csv");}}
+function destructiveSort(arrayOfObjects,field,direction=1){if(direction!=-1){direction=1;}
+arrayOfObjects.sort((a,b)=>{if(a[field]<b[field]){return-1*direction;}
+if(a[field]>b[field]){return 1*direction;}
+return 0;});}
+function destructiveDoubleSortAscending(arrayOfObjects,date,time){arrayOfObjects.sort((a,b)=>{if(a[date]>b[date]){return 1;}
+else if(a[date]<b[date]){return-1;}
+if(a[time]>b[time]){return 1;}
+else if(a[time]<b[time]){return-1;}
+return 0;});}
+function makeFavicon(letter,color,backgroundColor){let canvas=document.createElement('canvas');canvas.width=16;canvas.height=16;let ctx=canvas.getContext('2d');ctx.fillStyle=backgroundColor;ctx.fillRect(0,0,16,16);let ctx2=canvas.getContext("2d");ctx2.fillStyle=color;ctx2.font="bold 12px Arial";ctx2.fillText(letter,4,12);let link=document.getElementById("favicon-link");link.href=canvas.toDataURL("image/x-icon");}let noteFontSize=2.5/3.0;let note=document.getElementById('note');note.value="";let compareNoteValue="";initializeNotesApp();function initializeNotesApp(){note.style.fontSize=noteFontSize.toString()+"rem";note.spellcheck=false;note.focus();}
+function changeFontSize(fontButton){let doThis=fontButton.innerHTML;if(doThis==="-"){if(noteFontSize>0.2){noteFontSize-=0.2;}}else{noteFontSize+=0.2;}
+note.style.fontSize=noteFontSize.toString()+"rem";}
+function newNotesEntry(){if(note.value!=''){if(confirm("This will erase current contents.")){note.value='';compareNoteValue='';}}}
+function notesLoad(){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".txt";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;note.value=fileContents;};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
+function notesSave(){basename="notes"+getTodaysDate();copyAndSaveString(note.value,basename,".txt");}
+function printNotesDiv(id){let a=window.open();a.document.write(serializeNotesElementToPage(id,"html{background-color:white;}#note{font-size:"+noteFontSize+"rem}"));a.document.close();a.print();}
+function serializeNotesElementToPage(id,extraStyle=""){let boilerPlate1="<!DOCTYPE html><html lang='en'><head><meta charset='UTF-8'><meta http-equiv='X-UA-Compatible' content='IE=edge'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title></title><style>";let allStyleTags=document.getElementsByTagName('style');let styleElementContent="";for(let i=0;i<allStyleTags.length;i++){styleElementContent=allStyleTags[i].innerHTML;}
+styleElementContent+="pre{white-space: pre-wrap;overflow-wrap: break-word;margin: 0;padding: 0;}"
+let boilerPlate2="</style></head><body>";let boilerPlate3="</body></html>";let str="<pre id='note'>"+document.getElementById(id).value+"</pre>";let htmlPage=boilerPlate1+styleElementContent+extraStyle+boilerPlate2+str+boilerPlate3;console.log(htmlPage);return htmlPage;}</script><script>let selfString="";function createSelf(){let html=document.getElementsByTagName("html")[0].innerHTML;selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";}
+window.onload=createSelf();makeFavicon("p", "white", "mediumblue");
+window.onbeforeunload = askConfirm;
+document.getElementById("top-nav").style.display="none";
+showMain('main-notes');
+</script></body>
+</html>

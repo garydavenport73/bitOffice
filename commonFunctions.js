@@ -40,7 +40,7 @@ function saveWebsiteAsTextFile(url) {
 }
 
 function saveSelf(){
-    alert("Coming soon!");
+    saveStringToTextFile(selfString,"bitOfficeClone",".html");
 }
 
 //Date related functions for convience, uses same format as input type="date"
