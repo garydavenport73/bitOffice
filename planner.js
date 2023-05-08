@@ -498,7 +498,7 @@ function colorCalendarEntries() {
         //}
 
         if (getTodaysDate() === thisDate) {
-            entry.style["border"] = "1px solid grey";
+            entry.style["border"] = "2px solid black";
             entry.style["font-weight"] = "bold";
             //entry.style["backgroundColor"] = "yellow";
         }
