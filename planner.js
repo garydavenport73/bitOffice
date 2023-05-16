@@ -1177,6 +1177,24 @@ function parseContactFromVCard(vCard) {
     let contactObject = {};
     for (let i = 0; i < prefixes.length; i++) {
         for (j = 0; j < lines.length; j++) {
+                console.log(lines[j].substring(0,3));
+            if (lines[j].substring(0,3)==="TEL"){// will place any telephone numer under cell, then overwritten if cell listed
+
+    ////////////// SHOULD CHANGE OTHER TELEPHONE STUFF TO LOOK FOR HOME AND WORK 
+                    console.log("FOUND TEL!!!!");
+                    if (lines[j].indexOf("CELL") !== -1){
+                        console.log("Contains CELL");
+                        contactObject["Mobile Phone"] = lines[j].split(":")[1];
+                    }
+                    if (lines[j].indexOf("HOME") !== -1){
+                        console.log("Contains HOME");
+                        contactObject["Home Phone"] = lines[j].split(":")[1];
+                    }
+                    if (lines[j].indexOf("WORK") !== -1){
+                        console.log("Contains WORK");
+                        contactObject["Business Phone"] = lines[j].split(":")[1];
+                    }
+                }
             if (lines[j].substring(0, prefixes[i].length) === prefixes[i]) {
                 if (prefixes[i] === "N:") {
                     let lastName = lines[j].substring(prefixes[i].length).split(";")[0];
