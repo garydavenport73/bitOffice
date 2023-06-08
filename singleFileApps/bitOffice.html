@@ -2637,10 +2637,10 @@ function iCalDateToISOString(icalDate) {
         hour = icalDate.slice(9, 11);
         min = icalDate.slice(11, 13);
         sec = icalDate.slice(13, 15);
-        dateObject = new Date(year, month, day, hour, min, sec);
+        dateObject = new Date(year, month-1, day, hour, min, sec);
     }
     else {
-        dateObject = new Date(year, month, day);
+        dateObject = new Date(year, month-1, day);
     }
 
     return dateObject.toISOString();
