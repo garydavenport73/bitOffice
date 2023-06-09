@@ -902,10 +902,10 @@ function notesLoad() {
     let inputTypeIsFile = document.createElement('input');
     inputTypeIsFile.type = "file";
     inputTypeIsFile.accept = ".txt";
-    inputTypeIsFile.addEventListener("change", function() {
+    inputTypeIsFile.addEventListener("change", function () {
         let inputFile = inputTypeIsFile.files[0];
         let fileReader = new FileReader();
-        fileReader.onload = function(fileLoadedEvent) {
+        fileReader.onload = function (fileLoadedEvent) {
             fileContents = fileLoadedEvent.target.result;
             note.value = fileContents;
         };
@@ -943,7 +943,21 @@ function serializeNotesElementToPage(id, extraStyle = "") {
     let htmlPage = boilerPlate1 + styleElementContent + extraStyle + boilerPlate2 + str + boilerPlate3;
     console.log(htmlPage);
     return htmlPage;
-}</script><script>let selfString="";
+}
+
+note.addEventListener('keydown', function (evt) {
+    //https://stackoverflow.com/questions/6637341/use-tab-to-indent-in-textarea
+    //https://stackoverflow.com/users/819732/kasdega
+    if (evt.key == 'Tab') {
+        evt.preventDefault();
+        let start = note.selectionStart;
+        let end = note.selectionEnd;
+        note.value = note.value.substring(0, start) +
+            "\t" + note.value.substring(end);
+        note.selectionStart =
+            note.selectionEnd = start + 1;
+    }
+});</script><script>let selfString="";
 function createSelf(){
     let html=document.getElementsByTagName("html")[0].innerHTML;
     selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";
