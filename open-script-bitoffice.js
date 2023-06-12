@@ -1,4 +1,4 @@
 makeFavicon("p", "white", "mediumblue");
 window.onbeforeunload = askConfirm;
-showPlannerDiv('planner-startup');
+showPlannerDiv('planner-load');
 showMain('main-planner');

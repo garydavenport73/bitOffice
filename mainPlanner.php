@@ -1,26 +1,44 @@
 <main id="main-planner">
-    <h2>Planner</h2>
-    <nav id="back-home-nav">
+    <h2 id="planner-h2">Planner</h2>
+    <!-- <nav id="back-home-nav">
             <button onclick="backHomePlanner();">&larr;Back to Main</button>
-        </nav>
+        </nav> -->
+
+        
     <nav id="planner-ribbon">
         <!-- <button onclick="showPlannerDiv('planner-startup');">&#128194;</button>
             <button onclick="showPlannerDiv('planner-contacts-table');">&#9742;</button>
             <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#128197;</button>
             <button onclick="showPlannerDiv('planner-planner-help');">?</button> -->
-        <button onclick="showPlannerDiv('planner-startup');">&#128194;</button>
-        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">Calendar</button>
-        <button onclick="showPlannerDiv('planner-contacts-table');">Contacts</button>
+        <!-- <button onclick="showPlannerDiv('planner-startup');">&#128194;</button> -->
+        <button onclick="showPlannerDiv('planner-load');">&#128194;</button>
+        <button onclick="showPlannerDiv('planner-save');">&#128193;</button>
+        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#9742;</button>
+        <button onclick="showPlannerDiv('planner-contacts-table');">&#128197;</button>
         <button onclick="showPlannerDiv('planner-planner-help');">?</button>
     </nav>
-    <div class="planner-div" id="planner-home">
+    <!-- <div class="planner-div" id="planner-home">
         <h3>Planner-Home</h3>
-    </div>
-    <div class="planner-div" id="planner-startup">
+    </div> -->
+    <!-- <div class="planner-div" id="planner-startup">
         <h3>Planner-Load/Save</h3>
         <nav>
             <button id="startup-load-button" onclick="loadCombinedDatabase()">&#128194; Load</button>
             <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save</button>
+        </nav>
+    </div> -->
+    <div class="planner-div" id="planner-load">
+        <!-- <h3>Planner-Load</h3> -->
+        <nav>
+            <button id="startup-load-button" onclick="loadCombinedDatabase()">Load<br>&#128194;</button>
+            <!-- <button id="saveButton" onclick="saveCombinedDatabase()">&#128193; Save</button> -->
+        </nav>
+    </div>
+    <div class="planner-div" id="planner-save">
+        <!-- <h3>Planner-Save</h3> -->
+        <nav>
+            <!-- <button id="startup-load-button" onclick="loadCombinedDatabase()">&#128194; Load</button> -->
+            <button id="startup-save-button" onclick="saveCombinedDatabase()">Save<br>&#128193;</button>
         </nav>
     </div>
     <div class="planner-div" id="planner-planner-help">
@@ -51,25 +69,25 @@
         </p>
     </div>
     <div class="planner-div" id="planner-contacts-table">
-        <h3>Planner-Contacts</h3>
+        <!-- <h3>Planner-Contacts</h3> -->
         <nav>
             <!--<button onclick="processCSVClick(contactsTable);">CSV</button>-->
 
 
-            <button onclick='newContactsEntry();'>+ New Contact</button>
+            <button id="new-contacts-button" onclick='newContactsEntry();'>+</button>
             <nav>
                 <!-- <button onclick="loadOutlookContactsCSV();">&#128194; Import CSV</button>
                     <button onclick="saveOutlookContactsCSV();">&#128193; Export CSV</button> -->
                 <button onclick="importVCF();">&#128193; Import vCards</button>
                 <button onclick="exportVCF();">&#128193; Export vCards</button>
-                <span class="nested-menu">&lrarr;</span>
+                <button class="nested-menu">&lrarr;</button>
             </nav>
         </nav>
 
         <div id="contacts-table" class="table-container"></div>
     </div>
     <div class="planner-div" id="planner-contacts-form">
-        <h3>Planner-Contacts Form</h3>
+        <!-- <h3>Planner-Contacts Form</h3> -->
         <div id="contacts-edit-form-message"></div>
         <div id="contacts-edit-form"></div>
         <nav>
@@ -80,14 +98,14 @@
         </nav>
     </div>
     <div class="planner-div" id="planner-calendar-start">
-        <h3>Planner-Calendar</h3>
+        <!-- <h3>Planner-Calendar</h3> -->
         <nav>
             <!-- <button onclick="loadOutlookCSV();">&#128194; Import CSV</button>
                 <button onclick="createOutlookCSV();">&#128193; Export CSV</button> -->
             <button onclick="importICSCalendar()">&#128194; Import vCalendar</button>
             <button onclick="exportICSCalendar()">&#128193; Export vCalendar</button>
             <button onclick="clearCalendar();">Clear Calendar</button>
-            <span class="nested-menu">&lrarr;</span>
+            <button class="nested-menu">&lrarr;</button>
         </nav>
 
         <div id="calendar-container">

@@ -1333,8 +1333,8 @@ function showPlannerDiv(id) {
         div.style.display = "none";
     }
     document.getElementById(id).style.display = "unset";
-    document.getElementById("planner-ribbon").style.display="none";
-    document.getElementById("back-home-nav").style.display="flex";
+    //document.getElementById("planner-ribbon").style.display="none";
+    //document.getElementById("back-home-nav").style.display="flex";
 }
 
 function backHomePlanner(){
