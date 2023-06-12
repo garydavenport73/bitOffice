@@ -32,8 +32,8 @@
         <!-- <button onclick="showPlannerDiv('planner-startup');">&#128194;</button> -->
         <button onclick="showPlannerDiv('planner-load');">&#128194;</button>
         <button onclick="showPlannerDiv('planner-save');">&#128193;</button>
-        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#9742;</button>
-        <button onclick="showPlannerDiv('planner-contacts-table');">&#128197;</button>
+        <button onclick="showPlannerDiv('planner-contacts-table');">&#9742;</button>
+        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#128197;</button>
         <button onclick="showPlannerDiv('planner-planner-help');">?</button>
     </nav>
     <!-- <div class="planner-div" id="planner-home">
@@ -588,10 +588,10 @@ str+="END:VCARD\n";return str;}
 function showPlannerDiv(id){let divs=document.getElementsByClassName('planner-div');for(let div of divs){div.style.display="none";}
 document.getElementById(id).style.display="unset";}
 function backHomePlanner(){showPlannerDiv("planner-home");document.getElementById("planner-ribbon").style.display="flex";document.getElementById("back-home-nav").style.display="none";}
-function loadCombinedDatabase(){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".bof";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;combinedDatabase=JSON.parse(fileContents);contactsTable=combinedDatabase["contacts"];calendarDatabase=combinedDatabase["calendar"];if(calendarDatabase["headers"].includes("UID")){}
+function loadCombinedDatabase(){let fileContents="";let inputTypeIsFile=document.createElement('input');inputTypeIsFile.type="file";inputTypeIsFile.accept=".json";inputTypeIsFile.addEventListener("change",function(){let inputFile=inputTypeIsFile.files[0];let fileReader=new FileReader();fileReader.onload=function(fileLoadedEvent){fileContents=fileLoadedEvent.target.result;combinedDatabase=JSON.parse(fileContents);contactsTable=combinedDatabase["contacts"];calendarDatabase=combinedDatabase["calendar"];if(calendarDatabase["headers"].includes("UID")){}
 else{calendarDatabase["headers"].push("UID");calendarDatabase["inputTypes"]["UID"]="text";}
 let dataRows=calendarDatabase["data"];for(let i=0;i<dataRows.length;i++){if((dataRows[i]["UID"]==="")||(dataRows[i]["UID"]===undefined)){dataRows[i]["UID"]=makeUID(dataRows["Start Date"],dataRows["Start Time"]);}}
-clearContactFormEntries(contactsTable);contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);makeCalendar();backHomePlanner();};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
+clearContactFormEntries(contactsTable);contactsTableElement.innerHTML=buildContactsTableElement(contactsTable);makeCalendar();showPlannerDiv('planner-calendar-start');};fileReader.readAsText(inputFile,"UTF-8");});inputTypeIsFile.click();}
 function saveCombinedDatabase(){purgeCalendar();let str=JSON.stringify(combinedDatabase);let baseFilename="bitOfficePlanner"+getTodaysDate();saveStringToTextFile(str,baseFilename,".json");}
 function makeVEvent(row,lineTerminator="\n"){let lt=lineTerminator;str="";let subject=row["Subject"];let startDate=row["Start Date"];let UID=row["UID"];if((startDate==="")||(startDate===undefined)){return;}
 let startTime=row["Start Time"];if((startTime==="")||(startTime===undefined)){startTime="00:00";}

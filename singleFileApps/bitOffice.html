@@ -569,8 +569,8 @@ main nav button{
         <!-- <button onclick="showPlannerDiv('planner-startup');">&#128194;</button> -->
         <button onclick="showPlannerDiv('planner-load');">&#128194;</button>
         <button onclick="showPlannerDiv('planner-save');">&#128193;</button>
-        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#9742;</button>
-        <button onclick="showPlannerDiv('planner-contacts-table');">&#128197;</button>
+        <button onclick="showPlannerDiv('planner-contacts-table');">&#9742;</button>
+        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#128197;</button>
         <button onclick="showPlannerDiv('planner-planner-help');">?</button>
     </nav>
     <!-- <div class="planner-div" id="planner-home">
@@ -2881,7 +2881,7 @@ function loadCombinedDatabase() {
     let fileContents = "";
     let inputTypeIsFile = document.createElement('input');
     inputTypeIsFile.type = "file";
-    inputTypeIsFile.accept = ".bof";
+    inputTypeIsFile.accept = ".json";
     inputTypeIsFile.addEventListener("change", function () {
         let inputFile = inputTypeIsFile.files[0];
         let fileReader = new FileReader();
@@ -2913,7 +2913,8 @@ function loadCombinedDatabase() {
             clearContactFormEntries(contactsTable);
             contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
             makeCalendar();
-            backHomePlanner();
+            //backHomePlanner();
+            showPlannerDiv('planner-calendar-start');
         };
 
         fileReader.readAsText(inputFile, "UTF-8");
