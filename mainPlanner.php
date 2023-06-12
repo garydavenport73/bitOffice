@@ -13,8 +13,8 @@
         <!-- <button onclick="showPlannerDiv('planner-startup');">&#128194;</button> -->
         <button onclick="showPlannerDiv('planner-load');">&#128194;</button>
         <button onclick="showPlannerDiv('planner-save');">&#128193;</button>
-        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#9742;</button>
-        <button onclick="showPlannerDiv('planner-contacts-table');">&#128197;</button>
+        <button onclick="showPlannerDiv('planner-contacts-table');">&#9742;</button>
+        <button onclick="showPlannerDiv('planner-calendar-start');makeCalendar();">&#128197;</button>
         <button onclick="showPlannerDiv('planner-planner-help');">?</button>
     </nav>
     <!-- <div class="planner-div" id="planner-home">

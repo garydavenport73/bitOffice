@@ -1347,7 +1347,7 @@ function loadCombinedDatabase() {
     let fileContents = "";
     let inputTypeIsFile = document.createElement('input');
     inputTypeIsFile.type = "file";
-    inputTypeIsFile.accept = ".bof";
+    inputTypeIsFile.accept = ".json";
     inputTypeIsFile.addEventListener("change", function () {
         let inputFile = inputTypeIsFile.files[0];
         let fileReader = new FileReader();
@@ -1379,7 +1379,8 @@ function loadCombinedDatabase() {
             clearContactFormEntries(contactsTable);
             contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
             makeCalendar();
-            backHomePlanner();
+            //backHomePlanner();
+            showPlannerDiv('planner-calendar-start');
         };
 
         fileReader.readAsText(inputFile, "UTF-8");
