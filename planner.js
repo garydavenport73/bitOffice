@@ -1438,8 +1438,13 @@ function makeVEvent(row, lineTerminator = "\n") {
     nowString = ISOStringToICalString(nowString);
     str += "BEGIN:VEVENT" + lt;
     str += "SUMMARY:" + subject.trim() + lt;
-    str += "DTSTART:" + ISOStringToICalString(htmlDateAndTimeToISOString(startDate, startTime)).trim() + lt;
-    str += "DTEND:" + ISOStringToICalString(htmlDateAndTimeToISOString(endDate, endTime)).trim() + lt;
+    //need function that goes from row to standard output
+    rowDateTimeToICALString(startDate,startTime);
+    rowDateTimeToICALString(endDate,endTime);
+    //str += "DTSTART:" + ISOStringToICalString(htmlDateAndTimeToISOString(startDate, startTime)).trim() + lt;
+    str += "DTSTART:" + rowDateTimeToICALString(startDate, startTime).trim() + lt;
+    //str += "DTEND:" + ISOStringToICalString(htmlDateAndTimeToISOString(endDate, endTime)).trim() + lt;
+    str += "DTEND:" + rowDateTimeToICALString(endDate, endTime).trim() + lt;
     str += "DESCRIPTION:" + description.trim() + lt;
     str += "DTSTAMP:" + nowString.trim() + lt;
     str += "UID:" + UID.trim() + lt;
@@ -1452,6 +1457,14 @@ function makeVEvent(row, lineTerminator = "\n") {
     // END:VEVENT
 }
 
+function rowDateTimeToICALString(date,time){
+
+    console.log("fromhtml:");
+
+    icalStr=date.split("-").join("")+"T"+time.split(":").join("");
+    console.log(icalStr);
+    return icalStr;
+}
 
 function htmlDateAndTimeToISOString(date = "2023-01-31", time) {
     if ((time === "") || (time === undefined)) {
