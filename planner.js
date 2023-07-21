@@ -1102,9 +1102,12 @@ function parseVEVENTToObject(vEvent) {
             let year = startDateObject.getFullYear().toString();
             let month = ("0" + ((startDateObject.getMonth() + 1).toString())).slice(-2);
             let date = ("0" + (startDateObject.getDate().toString())).slice(-2);
-            let hours = ("0" + ((startDateObject.getHours() + 1).toString())).slice(-2);
+            //let hours = ("0" + ((startDateObject.getHours() + 1).toString())).slice(-2);
+            let hours = ("0" + (startDateObject.getHours().toString())).slice(-2);
             let minutes = ("0" + (startDateObject.getMinutes().toString())).slice(-2);
             let seconds = ("0" + (startDateObject.getSeconds().toString())).slice(-2);
+            console.log("year: ",year," month: ",month," date: ",date);
+            console.log("hours: ",hours," minutes: ",minutes," seconds: ",seconds);
             row["Start Date"] = year + "-" + month + "-" + date;
             row["Start Time"] = hours + ":" + minutes + ":" + seconds;
         }
@@ -1115,7 +1118,8 @@ function parseVEVENTToObject(vEvent) {
             let year = endDateObject.getFullYear().toString();
             let month = ("0" + ((endDateObject.getMonth() + 1).toString())).slice(-2);
             let date = ("0" + (endDateObject.getDate().toString())).slice(-2);
-            let hours = ("0" + ((endDateObject.getHours() + 1).toString())).slice(-2);
+            //let hours = ("0" + ((endDateObject.getHours() + 1).toString())).slice(-2);
+            let hours = ("0" + (endDateObject.getHours().toString())).slice(-2);
             let minutes = ("0" + (endDateObject.getMinutes().toString())).slice(-2);
             let seconds = ("0" + (endDateObject.getSeconds().toString())).slice(-2);
             row["End Date"] = year + "-" + month + "-" + date;
@@ -1145,7 +1149,12 @@ function iCalDateToISOString(icalDate) {
         hour = icalDate.slice(9, 11);
         min = icalDate.slice(11, 13);
         sec = icalDate.slice(13, 15);
+        console.log("hour: ",hour);
+        console.log("min: ",min);
+        console.log("sec: ",sec);
         dateObject = new Date(year, month-1, day, hour, min, sec);
+        console.log(dateObject.toISOString());
+        console.log(dateObject.toString());
     }
     else {
         dateObject = new Date(year, month-1, day);
