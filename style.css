@@ -263,6 +263,10 @@ main {
     font-size: 12px;
 }
 
+#Description{
+    height:100px;
+}
+
 .table-container table,
 .table-container table td,
 .table-container table th {
