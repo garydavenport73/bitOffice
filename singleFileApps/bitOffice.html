@@ -1860,9 +1860,9 @@ function makeUID(startDate, startTime) {
         usedIDs.push(rows[i]["UID"]);
     }
 
-    let UID = "bitOffice." + ISOStringToICalString((htmlDateAndTimeToISOString(startDate, startTime))) + Math.random().toString();
+    let UID = "bitOffice." + ISOStringToICalStringZulu((htmlDateAndTimeToISOString(startDate, startTime))) + Math.random().toString();
     while (usedIDs.includes(UID)) {
-        UID = "bitOffice." + ISOStringToICalString((htmlDateAndTimeToISOString(startDate, startTime))) + Math.random().toString();
+        UID = "bitOffice." + ISOStringToICalStringZulu((htmlDateAndTimeToISOString(startDate, startTime))) + Math.random().toString();
     }
 
     return UID;
@@ -2975,7 +2975,7 @@ function makeVEvent(row, lineTerminator = "\n") {
     let description = row["Description"];
     let nowDate = new Date();
     let nowString = nowDate.toISOString();
-    nowString = ISOStringToICalString(nowString);
+    nowString = ISOStringToICalStringZulu(nowString);
     str += "BEGIN:VEVENT" + lt;
     str += "SUMMARY:" + subject.trim() + lt;
     //need function that goes from row to standard output
@@ -2999,6 +2999,21 @@ function makeVEvent(row, lineTerminator = "\n") {
 
 function rowDateTimeToICALString(date,time){
 
+    //let year=parseInt(date.split("-")[0]);
+    //let month=parseInt(      date.split("-")[1]      )-1;
+    //let day=parseInt(date.split("-")[2]);
+    //let hour=parseInt(time.split(":")[0]);
+    //let min=parseInt(time.split(":")[0]);
+    //let sec=parseInt(time.split(":")[0]);
+
+    //let thisDate=new Date(year,month,day,hour,min,sec);
+
+    //let thisDateISO=thisDate.toISOString();
+    let thisDateISO=htmlDateAndTimeToISOString(date,time);
+    let icalString=ISOStringToICalStringZulu(thisDateISO);
+    
+    return icalString;
+
     console.log("fromhtml:");
 
     icalStr=date.split("-").join("")+"T"+time.split(":").join("");
@@ -3016,12 +3031,17 @@ function htmlDateAndTimeToISOString(date = "2023-01-31", time) {
     let hour = parseInt(time.slice(0, 2));
     let min = parseInt(time.slice(3));
     let d = new Date(year, month, day, hour, min);
+    console.log("html date and time to iso string here !!!!", d.toISOString());
     return (d.toISOString());
 }
 
-function ISOStringToICalString(ISOString) {
+function ISOStringToICalStringZulu(ISOString) {
     // 2023-06-11T14:05:25.003Z----->20230611T140525Z
-    return (ISOString.replace(/\.\d\d\dZ/, "Z").replace(/\-|\:|\./g, ""));
+    //let ICALSTRING=ISOString.replace(/\-/,)
+    let ICALString=ISOString.replace(/\.\d\d\dZ/, "Z").replace(/\-|\:|\./g, "");
+    //console.log("ICALSTRING",ICALString);
+    return ICALString;
+    
 }
 
 function makeVEventsArr(dataRows) {
