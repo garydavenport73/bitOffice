@@ -28,3 +28,5 @@
 ![Tables App Screenshot](screenshotTables.png)
 
 ![Calculator App Screenshot](screenshotCalculator.png)
+
+10/4/2023, updated ical format to be compatible with outlook
