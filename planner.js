@@ -126,7 +126,7 @@ function buildCalendarTableElement(date) { //needs headers data
 
     //destructiveSort(filteredRows, "Start Time");
 
-    destructiveDoubleSortAscending(filteredRows,"Start Date","Start Time");
+    destructiveDoubleSortAscending(filteredRows, "Start Date", "Start Time");
 
     //start table
 
@@ -274,12 +274,12 @@ function saveCalendarEntry() {
     //destructiveSort(calendarDatabase["data"], "sort value");
     calendarTable.innerHTML = buildCalendarTableElement(date);
     showPlannerDiv("planner-calendar-table");
-    if (confirm("Current data updated.  Save updated data to file?")){
+    if (confirm("Current data updated.  Save updated data to file?")) {
         saveCombinedDatabase();
     }
 }
 
-function exportSingleICalEvent(){
+function exportSingleICalEvent() {
     let index = parseInt(document.getElementById("calendar-row-index").value);
     let date = document.getElementById("calendar-date").value;
     let headers = calendarDatabase["headers"];
@@ -287,17 +287,17 @@ function exportSingleICalEvent(){
     for (let j = 0; j < headers.length; j++) {
         row[headers[j]] = document.getElementById(headers[j]).value;
     }
-    if ((row["UID"]==="")||row["UID"]===undefined){
-        row["UID"]=makeUID(row["Start Date"],row["Start Time"]);
-        document.getElementById("UID").innerHTML=row["UID"];
+    if ((row["UID"] === "") || row["UID"] === undefined) {
+        row["UID"] = makeUID(row["Start Date"], row["Start Time"]);
+        document.getElementById("UID").innerHTML = row["UID"];
     }
-    let vEvent=makeVEvent(row,"\n");
-    let eventsArr=[];
+    let vEvent = makeVEvent(row, "\n");
+    let eventsArr = [];
     eventsArr.push(vEvent);
-    let vCal=makeVCalendar(eventsArr,"\n");
-    let filename="vEvent"+row["Start Date"]+"_"+row["Start Time"].replace(/\:/g,"");
-    copyAndSaveString(vCal,filename,".ical", mimeType="text/calendar");
-    
+    let vCal = makeVCalendar(eventsArr, "\n");
+    let filename = "vEvent" + row["Start Date"] + "_" + row["Start Time"].replace(/\:/g, "");
+    copyAndSaveString(vCal, filename, ".ical", mimeType = "text/calendar");
+
 
     if (index >= 0) { //an existing entry
         calendarDatabase["data"][index] = row;
@@ -352,7 +352,7 @@ function deleteCalendarEntry() {
     clearCalendarFormEntries();
     calendarTable.innerHTML = buildCalendarTableElement(date);
     showPlannerDiv("planner-calendar-table");
-    if (confirm("Current data updated.  Save updated data to file?")){
+    if (confirm("Current data updated.  Save updated data to file?")) {
         saveCombinedDatabase();
     }
 }
@@ -690,7 +690,7 @@ function clearCalendar() {
     if (confirm("Are you sure?  This will clear all calendar entries")) {
         calendarDatabase = {
             "name": "Calendar",
-            "headers": ["Subject", "Start Date", "Start Time", "End Date", "End Time", "Description","UID"],
+            "headers": ["Subject", "Start Date", "Start Time", "End Date", "End Time", "Description", "UID"],
             "inputTypes": {
                 "Subject": "text",
                 "Start Date": "date",
@@ -698,7 +698,7 @@ function clearCalendar() {
                 "End Date": "date",
                 "End Time": "time",
                 "Description": "textarea",
-                "UID":"text"
+                "UID": "text"
             },
             "data": []
         }
@@ -825,7 +825,7 @@ function saveContactsEntry() {
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
     showPlannerDiv("planner-contacts-table");
 
-    if (confirm("Data updated.  Save updated data to file?")){
+    if (confirm("Data updated.  Save updated data to file?")) {
         saveCombinedDatabase();
     }
 }
@@ -841,7 +841,7 @@ function exportSingleVCard() {
 
     let vCard = makeSingleVCFString(row);
 
-    copyAndSaveString(vCard, row["First Name"] + "-" + row["Last Name"] + "-" + "Contact" + "-" + getTodaysDate(), ".vcf","text/vcard");
+    copyAndSaveString(vCard, row["First Name"] + "-" + row["Last Name"] + "-" + "Contact" + "-" + getTodaysDate(), ".vcf", "text/vcard");
 
     if (index >= 0) { //an existing entry
         contactsTable["data"][index] = row;
@@ -865,7 +865,7 @@ function deleteContactsEntry() {
     clearContactFormEntries(contactsTable);
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
     showPlannerDiv("planner-contacts-table");
-    if (confirm("Current data updated.  Save updated data to file?")){
+    if (confirm("Current data updated.  Save updated data to file?")) {
         saveCombinedDatabase();
     }
 }
@@ -985,7 +985,7 @@ function loadOutlookContactsCSV() {
 
 function saveOutlookContactsCSV() {
     let thisCSV = makeCSV(contactsTable, true);
-    copyAndSaveString(thisCSV, contactsTable["name"] + getTodaysDate(), ".csv","text/csv");
+    copyAndSaveString(thisCSV, contactsTable["name"] + getTodaysDate(), ".csv", "text/csv");
 }
 
 function importVCF() {
@@ -1073,7 +1073,7 @@ function getVEVENTSFromICS(contents) {
 function parseVEVENTToObject(vEvent) {
     let row = {}
     //Just in case
-    vEvent=vEvent.replace(/(\r\n|\r|\n)/g, "\n");
+    vEvent = vEvent.replace(/(\r\n|\r|\n)/g, "\n");
     vEvent = vEvent.trim();
     let lines = vEvent.split("\n");
     row["Subject"] = "";
@@ -1106,10 +1106,12 @@ function parseVEVENTToObject(vEvent) {
             let hours = ("0" + (startDateObject.getHours().toString())).slice(-2);
             let minutes = ("0" + (startDateObject.getMinutes().toString())).slice(-2);
             let seconds = ("0" + (startDateObject.getSeconds().toString())).slice(-2);
-            console.log("year: ",year," month: ",month," date: ",date);
-            console.log("hours: ",hours," minutes: ",minutes," seconds: ",seconds);
+            console.log("year: ", year, " month: ", month, " date: ", date);
+            console.log("hours: ", hours, " minutes: ", minutes, " seconds: ", seconds);
             row["Start Date"] = year + "-" + month + "-" + date;
-            row["Start Time"] = hours + ":" + minutes + ":" + seconds;
+
+            /////////////**********This is where seconds are added in when reading in */
+            row["Start Time"] = hours + ":" + minutes;// + ":" + seconds;
         }
         else if (line.slice(0, 5) === "DTEND") {
             let iCalEndDate = line.split(":")[1];
@@ -1123,7 +1125,8 @@ function parseVEVENTToObject(vEvent) {
             let minutes = ("0" + (endDateObject.getMinutes().toString())).slice(-2);
             let seconds = ("0" + (endDateObject.getSeconds().toString())).slice(-2);
             row["End Date"] = year + "-" + month + "-" + date;
-            row["End Time"] = hours + ":" + minutes + ":" + seconds;
+            /////////////**********This is where seconds are added in when reading in */            
+            row["End Time"] = hours + ":" + minutes;// + ":" + seconds;
         }
         else {
             extraStuff += line + "\n";
@@ -1140,27 +1143,31 @@ function parseVEVENTToObject(vEvent) {
 }
 
 function iCalDateToISOString(icalDate) {
-    // 2023-06-11T14:05:25.003Z----->20230611T140525Z
     let year = icalDate.slice(0, 4);
-    let month = parseInt(icalDate.slice(4, 6));
+    let month = icalDate.slice(4, 6);
     let day = icalDate.slice(6, 8);
-    let dateObject;
+    let hour = "00";
+    let min = "00";
+    let sec = "00";
     if (icalDate.indexOf("T") !== -1) {//Long String
         hour = icalDate.slice(9, 11);
         min = icalDate.slice(11, 13);
         sec = icalDate.slice(13, 15);
-        console.log("hour: ",hour);
-        console.log("min: ",min);
-        console.log("sec: ",sec);
-        dateObject = new Date(year, month-1, day, hour, min, sec);
-        console.log(dateObject.toISOString());
-        console.log(dateObject.toString());
+    }
+    if (icalDate.indexOf("Z") !== -1) {
+        let ISOString = year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec + ".000Z";
+        return ISOString;
     }
     else {
-        dateObject = new Date(year, month-1, day);
+        let intYear=parseInt(year);
+        let intMonth = parseInt(month);
+        let intDay=parseInt(day);
+        let intHour=parseInt(hour);
+        let intMin=parseInt(min);
+        let intSec=parseInt(sec);
+        let dateObject = new Date(intYear, intMonth - 1, intDay, intHour, intMin, intSec);
+        return dateObject.toISOString();
     }
-
-    return dateObject.toISOString();
 }
 
 function readInAllVcards(contents) {
@@ -1186,24 +1193,24 @@ function parseContactFromVCard(vCard) {
     let contactObject = {};
     for (let i = 0; i < prefixes.length; i++) {
         for (j = 0; j < lines.length; j++) {
-                console.log(lines[j].substring(0,3));
-            if (lines[j].substring(0,3)==="TEL"){// will place any telephone numer under cell, then overwritten if cell listed
+            console.log(lines[j].substring(0, 3));
+            if (lines[j].substring(0, 3) === "TEL") {// will place any telephone numer under cell, then overwritten if cell listed
 
-    ////////////// SHOULD CHANGE OTHER TELEPHONE STUFF TO LOOK FOR HOME AND WORK 
-                    console.log("FOUND TEL!!!!");
-                    if (lines[j].indexOf("CELL") !== -1){
-                        console.log("Contains CELL");
-                        contactObject["Mobile Phone"] = lines[j].split(":")[1];
-                    }
-                    if (lines[j].indexOf("HOME") !== -1){
-                        console.log("Contains HOME");
-                        contactObject["Home Phone"] = lines[j].split(":")[1];
-                    }
-                    if (lines[j].indexOf("WORK") !== -1){
-                        console.log("Contains WORK");
-                        contactObject["Business Phone"] = lines[j].split(":")[1];
-                    }
+                ////////////// SHOULD CHANGE OTHER TELEPHONE STUFF TO LOOK FOR HOME AND WORK 
+                console.log("FOUND TEL!!!!");
+                if (lines[j].indexOf("CELL") !== -1) {
+                    console.log("Contains CELL");
+                    contactObject["Mobile Phone"] = lines[j].split(":")[1];
                 }
+                if (lines[j].indexOf("HOME") !== -1) {
+                    console.log("Contains HOME");
+                    contactObject["Home Phone"] = lines[j].split(":")[1];
+                }
+                if (lines[j].indexOf("WORK") !== -1) {
+                    console.log("Contains WORK");
+                    contactObject["Business Phone"] = lines[j].split(":")[1];
+                }
+            }
             if (lines[j].substring(0, prefixes[i].length) === prefixes[i]) {
                 if (prefixes[i] === "N:") {
                     let lastName = lines[j].substring(prefixes[i].length).split(";")[0];
@@ -1280,7 +1287,7 @@ function exportVCF() {
         str += makeSingleVCFString(rows[i]);
     }
     console.log(str);
-    copyAndSaveString(str, "vcf" + contactsTable["name"] + getTodaysDate(), ".vcf","text/vcard");
+    copyAndSaveString(str, "vcf" + contactsTable["name"] + getTodaysDate(), ".vcf", "text/vcard");
 }
 
 
@@ -1346,10 +1353,10 @@ function showPlannerDiv(id) {
     //document.getElementById("back-home-nav").style.display="flex";
 }
 
-function backHomePlanner(){
+function backHomePlanner() {
     showPlannerDiv("planner-home");
-    document.getElementById("planner-ribbon").style.display="flex";
-    document.getElementById("back-home-nav").style.display="none";
+    document.getElementById("planner-ribbon").style.display = "flex";
+    document.getElementById("back-home-nav").style.display = "none";
 }
 
 function loadCombinedDatabase() {
@@ -1402,7 +1409,7 @@ function saveCombinedDatabase() {
     let str = JSON.stringify(combinedDatabase);
     let baseFilename = "bitOfficePlanner" + getTodaysDate();
     //copyAndSaveString(str, baseFilename, ".bof");
-    saveStringToTextFile(str,baseFilename,".json","application/json");
+    saveStringToTextFile(str, baseFilename, ".json", "application/json");
 }
 
 
@@ -1439,8 +1446,8 @@ function makeVEvent(row, lineTerminator = "\n") {
     str += "BEGIN:VEVENT" + lt;
     str += "SUMMARY:" + subject.trim() + lt;
     //need function that goes from row to standard output
-    rowDateTimeToICALString(startDate,startTime);
-    rowDateTimeToICALString(endDate,endTime);
+    rowDateTimeToICALString(startDate, startTime);
+    rowDateTimeToICALString(endDate, endTime);
     //str += "DTSTART:" + ISOStringToICalString(htmlDateAndTimeToISOString(startDate, startTime)).trim() + lt;
     str += "DTSTART:" + rowDateTimeToICALString(startDate, startTime).trim() + lt;
     //str += "DTEND:" + ISOStringToICalString(htmlDateAndTimeToISOString(endDate, endTime)).trim() + lt;
@@ -1457,7 +1464,7 @@ function makeVEvent(row, lineTerminator = "\n") {
     // END:VEVENT
 }
 
-function rowDateTimeToICALString(date,time){
+function rowDateTimeToICALString(date, time) {
 
     //let year=parseInt(date.split("-")[0]);
     //let month=parseInt(      date.split("-")[1]      )-1;
@@ -1469,14 +1476,14 @@ function rowDateTimeToICALString(date,time){
     //let thisDate=new Date(year,month,day,hour,min,sec);
 
     //let thisDateISO=thisDate.toISOString();
-    let thisDateISO=htmlDateAndTimeToISOString(date,time);
-    let icalString=ISOStringToICalStringZulu(thisDateISO);
-    
+    let thisDateISO = htmlDateAndTimeToISOString(date, time);
+    let icalString = ISOStringToICalStringZulu(thisDateISO);
+
     return icalString;
 
     console.log("fromhtml:");
 
-    icalStr=date.split("-").join("")+"T"+time.split(":").join("");
+    icalStr = date.split("-").join("") + "T" + time.split(":").join("");
     console.log(icalStr);
     return icalStr;
 }
@@ -1498,10 +1505,10 @@ function htmlDateAndTimeToISOString(date = "2023-01-31", time) {
 function ISOStringToICalStringZulu(ISOString) {
     // 2023-06-11T14:05:25.003Z----->20230611T140525Z
     //let ICALSTRING=ISOString.replace(/\-/,)
-    let ICALString=ISOString.replace(/\.\d\d\dZ/, "Z").replace(/\-|\:|\./g, "");
+    let ICALString = ISOString.replace(/\.\d\d\dZ/, "Z").replace(/\-|\:|\./g, "");
     //console.log("ICALSTRING",ICALString);
     return ICALString;
-    
+
 }
 
 function makeVEventsArr(dataRows) {
@@ -1513,23 +1520,23 @@ function makeVEventsArr(dataRows) {
 }
 
 
-function makeVCalendar(vEventsArr, lineTerminator="\n"){
-    let str="";
-    let lt=lineTerminator;
-    str+="BEGIN:VCALENDAR"+lt;
-    str+="VERSION:2.0"+lt;
-    str += "PRODID:bitOffice"+lt;
-    str+="CALSCALE:GREGORIAN"+lt;
-    for (let i=0;i<vEventsArr.length;i++){
-        str+=vEventsArr[i].trim()+lt;
+function makeVCalendar(vEventsArr, lineTerminator = "\n") {
+    let str = "";
+    let lt = lineTerminator;
+    str += "BEGIN:VCALENDAR" + lt;
+    str += "VERSION:2.0" + lt;
+    str += "PRODID:bitOffice" + lt;
+    str += "CALSCALE:GREGORIAN" + lt;
+    for (let i = 0; i < vEventsArr.length; i++) {
+        str += vEventsArr[i].trim() + lt;
     }
-    str+="END:VCALENDAR";
+    str += "END:VCALENDAR";
     return str;
 }
 
 function exportICSCalendar() {
     let eventsArr = makeVEventsArr(calendarDatabase["data"]);
     let cal = makeVCalendar(eventsArr);
-    copyAndSaveString(cal, "ICSCalendar" + getTodaysDate(), ".ics","text/calendar");
+    copyAndSaveString(cal, "ICSCalendar" + getTodaysDate(), ".ics", "text/calendar");
 }
 
