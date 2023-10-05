@@ -296,7 +296,7 @@ function exportSingleICalEvent(){
     eventsArr.push(vEvent);
     let vCal=makeVCalendar(eventsArr,"\n");
     let filename="vEvent"+row["Start Date"]+"_"+row["Start Time"].replace(/\:/g,"");
-    copyAndSaveString(vCal,filename,".ical");
+    copyAndSaveString(vCal,filename,".ical", mimeType="text/calendar");
     
 
     if (index >= 0) { //an existing entry
@@ -510,7 +510,7 @@ function colorCalendarEntries() {
 function createOutlookCSV() {
     let outlookCSV = JSONToCSV(calendarDatabase, true, "\r\n");
     console.log(outlookCSV);
-    copyAndSaveString(outlookCSV, "plannerToOutlookExport" + getTodaysDate(), ".csv");
+    copyAndSaveString(outlookCSV, "plannerToOutlookExport" + getTodaysDate(), ".csv", "text/csv");
 }
 
 function loadOutlookCSV() {
@@ -841,7 +841,7 @@ function exportSingleVCard() {
 
     let vCard = makeSingleVCFString(row);
 
-    copyAndSaveString(vCard, row["First Name"] + "-" + row["Last Name"] + "-" + "Contact" + "-" + getTodaysDate(), ".vcf");
+    copyAndSaveString(vCard, row["First Name"] + "-" + row["Last Name"] + "-" + "Contact" + "-" + getTodaysDate(), ".vcf","text/vcard");
 
     if (index >= 0) { //an existing entry
         contactsTable["data"][index] = row;
@@ -985,7 +985,7 @@ function loadOutlookContactsCSV() {
 
 function saveOutlookContactsCSV() {
     let thisCSV = makeCSV(contactsTable, true);
-    copyAndSaveString(thisCSV, contactsTable["name"] + getTodaysDate(), ".csv");
+    copyAndSaveString(thisCSV, contactsTable["name"] + getTodaysDate(), ".csv","text/csv");
 }
 
 function importVCF() {
@@ -1280,7 +1280,7 @@ function exportVCF() {
         str += makeSingleVCFString(rows[i]);
     }
     console.log(str);
-    copyAndSaveString(str, "vcf" + contactsTable["name"] + getTodaysDate(), ".vcf");
+    copyAndSaveString(str, "vcf" + contactsTable["name"] + getTodaysDate(), ".vcf","text/vcard");
 }
 
 
@@ -1402,7 +1402,7 @@ function saveCombinedDatabase() {
     let str = JSON.stringify(combinedDatabase);
     let baseFilename = "bitOfficePlanner" + getTodaysDate();
     //copyAndSaveString(str, baseFilename, ".bof");
-    saveStringToTextFile(str,baseFilename,".json");
+    saveStringToTextFile(str,baseFilename,".json","application/json");
 }
 
 
@@ -1530,6 +1530,6 @@ function makeVCalendar(vEventsArr, lineTerminator="\n"){
 function exportICSCalendar() {
     let eventsArr = makeVEventsArr(calendarDatabase["data"]);
     let cal = makeVCalendar(eventsArr);
-    copyAndSaveString(cal, "ICSCalendar" + getTodaysDate(), ".ics");
+    copyAndSaveString(cal, "ICSCalendar" + getTodaysDate(), ".ics","text/calendar");
 }
 
