@@ -1025,10 +1025,10 @@ function unorderedJSONToCSV(jsonObject, includeHeaders = true) {
     return csvString;
 }
 
-function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt") {
+function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt",mimeType="text/plain") {
     let filename = basename + fileType;
     let blobVersionOfText = new Blob([str1], {
-        type: "text/plain",
+        type: mimeType,
     });
     let urlToBlob = window.URL.createObjectURL(blobVersionOfText);
     let downloadLink = document.createElement("a");
@@ -1040,10 +1040,10 @@ function saveStringToTextFile(str1, basename = "myfile", fileType = ".txt") {
     downloadLink.parentElement.removeChild(downloadLink);
 }
 
-function copyAndSaveString(str1, basename = "myfile", fileType = ".txt") {
+function copyAndSaveString(str1, basename = "myfile", fileType = ".txt", mimeType="text/plain") {
     copyToClipBoard(str1, false);
     if (confirm("Copied to clipboard, save to file also?")) {
-        saveStringToTextFile(str1, basename, fileType);
+        saveStringToTextFile(str1, basename, fileType, mimeType);
     }
 }
 
