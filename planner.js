@@ -33,11 +33,13 @@ let calendarSortAscending = 1;
 
 let calendarDatabase = {
     "name": "Calendar",
-    "headers": ["Subject", "Start Date", "Start Time", "End Date", "End Time", "Description", "UID"],
+    "headers": ["Subject", "Start ISOZulu","Start Date", "Start Time", "End ISOZulu", "End Date", "End Time", "Description", "UID"],
     "inputTypes": {
         "Subject": "text",
+        "Start ISOZulu":"text",
         "Start Date": "date",
         "Start Time": "time",
+        "End ISOZulu":"text",
         "End Date": "date",
         "End Time": "time",
         "Description": "textarea",
@@ -243,9 +245,20 @@ function buildCalendarEditForm(index) {
     return editForm;
 }
 
+function addLeadingZerosAndReturnString(number, totalLength=2){
+    //strHour = ("0" + strHour).slice(-2);
+    let str=number.toString();
+    for (let i=0;i<totalLength;i++){
+        str="0"+str;
+    }
+    str=str.slice(-totalLength);
+    return str;
+}
+
 function saveCalendarEntry() {
     let index = parseInt(document.getElementById("calendar-row-index").value);
-    let date = document.getElementById("calendar-date").value;
+    let date = document.getElementById("calendar-date").value;//default date
+
     let headers = calendarDatabase["headers"];
     let row = {};
     //make a row to add onto array of entries
@@ -264,6 +277,24 @@ function saveCalendarEntry() {
     if ((row["UID"] === "") || (row["UID"] === undefined)) {
         row["UID"] = makeUID(row["Start Date"], row["Start Time"]);
     }
+
+    //for making zulu time from 
+    let startYear=Number(row["Start Date"].split("-")[0]);
+    let startMonth=Number(row["Start Date"].split("-")[1])-1;
+    let startDay=Number(row["Start Date"].split("-")[2]);
+
+    let tempStartDate = new Date(startYear,startMonth,startDay);
+    tempStartDate.setHours(Number(row["Start Time"].split(":")[0]));
+    tempStartDate.setMinutes(Number(row["Start Time"].split(":")[1]));
+    row["Start ISOZulu"]=tempStartDate.toISOString();
+    document.getElementById("Start ISOZulu").value=row["Start ISOZulu"];
+
+    //if there is no end date, no end time, do nothing
+    //if there is and end date, but not end time, do nothing
+    //if there is no end date, but an end time, make end date=start date then write zulu time
+    //if there is and end date and an end time, write zulu
+
+
 
     if (index >= 0) { //an existing entry
         calendarDatabase["data"][index] = row;
