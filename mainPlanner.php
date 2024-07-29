@@ -80,6 +80,7 @@
                     <button onclick="saveOutlookContactsCSV();">&#128193; Export CSV</button> -->
                 <button onclick="importVCF();">&#128193; Import vCards</button>
                 <button onclick="exportVCF();">&#128193; Export vCards</button>
+                <button onclick="removeDuplicateContacts();">&#128589;&#128589;Remove Duplicate Contacts</button>
                 <button class="nested-menu">&lrarr;</button>
             </nav>
         </nav>

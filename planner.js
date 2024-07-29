@@ -1540,3 +1540,32 @@ function exportICSCalendar() {
     copyAndSaveString(cal, "ICSCalendar" + getTodaysDate(), ".ics", "text/calendar");
 }
 
+function removeDuplicateContacts() {
+    let contacts=contactsTable["data"];
+    let contactsStringified=[];
+    //make stringified version of contact objects
+    for (let i=0;i<contacts.length;i++){
+        console.log(contacts[i]);
+        contactsStringified[i]=JSON.stringify(contacts[i]);
+    }
+    //make a new array of strings, skip duplicates
+    let tempArr=[];
+    for (let i=0;i<contactsStringified.length;i++){
+        if (tempArr.includes(contactsStringified[i])){
+            //do nothing, this is a duplicate
+        }
+        else{
+            tempArr.push(contactsStringified[i]);
+        }
+    }
+    let tempArr2=[];
+    //convert array of strings to array of objects
+    for (let i=0;i<tempArr.length;i++){
+        tempArr2.push(JSON.parse(tempArr[i]));
+    }
+    //"deep copy" contacts data to array of objects
+    contactsTable["data"]=JSON.parse(JSON.stringify(tempArr2));
+    //rewrite contacts table
+    contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+}
+
