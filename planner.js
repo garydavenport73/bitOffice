@@ -1541,31 +1541,61 @@ function exportICSCalendar() {
 }
 
 function removeDuplicateContacts() {
+    console.log("BEFORE");
+    console.log("number of contacts is: "+contactsTable["data"].length);
     let contacts=contactsTable["data"];
-    let contactsStringified=[];
-    //make stringified version of contact objects
+    let tempArray=[];
+
+    //loop through contacts, don't add duplicates
     for (let i=0;i<contacts.length;i++){
-        console.log(contacts[i]);
-        contactsStringified[i]=JSON.stringify(contacts[i]);
-    }
-    //make a new array of strings, skip duplicates
-    let tempArr=[];
-    for (let i=0;i<contactsStringified.length;i++){
-        if (tempArr.includes(contactsStringified[i])){
-            //do nothing, this is a duplicate
+        if (isObjectInArray(tempArray,contacts[i])){
+            //don't add
         }
         else{
-            tempArr.push(contactsStringified[i]);
+            //add
+            tempArray.push(contacts[i]);
         }
     }
-    let tempArr2=[];
-    //convert array of strings to array of objects
-    for (let i=0;i<tempArr.length;i++){
-        tempArr2.push(JSON.parse(tempArr[i]));
-    }
-    //"deep copy" contacts data to array of objects
-    contactsTable["data"]=JSON.parse(JSON.stringify(tempArr2));
+
+    // set contacts to new array without duplicates
+    contactsTable["data"]=JSON.parse(JSON.stringify(tempArray));
+
     //rewrite contacts table
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+    console.log("AFTER");
+    console.log("number of contacts is: "+contactsTable["data"].length);
+
 }
 
+function isObjectInArray(arr,obj){
+//go through array
+    for (let i=0;i<arr.length;i++){
+        if (doObjectsHaveSameKeysAndProperties(arr[i],obj)){
+            return true;
+        };
+    }
+    return false;
+}
+
+function doObjectsHaveSameKeysAndProperties(arr1,arr2){
+    //get keys
+    let arr1Keys=Object.keys(arr1);
+    let arr2Keys=Object.keys(arr2);
+    //if number of keys not same, return false
+    if (arr1Keys.length!==arr2Keys.length){
+        return false;       
+    }
+    //loop through array1 and compare values of array2
+    for (let i=0;i<arr1Keys.length;i++){
+        if (arr1[arr1Keys[i]]!==arr2[arr1Keys[i]]){
+            return false;
+        }       
+    }
+    //loop through array2 and compare values of array1
+    for (let i=0;i<arr2Keys.length;i++){
+        if (arr2[arr2Keys[i]]!==arr1[arr2Keys[i]]){
+            return false;
+        }       
+    }
+    return true;
+}
