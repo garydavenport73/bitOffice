@@ -595,7 +595,7 @@ main nav button{
             <td><button class='build-calc-string'>+</button></td>
         </tr>
     </table>
-</main><footer onclick="alert(license)">bitOffice &copy; 2022</footer><script>let license = "MIT License\n\n\
+</main><footer onclick="alert(license);">bitOffice &copy; 2022</footer><script>let license = "MIT License\n\n\
 Copyright (c) 2022 Gary Davenport\n\n\
 Permission is hereby granted, free of charge, to any person obtaining a copy \
 of this software and associated documentation files (the \"Software\"), to deal \
@@ -661,7 +661,7 @@ function evaluateCalculatorInput() {
 function evalReplaceFunction(str) {
     return Function("'use strict'; return (" + str + ")")();
 }
-</script><script>let selfString="";
+</script><script>;let selfString="";
 function createSelf(){
     let html=document.getElementsByTagName("html")[0].innerHTML;
     selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";

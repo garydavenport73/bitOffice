@@ -574,7 +574,7 @@ main nav button{
         <button onclick="simulateRedo()">&#10227;</button>
     </nav>
     <textarea id="note" rows="10" placeholder="your notes here"></textarea>
-</main><footer onclick="alert(license)">bitOffice &copy; 2022</footer><script>let license = "MIT License\n\n\
+</main><footer onclick="alert(license);">bitOffice &copy; 2022</footer><script>let license = "MIT License\n\n\
 Copyright (c) 2022 Gary Davenport\n\n\
 Permission is hereby granted, free of charge, to any person obtaining a copy \
 of this software and associated documentation files (the \"Software\"), to deal \
@@ -986,8 +986,8 @@ note.addEventListener('keydown', function (evt) {
             "\t" + note.value.substring(end);
         note.selectionStart =
             note.selectionEnd = start + 1;
-    }
-});</script><script>let selfString="";
+    };
+});</script><script>;let selfString="";
 function createSelf(){
     let html=document.getElementsByTagName("html")[0].innerHTML;
     selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";

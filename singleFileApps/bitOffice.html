@@ -893,7 +893,7 @@ main nav button{
             <td><button class='build-calc-string'>+</button></td>
         </tr>
     </table>
-</main><footer onclick="alert(license)">bitOffice &copy; 2022</footer><script>let license = "MIT License\n\n\
+</main><footer onclick="alert(license);">bitOffice &copy; 2022</footer><script>let license = "MIT License\n\n\
 Copyright (c) 2022 Gary Davenport\n\n\
 Permission is hereby granted, free of charge, to any person obtaining a copy \
 of this software and associated documentation files (the \"Software\"), to deal \
@@ -3238,7 +3238,7 @@ note.addEventListener('keydown', function (evt) {
             "\t" + note.value.substring(end);
         note.selectionStart =
             note.selectionEnd = start + 1;
-    }
+    };
 });
 // WRITE
 let textarea = document.getElementById("text-editor");
@@ -4126,7 +4126,7 @@ function openSelectedInitialNests() {
 }
 
 toggleAll();
-openSelectedInitialNests();</script><script>let selfString="";
+openSelectedInitialNests();</script><script>;let selfString="";
 function createSelf(){
     let html=document.getElementsByTagName("html")[0].innerHTML;
     selfString+="<!DOCTYPE html><html lang='en'>"+html+"</html>";

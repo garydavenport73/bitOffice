@@ -1,1 +1,1 @@
-<footer onclick="alert(license)">bitOffice &copy; 2022</footer>
+<footer onclick="alert(license);">bitOffice &copy; 2022</footer>

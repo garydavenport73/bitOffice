@@ -93,5 +93,5 @@ note.addEventListener('keydown', function (evt) {
             "\t" + note.value.substring(end);
         note.selectionStart =
             note.selectionEnd = start + 1;
-    }
+    };
 });
