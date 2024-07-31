@@ -1541,8 +1541,9 @@ function exportICSCalendar() {
 }
 
 function removeDuplicateContacts() {
+    let beforeNumber=contactsTable["data"].length;
     console.log("BEFORE");
-    console.log("number of contacts is: "+contactsTable["data"].length);
+    console.log("number of contacts is: " + beforeNumber.toString());
     let contacts=contactsTable["data"];
     let tempArray=[];
 
@@ -1562,9 +1563,11 @@ function removeDuplicateContacts() {
 
     //rewrite contacts table
     contactsTableElement.innerHTML = buildContactsTableElement(contactsTable);
+    let afterNumber=contactsTable["data"].length;
     console.log("AFTER");
-    console.log("number of contacts is: "+contactsTable["data"].length);
-
+    console.log("number of contacts is: "+afterNumber.toString());
+    console.log((beforeNumber-afterNumber).toString()+" duplicates removed.");
+    alert((beforeNumber-afterNumber).toString()+" duplicates removed.");
 }
 
 function isObjectInArray(arr,obj){
