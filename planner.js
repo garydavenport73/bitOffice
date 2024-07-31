@@ -1566,8 +1566,8 @@ function removeDuplicateContacts() {
     let afterNumber=contactsTable["data"].length;
     console.log("AFTER");
     console.log("number of contacts is: "+afterNumber.toString());
-    console.log((beforeNumber-afterNumber).toString()+" duplicates removed.");
-    alert((beforeNumber-afterNumber).toString()+" duplicates removed.");
+    console.log((beforeNumber-afterNumber).toString()+" duplicate(s) removed.");
+    alert((beforeNumber-afterNumber).toString()+" duplicate(s) removed.");
 }
 
 function isObjectInArray(arr,obj){
