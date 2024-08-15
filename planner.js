@@ -1070,6 +1070,55 @@ function getVEVENTSFromICS(contents) {
     return events;
 }
 
+function rightTrimCharacter(str, trimChar) {
+    console.log(str);
+    console.log(trimChar);
+    while (trimChar === str[str.length - 1]) {
+        str = str.substring(0, str.length - 2);
+    }
+    console.log(str);
+    return str;
+}
+
+function removeEmptyArrayElements(arr){
+    // return arr;
+    let tempArr=[];
+    for (let i=0;i<arr.length;i++){
+        if (arr[i].trim()!==""){
+            tempArr.push(arr[i]);
+        }
+    }
+    return tempArr;
+}
+
+function convertQuotedPrintableLineToRegularTextLine(line) {
+    let str = "";
+    let lineProperty = line.split(":")[0];
+    lineProperty = lineProperty.split("ENCODING=QUOTED-PRINTABLE").join("");
+    lineProperty = lineProperty.split("CHARSET=UTF-8").join("");
+
+    lineProperty = rightTrimCharacter(lineProperty, ";");//remove trailing ;'s any number
+    //remove internal ;;'s or more than 2
+    for (let i = 2; i < 10; i++) {
+        let removeMe = ";".repeat(i).trimEnd();
+        lineProperty = lineProperty.split(removeMe).join("");
+    }
+    let hexString = line.split(":")[1];
+    console.log(hexString);
+    let arr = hexString.split("=");
+    arr=removeEmptyArrayElements(arr);
+    console.log(arr);
+    for (let i = 0; i < arr.length; i++) {
+        str += String.fromCharCode(parseInt(arr[i], 16));
+    }
+    console.log(str);
+    str = lineProperty + ":" + str;
+    console.log(str);
+    return str;
+}
+
+
+
 function parseVEVENTToObject(vEvent) {
     let row = {}
     //Just in case
@@ -1086,6 +1135,14 @@ function parseVEVENTToObject(vEvent) {
     let extraStuff = "\n-------Extra Stuff-------\n";
     for (let i = 0; i < lines.length; i++) {
         let line = lines[i];
+        if (line.indexOf("ENCODING=QUOTED-PRINTABLE") !== -1) {
+            //remove Quoted Printable Lines , ie hex format
+            // SUMMARY;ENCODING=QUOTED-PRINTABLE;CHARSET=UTF-8:=65=78=61=6d=70=6c=65=20=74=65=78=74
+
+            // to
+            // SUMMARY;ENCODING=QUOTED-PRINTABLE;CHARSET=UTF-8:
+            line=convertQuotedPrintableLineToRegularTextLine(line);
+        }
         if (line.slice(0, 7) === "SUMMARY") {
             row["Subject"] = line.split(":")[1];
         }
