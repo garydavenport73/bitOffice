@@ -1015,7 +1015,7 @@ function importICSCalendar() {
         let fileContents = "";
         let inputTypeIsFile = document.createElement('input');
         inputTypeIsFile.type = "file";
-        inputTypeIsFile.accept = ".ics";
+        inputTypeIsFile.accept = ".ics, .vcs";
         inputTypeIsFile.addEventListener("change", function () {
             let inputFile = inputTypeIsFile.files[0];
             let fileReader = new FileReader();
